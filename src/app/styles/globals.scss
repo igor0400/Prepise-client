@@ -1,0 +1,49 @@
+@import './imports.scss';
+@import './variables.scss';
+
+// styles
+
+* {
+   font-family: 'Montserrat', sans-serif;
+}
+
+body {
+   background: $mainbackground;
+   overflow: scroll;
+}
+
+input {
+   outline: none;
+}
+
+li {
+   list-style-type: none;
+}
+
+.ant-layout,
+.ant-layout-header,
+.ant-layout-content,
+.ant-layout-footer {
+   background: none;
+}
+
+::-webkit-scrollbar {
+   height: 100%;
+   width: 10px;
+}
+::-webkit-scrollbar-track {
+   background: $mainbackground;
+}
+::-webkit-scrollbar-thumb {
+   border-radius: 5px;
+   background: #1ba52241;
+   &:hover {
+      background: #1ba52269;
+   }
+}
+
+@media (max-width: 360px) {
+   .text-4xl {
+      font-size: 30px;
+   }
+}

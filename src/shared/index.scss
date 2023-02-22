@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+@import './lib/hoks/circlesWrapper/circlesWrapper.scss';
+@import './lib/hoks/pageWrapper/pageWrapper.scss';
+@import './ui/button/button.scss';
+@import './ui/circles/circles.scss';
+
+.light-text {
+   color: $lightText;
+}
+
+.padding-50 {
+   padding-inline: 50px;
+   @media (max-width: 800px) {
+      padding-inline: 25px;
+   }
+   @media (max-width: 425px) {
+      padding-inline: 15px;
+   }
+}
