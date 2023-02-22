@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import React, { FC, useEffect, useState } from 'react';
-import ShadowCard from '../../../shared/ui/ShadowCard/ShadowCard';
-import { settings } from '../../config/cards-config';
+import ShadowCard from '../../shared/ui/ShadowCard/ShadowCard';
+import { settings } from './config/cards-config';
 import {
     ChangedSettings,
     NewList,
     Settings,
-} from '../../model/types/cards-types';
+} from './model/types/cards-types';
 
 const Cards: FC = () => {
     const [cardsArr, setCardsArr] = useState<ChangedSettings[]>([]);

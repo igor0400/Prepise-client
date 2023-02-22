@@ -1,4 +1,4 @@
-import '../styles/globals.scss';
+import '../src/app/styles/global.scss';
 import type { AppProps } from 'next/app';
 import Header from '../src/widgets/Header';
 import { Layout } from 'antd';

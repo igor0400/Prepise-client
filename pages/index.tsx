@@ -8,7 +8,7 @@ import { CirclesWrapper } from '../src/shared';
 
 import logo from '../public/logo300x168.svg';
 import arrow from '../public/icons/arrow-right.svg';
-import Cards from '../src/widgets/ui/Cards/Cards';
+import Cards from '../src/widgets/Cards';
 
 const Home: NextPage = () => {
     return (

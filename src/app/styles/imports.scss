@@ -1,123 +1,127 @@
+// libs
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import 'antd/dist/reset.css';
 
+// all files
+@import './variables.scss';
 @import '../../shared/index.scss';
 @import '../../pages/index.scss';
+@import '../../widgets/index.scss';
 
 // fonts
 @font-face {
     font-family: 'Montserrat';
     font-weight: 900;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-Black.ttf');
+    src: url('../../../public/fonts/Montserrat-Black.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 900;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-BlackItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-BlackItalic.ttf');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-weight: 800;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-ExtraBold.ttf');
+    src: url('../../../public/fonts/Montserrat-ExtraBold.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 800;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-ExtraBoldItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-ExtraBoldItalic.ttf');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-weight: 700;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-Bold.ttf');
+    src: url('../../../public/fonts/Montserrat-Bold.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 700;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-BoldItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-BoldItalic.ttf');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-weight: 600;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-SemiBold.ttf');
+    src: url('../../../public/fonts/Montserrat-SemiBold.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 600;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-SemiBoldItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-SemiBoldItalic.ttf');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-weight: 500;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-Medium.ttf');
+    src: url('../../../public/fonts/Montserrat-Medium.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 500;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-MediumItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-MediumItalic.ttf');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-weight: 400;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-Regular.ttf');
+    src: url('../../../public/fonts/Montserrat-Regular.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 400;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-Italic.ttf');
+    src: url('../../../public/fonts/Montserrat-Italic.ttf');
 }
 
 @font-face {
     font-family: 'Montserrat';
     font-weight: 300;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-Light.ttf');
+    src: url('../../../public/fonts/Montserrat-Light.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 300;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-LightItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-LightItalic.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 200;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-ExtraLight.ttf');
+    src: url('../../../public/fonts/Montserrat-ExtraLight.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 200;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-ExtraLightItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-ExtraLightItalic.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 100;
     font-style: normal;
-    src: url('../public/fonts/Montserrat-Thin.ttf');
+    src: url('../../../public/fonts/Montserrat-Thin.ttf');
 }
 @font-face {
     font-family: 'Montserrat';
     font-weight: 100;
     font-style: italic;
-    src: url('../public/fonts/Montserrat-ThinItalic.ttf');
+    src: url('../../../public/fonts/Montserrat-ThinItalic.ttf');
 }
