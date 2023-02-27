@@ -1,6 +1,6 @@
-import Button from './ui/Button/Button';
-import ShadowCard from './ui/ShadowCard/ShadowCard';
-import CirclesWrapper from './lib/hoks/CirclesWrapper/CirclesWrapper';
-import PageWrapper from './lib/hoks/PageWrapper/PageWrapper';
+import Button from './components/Button/Button';
+import ShadowCard from './components/ShadowCard/ShadowCard';
+import CirclesWrapper from './lib/hocs/CirclesWrapper/CirclesWrapper';
+import PageWrapper from './lib/hocs/PageWrapper/PageWrapper';
 
 export { Button, ShadowCard, CirclesWrapper, PageWrapper };

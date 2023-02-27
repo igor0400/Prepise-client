@@ -3,46 +3,46 @@
 // styles
 
 * {
-   font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
-   background: $mainbackground;
-   overflow: scroll;
+  background: $mainbackground;
+  overflow: scroll;
 }
 
 input {
-   outline: none;
+  outline: none;
 }
 
 li {
-   list-style-type: none;
+  list-style-type: none;
 }
 
 .ant-layout,
 .ant-layout-header,
 .ant-layout-content,
 .ant-layout-footer {
-   background: none;
+  background: none;
 }
 
 ::-webkit-scrollbar {
-   height: 100%;
-   width: 10px;
+  height: 100%;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-   background: $mainbackground;
+  background: $mainbackground;
 }
 ::-webkit-scrollbar-thumb {
-   border-radius: 5px;
-   background: #1ba52241;
-   &:hover {
-      background: #1ba52269;
-   }
+  border-radius: 5px;
+  background: #1ba52241;
+  &:hover {
+    background: #1ba52269;
+  }
 }
 
 @media (max-width: 360px) {
-   .text-4xl {
-      font-size: 30px;
-   }
+  .text-4xl {
+    font-size: 30px;
+  }
 }
