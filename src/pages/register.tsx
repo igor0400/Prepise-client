@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import { CirclesWrapper } from '../src/shared';
-import { PageWrapper } from '../src/shared';
+import { CirclesWrapper } from '../shared';
+import { PageWrapper } from '../shared';
 
 const Register: NextPage = () => {
    return (
