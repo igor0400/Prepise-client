@@ -1,9 +1,13 @@
 @import './imports.scss';
 
 // styles
-
 * {
   font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
@@ -17,6 +21,14 @@ input {
 
 li {
   list-style-type: none;
+}
+
+// main wrapper
+.ant-layout-content {
+  min-height: calc(100vh - 65px) !important;
+  @media screen and (max-width: 425px) {
+    min-height: calc(100vh - 51.5px) !important;
+  }
 }
 
 .ant-layout,

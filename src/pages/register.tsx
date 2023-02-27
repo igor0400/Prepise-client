@@ -1,13 +1,12 @@
 import { NextPage } from 'next';
-import { CirclesWrapper } from '../shared';
 import { PageWrapper } from '../shared';
 
 const Register: NextPage = () => {
-   return (
-      <PageWrapper nopadding>
-         <CirclesWrapper>register</CirclesWrapper>
-      </PageWrapper>
-   );
+  return (
+    <PageWrapper nopadding>
+      register
+    </PageWrapper>
+  );
 };
 
 export default Register;

@@ -7,6 +7,7 @@ import i18n from 'i18next';
 import Backend from 'i18next-xhr-backend';
 
 import store from '../app/store';
+import Footer from '../widgets/Footer';
 
 // i18n.use(Backend).init({
 //     ns: ['common'], // namespace used in your translation files
@@ -20,16 +21,17 @@ import store from '../app/store';
 const { Content } = Layout;
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return (
-        <Provider store={store}>
-            <Layout>
-                <Header />
-                <Content>
-                    <Component {...pageProps} />
-                </Content>
-            </Layout>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <Layout>
+        <Header />
+        <Content>
+          <Component {...pageProps} />
+        </Content>
+        <Footer />
+      </Layout>
+    </Provider>
+  );
 }
 
 export default MyApp;

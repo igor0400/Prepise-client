@@ -1,0 +1,15 @@
+@import '../../app/styles/variables.scss';
+
+.footer {
+  height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 2px solid $line;
+  font-weight: 700;
+  @media screen and (max-width: 425px) {
+    font-size: 13px;
+    font-weight: 600;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}

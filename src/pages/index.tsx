@@ -6,12 +6,12 @@ import Cards from '../widgets/Cards';
 import StartScreen from '../widgets/StartScreen';
 
 const Home: NextPage = () => {
-    return (
-        <PageWrapper nopadding>
-            <StartScreen />
-            <Cards />
-        </PageWrapper>
-    );
+  return (
+    <PageWrapper nopadding>
+      <StartScreen />
+      <Cards />
+    </PageWrapper>
+  );
 };
 
 export default Home;
