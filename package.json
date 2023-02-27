@@ -6,8 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
+    "@chakra-ui/icons": "^2.0.17",
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@hookform/resolvers": "^2.9.11",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.2",
     "@pixi/filter-kawase-blur": "^5.0.0",
@@ -16,16 +19,19 @@
     "axios": "^1.2.2",
     "classnames": "^2.3.2",
     "debounce": "^1.2.1",
+    "framer-motion": "^10.0.1",
     "i18next": "^22.4.9",
     "i18next-xhr-backend": "^3.2.2",
     "next": "latest",
     "pixi.js": "^7.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.2",
     "react-redux": "^8.0.5",
     "sass": "^1.56.1",
     "simplex-noise": "^4.0.1",
-    "socket.io-client": "^4.5.4"
+    "socket.io-client": "^4.5.4",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "18.11.3",

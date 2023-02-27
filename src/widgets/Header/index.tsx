@@ -28,6 +28,7 @@ const Header: FC = () => {
           className="sm:w-28 w-20"
         />
       </Link>
+      
       <div
         className={classNames(
           'search-input justify-between rounded-md ml-10 sm:flex hidden',

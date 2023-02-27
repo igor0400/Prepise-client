@@ -23,8 +23,11 @@ li {
   list-style-type: none;
 }
 
-// main wrapper
-.ant-layout-content {
+main {
+  margin-top: 80px;
+  @media (max-width: 640px) {
+    margin-top: 65px;
+  }
   min-height: calc(100vh - 65px) !important;
   @media screen and (max-width: 425px) {
     min-height: calc(100vh - 51.5px) !important;
