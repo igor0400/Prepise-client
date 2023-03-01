@@ -26,21 +26,23 @@ const CompanyRegisterForm: FC = () => {
   });
   const dispatch = useDispatch();
   const router = useRouter();
-  const { request } = useRequestHandler();
+  const { request, loading } = useRequestHandler();
 
   const onSubmit = async (data: FormData) => {
-    const company = await request(registerReq, data);
+    if (!isSubmitting && !loading) {
+      const company = await request(registerReq, data);
 
-    if (company) {
-      reset();
-      router.push('/');
-      dispatch(setUserData(company));
+      if (company) {
+        reset();
+        router.push('/');
+        dispatch(setUserData(company));
+      }
     }
   };
 
   return (
     <RegisterFormFrame
-      isSubmitting={isSubmitting}
+      isSubmitting={isSubmitting || loading}
       settings={inputs}
       handleSubmit={handleSubmit(onSubmit)}
       register={register}

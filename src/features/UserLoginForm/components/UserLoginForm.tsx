@@ -21,21 +21,23 @@ const UserLoginForm: FC = () => {
   });
   const dispatch = useDispatch();
   const router = useRouter();
-  const { request } = useRequestHandler();
+  const { request, loading } = useRequestHandler();
 
   const onSubmit = async (data: FormData) => {
-    const user = await request(loginReq, data);
+    if (!isSubmitting && !loading) {
+      const user = await request(loginReq, data);
 
-    if (user) {
-      reset();
-      router.push('/');
-      dispatch(setUserData(user));
+      if (user) {
+        reset();
+        router.push('/');
+        dispatch(setUserData(user));
+      }
     }
   };
 
   return (
     <LoginFormFrame
-      isSubmitting={isSubmitting}
+      isSubmitting={isSubmitting || loading}
       settings={inputs}
       handleSubmit={handleSubmit(onSubmit)}
       register={register}
