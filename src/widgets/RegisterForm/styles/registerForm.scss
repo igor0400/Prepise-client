@@ -1,0 +1,13 @@
+@import '../../../app/styles/variables.scss';
+
+.register-form-wrapper {
+  height: 100%;
+  padding: 3% 0 5%;
+  .register-form {
+    background: $formBackground;
+    box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+    .css-r8r5li[aria-selected=true], .css-r8r5li[data-selected] {
+      border-bottom-color: #ffffffcb;
+    }
+  }
+}

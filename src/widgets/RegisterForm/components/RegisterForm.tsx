@@ -1,45 +1,52 @@
-import { FC } from 'react';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-
-import RegisterFormFrame from '../../../entities/RegisterFormFrame';
-import SendEmailCodeText from '../../../features/SendEmailCodeText';
-import { schema } from '../config/form-settings';
-import { FormData } from '../model/types';
-import { useToast } from '@chakra-ui/react';
-import { useDispatch } from 'react-redux';
-import { registerReq } from '../lib/api/register';
+import { FC, useEffect, useState } from 'react';
+import { Tab, Tabs, TabList, TabPanels, TabPanel } from '@chakra-ui/react';
+// @ts-ignore
+import { useSearchParams, useRouter } from 'next/navigation';
+import CompanyRegisterForm from '../../../features/CompanyRegisterForm';
+import UserRegisterForm from '../../../features/UserRegisterForm';
 
 const RegisterForm: FC = () => {
-  const {
-    handleSubmit,
-    register,
-    setError,
-    getValues,
-    setValue,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: yupResolver(schema),
-  });
-  const toast = useToast();
-  const dispatch = useDispatch();
+  const [formIndex, setFormIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const onSubmit = (data: FormData) => {
-    registerReq(toast, dispatch, reset, data);
+  const search = searchParams.get('tab');
+  useEffect(() => {
+    if (search === '1') {
+      setFormIndex(1);
+    }
+  }, [search]);
+
+  const handleChangeIndex = (i: number) => {
+    setFormIndex(i);
+    router.push(`?tab=${i}`);
   };
 
   return (
-    <RegisterFormFrame
-      className="register-form"
-      handleSubmit={handleSubmit(onSubmit)}
-      register={register}
-      errors={errors}
-      setValue={setValue}
-      sendMail={
-        <SendEmailCodeText email={getValues('email')} setError={setError} />
-      }
-    />
+    <div className="register-form-wrapper">
+      <div className="register-form bg-slate-300 max-w-md flex flex-col m-auto p-8 rounded-lg">
+        <h3 className="text-xl text-center font-bold pb-5">Регистрация</h3>
+        <Tabs
+          variant="enclosed"
+          colorScheme="gray"
+          index={formIndex}
+          onChange={handleChangeIndex}
+        >
+          <TabList>
+            <Tab>Пользователь</Tab>
+            <Tab>Компания</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel className="p-0">
+              <UserRegisterForm />
+            </TabPanel>
+            <TabPanel className="p-0">
+              <CompanyRegisterForm />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </div>
+    </div>
   );
 };
 

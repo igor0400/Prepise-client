@@ -40,7 +40,7 @@ export const items: MenuProps['items'] = [
     key: '5',
     label: (
       <Link href="/login">
-        <p className="p-0.5 font-medium text-base text-green-600">Войти</p>
+        <p className="p-0.5 font-medium text-base text-green-600">Вход</p>
       </Link>
     ),
   },

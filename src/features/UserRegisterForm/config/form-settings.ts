@@ -3,13 +3,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import MailLockIcon from '@mui/icons-material/MailLock';
 import LockIcon from '@mui/icons-material/Lock';
 
-interface InputData {
-  id: string;
-  label: string;
-  placeholder: string;
-  Icon: Function;
-  type?: string;
-}
+import { InputData } from '../../../entities/RegisterFormFrame';
 
 export const inputs: InputData[] = [
   {

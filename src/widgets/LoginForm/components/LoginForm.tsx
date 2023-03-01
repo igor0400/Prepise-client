@@ -1,0 +1,53 @@
+import { FC, useEffect, useState } from 'react';
+import { Tab, Tabs, TabList, TabPanels, TabPanel } from '@chakra-ui/react';
+// @ts-ignore
+import { useSearchParams, useRouter } from 'next/navigation';
+import UserLoginForm from '../../../features/UserLoginForm';
+import CompanyLoginForm from '../../../features/CompanyLoginForm';
+
+const LoginForm: FC = () => {
+  const [formIndex, setFormIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const search = searchParams.get('tab');
+  useEffect(() => {
+    if (search === '1') {
+      setFormIndex(1);
+    }
+  }, [search]);
+
+  const handleChangeIndex = (i: number) => {
+    setFormIndex(i);
+    router.push(`?tab=${i}`);
+  };
+
+  return (
+    <div className="login-form-wrapper">
+      <div className="login-form bg-slate-300 max-w-md flex flex-col m-auto p-8 rounded-lg">
+        <h3 className="text-xl text-center font-bold pb-5">Вход</h3>
+        <Tabs
+          variant="enclosed"
+          colorScheme="gray"
+          index={formIndex}
+          onChange={handleChangeIndex}
+        >
+          <TabList>
+            <Tab>Пользователь</Tab>
+            <Tab>Компания</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel className="p-0">
+              <UserLoginForm />
+            </TabPanel>
+            <TabPanel className="p-0">
+              <CompanyLoginForm />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </div>
+    </div>
+  );
+};
+
+export default LoginForm;

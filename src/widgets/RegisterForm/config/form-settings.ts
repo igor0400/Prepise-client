@@ -1,19 +1,65 @@
-import * as yup from 'yup';
+import EmailIcon from '@mui/icons-material/Email';
+import PersonIcon from '@mui/icons-material/Person';
+import MailLockIcon from '@mui/icons-material/MailLock';
+import LockIcon from '@mui/icons-material/Lock';
+import SubtitlesIcon from '@mui/icons-material/Subtitles';
 
-const reqMess = 'Это обязательное поле';
+import { InputData } from '../../../entities/RegisterFormFrame';
 
-export const schema = yup
-  .object({
-    name: yup
-      .string()
-      .required(reqMess)
-      .min(2, 'Имя должно быть не короче двух символов'),
-    password: yup
-      .string()
-      .required(reqMess)
-      .min(8, 'Пароль должен быть не короче восьми символов'),
-    email: yup.string().required(reqMess).email('Введите корректный email'),
-    emailVerifyCode: yup.string().required(reqMess),
-    gender: yup.string().required(),
-  })
-  .required();
+export const userInputs: InputData[] = [
+  {
+    id: 'name',
+    label: 'Имя:',
+    placeholder: 'Алексей Вильнусов',
+    Icon: PersonIcon,
+  },
+  {
+    id: 'password',
+    label: 'Пароль:',
+    placeholder: 'Something!1!2?3',
+    Icon: LockIcon,
+    type: 'password',
+  },
+  {
+    id: 'email',
+    label: 'Почта:',
+    placeholder: 'alexey.vilnusov@gmail.com',
+    Icon: EmailIcon,
+    type: 'email',
+  },
+  {
+    id: 'emailVerifyCode',
+    label: 'Код подтверждения:',
+    placeholder: 'JFN343ojNG',
+    Icon: MailLockIcon,
+  },
+];
+
+export const companyInputs: InputData[] = [
+  {
+    id: 'name',
+    label: 'Название:',
+    placeholder: 'Сбер',
+    Icon: SubtitlesIcon,
+  },
+  {
+    id: 'password',
+    label: 'Пароль:',
+    placeholder: 'Something!1!2?3',
+    Icon: LockIcon,
+    type: 'password',
+  },
+  {
+    id: 'email',
+    label: 'Почта:',
+    placeholder: 'sber.bank@gmail.com',
+    Icon: EmailIcon,
+    type: 'email',
+  },
+  {
+    id: 'emailVerifyCode',
+    label: 'Код подтверждения:',
+    placeholder: 'JFN343ojNG',
+    Icon: MailLockIcon,
+  },
+];

@@ -1,5 +1,4 @@
-import { FormData } from '../../model/types';
-import { setUserData } from '../../../../app/store/slices/userSlice';
+import { UserFormData, CompanyFormData } from '../../model/types';
 import { UserType } from '../../../../entities/user';
 import { api } from '../../../../shared';
 
@@ -9,27 +8,13 @@ interface UserData {
 }
 
 export const registerReq = async (
-  toast: Function,
-  dispatch: Function,
-  reset: Function,
-  data: FormData,
+  data: UserFormData | CompanyFormData,
+  type: 'user' | 'company',
 ) => {
-  try {
-    console.log(data);
+  const { user, accessToken }: UserData = await api
+    .post('auth/register', { json: { ...data, type } })
+    .json();
 
-    const { user, accessToken }: UserData = await api
-      .post('auth/register', { json: { ...data, type: 'user' } })
-      .json();
-
-    dispatch(setUserData(user ?? {}));
-    localStorage.setItem('accessToken', accessToken);
-    reset();
-  } catch (e: any) {
-    console.log(e.message);
-    toast({
-      description: 'Ошибка сервера',
-      status: 'error',
-      duration: 3000,
-    });
-  }
+  localStorage.setItem('accessToken', accessToken);
+  return user;
 };

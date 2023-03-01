@@ -78,7 +78,7 @@ const Header: FC = () => {
           Опубликовать
         </Button>
         <Link href="/login">
-          <Button>Войти</Button>
+          <Button>Вход</Button>
         </Link>
         <Link href="/register">
           <Button theme={'lined'}>Регистрация</Button>

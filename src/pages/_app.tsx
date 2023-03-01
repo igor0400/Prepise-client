@@ -4,24 +4,14 @@ import Header from '../widgets/Header';
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import i18n from 'i18next';
-import Backend from 'i18next-xhr-backend';
-
-import store from '../app/store';
 import Footer from '../widgets/Footer';
-
-// i18n.use(Backend).init({
-//     ns: ['common'], // namespace used in your translation files
-//     fallbackLng: 'en', // default language
-//     preload: ['en', 'ru'], // languages to preload
-//     backend: {
-//         loadPath: '/locales/{{lng}}/{{ns}}.json',
-//     },
-// });
+import SetAuth from '../features/SetAuth';
+import store from '../app/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
+      <SetAuth />
       <ChakraProvider>
         <Header />
         <main>
