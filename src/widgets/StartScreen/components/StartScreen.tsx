@@ -3,10 +3,10 @@ import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { CirclesWrapper } from '../../shared';
+import { CirclesWrapper } from '../../../shared';
 
-import logo from '../../../public/logo300x168.svg';
-import arrow from '../../../public/icons/arrow-right.svg';
+import logo from '../../../../public/logo300x168.svg';
+import arrow from '../../../../public/icons/arrow-right.svg';
 
 const StartScreen: FC = () => {
   return (

@@ -4,7 +4,7 @@ import RegisterForm from '../widgets/RegisterForm';
 
 const Register: NextPage = () => {
   return (
-    <PageWrapper nopadding>
+    <PageWrapper title="Prepise » Регистрация" nopadding>
       <RegisterForm />
     </PageWrapper>
   );

@@ -2,16 +2,16 @@ import { FC, useState } from 'react';
 import classNames from 'classnames';
 
 import Image from 'next/image';
-import { Button } from '../../shared';
+import { Button } from '../../../shared';
 import Link from 'next/link';
 
 import { Dropdown } from 'antd';
 
-import { items } from './config/header-config';
+import { items } from '../config/header-config';
 
-import logo from '../../../public/logo100x56.svg';
-import plus from '../../../public/icons/plus_.svg';
-import search from '../../../public/icons/search.svg';
+import logo from '../../../../public/logo100x56.svg';
+import plus from '../../../../public/icons/plus_.svg';
+import search from '../../../../public/icons/search.svg';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Header: FC = () => {
@@ -28,7 +28,7 @@ const Header: FC = () => {
           className="sm:w-28 w-20"
         />
       </Link>
-      
+
       <div
         className={classNames(
           'search-input justify-between rounded-md ml-10 sm:flex hidden',

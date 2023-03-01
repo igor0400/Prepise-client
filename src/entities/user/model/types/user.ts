@@ -1,0 +1,40 @@
+export interface UserType {
+  id: number;
+  name: string;
+  password: string;
+  email: string;
+  emailVerify: boolean;
+  type: 'company' | 'user';
+  description: string;
+  avatar: string;
+  followers: number;
+  likes: number;
+  dislikes: number;
+  location: string;
+  birthday: string;
+  summary: string;
+
+  //  sessions: UserSession[];
+  //  roles: Role[];
+  //  banned: BanUser;
+  //  userInfo: UserInfo;
+  //  tags: Tag[];
+  //  followingTags: Tag[];
+  //  followingUsers: User[];
+  //  ignoringTags: Tag[];
+  //  questions: Question[];
+  //  blocks: Block[];
+  //  favouriteQuestions: Question[];
+  //  favouriteTestQuestions: Question[];
+  //  favouriteBlocks: Block[];
+  //  favouriteTestBlocks: Block[];
+  //  favouriteUsers: User[];
+  //  favouriteCompanies: User[];
+  //  favouriteTags: Tag[];
+  //  interviewes: Interview[];
+  //  notifications: Notification[];
+  //  settings: Settings[];
+  //  posts: UserPost[];
+  //  achievements: Achievement[];
+  //  connection: UserOnline;
+}

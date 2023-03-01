@@ -2,7 +2,7 @@ import '../app/styles/global.scss';
 import type { AppProps } from 'next/app';
 import Header from '../widgets/Header';
 import { Provider } from 'react-redux';
-import { ChakraProvider, Container } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 
 import i18n from 'i18next';
 import Backend from 'i18next-xhr-backend';
