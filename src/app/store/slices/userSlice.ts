@@ -1,6 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { UserType } from '../../../entities/user';
+import { UserType } from '../../../entities/User';
 
 interface UserState {
   isAuth: boolean;

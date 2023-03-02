@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../app';
@@ -9,6 +9,8 @@ import { useRequestHandler } from '../../../shared';
 import { schema } from '../config/form-schemas';
 import { inputs } from '../config/form-settings';
 import { loginReq } from '../lib/api/login';
+// @ts-ignore
+import { useSearchParams } from 'next/navigation';
 
 const UserLoginForm: FC = () => {
   const {
@@ -22,14 +24,16 @@ const UserLoginForm: FC = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { request, loading } = useRequestHandler();
+  const searchParams = useSearchParams();
 
   const onSubmit = async (data: FormData) => {
     if (!isSubmitting && !loading) {
       const user = await request(loginReq, data);
+      const lastPage = searchParams.get('last');
 
       if (user) {
         reset();
-        router.push('/');
+        router.push(lastPage ?? '/');
         dispatch(setUserData(user));
       }
     }

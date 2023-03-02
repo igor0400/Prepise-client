@@ -1,7 +1,15 @@
 import { FC, useEffect, useState } from 'react';
-import { Tab, Tabs, TabList, TabPanels, TabPanel } from '@chakra-ui/react';
+import {
+  Tab,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
+  useMediaQuery,
+} from '@chakra-ui/react';
 // @ts-ignore
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 import UserLoginForm from '../../../features/UserLoginForm';
 import CompanyLoginForm from '../../../features/CompanyLoginForm';
 
@@ -9,6 +17,7 @@ const LoginForm: FC = () => {
   const [formIndex, setFormIndex] = useState(0);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [isLargerThan400] = useMediaQuery('(min-width: 400px)');
 
   const search = searchParams.get('tab');
   useEffect(() => {
@@ -31,6 +40,7 @@ const LoginForm: FC = () => {
           colorScheme="gray"
           index={formIndex}
           onChange={handleChangeIndex}
+          size={isLargerThan400 ? 'md' : 'sm'}
         >
           <TabList>
             <Tab>Пользователь</Tab>

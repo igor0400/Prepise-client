@@ -1,4 +1,4 @@
-import { UserType } from '../../../entities/user';
+import { UserType } from '../../../entities/User';
 
 export interface ResponseUserData {
   user: UserType;

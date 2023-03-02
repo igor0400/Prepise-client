@@ -1,32 +1,32 @@
 @import '../../../app/styles/variables.scss';
 
-.header {
-  height: 80px;
-  background: $mainbackground;
-  border-bottom: 2px solid $line;
-  display: flex;
-  align-items: center;
+.header-wrapper {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   z-index: 1000;
+  width: 100%;
+  border-bottom: 2px solid $line;
+  background: $mainbackground;
+}
+
+.header {
+  max-width: $maxWidth;
+  min-width: $minWidth;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
   @media (max-width: 640px) {
     height: 65px;
   }
-}
-
-.search-input {
-  background: #fff;
-  width: 700px;
-  border-color: $placeholder;
-  @media (max-width: 1500px) {
-    width: 500px;
-  }
-  input {
-    border-radius: 5px 0 0 5px;
-    &::placeholder {
-      color: $placeholder;
+  .menu-icon {
+    svg {
+      font-size: 2.8rem;
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
     }
   }
 }

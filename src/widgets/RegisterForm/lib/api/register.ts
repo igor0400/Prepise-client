@@ -1,5 +1,5 @@
 import { UserFormData, CompanyFormData } from '../../model/types';
-import { UserType } from '../../../../entities/user';
+import { UserType } from '../../../../entities/User';
 import { api } from '../../../../shared';
 
 interface UserData {

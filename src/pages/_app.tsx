@@ -13,11 +13,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <SetAuth />
       <ChakraProvider>
-        <Header />
-        <main>
-          <Component {...pageProps} />
-        </main>
-        <Footer />
+        <div className="wrapper">
+          <Header />
+          <main>
+            <Component {...pageProps} />
+          </main>
+          <Footer />
+        </div>
       </ChakraProvider>
     </Provider>
   );

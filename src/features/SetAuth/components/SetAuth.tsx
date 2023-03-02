@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../app';
-import { getUserData } from '../lib/api/getUserData';
+import { getUserData } from '../lib/api/get-user-data';
 
 const SetAuth: FC = () => {
   const dispatch = useDispatch();

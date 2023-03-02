@@ -3,7 +3,7 @@ import { api, ResponseUserData } from '../../../../shared';
 
 export const loginReq = async (data: FormData) => {
   const { user, accessToken }: ResponseUserData = await api
-    .post('auth/login', { json: data })
+    .post('auth/login', { json: { ...data, type: 'company' } })
     .json();
 
   localStorage.setItem('accessToken', accessToken);

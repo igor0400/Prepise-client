@@ -16,6 +16,12 @@ body {
   overflow: scroll;
 }
 
+.wrapper {
+  max-width: $maxWidth;
+  min-width: $minWidth;
+  margin: 0 auto;
+}
+
 input {
   outline: none;
 }

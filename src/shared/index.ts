@@ -8,6 +8,9 @@ import { api, secureApi } from './lib/api/default-requests';
 import { errorHandler } from './lib/api/handlers';
 import { useRequestHandler } from './lib/hooks/useRequestHandler';
 import { ResponseUserData } from './model/types/response-user-data';
+import SearchInput from './components/SearchInput/SearchInput';
+import WithoutAuthWrapper from './lib/hocs/WithoutAuthWrapper/WithoutAuthWrapper';
+import WithAuthWrapper from './lib/hocs/WithAuthWrapper/WithAuthWrapper';
 
 export {
   Button,
@@ -20,5 +23,8 @@ export {
   secureApi,
   errorHandler,
   useRequestHandler,
+  SearchInput,
+  WithoutAuthWrapper,
+  WithAuthWrapper,
 };
 export type { ResponseUserData };

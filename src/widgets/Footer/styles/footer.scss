@@ -5,6 +5,7 @@
   padding-bottom: 20px;
   border-top: 2px solid $line;
   font-weight: 700;
+  background: $mainbackground;
   @media screen and (max-width: 425px) {
     font-size: 13px;
     font-weight: 600;

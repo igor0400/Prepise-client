@@ -14,7 +14,7 @@ export const inputs: InputData[] = [
   {
     id: 'password',
     label: 'Пароль:',
-    placeholder: 'Something!1!2?3',
+    placeholder: 'StrongPassword!!!',
     Icon: LockIcon,
     type: 'password',
   },

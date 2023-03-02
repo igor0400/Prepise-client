@@ -9,20 +9,20 @@ export const inputs: InputData[] = [
   {
     id: 'name',
     label: 'Название:',
-    placeholder: 'Сбер',
+    placeholder: 'Prepise',
     Icon: SubtitlesIcon,
   },
   {
     id: 'password',
     label: 'Пароль:',
-    placeholder: 'Something!1!2?3',
+    placeholder: 'StrongPassword!!!',
     Icon: LockIcon,
     type: 'password',
   },
   {
     id: 'email',
     label: 'Почта:',
-    placeholder: 'sber.bank@gmail.com',
+    placeholder: 'prepise@mail.ru',
     Icon: EmailIcon,
     type: 'email',
   },

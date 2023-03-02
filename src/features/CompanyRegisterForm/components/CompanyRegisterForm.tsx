@@ -7,7 +7,7 @@ import RegisterFormFrame from '../../../entities/RegisterFormFrame';
 import SendEmailCodeText from '../../SendEmailCodeText';
 import { setUserData } from '../../../app';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { useRequestHandler } from '../../../shared';
 import { registerReq } from '../lib/api/register';
 import { inputs } from '../config/form-settings';
