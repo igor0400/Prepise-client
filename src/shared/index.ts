@@ -5,8 +5,8 @@ import PageWrapper from './lib/hocs/PageWrapper/PageWrapper';
 import FormInput from './components/FormInput/FormInput';
 import PasswordInput from './components/PasswordInput/PasswordInput';
 import { api, secureApi } from './lib/api/default-requests';
-import { errorHandler } from './lib/api/handlers';
-import { useRequestHandler } from './lib/hooks/useRequestHandler';
+import { authErrorHeadler } from './lib/api/handlers';
+import { useRequest } from './lib/hooks/useRequestHandler';
 import { ResponseUserData } from './model/types/response-user-data';
 import SearchInput from './components/SearchInput/SearchInput';
 import WithoutAuthWrapper from './lib/hocs/WithoutAuthWrapper/WithoutAuthWrapper';
@@ -21,8 +21,8 @@ export {
   PasswordInput,
   api,
   secureApi,
-  errorHandler,
-  useRequestHandler,
+  authErrorHeadler,
+  useRequest,
   SearchInput,
   WithoutAuthWrapper,
   WithAuthWrapper,

@@ -1,4 +1,7 @@
-export const errorHandler = async (error: any, toast: Function) => {
+import { ResponseUserData } from '../../model/types/response-user-data';
+import { api } from './default-requests';
+
+export const errorHandlerMessage = async (error: any, toast: Function) => {
   const text = await error?.response?.text();
 
   if (text) {
@@ -19,4 +22,17 @@ export const errorHandler = async (error: any, toast: Function) => {
     status: 'error',
     duration: 3000,
   });
+};
+
+export const authErrorHeadler = async () => {
+  try {
+    const { user, accessToken }: ResponseUserData = await api
+      .get('auth/refresh')
+      .json();
+
+    localStorage.setItem('accessToken', accessToken);
+    return user;
+  } catch (e) {
+    localStorage.removeItem('accessToken');
+  }
 };

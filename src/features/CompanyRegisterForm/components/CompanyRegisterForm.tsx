@@ -8,7 +8,7 @@ import SendEmailCodeText from '../../SendEmailCodeText';
 import { setUserData } from '../../../app';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { useRequestHandler } from '../../../shared';
+import { useRequest } from '../../../shared';
 import { registerReq } from '../lib/api/register';
 import { inputs } from '../config/form-settings';
 
@@ -26,11 +26,11 @@ const CompanyRegisterForm: FC = () => {
   });
   const dispatch = useDispatch();
   const router = useRouter();
-  const { request, loading } = useRequestHandler();
+  const { request, loading } = useRequest(false);
 
   const onSubmit = async (data: FormData) => {
     if (!isSubmitting && !loading) {
-      const company = await request(registerReq, data);
+      const company = await request(registerReq, true, data);
 
       if (company) {
         reset();

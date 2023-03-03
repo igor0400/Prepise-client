@@ -11,8 +11,13 @@ if (typeof window !== 'undefined') {
   token = localStorage.getItem('accessToken');
 }
 
-export const secureApi = api.extend({
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-});
+// сделано в функции для того чтобы постоянно получать актуальный токен
+export const secureApi = () => {
+  return api.extend({
+    headers: {
+      Authorization: `Bearer ${
+        typeof window !== 'undefined' && localStorage.getItem('accessToken')
+      }`,
+    },
+  });
+};

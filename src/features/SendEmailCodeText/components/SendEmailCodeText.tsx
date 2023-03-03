@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import sendEmailCode from '../lib/api/send-email-code';
 import { useToast } from '@chakra-ui/react';
 import classNames from 'classnames';
-import { useRequestHandler } from '../../../shared';
+import { useRequest } from '../../../shared';
 
 interface Props {
   email: string;
@@ -12,7 +12,7 @@ interface Props {
 const SendEmailCodeText: FC<Props> = ({ email, setError }) => {
   const toast = useToast();
   const [disable, setDisable] = useState<boolean>(false);
-  const { request, loading } = useRequestHandler();
+  const { request, loading } = useRequest(false);
 
   const handleClick = async () => {
     if (!email) {
@@ -24,7 +24,7 @@ const SendEmailCodeText: FC<Props> = ({ email, setError }) => {
     }
 
     setDisable(true);
-    await request(sendEmailCode, toast, email);
+    await request(sendEmailCode, true, toast, email);
     setTimeout(() => setDisable(false), 3000);
   };
 
