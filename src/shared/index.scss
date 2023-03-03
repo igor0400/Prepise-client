@@ -19,3 +19,9 @@
     padding-inline: 15px;
   }
 }
+
+.min-max-width {
+  max-width: $maxWidth;
+  min-width: $minWidth;
+  margin: 0 auto;
+}

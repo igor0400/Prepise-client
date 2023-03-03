@@ -12,14 +12,12 @@ body,
 }
 
 body {
-  background: $mainbackground;
   overflow: scroll;
 }
 
+body,
 .wrapper {
-  max-width: $maxWidth;
-  min-width: $minWidth;
-  margin: 0 auto;
+  background: $mainbackground;
 }
 
 input {
@@ -41,13 +39,6 @@ main {
   }
 }
 
-.ant-layout,
-.ant-layout-header,
-.ant-layout-content,
-.ant-layout-footer {
-  background: none;
-}
-
 ::-webkit-scrollbar {
   height: 100%;
   width: 10px;
@@ -60,11 +51,5 @@ main {
   background: #1ba52241;
   &:hover {
     background: #1ba52269;
-  }
-}
-
-@media (max-width: 360px) {
-  .text-4xl {
-    font-size: 30px;
   }
 }

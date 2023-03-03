@@ -1,55 +1,41 @@
 import Link from 'next/link';
 import type { MenuProps } from 'antd';
 
-export const items: MenuProps['items'] = [
+const clearItems: { link: string; text: string; classes?: string }[] = [
   {
-    key: '1',
-    label: (
-      <Link href="/create/question">
-        <p className="p-0.5 font-medium text-base">Опубликовать вопрос</p>
-      </Link>
-    ),
+    link: '/create/question',
+    text: 'Опубликовать вопрос',
   },
   {
-    key: '2',
-    label: (
-      <Link href="/create/questions-block">
-        <p className="p-0.5 font-medium text-base">
-          Опубликовать блок вопросов
-        </p>
-      </Link>
-    ),
+    link: '/create/questions-block',
+    text: 'Опубликовать блок вопросов',
   },
   {
-    key: '3',
-    label: (
-      <Link href="/create/test">
-        <p className="p-0.5 font-medium text-base">Опубликовать тест</p>
-      </Link>
-    ),
+    link: '/create/test',
+    text: 'Опубликовать тест',
   },
   {
-    key: '4',
-    label: (
-      <Link href="/create/tests-block">
-        <p className="p-0.5 font-medium text-base">Опубликовать блок тестов</p>
-      </Link>
-    ),
+    link: '/create/tests-block',
+    text: 'Опубликовать блок тестов',
   },
   {
-    key: '5',
-    label: (
-      <Link href="/login">
-        <p className="p-0.5 font-medium text-base text-green-600">Вход</p>
-      </Link>
-    ),
+    link: '/login',
+    text: 'Вход',
+    classes: 'text-green-600',
   },
   {
-    key: '6',
-    label: (
-      <Link href="/register">
-        <p className="p-0.5 font-medium text-base">Регистрация</p>
-      </Link>
-    ),
+    link: '/register',
+    text: 'Регистрация',
   },
 ];
+
+export const items: MenuProps['items'] = clearItems.map(
+  ({ link, text, classes }, i) => ({
+    key: i,
+    label: (
+      <Link href={link}>
+        <p className={'py-1 px-0.5 font-medium text-base ' + (classes ?? '')}>{text}</p>
+      </Link>
+    ),
+  }),
+);

@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <SetAuth />
       <ChakraProvider>
-        <div className="wrapper">
+        <div className="wrapper min-max-width">
           <Header />
           <main>
             <Component {...pageProps} />

@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 const Header: FC = () => {
   return (
     <div className="header-wrapper">
-      <header className="header flex justify-between padding-50">
+      <header className="header min-max-width flex justify-between padding-50">
         <Link href="/">
           <Image
             src={logo}
@@ -28,7 +28,12 @@ const Header: FC = () => {
         <SearchInput />
 
         <div className="xl:hidden flex ml-auto">
-          <Dropdown menu={{ items }} placement="bottomRight" arrow>
+          <Dropdown
+            menu={{ items }}
+            placement="bottomRight"
+            trigger={['click']}
+            arrow
+          >
             <div className="menu-icon">
               <MenuIcon className="ml-auto text-slate-600" />
             </div>
