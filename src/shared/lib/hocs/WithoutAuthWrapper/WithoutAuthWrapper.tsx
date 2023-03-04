@@ -1,4 +1,4 @@
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, ReactNode, useLayoutEffect } from 'react';
 import { useRouter } from 'next/router';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 
 const WithoutAuthWrapper: FC<Props> = ({ children }) => {
   const router = useRouter();
-  useMemo(() => {
+  useLayoutEffect(() => {
     if (typeof window !== 'undefined' && localStorage.getItem('accessToken')) {
       router.push('/');
     }
