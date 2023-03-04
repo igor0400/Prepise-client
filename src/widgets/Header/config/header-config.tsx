@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import type { MenuProps } from 'antd';
+import classNames from 'classnames';
 
 interface Item {
   link: string;
   text: string;
-  classes?: string;
+  className?: string;
 }
 
 const clearItems: Item[] = [
@@ -32,14 +33,14 @@ export const items = (isAuth: boolean): MenuProps['items'] => {
         {
           link: '/profile',
           text: 'Профиль',
-          classes: 'text-green-600',
+          className: 'text-green-600',
         },
       ]
     : [
         {
           link: '/login',
           text: 'Вход',
-          classes: 'text-green-600',
+          className: 'text-green-600',
         },
         {
           link: '/register',
@@ -47,11 +48,15 @@ export const items = (isAuth: boolean): MenuProps['items'] => {
         },
       ];
 
-  return clearItems.concat(isAuthItems).map(({ link, text, classes }, i) => ({
+  return clearItems.concat(isAuthItems).map(({ link, text, className }, i) => ({
     key: i,
     label: (
       <Link href={link}>
-        <p className={'py-1 px-0.5 font-medium text-base ' + (classes ?? '')}>
+        <p
+          className={classNames('py-1 px-0.5 font-medium text-base', {
+            className,
+          })}
+        >
           {text}
         </p>
       </Link>
@@ -79,11 +84,15 @@ const clearCreateItems: Item[] = [
 ];
 
 export const createItems: MenuProps['items'] = clearCreateItems.map(
-  ({ link, text, classes }, i) => ({
+  ({ link, text, className }, i) => ({
     key: i,
     label: (
       <Link href={link}>
-        <p className={'py-1 px-0.5 font-medium text-base ' + (classes ?? '')}>
+        <p
+          className={classNames('py-1 px-0.5 font-medium text-base', {
+            className,
+          })}
+        >
           {text}
         </p>
       </Link>

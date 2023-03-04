@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FC, ReactNode } from 'react';
 
 type Themes = 'accent' | 'lined' | 'shadow';
@@ -17,9 +18,10 @@ const Button: FC<Props> = ({
 }) => {
   return (
     <button
-      className={`btn-${theme} btn px-7 flex items-center font-bold text-base ${
-        className ?? ''
-      }`}
+      className={classNames(
+        `btn-${theme} btn px-7 flex items-center font-bold text-base`,
+        { className, 'bg-white': theme === 'shadow' },
+      )}
       {...args}
     >
       {children}

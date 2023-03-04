@@ -5,7 +5,7 @@ export interface Settings {
 }
 
 export interface NewList {
-  strings: string[];
+  texts: string[];
   links: { link: string; text: string }[] | null;
 }
 

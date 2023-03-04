@@ -3,7 +3,7 @@ import { PageWrapper } from '../shared';
 
 const Custom404: NextPage = () => {
   return (
-    <PageWrapper title="Prepise » 404" nopadding>
+    <PageWrapper title="Prepise » ошибка 404" nopadding>
       <h3>404 not found</h3>
     </PageWrapper>
   );

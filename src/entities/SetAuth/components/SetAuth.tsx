@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../app';
 import { getUserData } from '../lib/api/get-user-data';
@@ -6,13 +6,14 @@ import { getUserData } from '../lib/api/get-user-data';
 const SetAuth: FC = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken');
+  const token =
+    typeof window !== 'undefined' && localStorage.getItem('accessToken');
 
+  useLayoutEffect(() => {
     if (token) {
       setData();
     }
-  }, []);
+  }, [token]);
 
   async function setData() {
     const user = await getUserData();

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Button, Spinner } from '@chakra-ui/react';
 
-import { FormInput } from '../../../shared';
-import { PasswordInput } from '../../../shared';
+import FormInput from '../../FormInput';
+import PasswordInput from '../../PasswordInput';
 
 import { InputData } from '../model/types/form-types';
 import classNames from 'classnames';

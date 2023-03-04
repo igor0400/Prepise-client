@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
 
 import Footer from '../widgets/Footer';
-import SetAuth from '../features/SetAuth';
+import SetAuth from '../entities/SetAuth';
 import store from '../app/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
