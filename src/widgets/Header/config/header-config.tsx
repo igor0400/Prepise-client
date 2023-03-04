@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import type { MenuProps } from 'antd';
 
-const clearItems: { link: string; text: string; classes?: string }[] = [
+interface Item {
+  link: string;
+  text: string;
+  classes?: string;
+}
+
+const clearItems: Item[] = [
   {
     link: '/create/question',
     text: 'Опубликовать вопрос',
@@ -18,23 +24,68 @@ const clearItems: { link: string; text: string; classes?: string }[] = [
     link: '/create/tests-block',
     text: 'Опубликовать блок тестов',
   },
+];
+
+export const items = (isAuth: boolean): MenuProps['items'] => {
+  const isAuthItems: Item[] = isAuth
+    ? [
+        {
+          link: '/profile',
+          text: 'Профиль',
+          classes: 'text-green-600',
+        },
+      ]
+    : [
+        {
+          link: '/login',
+          text: 'Вход',
+          classes: 'text-green-600',
+        },
+        {
+          link: '/register',
+          text: 'Регистрация',
+        },
+      ];
+
+  return clearItems.concat(isAuthItems).map(({ link, text, classes }, i) => ({
+    key: i,
+    label: (
+      <Link href={link}>
+        <p className={'py-1 px-0.5 font-medium text-base ' + (classes ?? '')}>
+          {text}
+        </p>
+      </Link>
+    ),
+  }));
+};
+
+const clearCreateItems: Item[] = [
   {
-    link: '/login',
-    text: 'Вход',
-    classes: 'text-green-600',
+    link: '/create/question',
+    text: 'Вопрос',
   },
   {
-    link: '/register',
-    text: 'Регистрация',
+    link: '/create/questions-block',
+    text: 'Блок вопросов',
+  },
+  {
+    link: '/create/test',
+    text: 'Тест',
+  },
+  {
+    link: '/create/tests-block',
+    text: 'Блок тестов',
   },
 ];
 
-export const items: MenuProps['items'] = clearItems.map(
+export const createItems: MenuProps['items'] = clearCreateItems.map(
   ({ link, text, classes }, i) => ({
     key: i,
     label: (
       <Link href={link}>
-        <p className={'py-1 px-0.5 font-medium text-base ' + (classes ?? '')}>{text}</p>
+        <p className={'py-1 px-0.5 font-medium text-base ' + (classes ?? '')}>
+          {text}
+        </p>
       </Link>
     ),
   }),

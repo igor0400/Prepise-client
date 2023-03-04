@@ -4,27 +4,27 @@ import { UserType } from '../../../entities/User';
 
 interface UserState {
   isAuth: boolean;
-  data: UserType | {};
+  data: UserType | null;
 }
 
 const userAdapter = createEntityAdapter();
 
 const initialState: UserState = {
   isAuth: false,
-  data: {},
+  data: null,
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUserData: (state, action: PayloadAction<UserType | string>) => {
+    setUserData: (state, action: PayloadAction<UserType>) => {
       state.isAuth = true;
       state.data = action.payload;
     },
     resetUserData: (state) => {
       state.isAuth = false;
-      state.data = {};
+      state.data = null;
     },
   },
 });
