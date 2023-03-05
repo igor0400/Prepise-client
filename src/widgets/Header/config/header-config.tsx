@@ -54,7 +54,7 @@ export const items = (isAuth: boolean): MenuProps['items'] => {
       <Link href={link}>
         <p
           className={classNames('py-1 px-0.5 font-medium text-base', {
-            className,
+            [className ?? '']: className,
           })}
         >
           {text}
@@ -90,7 +90,7 @@ export const createItems: MenuProps['items'] = clearCreateItems.map(
       <Link href={link}>
         <p
           className={classNames('py-1 px-0.5 font-medium text-base', {
-            className,
+            [className ?? '']: className,
           })}
         >
           {text}

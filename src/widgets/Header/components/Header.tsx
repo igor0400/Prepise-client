@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 
 import Image from 'next/image';
 import { Button, SearchInput } from '../../../shared';
@@ -12,9 +12,21 @@ import plus from '../../../../public/icons/plus_.svg';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useTypedSelector } from '../../../shared/lib/hooks/useTypedSelector';
 import { Avatar } from '@chakra-ui/react';
+import classNames from 'classnames';
 
 const Header: FC = () => {
   const { isAuth, data } = useTypedSelector((state) => state.user);
+  const [isUserAuth, setIsUserAuth] = useState(false);
+
+  const isDefaultAvatar = useMemo(
+    () => data?.avatar && data.avatar.split('/')[3] === 'users',
+    [data],
+  );
+
+  const token =
+    typeof window !== 'undefined' && localStorage.getItem('accessToken');
+
+  useEffect(() => setIsUserAuth(isAuth || Boolean(token)), [isAuth, token]);
 
   return (
     <div className="header-wrapper">
@@ -49,23 +61,28 @@ const Header: FC = () => {
             trigger={['click']}
             arrow
           >
-            <Button theme="shadow">
+            <Button theme="shadow" className='pr-7 pl-6'>
               <Image
                 src={plus}
                 alt="plus"
                 width={20}
                 height={20}
-                className="mr-0.5"
+                className="mr-0.5 mb-0.5"
               />
               Опубликовать
             </Button>
           </Dropdown>
 
-          {isAuth ? (
+          {isUserAuth ? (
             <Link href="/profile">
               <Avatar
-                className="ml-2 hidden xl:block justify-end bg-white border-gray-300 border-2 p-1.5 w-14 h-14"
-                name={data?.name ?? 'Prepise'}
+                className={classNames(
+                  'ml-2 hidden xl:block justify-end border-gray-300 border-2 w-14 h-14',
+                  {
+                    'p-1.5 bg-white': isDefaultAvatar,
+                  },
+                )}
+                name={data?.name ?? 'Loading...'}
                 src={`${process.env.NEXT_PUBLIC_SERVER}${data?.avatar}`}
               />
             </Link>

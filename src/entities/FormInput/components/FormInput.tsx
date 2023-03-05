@@ -1,56 +1,47 @@
-import {
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  InputGroup,
-  InputLeftElement,
-} from '@chakra-ui/react';
-import { FC, ReactNode } from 'react';
+import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
+import { Input } from 'antd';
+import { ChangeEvent, FC, useMemo } from 'react';
 
 interface Props {
   id: string;
-  placeholder: string;
   label: string;
+  placeholder: string;
+  error: string;
   isInvalid: boolean;
-  pointerEvents: any;
-  icon: ReactNode;
-  error: string | null;
   register: Function;
-  children?: ReactNode;
-  [key: string | number]: any;
+  setValue: Function;
 }
 
 const FormInput: FC<Props> = ({
   id,
-  placeholder,
   label,
-  isInvalid,
-  pointerEvents,
-  icon,
+  placeholder,
   error,
+  isInvalid,
   register,
-  children,
-  ...inputArgs
+  setValue,
 }) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(id, e.target.value.trim());
+  };
+
+  const { onBlur, ref } = useMemo(() => register(id), []);
+
   return (
-    <FormControl isInvalid={isInvalid} className="pt-3">
+    <FormControl
+      isInvalid={isInvalid}
+      className="pt-4 flex flex-col text-gray-600"
+    >
       <FormLabel htmlFor={id}>{label}</FormLabel>
-      <InputGroup>
-        <InputLeftElement
-          color="gray.400"
-          pointerEvents={pointerEvents}
-          children={icon}
-        />
-        <Input
-          id={id}
-          placeholder={placeholder}
-          {...register(id)}
-          {...inputArgs}
-        />
-      </InputGroup>
+      <Input
+        placeholder={placeholder}
+        size="large"
+        onChange={onChange}
+        onBlur={onBlur}
+        ref={ref}
+      />
+
       <FormErrorMessage>{error}</FormErrorMessage>
-      {children}
     </FormControl>
   );
 };

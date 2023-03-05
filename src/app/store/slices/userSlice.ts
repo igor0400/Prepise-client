@@ -5,6 +5,7 @@ import { UserType } from '../../../entities/User';
 interface UserState {
   isAuth: boolean;
   data: UserType | null;
+  loading: boolean;
 }
 
 const userAdapter = createEntityAdapter();
@@ -12,6 +13,7 @@ const userAdapter = createEntityAdapter();
 const initialState: UserState = {
   isAuth: false,
   data: null,
+  loading: false,
 };
 
 export const userSlice = createSlice({
@@ -26,10 +28,13 @@ export const userSlice = createSlice({
       state.isAuth = false;
       state.data = null;
     },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
   },
 });
 
-export const { setUserData, resetUserData } = userSlice.actions;
+export const { setUserData, resetUserData, setLoading } = userSlice.actions;
 
 export const { selectAll } = userAdapter.getSelectors(
   (state: any) => state.user,

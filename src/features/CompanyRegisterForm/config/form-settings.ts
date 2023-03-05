@@ -3,9 +3,9 @@ import MailLockIcon from '@mui/icons-material/MailLock';
 import LockIcon from '@mui/icons-material/Lock';
 import SubtitlesIcon from '@mui/icons-material/Subtitles';
 
-import { InputData } from '../../../entities/RegisterFormFrame';
+import { RegInputData } from '../../../entities/RegisterFormFrame';
 
-export const inputs: InputData[] = [
+export const inputs: RegInputData[] = [
   {
     id: 'name',
     label: 'Название:',

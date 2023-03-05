@@ -1,9 +1,9 @@
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 
-import { InputData } from '../../../entities/LoginFormFrame';
+import { LogInputData } from '../../../entities/LoginFormFrame';
 
-export const userInputs: InputData[] = [
+export const userInputs: LogInputData[] = [
   {
     id: 'email',
     label: 'Почта:',
@@ -20,7 +20,7 @@ export const userInputs: InputData[] = [
   },
 ];
 
-export const companyInputs: InputData[] = [
+export const companyInputs: LogInputData[] = [
   {
     id: 'email',
     label: 'Почта:',

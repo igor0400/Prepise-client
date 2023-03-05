@@ -11,7 +11,7 @@ export const useRequest = (secure: boolean = true) => {
   const dispatch = useDispatch();
 
   const request = useCallback(
-    async (request: Function, withMessage: boolean, ...args: any[]) => {
+    async (request: Function, withMessage: boolean = true, ...args: any[]) => {
       setLoading(true);
 
       try {

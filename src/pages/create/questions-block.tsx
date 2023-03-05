@@ -5,7 +5,7 @@ import WithAuthWrapper from '../../entities/WithAuthWrapper/WithAuthWrapper';
 const CreateQuestionsBlock: NextPage = () => {
   return (
     <WithAuthWrapper>
-      <PageWrapper title="Prepise » создание блока вопросов" nopadding>
+      <PageWrapper title="Prepise » Создание блока вопросов" nopadding>
         <h3>Create block questions</h3>
       </PageWrapper>
     </WithAuthWrapper>

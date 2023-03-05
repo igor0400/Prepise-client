@@ -1,9 +1,9 @@
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 
-import { InputData } from '../../../entities/LoginFormFrame';
+import { LogInputData } from '../../../entities/LoginFormFrame';
 
-export const inputs: InputData[] = [
+export const inputs: LogInputData[] = [
   {
     id: 'email',
     label: 'Почта:',

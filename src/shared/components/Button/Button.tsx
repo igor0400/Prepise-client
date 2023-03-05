@@ -20,7 +20,7 @@ const Button: FC<Props> = ({
     <button
       className={classNames(
         `btn-${theme} btn px-7 flex items-center font-bold text-base`,
-        { className, 'bg-white': theme === 'shadow' },
+        { [className ?? '']: className, 'bg-white': theme === 'shadow' },
       )}
       {...args}
     >

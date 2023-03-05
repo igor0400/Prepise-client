@@ -5,7 +5,7 @@ import WithAuthWrapper from '../../entities/WithAuthWrapper/WithAuthWrapper';
 const CreateTest: NextPage = () => {
   return (
     <WithAuthWrapper>
-      <PageWrapper title="Prepise » создание теста" nopadding>
+      <PageWrapper title="Prepise » Создание теста" nopadding>
         <h3>Create test</h3>
       </PageWrapper>
     </WithAuthWrapper>

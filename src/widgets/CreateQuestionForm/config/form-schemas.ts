@@ -1,12 +1,16 @@
 import * as yup from 'yup';
 
 const reqMess = 'Это обязательное поле';
+const max100 = 'Максимальная длина 100 символов';
 
 export const schema = yup
   .object({
-    email: yup.string().required(reqMess).email('Введите корректный email'),
-    password: yup
-      .string()
-      .required(reqMess)
+    section: yup.string().max(100, max100).required(reqMess),
+    inteviewPosition: yup.string().max(100, max100),
+    inteviewCompany: yup.string().max(100, max100),
+    title: yup.string().max(100, max100).required(reqMess),
+    description: yup.string().required(reqMess),
+    // commented: yup.boolean(),
+    // tags: yup.array().min(1, 'Необходимо добавить минимум 1 тег').required(),
   })
   .required();

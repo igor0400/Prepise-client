@@ -1,3 +1,7 @@
-import { setUserData, resetUserData } from './store/slices/userSlice';
+import {
+  setUserData,
+  resetUserData,
+  setLoading,
+} from './store/slices/userSlice';
 
-export { setUserData, resetUserData };
+export { setUserData, resetUserData, setLoading };

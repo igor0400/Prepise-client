@@ -9,7 +9,7 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 
-import FormInput from '../../FormInput';
+import FormIconInput from '../../FormIconInput';
 import PasswordInput from '../../PasswordInput';
 
 import { InputData } from '../model/types/form-types';
@@ -65,7 +65,7 @@ const RegisterFormFrame: FC<Props> = ({
               register={register}
             />
           ) : (
-            <FormInput
+            <FormIconInput
               isInvalid={Boolean(errors[id])}
               id={id}
               label={label}
@@ -77,7 +77,7 @@ const RegisterFormFrame: FC<Props> = ({
               type={type ?? 'text'}
             >
               {id === 'emailVerifyCode' && sendMail}
-            </FormInput>
+            </FormIconInput>
           )}
         </React.Fragment>
       ))}

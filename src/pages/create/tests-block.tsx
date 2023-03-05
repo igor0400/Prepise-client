@@ -5,7 +5,7 @@ import WithAuthWrapper from '../../entities/WithAuthWrapper/WithAuthWrapper';
 const CreateTestsBlock: NextPage = () => {
   return (
     <WithAuthWrapper>
-      <PageWrapper title="Prepise » создание блока тестов" nopadding>
+      <PageWrapper title="Prepise » Создание блока тестов" nopadding>
         <h3>Create block tests</h3>
       </PageWrapper>
     </WithAuthWrapper>

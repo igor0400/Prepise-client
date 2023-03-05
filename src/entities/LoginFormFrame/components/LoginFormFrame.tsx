@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button, Spinner } from '@chakra-ui/react';
 
-import FormInput from '../../FormInput';
+import FormIconInput from '../../FormIconInput';
 import PasswordInput from '../../PasswordInput';
 
 import { InputData } from '../model/types/form-types';
@@ -38,7 +38,7 @@ const LoginFormFrame: FC<Props> = ({
               register={register}
             />
           ) : (
-            <FormInput
+            <FormIconInput
               isInvalid={Boolean(errors[id])}
               id={id}
               label={label}
