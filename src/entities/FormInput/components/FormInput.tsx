@@ -22,7 +22,7 @@ const FormInput: FC<Props> = ({
   setValue,
 }) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(id, e.target.value.trim());
+    setValue(id, e?.target?.value?.trim());
   };
 
   const { onBlur, ref } = useMemo(() => register(id), []);
@@ -39,6 +39,7 @@ const FormInput: FC<Props> = ({
         onChange={onChange}
         onBlur={onBlur}
         ref={ref}
+        allowClear
       />
 
       <FormErrorMessage>{error}</FormErrorMessage>

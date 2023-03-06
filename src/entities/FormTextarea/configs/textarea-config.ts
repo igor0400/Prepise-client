@@ -1,0 +1,38 @@
+const fonts = [
+  'Montserrat',
+  'Arial',
+  'Comic Sans MS',
+  'Courier New',
+  'Impact',
+  'Georgia',
+  'Tahoma',
+  'Trebuchet MS',
+  'Verdana',
+  'Logical',
+  'Salesforce Sans',
+  'Garamond',
+  'Sans-Serif',
+  'Serif',
+  'Times New Roman',
+  'Helvetica',
+];
+
+export const settings = {
+  buttonList: [
+    ['undo', 'redo'],
+    ['font', 'fontSize'],
+    ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+    ['fontColor', 'hiliteColor'],
+    ['align', 'list', 'lineHeight'],
+    ['outdent', 'indent'],
+    ['table', 'horizontalRule', 'link', 'image', 'video'],
+    ['fullScreen'],
+    ['preview', 'print'],
+    ['removeFormat'],
+  ],
+  defaultTag: 'div',
+  minHeight: '300px',
+  showPathLabel: false,
+  font: fonts,
+  defaultStyle: 'font-family: Montserrat; font-size: 16px;',
+};

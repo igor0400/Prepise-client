@@ -57,11 +57,11 @@ const Header: FC = () => {
         <div className="btns grow justify-end gap-3.5 hidden xl:flex items-center">
           <Dropdown
             menu={{ items: createItems }}
-            placement="bottomRight"
+            placement="bottom"
             trigger={['click']}
             arrow
           >
-            <Button theme="shadow" className='pr-7 pl-6'>
+            <Button theme="shadow" className="pr-7 pl-6">
               <Image
                 src={plus}
                 alt="plus"
@@ -82,7 +82,7 @@ const Header: FC = () => {
                     'p-1.5 bg-white': isDefaultAvatar,
                   },
                 )}
-                name={data?.name ?? 'Loading...'}
+                name={data?.name ?? 'Загрузка...'}
                 src={`${process.env.NEXT_PUBLIC_SERVER}${data?.avatar}`}
               />
             </Link>

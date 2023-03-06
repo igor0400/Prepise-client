@@ -18,7 +18,7 @@ const FormACInput: FC<Props> = ({
   const { request, loading } = useRequest(false);
   const [options, setOptions] = useState<
     { value: string; disabled: boolean }[]
-  >([{ value: 'Loading...', disabled: true }]);
+  >([{ value: 'Загрузка...', disabled: true }]);
 
   useEffect(() => {
     getData();
@@ -37,8 +37,12 @@ const FormACInput: FC<Props> = ({
   }
 
   const onChange = (value: string) => {
-    setValue(id, value.trim());
-    getData(value);
+    if (value) {
+      setValue(id, value.trim());
+      getData(value);
+    } else {
+      setValue(id, '');
+    }
   };
 
   const { onBlur, ref } = useMemo(() => register(id), []);
@@ -56,6 +60,7 @@ const FormACInput: FC<Props> = ({
         onChange={onChange}
         onBlur={onBlur}
         ref={ref}
+        allowClear
       />
       <FormErrorMessage>{error}</FormErrorMessage>
     </FormControl>

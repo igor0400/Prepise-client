@@ -30,8 +30,20 @@ export const inputs: InputData[] = [
   },
   {
     id: 'description',
+    label: 'Напишите описание вопроса',
+    placeholder: 'Описание вопроса...',
+    type: 'default',
+  },
+  {
+    id: 'content',
     label: 'Дайте развернутый ответ на вопрос',
     placeholder: 'Ответ на вопрос...',
     type: 'textarea',
+  },
+  {
+    id: 'tags',
+    label: 'Добавьте теги для отображения вашего вопроса в поиске',
+    placeholder: 'Тег...',
+    type: 'multy-select',
   },
 ];

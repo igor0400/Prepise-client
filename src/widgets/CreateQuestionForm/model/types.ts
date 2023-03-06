@@ -7,6 +7,6 @@ export interface InputData {
   id: string;
   label: string;
   placeholder: string;
-  type: 'auto-complete' | 'default' | 'textarea';
+  type: 'auto-complete' | 'default' | 'textarea' | 'multy-select';
   optionsUrl?: string;
 }

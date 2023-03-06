@@ -104,7 +104,7 @@ const RegisterFormFrame: FC<Props> = ({
 
       <Button
         colorScheme="green"
-        variant="ghost"
+        variant="solid"
         type="submit"
         disabled={isSubmitting}
         className={classNames(
