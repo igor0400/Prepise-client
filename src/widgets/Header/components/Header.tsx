@@ -77,12 +77,12 @@ const Header: FC = () => {
           {isUserAuth ? (
             <Link href="/profile">
               <Avatar
-                className={classNames(
-                  'ml-2 hidden xl:block justify-end border-gray-300 border-2 w-14 h-14',
-                  {
-                    'p-1.5 bg-white': isDefaultAvatar,
-                  },
-                )}
+                className='avatar ml-2 hidden xl:block justify-end'
+                style={{
+                  padding: isDefaultAvatar ? '6px' : 0,
+                  background: isDefaultAvatar ? '#fff' : 'none',
+                  
+                }}
                 name={data?.name ?? 'Загрузка...'}
                 src={`${process.env.NEXT_PUBLIC_SERVER}${data?.avatar}`}
               />

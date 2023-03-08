@@ -12,6 +12,9 @@ export const schema = yup
     description: yup.string().max(100, max100),
     content: yup.string().required(reqMess),
     // commented: yup.boolean(),
-    tags: yup.array().min(1, 'Необходимо добавить минимум 1 тег').required(),
+    tags: yup
+      .array()
+      .min(1, 'Необходимо добавить минимум 1 тег')
+      .required(reqMess),
   })
   .required();

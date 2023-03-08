@@ -24,6 +24,10 @@
     @media (max-width: 460px) {
       background: none;
     }
+
+    .chakra-tabs__tab-panel {
+      padding: 0;
+    }
   }
   @media (max-width: 1000px) {
     padding-top: 5%;

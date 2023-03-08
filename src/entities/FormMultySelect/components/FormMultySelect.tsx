@@ -32,6 +32,11 @@ const FormMultySelect: FC<Props> = ({
 
   useEffect(() => {
     getData();
+
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
   }, []);
 
   async function getData(search?: string) {
@@ -40,15 +45,21 @@ const FormMultySelect: FC<Props> = ({
     setOptions(data);
   }
 
+  const handleClickOutside = () => {
+    getData();
+  };
+
   const handleChange = (value: string[]) => {
-    setValue(id, value);
+    setValue(
+      id,
+      value.map((i) => i.slice(-1)),
+    );
+    getData();
   };
 
   const onSearch = (value: string) => {
     getData(value);
   };
-
-  // не меняются options при вводе
 
   return (
     <FormControl
@@ -60,13 +71,12 @@ const FormMultySelect: FC<Props> = ({
       <Select
         size="large"
         mode="multiple"
-        allowClear
-        style={{ width: '100%' }}
         placeholder={placeholder}
         onChange={handleChange}
         onSearch={onSearch}
         options={options}
         loading={loading}
+        allowClear
       />
 
       <FormErrorMessage>{error}</FormErrorMessage>

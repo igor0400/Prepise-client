@@ -26,6 +26,7 @@ const CreateQuestionForm: FC = () => {
 
   return (
     <CreationFormFrame
+      reset={reset}
       settings={inputs}
       handleSubmit={handleSubmit(onSubmit)}
       register={register}

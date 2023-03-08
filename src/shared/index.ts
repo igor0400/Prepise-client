@@ -10,6 +10,7 @@ import SearchInput from './components/SearchInput/SearchInput';
 import { parseText } from './lib/assets/parseText';
 import TripleLoader from './components/TripleLoader/TripleLoader';
 import MenuIcon from './components/MenuIcon/MenuIcon';
+import { useOutside } from './lib/hooks/useOutside';
 
 export {
   Button,
@@ -24,5 +25,6 @@ export {
   parseText,
   TripleLoader,
   MenuIcon,
+  useOutside,
 };
 export type { ResponseUserData };

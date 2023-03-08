@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useOutside } from '../../lib/hooks/useOutside';
 
 interface Props {
   onClick?: Function;
@@ -7,21 +8,19 @@ interface Props {
 }
 
 const MenuIcon: FC<Props> = ({ onClick, className }) => {
-  const [active, setActive] = useState(false);
-
-  // при клике на любую область закрывать
-  // отформатировать стили
+  const { ref, isActive, setIsActive } = useOutside();
 
   return (
     <div
       className={classNames('menu-icon', {
-        open: active,
+        open: isActive,
         [className ?? '']: className,
       })}
       onClick={() => {
-        setActive((state) => !state);
+        setIsActive((state) => !state);
         if (onClick) onClick();
       }}
+      ref={ref}
     >
       <span></span>
       <span></span>

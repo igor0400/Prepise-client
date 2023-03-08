@@ -18,6 +18,7 @@ interface Props {
   isSubmitting: boolean;
   title: string;
   description: string;
+  reset: Function;
 }
 
 const CreationFormFrame: FC<Props> = ({
@@ -29,14 +30,16 @@ const CreationFormFrame: FC<Props> = ({
   isSubmitting,
   errors,
   settings,
+  reset,
 }) => {
   const { texts, links } = useMemo(() => parseText(description), []);
 
   const resetValues = () => {
     console.log('reset');
+    reset();
   };
 
-  // сделать теги, ресет и отправку данных
+  // сделать ресет, отправку данных, сортировку optins в инпутах, поле commented и решить проблему с sun-editor
 
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32">
