@@ -3,4 +3,8 @@
   .se-toolbar {
     border-radius: 8px 8px 0 0;
   }
+  .se-resizing-bar {
+    border-top: none;
+    background-color: inherit;
+  }
 }

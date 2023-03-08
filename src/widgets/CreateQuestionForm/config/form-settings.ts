@@ -42,8 +42,10 @@ export const inputs: InputData[] = [
   },
   {
     id: 'tags',
-    label: 'Добавьте теги для отображения вашего вопроса в поиске',
+    label:
+      'Добавьте теги, чтобы описать, о чем ваш вопрос',
     placeholder: 'Тег...',
     type: 'multy-select',
+    optionsUrl: 'tags',
   },
 ];

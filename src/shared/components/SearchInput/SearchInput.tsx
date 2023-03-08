@@ -29,7 +29,7 @@ const SearchInput: FC = () => {
           height={27}
         />
       </div>
-      <div className="grow sm:hidden flex">
+      <div className="grow sm:hidden flex mr-1">
         <svg
           className="cursor-pointer ml-auto mr-1"
           width={35}

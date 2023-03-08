@@ -1,7 +1,9 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
+import { getOptions } from '../lib/api/getOptions';
+import { useRequest } from '../../../shared';
 
 interface Props {
   id: string;
@@ -11,6 +13,7 @@ interface Props {
   isInvalid: boolean;
   register: Function;
   setValue: Function;
+  optionsUrl: string;
 }
 
 const FormMultySelect: FC<Props> = ({
@@ -20,17 +23,32 @@ const FormMultySelect: FC<Props> = ({
   error,
   isInvalid,
   setValue,
+  optionsUrl,
 }) => {
-  const options: SelectProps['options'] = [
-    { value: 'a10', label: 'a10' },
-    { value: 'c12', label: 'c12' },
-  ];
+  const { request, loading } = useRequest(false);
+  const [options, setOptions] = useState<SelectProps['options']>([
+    { label: 'Загрузка данных...', disabled: true },
+  ]);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function getData(search?: string) {
+    const url = search ? `${optionsUrl}?search=${search}` : optionsUrl;
+    const data = await request(getOptions, false, url);
+    setOptions(data);
+  }
 
   const handleChange = (value: string[]) => {
     setValue(id, value);
   };
 
-  // запрашивать теги с сервера(получать ссылку через config)
+  const onSearch = (value: string) => {
+    getData(value);
+  };
+
+  // не меняются options при вводе
 
   return (
     <FormControl
@@ -46,7 +64,9 @@ const FormMultySelect: FC<Props> = ({
         style={{ width: '100%' }}
         placeholder={placeholder}
         onChange={handleChange}
+        onSearch={onSearch}
         options={options}
+        loading={loading}
       />
 
       <FormErrorMessage>{error}</FormErrorMessage>

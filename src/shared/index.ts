@@ -9,6 +9,7 @@ import { ResponseUserData } from './model/types/response-user-data';
 import SearchInput from './components/SearchInput/SearchInput';
 import { parseText } from './lib/assets/parseText';
 import TripleLoader from './components/TripleLoader/TripleLoader';
+import MenuIcon from './components/MenuIcon/MenuIcon';
 
 export {
   Button,
@@ -22,5 +23,6 @@ export {
   SearchInput,
   parseText,
   TripleLoader,
+  MenuIcon,
 };
 export type { ResponseUserData };

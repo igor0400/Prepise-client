@@ -39,7 +39,7 @@ const CreationFormFrame: FC<Props> = ({
   // сделать теги, ресет и отправку данных
 
   return (
-    <div className="max-w-4xl mx-auto px-3 sm:px-10 py-14">
+    <div className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32">
       <h3 className="text-2xl text-center font-bold pb-5">{title}</h3>
       <p className="bg-green-100 p-3 mb-5 rounded-xl border border-gray-300">
         {texts.map((item, i) => (
@@ -78,7 +78,11 @@ const CreationFormFrame: FC<Props> = ({
               ) : type === 'textarea' ? (
                 <FormTextarea {...defaultProps} />
               ) : type === 'multy-select' ? (
-                <FormMultySelect {...defaultProps} register={register} />
+                <FormMultySelect
+                  {...defaultProps}
+                  register={register}
+                  optionsUrl={optionsUrl ?? ''}
+                />
               ) : null}
             </React.Fragment>
           );

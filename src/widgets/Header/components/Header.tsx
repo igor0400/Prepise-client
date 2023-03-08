@@ -7,12 +7,13 @@ import { Dropdown } from 'antd';
 
 import { items, createItems } from '../config/header-config';
 
-import logo from '../../../../public/logo100x56.svg';
-import plus from '../../../../public/icons/plus_.svg';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useTypedSelector } from '../../../shared/lib/hooks/useTypedSelector';
 import { Avatar } from '@chakra-ui/react';
 import classNames from 'classnames';
+
+import logo from '../../../../public/logo100x56.svg';
+import plus from '../../../../public/icons/plus_.svg';
+import { MenuIcon } from '../../../shared';
 
 const Header: FC = () => {
   const { isAuth, data } = useTypedSelector((state) => state.user);
@@ -50,7 +51,7 @@ const Header: FC = () => {
             trigger={['click']}
             arrow
           >
-            <MenuIcon className="menu-icon ml-auto text-slate-600 cursor-pointer" />
+            <MenuIcon />
           </Dropdown>
         </div>
 

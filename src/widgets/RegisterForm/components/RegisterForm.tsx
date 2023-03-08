@@ -33,7 +33,7 @@ const RegisterForm: FC = () => {
 
   return (
     <div className="register-form-wrapper">
-      <div className="register-form max-w-md flex flex-col m-auto p-8 rounded-lg">
+      <div className="register-form max-w-md flex flex-col m-auto p-4 sm:p-8 rounded-lg">
         <h3 className="text-xl text-center font-bold pb-5">Регистрация</h3>
         <Tabs
           variant="enclosed"

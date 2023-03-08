@@ -15,10 +15,10 @@ const FormACInput: FC<Props> = ({
   setValue,
   optionsUrl,
 }) => {
-  const { request, loading } = useRequest(false);
+  const { request } = useRequest(false);
   const [options, setOptions] = useState<
     { value: string; disabled: boolean }[]
-  >([{ value: 'Загрузка...', disabled: true }]);
+  >([{ value: 'Загрузка данных...', disabled: true }]);
 
   useEffect(() => {
     getData();
@@ -54,9 +54,9 @@ const FormACInput: FC<Props> = ({
     >
       <FormLabel htmlFor={id}>{label}</FormLabel>
       <AutoComplete
-        options={options}
-        placeholder={loading ? 'Loading...' : placeholder}
         size="large"
+        options={options}
+        placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
         ref={ref}
