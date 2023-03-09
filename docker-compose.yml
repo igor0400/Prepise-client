@@ -4,7 +4,7 @@ services:
   app:
     build: ./
     container_name: "prepise-client"
-    image: igor0400/prepise-client
+    image: prepise-client
 
     ports:
       - "3000:3000"

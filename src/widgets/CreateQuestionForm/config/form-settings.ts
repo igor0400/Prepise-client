@@ -42,10 +42,9 @@ export const inputs: InputData[] = [
   },
   {
     id: 'tags',
-    label:
-      'Добавьте теги, чтобы описать, о чем ваш вопрос',
+    label: 'Добавьте теги, чтобы описать, о чем ваш вопрос',
     placeholder: 'Тег...',
     type: 'multy-select',
-    optionsUrl: 'tags',
+    optionsUrl: 'tags?limit=50',
   },
 ];

@@ -14,15 +14,24 @@ const FormACInput: FC<Props> = ({
   register,
   setValue,
   optionsUrl,
+  addItem,
 }) => {
   const { request } = useRequest(false);
   const [options, setOptions] = useState<
     { value: string; disabled: boolean }[]
   >([{ value: 'Загрузка данных...', disabled: true }]);
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     getData();
+    addItem(clearValue);
   }, []);
+
+  function clearValue() {
+    setValue(id, undefined);
+    setInputValue('');
+    getData();
+  }
 
   async function getData(search?: string) {
     const url = search ? `${optionsUrl}?search=${search}` : optionsUrl;
@@ -39,9 +48,11 @@ const FormACInput: FC<Props> = ({
   const onChange = (value: string) => {
     if (value) {
       setValue(id, value.trim());
+      setInputValue(value);
       getData(value);
     } else {
-      setValue(id, '');
+      clearValue();
+      getData();
     }
   };
 
@@ -60,6 +71,7 @@ const FormACInput: FC<Props> = ({
         onChange={onChange}
         onBlur={onBlur}
         ref={ref}
+        value={inputValue}
         allowClear
       />
       <FormErrorMessage>{error}</FormErrorMessage>

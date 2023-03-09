@@ -7,4 +7,5 @@ export interface Props {
   register: Function;
   setValue: Function;
   optionsUrl: string;
+  addItem: (func: Function) => any;
 }

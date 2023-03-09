@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { settings } from '../configs/textarea-config';
@@ -12,6 +12,7 @@ interface Props {
   error: string;
   isInvalid: boolean;
   setValue: Function;
+  addItem: (func: Function) => any;
 }
 
 const FormTextarea: FC<Props> = ({
@@ -21,12 +22,24 @@ const FormTextarea: FC<Props> = ({
   error,
   isInvalid,
   setValue,
+  addItem,
 }) => {
-  const [textareaValue, setTextareaValue] = useState('');
+  const [textareaValue, setTextareaValue] = useState<string>('');
+
+  useEffect(() => {
+    addItem(clearValue);
+  }, []);
+
+  function clearValue() {
+    setValue(id, undefined);
+    setTextareaValue('');
+  }
 
   const onChange = (value: string) => {
-    setTextareaValue(value);
-    setValue(id, value);
+    if (value !== '<div><br></div>') {
+      setTextareaValue(value);
+      setValue(id, value);
+    }
   };
 
   return (

@@ -11,6 +11,7 @@ import { parseText } from './lib/assets/parseText';
 import TripleLoader from './components/TripleLoader/TripleLoader';
 import MenuIcon from './components/MenuIcon/MenuIcon';
 import { useOutside } from './lib/hooks/useOutside';
+import { useClearCustomForm } from './lib/hooks/useClearCustomForm';
 
 export {
   Button,
@@ -26,5 +27,6 @@ export {
   TripleLoader,
   MenuIcon,
   useOutside,
+  useClearCustomForm,
 };
 export type { ResponseUserData };

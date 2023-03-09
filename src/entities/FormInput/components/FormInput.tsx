@@ -1,15 +1,16 @@
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
 import { Input } from 'antd';
-import { ChangeEvent, FC, useMemo } from 'react';
+import { ChangeEvent, FC, useEffect, useMemo, useState } from 'react';
 
 interface Props {
   id: string;
   label: string;
   placeholder: string;
-  error: string;
+  error: string | undefined;
   isInvalid: boolean;
   register: Function;
   setValue: Function;
+  addItem: (func: Function) => any;
 }
 
 const FormInput: FC<Props> = ({
@@ -20,9 +21,22 @@ const FormInput: FC<Props> = ({
   isInvalid,
   register,
   setValue,
+  addItem,
 }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    addItem(clearValue);
+  }, []);
+
+  function clearValue() {
+    setValue(id, undefined);
+    setInputValue('');
+  }
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(id, e?.target?.value?.trim());
+    setInputValue(e?.target?.value);
   };
 
   const { onBlur, ref } = useMemo(() => register(id), []);
@@ -40,6 +54,7 @@ const FormInput: FC<Props> = ({
         onBlur={onBlur}
         ref={ref}
         allowClear
+        value={inputValue}
       />
 
       <FormErrorMessage>{error}</FormErrorMessage>

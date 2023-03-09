@@ -14,9 +14,12 @@ interface Props {
   register: Function;
   setValue: Function;
   optionsUrl: string;
+  addItem: (func: Function) => any;
+  openModal?: () => any;
+  setUpdateTagsFunc: Function;
 }
 
-const FormMultySelect: FC<Props> = ({
+const FormTagsSelect: FC<Props> = ({
   id,
   label,
   placeholder,
@@ -24,14 +27,20 @@ const FormMultySelect: FC<Props> = ({
   isInvalid,
   setValue,
   optionsUrl,
+  addItem,
+  openModal,
+  setUpdateTagsFunc,
 }) => {
   const { request, loading } = useRequest(false);
   const [options, setOptions] = useState<SelectProps['options']>([
     { label: 'Загрузка данных...', disabled: true },
   ]);
+  const [inputValue, setInputValue] = useState<string[]>([]);
 
   useEffect(() => {
     getData();
+    addItem(clearValue);
+    setUpdateTagsFunc([getData]);
 
     document.addEventListener('click', handleClickOutside, true);
     return () => {
@@ -39,8 +48,14 @@ const FormMultySelect: FC<Props> = ({
     };
   }, []);
 
+  function clearValue() {
+    setValue(id, undefined);
+    setInputValue([]);
+    getData();
+  }
+
   async function getData(search?: string) {
-    const url = search ? `${optionsUrl}?search=${search}` : optionsUrl;
+    const url = search ? `${optionsUrl}&search=${search}` : optionsUrl;
     const data = await request(getOptions, false, url);
     setOptions(data);
   }
@@ -54,6 +69,7 @@ const FormMultySelect: FC<Props> = ({
       id,
       value.map((i) => i.slice(-1)),
     );
+    setInputValue(value);
     getData();
   };
 
@@ -67,7 +83,6 @@ const FormMultySelect: FC<Props> = ({
       className="pt-5 flex flex-col text-gray-600"
     >
       <FormLabel htmlFor={id}>{label}</FormLabel>
-
       <Select
         size="large"
         mode="multiple"
@@ -76,12 +91,20 @@ const FormMultySelect: FC<Props> = ({
         onSearch={onSearch}
         options={options}
         loading={loading}
+        value={inputValue}
         allowClear
       />
+      <button
+        type="button"
+        className="text-blue-600 font-medium mt-1 w-fit"
+        onClick={openModal}
+      >
+        Добавить свой тег
+      </button>
 
       <FormErrorMessage>{error}</FormErrorMessage>
     </FormControl>
   );
 };
 
-export default FormMultySelect;
+export default FormTagsSelect;

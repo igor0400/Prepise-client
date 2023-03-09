@@ -7,7 +7,7 @@ export const schema = yup
   .object({
     section: yup.string().max(100, max100).required(reqMess),
     inteviewPosition: yup.string().max(100, max100),
-    inteviewCompany: yup.string().max(100, max100),
+    interviewCompany: yup.string().max(100, max100),
     title: yup.string().max(100, max100).required(reqMess),
     description: yup.string().max(100, max100),
     content: yup.string().required(reqMess),

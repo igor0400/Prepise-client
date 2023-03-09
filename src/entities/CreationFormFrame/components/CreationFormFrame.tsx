@@ -1,16 +1,20 @@
 import { Button, Spinner } from '@chakra-ui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
-import React, { FC, useMemo } from 'react';
-import { parseText } from '../../../shared';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import { parseText, useClearCustomForm } from '../../../shared';
 import { CreInputData } from '../../../widgets/CreateQuestionForm';
 import FormACInput from '../../FormACInput';
 import FormInput from '../../FormInput';
-import FormMultySelect from '../../FormMultySelect';
+import FormTagsSelect from '../../FormTagsSelect';
 import FormTextarea from '../../FormTextarea';
+import { useRequest } from '../../../shared';
+import { submitRequest } from '../lib/api/submitRequest';
+import { useRouter } from 'next/router';
+import SelectModal from '../../SelectModal';
 
 interface Props {
-  handleSubmit: () => any;
+  handleSubmit: Function;
   register: Function;
   setValue: Function;
   errors: any;
@@ -18,7 +22,8 @@ interface Props {
   isSubmitting: boolean;
   title: string;
   description: string;
-  reset: Function;
+  submitUrl: string;
+  redirectUrl: string;
 }
 
 const CreationFormFrame: FC<Props> = ({
@@ -30,16 +35,27 @@ const CreationFormFrame: FC<Props> = ({
   isSubmitting,
   errors,
   settings,
-  reset,
+  submitUrl,
+  redirectUrl,
 }) => {
+  const { clear, addItem } = useClearCustomForm();
   const { texts, links } = useMemo(() => parseText(description), []);
+  const { request, loading } = useRequest();
+  const router = useRouter();
+  const [updateTagsFunc, setUpdateTagsFunc] = useState<Function[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const resetValues = () => {
-    console.log('reset');
-    reset();
+  const onSubmit = async (values: FormData) => {
+    if (!isSubmitting && !loading) {
+      const data = await request(submitRequest, true, submitUrl, values);
+      clear();
+      router.push(`${redirectUrl}/${data.id}`);
+    }
   };
 
-  // сделать ресет, отправку данных, сортировку optins в инпутах, поле commented и решить проблему с sun-editor
+  // Сделать сортировку optins в инпутах, поле commented и решить проблему с sun-editor
+
+  const isLoading = loading || isSubmitting;
 
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32">
@@ -57,7 +73,7 @@ const CreationFormFrame: FC<Props> = ({
         ))}
       </p>
 
-      <form onSubmit={handleSubmit} className="flex flex-col">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         {settings.map(({ id, label, placeholder, type, optionsUrl }, i) => {
           const defaultProps = {
             id,
@@ -75,16 +91,24 @@ const CreationFormFrame: FC<Props> = ({
                   {...defaultProps}
                   register={register}
                   optionsUrl={optionsUrl ?? ''}
+                  addItem={addItem}
                 />
               ) : type === 'default' ? (
-                <FormInput {...defaultProps} register={register} />
+                <FormInput
+                  {...defaultProps}
+                  register={register}
+                  addItem={addItem}
+                />
               ) : type === 'textarea' ? (
-                <FormTextarea {...defaultProps} />
+                <FormTextarea {...defaultProps} addItem={addItem} />
               ) : type === 'multy-select' ? (
-                <FormMultySelect
+                <FormTagsSelect
                   {...defaultProps}
                   register={register}
                   optionsUrl={optionsUrl ?? ''}
+                  addItem={addItem}
+                  setUpdateTagsFunc={setUpdateTagsFunc}
+                  openModal={() => setIsModalOpen(true)}
                 />
               ) : null}
             </React.Fragment>
@@ -95,21 +119,26 @@ const CreationFormFrame: FC<Props> = ({
             colorScheme="green"
             variant="solid"
             type="submit"
-            disabled={isSubmitting}
+            disabled={isLoading}
             className={classNames(
               'bg-green-600 hover:bg-green-700 text-white',
               {
-                'cursor-not-allowed': isSubmitting,
+                'cursor-not-allowed': isLoading,
               },
             )}
           >
-            {isSubmitting ? <Spinner /> : <>Опубликовать</>}
+            {isLoading ? <Spinner className="mx-12" /> : <>Опубликовать</>}
           </Button>
-          <Button colorScheme="green" variant="ghost" onClick={resetValues}>
+          <Button colorScheme="green" variant="ghost" onClick={clear}>
             Очистить всё
           </Button>
         </div>
       </form>
+      <SelectModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        updateTags={updateTagsFunc}
+      />
     </div>
   );
 };
