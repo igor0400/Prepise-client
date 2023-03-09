@@ -114,7 +114,7 @@ const CreationFormFrame: FC<Props> = ({
             </React.Fragment>
           );
         })}
-        <div className="flex mt-6 gap-1">
+        <div className="flex mt-10 gap-1">
           <Button
             colorScheme="green"
             variant="solid"
