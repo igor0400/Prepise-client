@@ -6,7 +6,7 @@ export type FormData = yup.InferType<typeof schema>;
 export interface InputData {
   id: string;
   label: string;
-  placeholder: string;
-  type: 'auto-complete' | 'default' | 'textarea' | 'multy-select';
+  placeholder?: string;
+  type: 'auto-complete' | 'default' | 'textarea' | 'multy-select' | 'switch';
   optionsUrl?: string;
 }

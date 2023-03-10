@@ -1,13 +1,12 @@
-import { useState, FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { Modal } from 'antd';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { modalSchema } from '../configs/modal-form-shema';
 import FormInput from '../../FormInput';
 import { ModalFormData } from '../model/types/select-model';
-import { Button, Spinner } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { useClearCustomForm, useRequest } from '../../../shared';
-import classNames from 'classnames';
 import { modalSubmitRequest } from '../lib/api/modalSubmitRequest';
 
 interface Props {
@@ -77,18 +76,13 @@ const SelectModal: FC<Props> = ({
           {...defaultInputOpt}
         />
         <Button
-          colorScheme="green"
+          colorScheme="blue"
           variant="solid"
           type="submit"
-          disabled={isLoading}
-          className={classNames(
-            'bg-green-600 hover:bg-green-700 text-white mt-5',
-            {
-              'cursor-not-allowed': isLoading,
-            },
-          )}
+          isLoading={isLoading}
+          className="text-white mt-5"
         >
-          {isLoading ? <Spinner /> : <>Добавить</>}
+          Добавить
         </Button>
       </form>
     </Modal>

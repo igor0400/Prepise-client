@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, MouseEvent } from 'react';
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
 import { getOptions } from '../lib/api/getOptions';
 import { useRequest } from '../../../shared';
+import { findOptions } from '../lib/assets/findOptions';
 
 interface Props {
   id: string;
@@ -19,6 +20,8 @@ interface Props {
   setUpdateTagsFunc: Function;
 }
 
+const optDefault = [{ label: 'Загрузка данных...', disabled: true }];
+
 const FormTagsSelect: FC<Props> = ({
   id,
   label,
@@ -32,20 +35,17 @@ const FormTagsSelect: FC<Props> = ({
   setUpdateTagsFunc,
 }) => {
   const { request, loading } = useRequest(false);
-  const [options, setOptions] = useState<SelectProps['options']>([
-    { label: 'Загрузка данных...', disabled: true },
-  ]);
+  const [allOptions, setAllOptions] =
+    useState<SelectProps['options']>(optDefault);
+  const [options, setOptions] = useState<SelectProps['options']>(optDefault);
   const [inputValue, setInputValue] = useState<string[]>([]);
+
+  const resetOptions = () => setOptions(allOptions);
 
   useEffect(() => {
     getData();
     addItem(clearValue);
     setUpdateTagsFunc([getData]);
-
-    document.addEventListener('click', handleClickOutside, true);
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
-    };
   }, []);
 
   function clearValue() {
@@ -54,27 +54,32 @@ const FormTagsSelect: FC<Props> = ({
     getData();
   }
 
-  async function getData(search?: string) {
-    const url = search ? `${optionsUrl}&search=${search}` : optionsUrl;
-    const data = await request(getOptions, false, url);
+  async function getData() {
+    const data = await request(getOptions, false, optionsUrl);
+    setOptions(data);
+    setAllOptions(data);
+  }
+
+  function filterOptions(value: string) {
+    const data = findOptions(allOptions, value);
     setOptions(data);
   }
 
-  const handleClickOutside = () => {
-    getData();
+  const onBlur = () => {
+    resetOptions();
   };
 
   const handleChange = (value: string[]) => {
     setValue(
       id,
-      value.map((i) => i.slice(-1)),
+      value.map((i) => i.split(' ')[1]),
     );
     setInputValue(value);
-    getData();
+    resetOptions();
   };
 
   const onSearch = (value: string) => {
-    getData(value);
+    filterOptions(value);
   };
 
   return (
@@ -92,6 +97,7 @@ const FormTagsSelect: FC<Props> = ({
         options={options}
         loading={loading}
         value={inputValue}
+        onBlur={onBlur}
         allowClear
       />
       <button

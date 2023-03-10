@@ -4,6 +4,14 @@ import { AutoComplete } from 'antd';
 import { useRequest } from '../../../shared';
 import { getOptions } from '../lib/api/getOptions';
 import { Props } from '../model/types';
+import { findOptions } from '../lib/assets/findOptions';
+
+interface Options {
+  value: string;
+  disabled?: boolean;
+}
+
+const optDefault = [{ value: 'Загрузка данных...', disabled: true }];
 
 const FormACInput: FC<Props> = ({
   id,
@@ -17,10 +25,11 @@ const FormACInput: FC<Props> = ({
   addItem,
 }) => {
   const { request } = useRequest(false);
-  const [options, setOptions] = useState<
-    { value: string; disabled: boolean }[]
-  >([{ value: 'Загрузка данных...', disabled: true }]);
+  const [allOptions, setAllOptions] = useState<Options[]>(optDefault);
+  const [options, setOptions] = useState<Options[]>(optDefault);
   const [inputValue, setInputValue] = useState('');
+
+  const resetOptions = () => setOptions(allOptions);
 
   useEffect(() => {
     getData();
@@ -33,26 +42,26 @@ const FormACInput: FC<Props> = ({
     getData();
   }
 
-  async function getData(search?: string) {
-    const url = search ? `${optionsUrl}?search=${search}` : optionsUrl;
-    const data = await request(getOptions, false, url);
-    if (data) {
-      setOptions(
-        data.map((i: any) => ({
-          value: i.title,
-        })),
-      );
-    }
+  async function getData() {
+    const data = await request(getOptions, false, optionsUrl);
+    setOptions(data);
+    setAllOptions(data);
+  }
+
+  function filterOptions(value: string) {
+    const data = findOptions(allOptions, value);
+    setOptions(data);
   }
 
   const onChange = (value: string) => {
     if (value) {
       setValue(id, value.trim());
       setInputValue(value);
-      getData(value);
+      filterOptions(value);
     } else {
-      clearValue();
-      getData();
+      setValue(id, undefined);
+      setInputValue('');
+      resetOptions();
     }
   };
 

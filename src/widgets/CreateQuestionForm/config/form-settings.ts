@@ -47,4 +47,9 @@ export const inputs: InputData[] = [
     type: 'multy-select',
     optionsUrl: 'tags?limit=50',
   },
+  {
+    id: 'commented',
+    label: 'Комментарии',
+    type: 'switch',
+  },
 ];

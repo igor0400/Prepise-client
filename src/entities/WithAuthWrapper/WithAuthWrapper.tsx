@@ -15,7 +15,7 @@ const WithAuthWrapper: FC<Props> = ({ children }) => {
     if (typeof window !== 'undefined' && !localStorage.getItem('accessToken')) {
       router.push({
         pathname: '/login',
-        query: { last: router.pathname.slice(1) },
+        query: { redirect: router.pathname.slice(1) },
       });
       dispatch(resetUserData());
     }

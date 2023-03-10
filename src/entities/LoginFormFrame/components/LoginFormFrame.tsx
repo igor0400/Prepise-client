@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
-import { Button, Spinner } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 import FormIconInput from '../../FormIconInput';
 import PasswordInput from '../../PasswordInput';
 
 import { InputData } from '../model/types/form-types';
-import classNames from 'classnames';
 
 interface Props {
   handleSubmit: () => any;
@@ -57,15 +56,10 @@ const LoginFormFrame: FC<Props> = ({
         colorScheme="green"
         variant="solid"
         type="submit"
-        disabled={isSubmitting}
-        className={classNames(
-          'mt-6 bg-green-600 hover:bg-green-700 text-white',
-          {
-            'cursor-not-allowed': isSubmitting,
-          },
-        )}
+        isLoading={isSubmitting}
+        className="mt-6 bg-green-600 hover:bg-green-700 text-white"
       >
-        {isSubmitting ? <Spinner /> : <>Войти</>}
+        Войти
       </Button>
     </form>
   );

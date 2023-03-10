@@ -29,11 +29,11 @@ const UserLoginForm: FC = () => {
   const onSubmit = async (data: FormData) => {
     if (!isSubmitting && !loading) {
       const user = await request(loginReq, true, data);
-      const lastPage = searchParams.get('last');
+      const redirect = searchParams.get('redirect');
 
       if (user) {
         reset();
-        router.push(lastPage ?? '/');
+        router.push(redirect ?? '/');
         dispatch(setUserData(user));
       }
     }

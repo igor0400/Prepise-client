@@ -29,11 +29,11 @@ const CompanyLoginForm: FC = () => {
   const onSubmit = async (data: FormData) => {
     if (!isSubmitting && !loading) {
       const company = await request(loginReq, true, data);
-      const lastPage = searchParams.get('last');
+      const redirect = searchParams.get('redirect');
 
       if (company) {
         reset();
-        router.push(lastPage ?? '/');
+        router.push(redirect ?? '/');
         dispatch(setUserData(company));
       }
     }

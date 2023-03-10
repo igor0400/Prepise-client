@@ -1,4 +1,3 @@
-import { Spinner } from '@chakra-ui/react';
 import { FC, useEffect, ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading, setUserData } from '../../../app';

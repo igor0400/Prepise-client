@@ -28,7 +28,7 @@ const LoginForm: FC = () => {
 
   const handleChangeIndex = (i: number) => {
     setFormIndex(i);
-    router.push(`?tab=${i}`);
+    router.push({ query: { ...router.query, tab: i } });
   };
 
   return (

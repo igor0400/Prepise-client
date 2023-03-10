@@ -11,7 +11,7 @@ export const schema = yup
     title: yup.string().max(100, max100).required(reqMess),
     description: yup.string().max(100, max100),
     content: yup.string().required(reqMess),
-    // commented: yup.boolean(),
+    commented: yup.boolean(),
     tags: yup
       .array()
       .min(1, 'Необходимо добавить минимум 1 тег')

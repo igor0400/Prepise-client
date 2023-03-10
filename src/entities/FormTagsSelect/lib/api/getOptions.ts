@@ -1,3 +1,4 @@
+import { SelectProps } from 'antd';
 import { api } from '../../../../shared';
 
 interface DataType {
@@ -11,11 +12,15 @@ interface DataType {
   used: number;
 }
 
-export const getOptions = async (url: string) => {
+export const getOptions = async (url: string): Promise<SelectProps['options']> => {
   const options: DataType[] = await api.get(url).json();
 
-  return options.map((item) => ({
-    value: `${item?.name} ${item?.id}`,
-    label: item?.name,
-  }));
+  if (options) {
+    return options.map((item) => ({
+      value: `${item?.name} ${item?.id}`,
+      label: item?.name,
+    }));
+  }
+
+  return [];
 };

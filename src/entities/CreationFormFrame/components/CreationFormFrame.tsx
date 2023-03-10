@@ -1,7 +1,7 @@
-import { Button, Spinner } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { parseText, useClearCustomForm } from '../../../shared';
 import { CreInputData } from '../../../widgets/CreateQuestionForm';
 import FormACInput from '../../FormACInput';
@@ -12,6 +12,7 @@ import { useRequest } from '../../../shared';
 import { submitRequest } from '../lib/api/submitRequest';
 import { useRouter } from 'next/router';
 import SelectModal from '../../SelectModal';
+import FormSwitch from '../../FormSwitch';
 
 interface Props {
   handleSubmit: Function;
@@ -44,6 +45,7 @@ const CreationFormFrame: FC<Props> = ({
   const router = useRouter();
   const [updateTagsFunc, setUpdateTagsFunc] = useState<Function[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isResetDisabled, setIsResetDisabled] = useState(false);
 
   const onSubmit = async (values: FormData) => {
     if (!isSubmitting && !loading) {
@@ -53,7 +55,13 @@ const CreationFormFrame: FC<Props> = ({
     }
   };
 
-  // Сделать сортировку optins в инпутах, поле commented и решить проблему с sun-editor
+  const handleReset = () => {
+    if (isResetDisabled) return;
+
+    clear();
+    setIsResetDisabled(true);
+    setTimeout(() => setIsResetDisabled(false), 3000);
+  };
 
   const isLoading = loading || isSubmitting;
 
@@ -78,7 +86,7 @@ const CreationFormFrame: FC<Props> = ({
           const defaultProps = {
             id,
             label,
-            placeholder,
+            placeholder: placeholder ?? '',
             error: errors[id] && errors[id]?.message,
             isInvalid: Boolean(errors[id]),
             setValue,
@@ -110,6 +118,8 @@ const CreationFormFrame: FC<Props> = ({
                   setUpdateTagsFunc={setUpdateTagsFunc}
                   openModal={() => setIsModalOpen(true)}
                 />
+              ) : type === 'switch' ? (
+                <FormSwitch id={id} label={label} setValue={setValue} />
               ) : null}
             </React.Fragment>
           );
@@ -119,17 +129,20 @@ const CreationFormFrame: FC<Props> = ({
             colorScheme="green"
             variant="solid"
             type="submit"
-            disabled={isLoading}
-            className={classNames(
-              'bg-green-600 hover:bg-green-700 text-white',
-              {
-                'cursor-not-allowed': isLoading,
-              },
-            )}
+            isLoading={isLoading}
+            className="bg-green-600 hover:bg-green-700 text-white"
           >
-            {isLoading ? <Spinner className="mx-12" /> : <>Опубликовать</>}
+            Опубликовать
           </Button>
-          <Button colorScheme="green" variant="ghost" onClick={clear}>
+          <Button
+            colorScheme="green"
+            variant="ghost"
+            onClick={handleReset}
+            disabled={isResetDisabled}
+            className={classNames('', {
+              'cursor-not-allowed': isResetDisabled,
+            })}
+          >
             Очистить всё
           </Button>
         </div>
