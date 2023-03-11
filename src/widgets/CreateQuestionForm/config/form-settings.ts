@@ -1,6 +1,21 @@
-import { InputData } from '../model/types';
+import {
+  CreInputData,
+  CreOptionData,
+} from '../../../entities/CreationFormFrame';
 
-export const inputs: InputData[] = [
+export const inputs: CreInputData[] = [
+  {
+    id: 'title',
+    label: 'Напишите название вопроса',
+    placeholder: 'Название вопроса...',
+    type: 'default',
+  },
+  {
+    id: 'description',
+    label: 'Напишите описание вопроса',
+    placeholder: 'Описание вопроса...',
+    type: 'default',
+  },
   {
     id: 'section',
     label: 'Выберете раздел к которому относится вопрос',
@@ -23,18 +38,6 @@ export const inputs: InputData[] = [
     optionsUrl: 'data/companies',
   },
   {
-    id: 'title',
-    label: 'Напишите название вопроса',
-    placeholder: 'Название вопроса...',
-    type: 'default',
-  },
-  {
-    id: 'description',
-    label: 'Напишите описание вопроса',
-    placeholder: 'Описание вопроса...',
-    type: 'default',
-  },
-  {
     id: 'content',
     label: 'Дайте развернутый ответ на вопрос',
     placeholder: 'Ответ на вопрос...',
@@ -47,6 +50,19 @@ export const inputs: InputData[] = [
     type: 'multy-select',
     optionsUrl: 'tags?limit=50',
   },
+  {
+    id: 'image',
+    label: 'Прикрепите изображение',
+    type: 'image',
+  },
+  {
+    id: 'file',
+    label: 'Прикрепите файл',
+    type: 'file',
+  },
+];
+
+export const options: CreOptionData[] = [
   {
     id: 'commented',
     label: 'Комментарии',

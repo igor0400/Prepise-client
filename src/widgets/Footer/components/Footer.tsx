@@ -6,7 +6,7 @@ const Footer: FC = () => {
     <footer className="footer padding-50 sm:flex sm:justify-between">
       <p>
         ©Prepise | <Link href="mailto:prepise@mail.ru">prepise@mail.ru</Link> |{' '}
-        <Link href="#" target="_blank">
+        <Link href="/" target="_blank">
           telegram
         </Link>{' '}
         |{' '}

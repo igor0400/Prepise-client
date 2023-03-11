@@ -22,7 +22,7 @@ const FormSwitch: FC<Props> = ({ label, id, setValue }) => {
 
   return (
     <div>
-      <FormControl display="flex" alignItems="center" className="mt-8">
+      <FormControl display="flex" alignItems="center" className="mt-2">
         <FormLabel htmlFor={id} mb="0" className="text-gray-600">
           {label}
         </FormLabel>

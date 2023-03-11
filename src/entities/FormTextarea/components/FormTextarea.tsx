@@ -45,7 +45,7 @@ const FormTextarea: FC<Props> = ({
   return (
     <FormControl
       isInvalid={isInvalid}
-      className="pt-5 flex flex-col text-gray-600"
+      className="pt-7 flex flex-col text-gray-600"
     >
       <FormLabel htmlFor={id}>{label}</FormLabel>
 

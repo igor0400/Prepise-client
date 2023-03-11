@@ -70,7 +70,7 @@ const FormACInput: FC<Props> = ({
   return (
     <FormControl
       isInvalid={isInvalid}
-      className="pt-4 flex flex-col text-gray-600"
+      className="pt-6 flex flex-col text-gray-600"
     >
       <FormLabel htmlFor={id}>{label}</FormLabel>
       <AutoComplete

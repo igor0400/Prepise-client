@@ -8,7 +8,9 @@ export const useClearCustomForm = () => {
   }
 
   function clear() {
-    clearFuncs.forEach((func) => func());
+    clearFuncs.forEach((func) => {
+      if (typeof func === 'function') func();
+    });
   }
 
   return { addItem, clear };

@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import React, { FC, useMemo, useState } from 'react';
 import { parseText, useClearCustomForm } from '../../../shared';
-import { CreInputData } from '../../../widgets/CreateQuestionForm';
 import FormACInput from '../../FormACInput';
 import FormInput from '../../FormInput';
 import FormTagsSelect from '../../FormTagsSelect';
@@ -13,13 +12,15 @@ import { submitRequest } from '../lib/api/submitRequest';
 import { useRouter } from 'next/router';
 import SelectModal from '../../SelectModal';
 import FormSwitch from '../../FormSwitch';
+import { InputData, OptionData } from '../model/types';
+import FormImageInput from '../../FormImageInput';
 
 interface Props {
   handleSubmit: Function;
   register: Function;
   setValue: Function;
   errors: any;
-  settings: CreInputData[];
+  settings: { inputs: InputData[]; options: OptionData[] };
   isSubmitting: boolean;
   title: string;
   description: string;
@@ -50,8 +51,9 @@ const CreationFormFrame: FC<Props> = ({
   const onSubmit = async (values: FormData) => {
     if (!isSubmitting && !loading) {
       const data = await request(submitRequest, true, submitUrl, values);
-      clear();
-      router.push(`${redirectUrl}/${data.id}`);
+      // clear();
+      // router.push(data?.id ? `${redirectUrl}/${data.id}` : '/');
+      console.log(values);
     }
   };
 
@@ -82,48 +84,56 @@ const CreationFormFrame: FC<Props> = ({
       </p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-        {settings.map(({ id, label, placeholder, type, optionsUrl }, i) => {
-          const defaultProps = {
-            id,
-            label,
-            placeholder: placeholder ?? '',
-            error: errors[id] && errors[id]?.message,
-            isInvalid: Boolean(errors[id]),
-            setValue,
-          };
+        {settings.inputs.map(
+          ({ id, label, placeholder, type, optionsUrl }, i) => {
+            const defaultProps = {
+              id,
+              label,
+              placeholder: placeholder ?? '',
+              error: errors[id] && errors[id]?.message,
+              isInvalid: Boolean(errors[id]),
+              setValue,
+              addItem,
+            };
 
-          return (
+            return (
+              <React.Fragment key={i}>
+                {type === 'auto-complete' ? (
+                  <FormACInput
+                    {...defaultProps}
+                    register={register}
+                    optionsUrl={optionsUrl ?? ''}
+                  />
+                ) : type === 'default' ? (
+                  <FormInput {...defaultProps} register={register} />
+                ) : type === 'textarea' ? (
+                  <FormTextarea {...defaultProps} />
+                ) : type === 'multy-select' ? (
+                  <FormTagsSelect
+                    {...defaultProps}
+                    register={register}
+                    optionsUrl={optionsUrl ?? ''}
+                    setUpdateTagsFunc={setUpdateTagsFunc}
+                    openModal={() => setIsModalOpen(true)}
+                  />
+                ) : type === 'image' || type === 'file' ? (
+                  <FormImageInput {...defaultProps} type={type} />
+                ) : null}
+              </React.Fragment>
+            );
+          },
+        )}
+
+        <div className="options mt-6">
+          {settings.options.map(({ label, id, type }, i) => (
             <React.Fragment key={i}>
-              {type === 'auto-complete' ? (
-                <FormACInput
-                  {...defaultProps}
-                  register={register}
-                  optionsUrl={optionsUrl ?? ''}
-                  addItem={addItem}
-                />
-              ) : type === 'default' ? (
-                <FormInput
-                  {...defaultProps}
-                  register={register}
-                  addItem={addItem}
-                />
-              ) : type === 'textarea' ? (
-                <FormTextarea {...defaultProps} addItem={addItem} />
-              ) : type === 'multy-select' ? (
-                <FormTagsSelect
-                  {...defaultProps}
-                  register={register}
-                  optionsUrl={optionsUrl ?? ''}
-                  addItem={addItem}
-                  setUpdateTagsFunc={setUpdateTagsFunc}
-                  openModal={() => setIsModalOpen(true)}
-                />
-              ) : type === 'switch' ? (
+              {type === 'switch' ? (
                 <FormSwitch id={id} label={label} setValue={setValue} />
               ) : null}
             </React.Fragment>
-          );
-        })}
+          ))}
+        </div>
+
         <div className="flex mt-10 gap-1">
           <Button
             colorScheme="green"

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import CreationFormFrame from '../../../entities/CreationFormFrame';
 import { schema } from '../config/form-schemas';
-import { inputs } from '../config/form-settings';
+import { inputs, options } from '../config/form-settings';
 
 const CreateQuestionForm: FC = () => {
   const {
@@ -17,7 +17,7 @@ const CreateQuestionForm: FC = () => {
 
   return (
     <CreationFormFrame
-      settings={inputs}
+      settings={{ inputs, options }}
       handleSubmit={handleSubmit}
       register={register}
       setValue={setValue}
