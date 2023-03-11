@@ -15,7 +15,7 @@ interface Props {
   addItem: Function;
 }
 
-const FormImageInput: FC<Props> = ({
+const FormFileInput: FC<Props> = ({
   isInvalid,
   id,
   label,
@@ -53,7 +53,6 @@ const FormImageInput: FC<Props> = ({
         maxCount={10}
         onChange={onChange}
         fileList={files}
-        multiple={true}
         className={classNames('', { 'image-uploader': type === 'image' })}
         accept={type === 'image' ? 'image/*' : undefined}
       >
@@ -70,4 +69,4 @@ const FormImageInput: FC<Props> = ({
   );
 };
 
-export default FormImageInput;
+export default FormFileInput;

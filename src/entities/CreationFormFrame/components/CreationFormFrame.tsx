@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 import SelectModal from '../../SelectModal';
 import FormSwitch from '../../FormSwitch';
 import { InputData, OptionData } from '../model/types';
-import FormImageInput from '../../FormImageInput';
+import FormFileInput from '../../FormFileInput';
 
 interface Props {
   handleSubmit: Function;
@@ -51,9 +51,8 @@ const CreationFormFrame: FC<Props> = ({
   const onSubmit = async (values: FormData) => {
     if (!isSubmitting && !loading) {
       const data = await request(submitRequest, true, submitUrl, values);
-      // clear();
-      // router.push(data?.id ? `${redirectUrl}/${data.id}` : '/');
-      console.log(values);
+      clear();
+      router.push(data?.id ? `${redirectUrl}/${data.id}` : '/');
     }
   };
 
@@ -117,7 +116,7 @@ const CreationFormFrame: FC<Props> = ({
                     openModal={() => setIsModalOpen(true)}
                   />
                 ) : type === 'image' || type === 'file' ? (
-                  <FormImageInput {...defaultProps} type={type} />
+                  <FormFileInput {...defaultProps} type={type} />
                 ) : null}
               </React.Fragment>
             );

@@ -2,23 +2,22 @@ import { secureApi } from '../../../../shared';
 
 export const submitRequest = async (url: string, values: any) => {
   const formData = new FormData();
-  for (let item in values) {
-    if (Array.isArray(values[item])) {
-      for (let arrI of values[item]) {
-        formData.append(item, arrI as File, arrI.name);
+  for (let key in values) {
+    const value = values[key];
 
-        console.log(item, arrI, arrI.name);
+    if (Array.isArray(value)) {
+      for (let arrI of value) {
+        if (typeof arrI === 'string') {
+          formData.append(key, arrI);
+        } else {
+          formData.append(key, arrI as File, arrI?.name);
+        }
       }
-    } else if (values[item] !== undefined) {
-      formData.append(item, values[item]);
-
-      console.log(item, values[item]);
+    } else if (value !== undefined) {
+      formData.append(key, value);
     }
-    console.log(values[item]);
   }
 
-  console.log(formData);
-
-  // const data = await secureApi().post(url, { body: formData }).json();
-  // return data;
+  const data = await secureApi().post(url, { body: formData }).json();
+  return data;
 };
