@@ -9,7 +9,6 @@ export const schema = yup
     description: yup.string().max(100, max(100)),
     section: yup.string().max(100, max(100)).required(reqMess),
     inteviewPosition: yup.string().max(100, max(100)),
-    interviewCompany: yup.string().max(100, max(100)),
     content: yup.string().required(reqMess),
     image: yup.array().max(10, max(10)),
     file: yup.array().max(10, max(10)),
