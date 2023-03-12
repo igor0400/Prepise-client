@@ -7,9 +7,8 @@ import { Dropdown } from 'antd';
 
 import { items, createItems } from '../config/header-config';
 
-import { useTypedSelector } from '../../../shared/lib/hooks/useTypedSelector';
+import { useTypedSelector } from '../../../shared';
 import { Avatar } from '@chakra-ui/react';
-import classNames from 'classnames';
 
 import logo from '../../../../public/logo100x56.svg';
 import plus from '../../../../public/icons/plus_.svg';

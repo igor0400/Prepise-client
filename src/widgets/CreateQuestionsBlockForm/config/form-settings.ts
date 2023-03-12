@@ -1,9 +1,14 @@
 import {
   CreInputData,
   CreOptionData,
-} from '../../../entities/CreationFormFrame';
+} from '../../../entities/forms/CreationFormFrame';
 
 export const inputs: CreInputData[] = [
+  {
+    id: 'questions',
+    label: 'Добавить вопрос',
+    type: 'question',
+  },
   {
     id: 'title',
     label: 'Напишите название блока',
@@ -35,11 +40,6 @@ export const inputs: CreInputData[] = [
     placeholder: 'Тег...',
     type: 'multy-select',
     optionsUrl: 'tags?limit=50',
-  },
-  {
-    id: 'questions',
-    label: 'Добавить вопрос',
-    type: 'question',
   },
 ];
 

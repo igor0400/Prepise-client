@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import stringMiddleware from './middlewares/stringMiddleware';
 import { user } from '../../entities/User';
-import { creation } from '../../entities/CreationFormFrame';
+import { creation } from '../../entities/forms/CreationFormFrame';
 
 const store = configureStore({
   reducer: { user, creation },

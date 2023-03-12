@@ -12,6 +12,7 @@ import TripleLoader from './components/TripleLoader/TripleLoader';
 import MenuIcon from './components/MenuIcon/MenuIcon';
 import { useOutside } from './lib/hooks/useOutside';
 import { useClearCustomForm } from './lib/hooks/useClearCustomForm';
+import { useTypedSelector } from './lib/hooks/useTypedSelector';
 
 export {
   Button,
@@ -28,5 +29,6 @@ export {
   MenuIcon,
   useOutside,
   useClearCustomForm,
+  useTypedSelector,
 };
 export type { ResponseUserData };

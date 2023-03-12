@@ -1,7 +1,7 @@
 import {
   CreInputData,
   CreOptionData,
-} from '../../../entities/CreationFormFrame';
+} from '../../../entities/forms/CreationFormFrame';
 
 export const inputs: CreInputData[] = [
   {

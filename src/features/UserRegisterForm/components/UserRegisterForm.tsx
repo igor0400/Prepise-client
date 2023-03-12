@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormData } from '../model/types';
 import { schema } from '../config/form-schemas';
-import RegisterFormFrame from '../../../entities/RegisterFormFrame';
+import RegisterFormFrame from '../../../entities/forms/RegisterFormFrame';
 import SendEmailCodeText from '../../SendEmailCodeText';
 import { setUserData } from '../../../entities/User';
 import { useDispatch } from 'react-redux';

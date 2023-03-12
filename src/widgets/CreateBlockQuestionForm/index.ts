@@ -1,3 +1,3 @@
-import CreateQuestionForm from './components/CreateQuestionForm';
+import CreateBlockQuestionForm from './components/CreateBlockQuestionForm';
 
-export default CreateQuestionForm;
+export default CreateBlockQuestionForm;

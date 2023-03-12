@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { PageWrapper } from '../../shared';
-import WithAuthWrapper from '../../entities/WithAuthWrapper/WithAuthWrapper';
+import WithAuthWrapper from '../../entities/WithAuthWrapper';
 import CreateTestForm from '../../widgets/CreateTestForm';
 
 const CreateTest: NextPage = () => {

@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import CreationFormFrame from '../../../entities/CreationFormFrame';
+import CreationFormFrame from '../../../entities/forms/CreationFormFrame';
 import { schema } from '../config/form-schemas';
 import { inputs, options } from '../config/form-settings';
 
@@ -24,9 +24,10 @@ const CreateTestForm: FC = () => {
       errors={errors}
       isSubmitting={isSubmitting}
       submitUrl="questions/test-question"
-      redirectUrl="/tests"
+      redirectUrl="/tests/:id"
       title="Создать тест"
       description="Если вы хотите нанять на работу пользователей, предварительно оценив уровень их знаний, вы можете создать вопрос в формате теста. При необходимости вы можете создать ##tests-block.блок_вопросов## в формате теста. Ответы пользователей на ваш тест вы можете посмотреть в ##/profile.профиле##. Постарайтесь понятно описать задание, чтобы пользователь смог понять что вы от него хотите."
+      submitBtnText="Опубликовать"
     />
   );
 };

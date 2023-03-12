@@ -4,7 +4,7 @@ import MailLockIcon from '@mui/icons-material/MailLock';
 import LockIcon from '@mui/icons-material/Lock';
 import SubtitlesIcon from '@mui/icons-material/Subtitles';
 
-import { RegInputData } from '../../../entities/RegisterFormFrame';
+import { RegInputData } from '../../../entities/forms/RegisterFormFrame';
 
 export const userInputs: RegInputData[] = [
   {

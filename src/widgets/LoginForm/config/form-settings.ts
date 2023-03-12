@@ -1,7 +1,7 @@
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 
-import { LogInputData } from '../../../entities/LoginFormFrame';
+import { LogInputData } from '../../../entities/forms/LoginFormFrame';
 
 export const userInputs: LogInputData[] = [
   {

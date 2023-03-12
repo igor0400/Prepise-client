@@ -3,7 +3,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import MailLockIcon from '@mui/icons-material/MailLock';
 import LockIcon from '@mui/icons-material/Lock';
 
-import { RegInputData } from '../../../entities/RegisterFormFrame';
+import { RegInputData } from '../../../entities/forms/RegisterFormFrame';
 
 export const inputs: RegInputData[] = [
   {

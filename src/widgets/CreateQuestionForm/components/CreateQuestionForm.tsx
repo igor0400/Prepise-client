@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import CreationFormFrame from '../../../entities/CreationFormFrame';
+import CreationFormFrame from '../../../entities/forms/CreationFormFrame';
 import { schema } from '../config/form-schemas';
 import { inputs, options } from '../config/form-settings';
 
@@ -24,9 +24,10 @@ const CreateQuestionForm: FC = () => {
       errors={errors}
       isSubmitting={isSubmitting}
       submitUrl="questions/default-question"
-      redirectUrl="/questions"
+      redirectUrl="/questions/:id"
       title="Создать вопрос"
       description="Вы можете поделиться опытом прохождения собеседований, создавая вопросы или ##questions-block.блоки_вопросов##. Постарайтесь понятно описать то, как вы отвечали на вопрос, и, возможно, дать советы другим пользователям."
+      submitBtnText="Опубликовать"
     />
   );
 };

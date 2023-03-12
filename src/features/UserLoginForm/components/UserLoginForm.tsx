@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../entities/User';
-import LoginFormFrame from '../../../entities/LoginFormFrame';
+import LoginFormFrame from '../../../entities/forms/LoginFormFrame';
 import { useRequest } from '../../../shared';
 import { schema } from '../config/form-schemas';
 import { inputs } from '../config/form-settings';
