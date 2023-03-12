@@ -1,7 +1,4 @@
-import {
-  setUserData,
-  resetUserData,
-  setLoading,
-} from './store/slices/userSlice';
+import store, { RootState } from './store';
 
-export { setUserData, resetUserData, setLoading };
+export { store };
+export type { RootState };

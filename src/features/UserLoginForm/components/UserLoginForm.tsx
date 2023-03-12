@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../app';
+import { setUserData } from '../../../entities/User';
 import LoginFormFrame from '../../../entities/LoginFormFrame';
 import { useRequest } from '../../../shared';
 import { schema } from '../config/form-schemas';

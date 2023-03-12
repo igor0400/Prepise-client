@@ -1,6 +1,6 @@
 import { FC, useEffect, ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
-import { setLoading, setUserData } from '../../../app';
+import { setLoading, setUserData } from '../../../entities/User';
 import { TripleLoader } from '../../../shared';
 import { useTypedSelector } from '../../../shared/lib/hooks/useTypedSelector';
 import { getUserData } from '../lib/api/get-user-data';

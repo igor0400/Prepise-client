@@ -8,7 +8,9 @@ export interface InputData {
     | 'textarea'
     | 'multy-select'
     | 'image'
-    | 'file';
+    | 'file'
+    | 'question'
+    | 'test';
   optionsUrl?: string;
 }
 export interface OptionData {

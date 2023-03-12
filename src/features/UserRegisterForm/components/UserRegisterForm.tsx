@@ -5,7 +5,7 @@ import { FormData } from '../model/types';
 import { schema } from '../config/form-schemas';
 import RegisterFormFrame from '../../../entities/RegisterFormFrame';
 import SendEmailCodeText from '../../SendEmailCodeText';
-import { setUserData } from '../../../app';
+import { setUserData } from '../../../entities/User';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useRequest } from '../../../shared';

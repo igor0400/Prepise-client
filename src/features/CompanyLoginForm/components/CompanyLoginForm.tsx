@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../app';
+import { setUserData } from '../../../entities/User';
 import LoginFormFrame from '../../../entities/LoginFormFrame';
 import { useRequest } from '../../../shared';
 import { inputs } from '../config/form-settings';

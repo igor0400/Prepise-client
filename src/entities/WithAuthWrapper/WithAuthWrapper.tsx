@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { FC, ReactNode, useEffect } from 'react';
-import { resetUserData } from '../../app';
+import { resetUserData } from '../../entities/User';
 import { useDispatch } from 'react-redux';
 
 interface Props {

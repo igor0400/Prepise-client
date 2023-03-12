@@ -14,6 +14,7 @@ import SelectModal from '../../SelectModal';
 import FormSwitch from '../../FormSwitch';
 import { InputData, OptionData } from '../model/types';
 import FormFileInput from '../../FormFileInput';
+import FormCreateQuestion from '../../FormCreateQuestion';
 
 interface Props {
   handleSubmit: Function;
@@ -26,6 +27,7 @@ interface Props {
   description: string;
   submitUrl: string;
   redirectUrl: string;
+  appendSubmit?: Function;
 }
 
 const CreationFormFrame: FC<Props> = ({
@@ -39,6 +41,7 @@ const CreationFormFrame: FC<Props> = ({
   settings,
   submitUrl,
   redirectUrl,
+  appendSubmit,
 }) => {
   const { clear, addItem } = useClearCustomForm();
   const { texts, links } = useMemo(() => parseText(description), []);
@@ -53,6 +56,7 @@ const CreationFormFrame: FC<Props> = ({
       const data = await request(submitRequest, true, submitUrl, values);
       clear();
       router.push(data?.id ? `${redirectUrl}/${data.id}` : '/');
+      if (typeof appendSubmit === 'function') appendSubmit();
     }
   };
 
@@ -69,7 +73,7 @@ const CreationFormFrame: FC<Props> = ({
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32">
       <h3 className="text-2xl text-center font-bold pb-5">{title}</h3>
-      <p className="bg-green-100 p-3 mb-5 rounded-xl border border-gray-300">
+      <p className="bg-green-100 py-3 px-4 mb-5 rounded-xl border border-gray-300">
         {texts.map((item, i) => (
           <React.Fragment key={i}>
             {item}
@@ -117,6 +121,8 @@ const CreationFormFrame: FC<Props> = ({
                   />
                 ) : type === 'image' || type === 'file' ? (
                   <FormFileInput {...defaultProps} type={type} />
+                ) : type === 'question' || type === 'test' ? (
+                  <FormCreateQuestion {...defaultProps} type={type} />
                 ) : null}
               </React.Fragment>
             );

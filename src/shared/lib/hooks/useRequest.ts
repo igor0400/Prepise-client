@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react';
 import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../app';
+import { setUserData } from '../../../entities/User';
 import { authErrorHeadler, errorHandlerMessage } from '../api/handlers';
 
 export const useRequest = (secure: boolean = true) => {
