@@ -1,7 +1,7 @@
 import { FC, useEffect, ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading, setUserData } from '../../../entities/User';
-import { TripleLoader } from '../../../shared';
+import { FillPageLoader } from '../../../shared';
 import { useTypedSelector } from '../../../shared';
 import { getUserData } from '../lib/api/get-user-data';
 
@@ -34,11 +34,7 @@ const AuthWrapper: FC<Props> = ({ children }) => {
   }
   
   if (loading) {
-    return (
-      <div className="flex justify-center items-center w-full h-full">
-        <TripleLoader />
-      </div>
-    );
+    return <FillPageLoader />;
   }
 
   return <>{children}</>;

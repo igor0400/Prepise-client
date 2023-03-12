@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import { TripleLoader } from '../../../shared';
+import { FillPageLoader } from '../../../shared';
 
 interface Props {
   children: ReactNode;
@@ -11,11 +11,7 @@ const WithoutAuthWrapper: FC<Props> = ({ children }) => {
 
   if (typeof window !== 'undefined' && localStorage.getItem('accessToken')) {
     router.push('/');
-    return (
-      <div className="flex justify-center items-center w-full h-full">
-        <TripleLoader />
-      </div>
-    );
+    return <FillPageLoader />;
   }
 
   return <>{children}</>;

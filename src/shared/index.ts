@@ -13,6 +13,7 @@ import MenuIcon from './components/MenuIcon/MenuIcon';
 import { useOutside } from './lib/hooks/useOutside';
 import { useClearCustomForm } from './lib/hooks/useClearCustomForm';
 import { useTypedSelector } from './lib/hooks/useTypedSelector';
+import FillPageLoader from './components/FillPageLoader/FillPageLoader';
 
 export {
   Button,
@@ -30,5 +31,6 @@ export {
   useOutside,
   useClearCustomForm,
   useTypedSelector,
+  FillPageLoader,
 };
 export type { ResponseUserData };

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { FC, ReactNode } from 'react';
 import { resetUserData } from '../../User';
 import { useDispatch } from 'react-redux';
-import { TripleLoader } from '../../../shared';
+import { FillPageLoader } from '../../../shared';
 
 interface Props {
   children: ReactNode;
@@ -18,11 +18,7 @@ const WithAuthWrapper: FC<Props> = ({ children }) => {
       pathname: '/login',
       query: { redirect: router.pathname.slice(1) },
     });
-    return (
-      <div className="flex justify-center items-center w-full h-full">
-        <TripleLoader />
-      </div>
-    );
+    return <FillPageLoader />;
   }
 
   return <>{children}</>;
