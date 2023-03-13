@@ -5,12 +5,6 @@ export const api = ky.create({
   credentials: 'include',
 });
 
-let token: string | null = '';
-
-if (typeof window !== 'undefined') {
-  token = localStorage.getItem('accessToken');
-}
-
 // сделано в функции для того чтобы постоянно получать актуальный токен
 export const secureApi = () => {
   return api.extend({

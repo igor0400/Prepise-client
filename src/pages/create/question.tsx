@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { PageWrapper } from '../../shared';
-import CreateQuestionForm from '../../widgets/CreateQuestionForm';
+import CreateQuestionForm from '../../widgets/forms/CreateQuestionForm';
 import WithAuthWrapper from '../../entities/WithAuthWrapper';
 
 const CreateQuestion: NextPage = () => {

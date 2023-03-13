@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { PageWrapper } from '../../shared';
 import WithAuthWrapper from '../../entities/WithAuthWrapper';
-import CreateTestsBlockForm from '../../widgets/CreateTestsBlockForm';
+import CreateTestsBlockForm from '../../widgets/forms/CreateTestsBlockForm';
 
 const CreateTestsBlock: NextPage = () => {
   return (

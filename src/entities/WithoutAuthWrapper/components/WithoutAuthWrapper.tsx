@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { FillPageLoader } from '../../../shared';
 
@@ -7,10 +7,17 @@ interface Props {
 }
 
 const WithoutAuthWrapper: FC<Props> = ({ children }) => {
+  const [isToken, setIsToken] = useState(false);
   const router = useRouter();
 
-  if (typeof window !== 'undefined' && localStorage.getItem('accessToken')) {
-    router.push('/');
+  useEffect(() => {
+    if (localStorage.getItem('accessToken')) {
+      setIsToken(true);
+      router.push('/');
+    }
+  });
+
+  if (isToken) {
     return <FillPageLoader />;
   }
 

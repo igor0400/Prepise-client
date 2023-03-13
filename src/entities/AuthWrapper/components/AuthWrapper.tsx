@@ -10,17 +10,14 @@ interface Props {
 }
 
 const AuthWrapper: FC<Props> = ({ children }) => {
-  const { loading } = useTypedSelector((state) => state.user);
+  const { loading, isAuth } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const token =
-    typeof window !== 'undefined' && localStorage.getItem('accessToken');
-
   useEffect(() => {
-    if (token) {
+    if (localStorage.getItem('accessToken') && !isAuth && !loading) {
       setData();
     }
-  }, [token]);
+  });
 
   async function setData() {
     dispatch(setLoading(true));
@@ -32,7 +29,7 @@ const AuthWrapper: FC<Props> = ({ children }) => {
 
     dispatch(setLoading(false));
   }
-  
+
   if (loading) {
     return <FillPageLoader />;
   }

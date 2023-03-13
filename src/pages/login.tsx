@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { PageWrapper } from '../shared';
-import LoginForm from '../widgets/LoginForm';
+import LoginForm from '../widgets/forms/LoginForm';
 import WithoutAuthWrapper from '../entities/WithoutAuthWrapper';
 
 const Login: NextPage = () => {

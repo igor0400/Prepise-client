@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import { PageWrapper } from '../shared';
-import RegisterForm from '../widgets/RegisterForm';
+import RegisterForm from '../widgets/forms/RegisterForm';
 import WithoutAuthWrapper from '../entities/WithoutAuthWrapper';
 
 const Register: NextPage = () => {

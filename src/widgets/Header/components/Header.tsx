@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useMemo } from 'react';
 
 import Image from 'next/image';
 import { Button, SearchInput } from '../../../shared';
@@ -16,17 +16,11 @@ import { MenuIcon } from '../../../shared';
 
 const Header: FC = () => {
   const { isAuth, data } = useTypedSelector((state) => state.user);
-  const [isUserAuth, setIsUserAuth] = useState(false);
 
   const isDefaultAvatar = useMemo(
     () => data?.avatar && data.avatar.split('/')[3] === 'users',
     [data],
   );
-
-  const token =
-    typeof window !== 'undefined' && localStorage.getItem('accessToken');
-
-  useEffect(() => setIsUserAuth(isAuth || Boolean(token)), [isAuth, token]);
 
   return (
     <div className="header-wrapper">
@@ -73,14 +67,13 @@ const Header: FC = () => {
             </Button>
           </Dropdown>
 
-          {isUserAuth ? (
+          {isAuth ? (
             <Link href="/profile">
               <Avatar
-                className='avatar ml-2 hidden xl:block justify-end'
+                className="avatar ml-2 hidden xl:block justify-end"
                 style={{
                   padding: isDefaultAvatar ? '6px' : 0,
                   background: isDefaultAvatar ? '#fff' : 'none',
-                  
                 }}
                 name={data?.name ?? 'Загрузка...'}
                 src={`${process.env.NEXT_PUBLIC_SERVER}${data?.avatar}`}
