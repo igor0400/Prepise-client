@@ -118,7 +118,6 @@ const CreationFormFrame: FC<Props> = ({
                 ) : type === 'multy-select' ? (
                   <FormTagsSelect
                     {...defaultProps}
-                    register={register}
                     optionsUrl={optionsUrl ?? ''}
                     setUpdateTagsFunc={setUpdateTagsFunc}
                     openModal={() => setIsModalOpen(true)}

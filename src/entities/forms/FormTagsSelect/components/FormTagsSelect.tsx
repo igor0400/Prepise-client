@@ -12,7 +12,6 @@ interface Props {
   placeholder: string;
   error: string;
   isInvalid: boolean;
-  register: Function;
   setValue: Function;
   optionsUrl: string;
   addItem: (func: Function) => any;
@@ -56,8 +55,10 @@ const FormTagsSelect: FC<Props> = ({
 
   async function getData() {
     const data = await request(getOptions, false, optionsUrl);
-    setOptions(data);
-    setAllOptions(data);
+    if (data) {
+      setOptions(data);
+      setAllOptions(data);
+    }
   }
 
   function filterOptions(value: string) {

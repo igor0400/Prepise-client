@@ -25,7 +25,7 @@ const StartScreen: FC = () => {
         <p className="text-base sm:text-lg md:text-xl light-text font-medium sm:max-w-xl max-w-md mx-auto">
           Готовьтесь сами, помогайте другим, ищите работу или сотрудника!
         </p>
-        <Link href="/" className="gradient-btn">
+        <Link href="/main" className="gradient-btn">
           <p>Начать</p>
           <Image src={arrow} alt="arrow" width={24} height={24} />
         </Link>

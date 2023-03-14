@@ -38,12 +38,12 @@ export const items = (isAuth: boolean): MenuProps['items'] => {
       ]
     : [
         {
-          link: '/login',
+          link: '/auth/login',
           text: 'Вход',
           className: 'text-green-600',
         },
         {
-          link: '/register',
+          link: '/auth/register',
           text: 'Регистрация',
         },
       ];

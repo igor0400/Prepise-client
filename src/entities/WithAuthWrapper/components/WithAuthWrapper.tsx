@@ -21,7 +21,7 @@ const WithAuthWrapper: FC<Props> = ({ children }) => {
     } else if (!token) {
       dispatch(resetUserData());
       router.push({
-        pathname: '/login',
+        pathname: '/auth/login',
         query: { redirect: router.pathname.slice(1) },
       });
     }

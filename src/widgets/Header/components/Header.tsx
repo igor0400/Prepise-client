@@ -81,10 +81,10 @@ const Header: FC = () => {
             </Link>
           ) : (
             <>
-              <Link href="/login">
+              <Link href="/auth/login">
                 <Button>Вход</Button>
               </Link>
-              <Link href="/register">
+              <Link href="/auth/register">
                 <Button theme={'lined'}>Регистрация</Button>
               </Link>
             </>
