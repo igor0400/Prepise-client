@@ -14,6 +14,14 @@ import { useOutside } from './lib/hooks/useOutside';
 import { useClearCustomForm } from './lib/hooks/useClearCustomForm';
 import { useTypedSelector } from './lib/hooks/useTypedSelector';
 import FillPageLoader from './components/FillPageLoader/FillPageLoader';
+import NavItem from './components/NavItem/NavItem';
+import BlockQuestionIcon from './components/Icons/BlockQuestions';
+import QuestionIcon from './components/Icons/Question';
+import PaperIcon from './components/Icons/Paper';
+import BlockPapersIcon from './components/Icons/BlockPapers';
+import TagIcon from './components/Icons/Tag';
+import UserIcon from './components/Icons/User';
+import CompanyIcon from './components/Icons/Company';
 
 export {
   Button,
@@ -32,5 +40,13 @@ export {
   useClearCustomForm,
   useTypedSelector,
   FillPageLoader,
+  NavItem,
+  BlockQuestionIcon,
+  QuestionIcon,
+  PaperIcon,
+  BlockPapersIcon,
+  TagIcon,
+  UserIcon,
+  CompanyIcon,
 };
 export type { ResponseUserData };
