@@ -33,7 +33,7 @@ const CompanyLoginForm: FC = () => {
 
       if (company) {
         reset();
-        router.push(redirect ?? '/');
+        router.push(redirect ? `/${redirect}` : '/');
         dispatch(setUserData(company));
       }
     }

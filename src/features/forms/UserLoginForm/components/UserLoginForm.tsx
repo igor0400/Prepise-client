@@ -33,7 +33,7 @@ const UserLoginForm: FC = () => {
 
       if (user) {
         reset();
-        router.push(redirect ?? '/');
+        router.push(redirect ? `/${redirect}` : '/');
         dispatch(setUserData(user));
       }
     }
