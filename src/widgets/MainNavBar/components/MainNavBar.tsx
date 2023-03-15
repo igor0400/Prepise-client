@@ -11,7 +11,10 @@ const MainNavBar: FC = () => {
   const nav = searchParams.get('nav');
 
   return (
-    <ul className="border-r-2 pt-10" style={{ maxWidth: '252px', minHeight: '100vh' }}>
+    <ul
+      className="border-r-2 pt-10"
+      style={{ maxWidth: '252px', minHeight: '100vh', borderColor: '#edeff2' }}
+    >
       {navItems.map((item, i) => (
         <NavItem
           {...item}
