@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import MainNavBar from '../entities/MainNavBar';
+import MainNavBar from '../widgets/MainNavBar';
 import { PageWrapper } from '../shared';
 
 const Home: NextPage = () => {
