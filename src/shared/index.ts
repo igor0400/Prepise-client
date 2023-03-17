@@ -22,6 +22,7 @@ import BlockPapersIcon from './components/Icons/BlockPapers';
 import TagIcon from './components/Icons/Tag';
 import UserIcon from './components/Icons/User';
 import CompanyIcon from './components/Icons/Company';
+import CenteredLoader from './components/CenteredLoader/CenteredLoader';
 
 export {
   Button,
@@ -48,5 +49,6 @@ export {
   TagIcon,
   UserIcon,
   CompanyIcon,
+  CenteredLoader,
 };
 export type { ResponseUserData };
