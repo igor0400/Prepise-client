@@ -4,24 +4,29 @@ import { api } from './default-requests';
 export const errorHandlerMessage = async (error: any, toast: Function) => {
   const text = await error?.response?.text();
 
+  const sendMessage = (message: string) => {
+    toast({
+      description: message,
+      status: 'error',
+      duration: 3000,
+    });
+  };
+
   if (text) {
     const message = JSON.parse(text)?.message;
 
+    if (message === 'Internal server error') {
+      sendMessage('Проверьте подключение к интернету');
+      return;
+    }
+
     if (message) {
-      toast({
-        description: message,
-        status: 'error',
-        duration: 3000,
-      });
+      sendMessage(message);
       return;
     }
   }
 
-  toast({
-    description: 'Ошибка сервера',
-    status: 'error',
-    duration: 3000,
-  });
+  sendMessage('Ошибка сервера');
 };
 
 export const authErrorHeadler = async () => {

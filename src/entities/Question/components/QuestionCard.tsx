@@ -14,7 +14,7 @@ const QuestionCard: FC<QuestionType> = ({
   return (
     <Card>
       <CardBody>
-        <Heading size="md" style={{ fontFamily: 'inherit' }}>
+        <Heading size="md" style={{ fontFamily: 'inherit', fontWeight: 600 }}>
           {title}
         </Heading>
         <Text className="pt-3">{description}</Text>

@@ -14,7 +14,10 @@ const Questions: FC = () => {
 
   async function getData() {
     const data = await request(getQuestions);
-    setQuestions((state) => state.concat(data));
+    if (data) {
+      setQuestions((state) => state.concat(data));
+    }
+
     console.log(data);
   }
 
