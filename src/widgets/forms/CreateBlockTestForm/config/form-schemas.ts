@@ -6,7 +6,7 @@ const max = (len: number) => `Максимальная длина ${len} сим�
 export const schema = yup
   .object({
     title: yup.string().max(50, max(50)).required(reqMess),
-    description: yup.string().max(300, max(300)),
+    description: yup.string().max(100, max(100)),
     section: yup.string().max(100, max(100)).required(reqMess),
     inteviewPosition: yup.string().max(100, max(100)),
     content: yup.string().required(reqMess),

@@ -23,6 +23,9 @@ import TagIcon from './components/Icons/Tag';
 import UserIcon from './components/Icons/User';
 import CompanyIcon from './components/Icons/Company';
 import CenteredLoader from './components/CenteredLoader/CenteredLoader';
+import SlicedImages from './components/SlicedImages/SlicedImages';
+import { parseDate } from './lib/assets/parseDate';
+import QuestionStats from './components/QuestionStats/QuestionStats';
 
 export {
   Button,
@@ -50,5 +53,8 @@ export {
   UserIcon,
   CompanyIcon,
   CenteredLoader,
+  SlicedImages,
+  parseDate,
+  QuestionStats,
 };
 export type { ResponseUserData };

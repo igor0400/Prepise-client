@@ -10,8 +10,8 @@ import { items, createItems } from '../config/header-config';
 import { useTypedSelector } from '../../../shared';
 import { Avatar } from '@chakra-ui/react';
 
-import logo from '../../../../public/logo100x56.svg';
-import plus from '../../../../public/icons/plus_.svg';
+import logo from '../../../../public/images/logo100x56.svg';
+import plus from '../../../../public/images/icons/plus.svg';
 import { MenuIcon } from '../../../shared';
 
 const Header: FC = () => {

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Image from 'next/image';
 import { FC, useState } from 'react';
-import search from '../../../../public/icons/search.svg';
+import search from '../../../../public/images/icons/search.svg';
 
 const SearchInput: FC = () => {
   const [inputFocus, setInputFocus] = useState(false);

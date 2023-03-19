@@ -1,6 +1,7 @@
 import { Fade } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
 import { QuestionCard, QuestionType } from '../../../entities/Question';
+import FavouriteIconBtn from '../../../features/FavouriteIconBtn';
 import { CenteredLoader, useRequest } from '../../../shared';
 import { getQuestions } from '../lib/api/getQuestions';
 
@@ -17,8 +18,6 @@ const Questions: FC = () => {
     if (data) {
       setQuestions((state) => state.concat(data));
     }
-
-    console.log(data);
   }
 
   if (loading) return <CenteredLoader className="pb-20" />;
@@ -28,11 +27,15 @@ const Questions: FC = () => {
   return (
     <Fade
       in={true}
-      className="grid gap-4 w-full"
-      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
+      className="grid gap-4 w-full auto-rows-min"
+      style={{ gridTemplateColumns: 'repeat(auto-fit, 400px)' }}
     >
       {questions.map((item, i) => (
-        <QuestionCard {...item} key={i} />
+        <QuestionCard
+          {...item}
+          favouriteBtn={<FavouriteIconBtn questionId={item.id} />}
+          key={i}
+        />
       ))}
     </Fade>
   );

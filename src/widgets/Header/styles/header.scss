@@ -23,5 +23,9 @@
     border-width: 2px;
     width: 56px;
     height: 56px;
+
+    .chakra-avatar__img {
+      border-radius: 0;
+    }
   }
 }

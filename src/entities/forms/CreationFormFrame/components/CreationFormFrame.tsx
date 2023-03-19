@@ -58,9 +58,12 @@ const CreationFormFrame: FC<Props> = ({
   const onSubmit = async (values: FormData) => {
     if (!isSubmitting && !loading) {
       const data = await request(submitRequest, true, submitUrl, values);
-      clear();
-      router.push(data?.id ? redirectUrl.replaceAll(':id', data?.id) : '/');
-      if (typeof appendSubmit === 'function') appendSubmit(data);
+      
+      if (data) {
+        clear();
+        router.push(data?.id ? redirectUrl.replaceAll(':id', data?.id) : '/');
+        if (typeof appendSubmit === 'function') appendSubmit(data);
+      }
     }
   };
 

@@ -1,6 +1,17 @@
 import { secureApi } from '../../../../../shared';
 
 export const submitRequest = async (url: string, values: any) => {
+  const isFiles = values?.image?.length || values?.file?.length;
+
+  const options = isFiles
+    ? { body: generateFormData(values) }
+    : { json: { ...values, commented: String(values.commented ?? true) } };
+
+  const data = await secureApi().post(url, options).json();
+  return data;
+};
+
+function generateFormData(values: any) {
   const formData = new FormData();
   for (let key in values) {
     const value = values[key];
@@ -18,12 +29,5 @@ export const submitRequest = async (url: string, values: any) => {
     }
   }
 
-  const isFiles = values?.image?.length && values?.file?.length;
-
-  const options = isFiles
-    ? { body: formData }
-    : { json: { ...values, commented: String(values.commented ?? true) } };
-
-  const data = await secureApi().post(url, options).json();
-  return data;
-};
+  return formData;
+}
