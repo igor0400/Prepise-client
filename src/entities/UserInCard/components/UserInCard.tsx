@@ -27,6 +27,7 @@ const UserInCard: FC<Props> = ({ id, avatar, name, date, className }) => {
         className="p-1"
         style={{
           boxShadow: '0px 0px 2px 1px rgba(0, 0, 0, 0.25)',
+          background: '#fff',
           width: 40,
           height: 40,
         }}

@@ -1,11 +1,17 @@
 import { Fade } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
-import { QuestionCard, QuestionType } from '../../../entities/Question';
+import { QuestionType } from '../../../entities/Question';
 import FavouriteIconBtn from '../../../features/FavouriteIconBtn';
 import { CenteredLoader, useRequest } from '../../../shared';
 import { getQuestions } from '../lib/api/getQuestions';
+import QuestionCard from '../../../entities/QuestionCard';
+import { Store } from '../../MainQuestions';
 
-const Questions: FC = () => {
+interface Props {
+  filters: Store;
+}
+
+const Questions: FC<Props> = ({ filters }) => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const { request, loading } = useRequest(false);
 
@@ -33,7 +39,8 @@ const Questions: FC = () => {
       {questions.map((item, i) => (
         <QuestionCard
           {...item}
-          favouriteBtn={<FavouriteIconBtn questionId={item.id} />}
+          favouriteBtn={<FavouriteIconBtn {...item} />}
+          activeTags={filters.tags}
           key={i}
         />
       ))}

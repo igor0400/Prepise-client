@@ -1,6 +1,7 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { UserType } from '../..';
+import { QuestionType } from '../../../Question';
 
 interface UserState {
   isAuth: boolean;
@@ -31,10 +32,26 @@ export const userSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
+    addFavourite: (state, action: PayloadAction<QuestionType>) => {
+      state.data?.favouriteQuestions.push(action.payload);
+    },
+    deleteFavourite: (state, action: PayloadAction<number>) => {
+      if (state.data?.favouriteQuestions) {
+        state.data.favouriteQuestions = state.data?.favouriteQuestions.filter(
+          (item) => item.id !== action.payload,
+        );
+      }
+    },
   },
 });
 
-export const { setUserData, resetUserData, setLoading } = userSlice.actions;
+export const {
+  setUserData,
+  resetUserData,
+  setLoading,
+  addFavourite,
+  deleteFavourite,
+} = userSlice.actions;
 
 export const { selectAll } = userAdapter.getSelectors(
   (state: any) => state.user,

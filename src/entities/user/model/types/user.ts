@@ -1,3 +1,5 @@
+import { QuestionType } from '../../../Question';
+
 export interface UserType {
   id: number;
   name: string;
@@ -23,7 +25,7 @@ export interface UserType {
   ignoringTags: any[];
   questions: any[];
   blocks: any[];
-  favouriteQuestions: any[];
+  favouriteQuestions: QuestionType[];
   favouriteTestQuestions: any[];
   favouriteBlocks: any[];
   favouriteTestBlocks: any[];

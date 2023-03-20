@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import Questions from '../../Questions';
+import MainQuestions from '../../MainQuestions';
 
 interface Tab {
   [key: string]: FC<any>;
 }
 
 export const tabsContent: Tab = {
-  questions: Questions,
+  questions: MainQuestions,
 };

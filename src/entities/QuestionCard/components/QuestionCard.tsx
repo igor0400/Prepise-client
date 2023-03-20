@@ -1,14 +1,16 @@
 import { Card, CardBody, Text } from '@chakra-ui/react';
-import { FC, ReactNode } from 'react';
-import { QuestionType } from '../model/types/question';
+import { FC, ReactNode, useMemo } from 'react';
+import { QuestionType } from '../../Question/model/types/question';
 
-import { QuestionStats, SlicedImages } from '../../../shared';
+import { QuestionStats, SlicedImages, useTypedSelector } from '../../../shared';
 import Link from 'next/link';
 import UserInCard from '../../UserInCard';
-import TagsInCard from '../../TagsInCard';
+import classNames from 'classnames';
+import TagInCard from '../../TagInCard';
 
 interface Props extends QuestionType {
   favouriteBtn: ReactNode;
+  activeTags: string[];
 }
 
 const QuestionCard: FC<Props> = ({
@@ -21,11 +23,28 @@ const QuestionCard: FC<Props> = ({
   tags,
   imgs,
   createdAt,
+  usedUsersInfo,
   favouriteBtn,
+  activeTags,
 }) => {
+  const { data } = useTypedSelector((state) => state.user);
+  const uId = data?.id;
+
+  const isViewed = useMemo(() => {
+    for (let { questionId, userId, view } of usedUsersInfo) {
+      if (questionId === id && uId === userId && view) return true;
+    }
+
+    return false;
+  }, [data]);
+
   return (
     <Card>
-      <CardBody className="flex flex-col">
+      <CardBody
+        className={classNames('flex flex-col rounded-md', {
+          'bg-gray-200': isViewed,
+        })}
+      >
         <div className="flex justify-between items-start">
           <Link href={`/questions/${id}`}>
             <h4
@@ -37,7 +56,6 @@ const QuestionCard: FC<Props> = ({
           </Link>
 
           {favouriteBtn}
-          
         </div>
 
         {description && (
@@ -57,8 +75,20 @@ const QuestionCard: FC<Props> = ({
         )}
 
         {tags?.length > 0 && (
-          <TagsInCard tags={tags.map((item) => item.name)} className="mt-2" />
+          <>
+            {tags.map(({ name, id }, i) => (
+              <TagInCard
+                key={i}
+                id={String(id)}
+                name={name}
+                activeTags={activeTags}
+                className="mt-2"
+              />
+            ))}
+          </>
         )}
+
+        {isViewed && <p className="text-sm pt-2 text-gray-500">Просмотрено</p>}
 
         <div className="flex justify-between mt-auto pt-10 items-end">
           <UserInCard {...user} date={createdAt} />

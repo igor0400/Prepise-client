@@ -16,7 +16,9 @@ const QuestionStats: FC<Props> = ({ likes, viewes }) => {
         <Image src={likesIcon} alt="likes" width={18} height={18} />
       </div>
       <div className="flex">
-        <p className="font-medium pt-1">{viewes}</p>
+        <p className="font-medium pt-1" style={{ paddingRight: 1 }}>
+          {viewes}
+        </p>
         <Image
           src={viewesIcon}
           alt="viewes"

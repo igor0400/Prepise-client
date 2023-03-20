@@ -4,7 +4,16 @@ import {
   setUserData,
   resetUserData,
   setLoading,
+  addFavourite,
+  deleteFavourite,
 } from './model/store/userSlice';
 
 export type { UserType };
-export { user, setUserData, resetUserData, setLoading };
+export {
+  user,
+  setUserData,
+  resetUserData,
+  setLoading,
+  addFavourite,
+  deleteFavourite,
+};
