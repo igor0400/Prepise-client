@@ -71,12 +71,12 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
         className="border-t-2 border-gray-200"
         style={{ paddingTop: 5 }}
       >
-        <label htmlFor="items-search" className="text-sm">
+        <label htmlFor="items-search" className="text-sm text-gray-400">
           {label}
         </label>
         <Input
           id="items-search"
-          placeholder="Искать"
+          placeholder="Поиск..."
           className="mt-0.5 mb-2"
           onChange={onSearch}
         />
