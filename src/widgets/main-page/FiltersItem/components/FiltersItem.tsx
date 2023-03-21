@@ -29,7 +29,7 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
   }, []);
 
   async function getData() {
-    const data = await request(getItems, true, url);
+    const data = await request(getItems, false, url);
     if (data) {
       setItems(data);
       setAllItems(data);
