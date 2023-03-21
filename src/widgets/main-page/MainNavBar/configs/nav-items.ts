@@ -7,7 +7,7 @@ import {
   TagIcon,
   UserIcon,
   CompanyIcon,
-} from '../../../shared';
+} from '../../../../shared';
 
 export const navItems: { Icon: FC<any>; text: string; search: string }[] = [
   { Icon: QuestionIcon, text: 'Вопросы', search: 'questions' },

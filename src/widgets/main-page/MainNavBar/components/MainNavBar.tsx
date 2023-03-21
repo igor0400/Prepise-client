@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react';
-import { NavItem } from '../../../shared';
+import { NavItem } from '../../../../shared';
 import { navItems } from '../configs/nav-items';
 //@ts-ignore
 import { useSearchParams } from 'next/navigation';
