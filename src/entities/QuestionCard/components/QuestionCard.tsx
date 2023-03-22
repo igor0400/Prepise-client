@@ -77,11 +77,11 @@ const QuestionCard: FC<Props> = ({
 
         {tags?.length > 0 && (
           <>
-            {tags.map(({ name, id }, i) => (
+            {tags.map((item) => (
               <TagInCard
-                key={i}
-                id={String(id)}
-                name={name}
+                key={item.id}
+                id={item.id}
+                name={item.name}
                 activeTags={activeTags}
                 className="mt-2"
               />

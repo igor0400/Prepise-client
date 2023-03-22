@@ -16,7 +16,12 @@ const MainContentFrame: FC<Props> = ({ name, url, ItemCard }) => {
   return (
     <div className="flex w-full">
       <MainContentFilters name={name} />
-      <MainContentItems filters={filters} url={url} ItemCard={ItemCard} />
+      <MainContentItems
+        name={name}
+        filtersItem={filters}
+        url={url}
+        ItemCard={ItemCard}
+      />
     </div>
   );
 };

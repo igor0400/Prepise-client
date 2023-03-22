@@ -1,28 +1,44 @@
 import { Fade } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
-import { CenteredLoader, useRequest } from '../../../../shared';
+import {
+  CenteredLoader,
+  useRequest,
+  useTypedSelector,
+} from '../../../../shared';
 import { getItems } from '../lib/api/getItems';
-import { FiltersStateItem } from '../../MainContentFrame';
+import { FiltersState, FiltersStateItem } from '../../MainContentFrame';
+import { filterItems } from '../lib/assets/filterItems';
 
 interface Props {
-  filters: FiltersStateItem;
+  filtersItem: FiltersStateItem;
   url: string;
   ItemCard: FC<any>;
+  name: keyof FiltersState;
 }
 
-const MainContentItems: FC<Props> = ({ filters, url, ItemCard }) => {
+const MainContentItems: FC<Props> = ({ filtersItem, url, ItemCard, name }) => {
+  const [allItems, setAllItems] = useState<any[]>([]);
   const [items, setItems] = useState<any[]>([]);
+  const [changeItems, setChangeItems] = useState(0);
   const { request, loading } = useRequest(false);
+  const filters = useTypedSelector((state) => state.filters[name]);
 
   useEffect(() => {
     getData();
   }, []);
 
+  useEffect(() => {
+    if (changeItems !== 0) setItems(filterItems(allItems, filters));
+  }, [filters, changeItems]);
+
   async function getData() {
     const data = await request(getItems, true, url);
     if (data) {
-      setItems((state) => state.concat(data.reverse()));
+      const sortedData = data.sort((a: any, b: any) => b.id - a.id);
+      setItems((state) => state.concat(sortedData));
+      setAllItems((state) => state.concat(sortedData));
+      setChangeItems((state) => state + 1);
     }
   }
 
@@ -42,12 +58,12 @@ const MainContentItems: FC<Props> = ({ filters, url, ItemCard }) => {
       className="grid gap-4 w-full auto-rows-min"
       style={{ gridTemplateColumns: 'repeat(auto-fit, 400px)' }}
     >
-      {items.map((item, i) => (
+      {items.map((item) => (
         <ItemCard
           {...item}
           favouriteBtn={<FavouriteIconBtn {...item} />}
-          activeTags={filters.tags}
-          key={i}
+          activeTags={filtersItem.tags}
+          key={item.id}
         />
       ))}
     </Fade>

@@ -4,7 +4,7 @@ import { CustomTag } from '../../../shared';
 import { FilterItem } from '../../../widgets/main-page/MainContentFrame';
 
 interface Props {
-  id: string;
+  id: number;
   name: string;
   className?: string;
   activeTags?: FilterItem[];
@@ -15,7 +15,7 @@ const TagInCard: FC<Props> = ({ name, id, activeTags, className }) => {
     if (!activeTags) return false;
 
     for (let tag of activeTags) {
-      if (tag.id === +id) return true;
+      if (tag.id === id) return true;
     }
 
     return false;
