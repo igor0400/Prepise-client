@@ -34,7 +34,6 @@ const MainContentItems: FC<Props> = ({ filtersItem, url, ItemCard, name }) => {
 
   async function getData() {
     const data = await request(getItems, true, url);
-    console.log(data);
     
     if (data) {
       const sortedData = data.sort((a: any, b: any) => b.id - a.id);
