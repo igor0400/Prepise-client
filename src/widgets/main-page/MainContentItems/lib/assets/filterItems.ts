@@ -17,19 +17,35 @@ export const filterItems = (items: any[], filters: FiltersStateItem) => {
   }
 
   if (companies.length) {
+    const names = companies.map((i) => i.title);
+
+    result = result.filter((item) => {
+      if (names.includes(item?.defaultQuestionInfo?.interviewCompany))
+        return true;
+
+      return false;
+    });
+  }
+
+  if (sections.length) {
+    const names = sections.map((i) => i.title);
+
+    result = result.filter((item) => {
+      if (names.includes(item?.section)) return true;
+
+      return false;
+    });
+  }
+
+  if (positions.length) {
+    const names = positions.map((i) => i.title);
+
+    result = result.filter((item) => {
+      if (names.includes(item?.interviewPosition)) return true;
+
+      return false;
+    });
   }
 
   return result.sort((a, b) => b.id - a.id);
 };
-
-function getFilteredItemsByGroup(result: any[], filtersItem: any[]) {
-  const ids = filtersItem.map((i) => i.id);
-
-  return result.filter((item) => {
-    let isValid = false;
-    for (let tag of item.tags) {
-      if (ids.includes(tag.id)) isValid = true;
-    }
-    return isValid;
-  });
-}

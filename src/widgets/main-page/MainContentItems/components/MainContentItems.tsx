@@ -34,6 +34,8 @@ const MainContentItems: FC<Props> = ({ filtersItem, url, ItemCard, name }) => {
 
   async function getData() {
     const data = await request(getItems, true, url);
+    console.log(data);
+    
     if (data) {
       const sortedData = data.sort((a: any, b: any) => b.id - a.id);
       setItems((state) => state.concat(sortedData));
@@ -47,7 +49,7 @@ const MainContentItems: FC<Props> = ({ filtersItem, url, ItemCard, name }) => {
   if (!items?.length) {
     return (
       <h3 className="text-xl font-bold flex justify-center mt-20 w-full">
-        Элементов в выбранной категории пока нет
+        Список элементов пуст
       </h3>
     );
   }
