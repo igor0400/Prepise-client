@@ -4,9 +4,10 @@ import {
   addFilterItem,
   deleteFilterItem,
   StateItem,
+  FilterItem,
 } from './model/store/filtersSilce';
 import filters from './model/store/filtersSilce';
 
-export type { FiltersState, StateItem as FiltersStateItem };
+export type { FiltersState, StateItem as FiltersStateItem, FilterItem };
 export { addFilterItem, deleteFilterItem, filters };
 export default MainContentFrame;

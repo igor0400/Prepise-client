@@ -22,18 +22,19 @@ const MainContentItems: FC<Props> = ({ filters, url, ItemCard }) => {
   async function getData() {
     const data = await request(getItems, true, url);
     if (data) {
-      setItems((state) => state.concat(data));
+      setItems((state) => state.concat(data.reverse()));
     }
   }
 
   if (loading) return <CenteredLoader className="pb-32" />;
 
-  if (!items?.length)
+  if (!items?.length) {
     return (
-      <h3 className="text-xl font-bold flex mx-auto mt-20">
+      <h3 className="text-xl font-bold flex justify-center mt-20 w-full">
         Элементов в выбранной категории пока нет
       </h3>
     );
+  }
 
   return (
     <Fade

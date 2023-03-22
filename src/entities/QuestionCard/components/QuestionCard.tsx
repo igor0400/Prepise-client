@@ -7,10 +7,11 @@ import Link from 'next/link';
 import UserInCard from '../../UserInCard';
 import classNames from 'classnames';
 import TagInCard from '../../TagInCard';
+import { FilterItem } from '../../../widgets/main-page/MainContentFrame';
 
 interface Props extends QuestionType {
   favouriteBtn: ReactNode;
-  activeTags: string[];
+  activeTags: FilterItem[];
 }
 
 const QuestionCard: FC<Props> = ({

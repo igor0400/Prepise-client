@@ -1,11 +1,17 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+export interface FilterItem {
+  id: number;
+  title?: string;
+  name?: string;
+}
+
 export interface StateItem {
-  tags: string[];
-  companies: string[];
-  positions: string[];
-  sections: string[];
+  tags: FilterItem[];
+  companies: FilterItem[];
+  positions: FilterItem[];
+  sections: FilterItem[];
 }
 
 export interface FiltersState {
@@ -34,7 +40,7 @@ const initialState: FiltersState = {
 interface Payload {
   itemName: keyof FiltersState;
   itemEntity: keyof StateItem;
-  item: string;
+  item: FilterItem;
 }
 
 export const filtersSlice = createSlice({
@@ -44,7 +50,7 @@ export const filtersSlice = createSlice({
     addFilterItem: (state, action: PayloadAction<Payload>) => {
       const { itemName, itemEntity, item } = action.payload;
 
-      if (!state[itemName][itemEntity].includes(item)) {
+      if (!state[itemName][itemEntity].map((i) => i.id).includes(item.id)) {
         state[itemName][itemEntity].push(item);
       }
     },
@@ -52,7 +58,7 @@ export const filtersSlice = createSlice({
       const { itemName, itemEntity, item } = action.payload;
 
       state[itemName][itemEntity] = state[itemName][itemEntity].filter(
-        (i) => i !== item,
+        (i) => i.id !== item.id,
       );
     },
   },

@@ -1,10 +1,18 @@
-import { Card, CardBody, Tag, TagLabel } from '@chakra-ui/react';
+import {
+  Card,
+  CardBody,
+  Tag,
+  TagCloseButton,
+  TagLabel,
+} from '@chakra-ui/react';
 import { Input } from 'antd';
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useDeferredValue, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useRequest } from '../../../../shared';
+import { CustomTag, useRequest, useTypedSelector } from '../../../../shared';
 import {
   addFilterItem,
+  deleteFilterItem,
+  FilterItem,
   FiltersState,
   FiltersStateItem,
 } from '../../MainContentFrame';
@@ -19,6 +27,9 @@ interface Props {
 }
 
 const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
+  const activeItems = useTypedSelector(
+    (state) => state.filters[contentName][name],
+  );
   const [items, setItems] = useState<any[]>([]);
   const [allItems, setAllItems] = useState<any[]>([]);
   const { request } = useRequest(false);
@@ -31,41 +42,71 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
   async function getData() {
     const data = await request(getItems, false, url);
     if (data) {
-      setItems(data);
+      setItems(data.slice(0, 10));
       setAllItems(data);
     }
   }
 
-  // сделать поиск по всем тегам из бд при поиске
-
-  const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  const onSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     const value = e?.target?.value;
     if (value) {
       setItems(() => {
-        return allItems.filter((i: any) => {
-          if (i?.name) return i.name.includes(value);
-          if (i?.title) return i.title.includes(value);
-        });
+        return allItems
+          .filter((i: any) => {
+            if (i?.name)
+              return i.name.toLowerCase().includes(value.toLowerCase());
+            if (i?.title)
+              return i.title.toLowerCase().includes(value.toLowerCase());
+            return true;
+          })
+          .slice(0, 10);
       });
     } else {
-      setItems(allItems);
+      setItems(allItems.slice(0, 10));
     }
   };
 
-  const onTagSelect = (id: number) => {
+  const onTagSelect = (item: FilterItem) => {
     dispatch(
       addFilterItem({
         itemName: contentName,
         itemEntity: name,
-        item: String(id),
+        item,
       }),
     );
+    const newItems = allItems.filter((i) => i.id !== item.id);
+    setItems(newItems.slice(0, 10));
+    setAllItems(newItems);
+  };
+
+  const onTagDelete = (item: FilterItem) => {
+    dispatch(
+      deleteFilterItem({
+        itemName: contentName,
+        itemEntity: name,
+        item,
+      }),
+    );
+    const newItems = allItems.concat([item]);
+    setItems(newItems.slice(0, 10));
+    setAllItems(newItems);
   };
 
   return (
     <Card className="mt-5">
       <CardBody>
         <h4 className="text-center font-semibold">{title}</h4>
+        <div className="pt-3">
+          {activeItems.map((item) => (
+            <CustomTag
+              key={item.id}
+              className="m-0.5 cursor-pointer"
+              label={item.name ?? item.title ?? ''}
+              close
+              onClose={() => onTagDelete(item)}
+            />
+          ))}
+        </div>
       </CardBody>
       <CardBody
         className="border-t-2 border-gray-200"
@@ -81,19 +122,13 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
           onChange={onSearch}
         />
         <div>
-          {items.map((item: any) => (
-            <Tag
-              size="md"
+          {items.map((item) => (
+            <CustomTag
               key={item.id}
-              borderRadius="full"
-              variant="solid"
-              colorScheme="green"
               className="m-0.5 cursor-pointer"
-              style={{ background: 'rgba(27, 165, 33, 0.1)', color: '#000' }}
-              onClick={() => onTagSelect(item.id)}
-            >
-              <TagLabel>{item.name ?? item.title}</TagLabel>
-            </Tag>
+              onClick={() => onTagSelect(item)}
+              label={item.name ?? item.title}
+            />
           ))}
         </div>
       </CardBody>

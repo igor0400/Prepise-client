@@ -1,12 +1,13 @@
-import { Tag, TagLabel } from '@chakra-ui/react';
 import classNames from 'classnames';
 import { FC, useMemo } from 'react';
+import { CustomTag } from '../../../shared';
+import { FilterItem } from '../../../widgets/main-page/MainContentFrame';
 
 interface Props {
   id: string;
   name: string;
   className?: string;
-  activeTags?: string[];
+  activeTags?: FilterItem[];
 }
 
 const TagInCard: FC<Props> = ({ name, id, activeTags, className }) => {
@@ -14,25 +15,20 @@ const TagInCard: FC<Props> = ({ name, id, activeTags, className }) => {
     if (!activeTags) return false;
 
     for (let tag of activeTags) {
-      if (tag === id) return true;
+      if (tag.id === +id) return true;
     }
 
     return false;
   }, [activeTags]);
 
   return (
-    <Tag
-      borderRadius="full"
-      variant="solid"
-      colorScheme="green"
+    <CustomTag
+      label={name}
       className={classNames('w-fit', {
         [className ?? '']: className,
         'border border-blue-600': isActive,
       })}
-      style={{ background: 'rgba(27, 165, 33, 0.1)', color: '#000' }}
-    >
-      <TagLabel>{name}</TagLabel>
-    </Tag>
+    />
   );
 };
 

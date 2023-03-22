@@ -26,6 +26,7 @@ import CenteredLoader from './components/CenteredLoader/CenteredLoader';
 import SlicedImages from './components/SlicedImages/SlicedImages';
 import { parseDate } from './lib/assets/parseDate';
 import QuestionStats from './components/QuestionStats/QuestionStats';
+import CustomTag from './components/CustomTag/CustomTag';
 
 export {
   Button,
@@ -56,5 +57,6 @@ export {
   SlicedImages,
   parseDate,
   QuestionStats,
+  CustomTag,
 };
 export type { ResponseUserData };
