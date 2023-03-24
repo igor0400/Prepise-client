@@ -2,18 +2,18 @@ import { FC } from 'react';
 import ItemCard from '../../../../entities/ItemCard';
 import MainContentFrame from '../../MainContentFrame';
 
-const MainQuestions: FC = () => {
+const MainTests: FC = () => {
   return (
     <MainContentFrame
-      name="questions"
-      url="questions/default"
+      name="tests"
+      url="questions/test"
       ItemCard={ItemCard}
       favouriteSettings={{
-        storeName: 'favouriteQuestions',
-        dataUrl: 'favourites/questions/:id',
+        storeName: 'favouriteTestQuestions',
+        dataUrl: 'favourites/test-questions/:id',
       }}
     />
   );
 };
 
-export default MainQuestions;
+export default MainTests;

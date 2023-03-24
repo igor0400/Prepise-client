@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import QuestionCard from '../../../../entities/QuestionCard';
+import ItemCard from '../../../../entities/ItemCard';
 import MainContentFrame from '../../MainContentFrame';
 
 const MainBlockQuestions: FC = () => {
@@ -7,7 +7,11 @@ const MainBlockQuestions: FC = () => {
     <MainContentFrame
       name="blockQuestions"
       url="blocks/default"
-      ItemCard={QuestionCard}
+      ItemCard={ItemCard}
+      favouriteSettings={{
+        storeName: 'favouriteBlocks',
+        dataUrl: 'favourites/blocks/:id',
+      }}
     />
   );
 };

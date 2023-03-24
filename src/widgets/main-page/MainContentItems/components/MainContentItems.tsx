@@ -9,15 +9,26 @@ import {
 import { getItems } from '../lib/api/getItems';
 import { FiltersState, FiltersStateItem } from '../../MainContentFrame';
 import { filterItems } from '../lib/assets/filterItems';
+import { UserFavourites } from '../../../../entities/User';
 
 interface Props {
   filtersItem: FiltersStateItem;
   url: string;
   ItemCard: FC<any>;
   name: keyof FiltersState;
+  favouriteSettings: {
+    storeName: UserFavourites;
+    dataUrl: string;
+  };
 }
 
-const MainContentItems: FC<Props> = ({ filtersItem, url, ItemCard, name }) => {
+const MainContentItems: FC<Props> = ({
+  filtersItem,
+  url,
+  ItemCard,
+  name,
+  favouriteSettings,
+}) => {
   const [allItems, setAllItems] = useState<any[]>([]);
   const [items, setItems] = useState<any[]>([]);
   const [changeItems, setChangeItems] = useState(0);
@@ -34,7 +45,7 @@ const MainContentItems: FC<Props> = ({ filtersItem, url, ItemCard, name }) => {
 
   async function getData() {
     const data = await request(getItems, true, url);
-    
+
     if (data) {
       const sortedData = data.sort((a: any, b: any) => b.id - a.id);
       setItems((state) => state.concat(sortedData));
@@ -62,7 +73,7 @@ const MainContentItems: FC<Props> = ({ filtersItem, url, ItemCard, name }) => {
       {items.map((item) => (
         <ItemCard
           {...item}
-          favouriteBtn={<FavouriteIconBtn {...item} />}
+          favouriteBtn={<FavouriteIconBtn item={item} {...favouriteSettings} />}
           activeTags={filtersItem.tags}
           key={item.id}
         />

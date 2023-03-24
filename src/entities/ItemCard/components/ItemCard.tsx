@@ -14,7 +14,7 @@ interface Props extends QuestionType {
   activeTags: FilterItem[];
 }
 
-const QuestionCard: FC<Props> = ({
+const ItemCard: FC<Props> = ({
   id,
   title,
   description,
@@ -100,4 +100,4 @@ const QuestionCard: FC<Props> = ({
   );
 };
 
-export default QuestionCard;
+export default ItemCard;

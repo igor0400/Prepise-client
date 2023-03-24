@@ -7,8 +7,9 @@ import {
   addFavourite,
   deleteFavourite,
 } from './model/store/userSlice';
+import { UserFavourites } from './model/types/store';
 
-export type { UserType };
+export type { UserType, UserFavourites };
 export {
   user,
   setUserData,
