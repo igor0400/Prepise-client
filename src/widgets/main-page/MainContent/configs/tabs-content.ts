@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import { FC } from 'react';
 import MainBlockQuestions from '../../MainBlockQuestions';
 import MainBlockTests from '../../MainBlockTests';
@@ -13,4 +14,7 @@ export const tabsContent: Tab = {
   'blocks-questions': MainBlockQuestions,
   tests: MainTests,
   'blocks-tests': MainBlockTests,
+  tags: Box,
+  users: Box,
+  companies: Box,
 };
