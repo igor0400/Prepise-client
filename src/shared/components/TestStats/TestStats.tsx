@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import { FC } from 'react';
 import likesIcon from '../../../../public/images/icons/like.svg';
-import viewesIcon from '../../../../public/images/icons/view.svg';
+import repliesIcon from '../../../../public/images/icons/replie.svg';
 
 interface Props {
   likes: number;
-  viewes: number;
+  replies: number;
 }
 
-const QuestionStats: FC<Props> = ({ likes = 0, viewes = 0 }) => {
+const TestStats: FC<Props> = ({ likes = 0, replies = 0 }) => {
   return (
     <div className="flex items-end text-gray-500">
       <div className="flex pr-1">
@@ -17,11 +17,11 @@ const QuestionStats: FC<Props> = ({ likes = 0, viewes = 0 }) => {
       </div>
       <div className="flex">
         <p className="font-medium pt-1" style={{ paddingRight: 1 }}>
-          {viewes}
+          {replies}
         </p>
         <Image
-          src={viewesIcon}
-          alt="viewes"
+          src={repliesIcon}
+          alt="replies"
           width={18}
           height={18}
           className="pt-0.5"
@@ -31,4 +31,4 @@ const QuestionStats: FC<Props> = ({ likes = 0, viewes = 0 }) => {
   );
 };
 
-export default QuestionStats;
+export default TestStats;

@@ -27,6 +27,7 @@ import SlicedImages from './components/SlicedImages/SlicedImages';
 import { parseDate } from './lib/assets/parseDate';
 import QuestionStats from './components/QuestionStats/QuestionStats';
 import CustomTag from './components/CustomTag/CustomTag';
+import TestStats from './components/TestStats/TestStats';
 
 export {
   Button,
@@ -58,5 +59,6 @@ export {
   parseDate,
   QuestionStats,
   CustomTag,
+  TestStats,
 };
 export type { ResponseUserData };
