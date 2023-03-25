@@ -1,4 +1,5 @@
 import { QuestionType } from '../../../Question';
+import { TagType } from '../../../Tag';
 
 export interface UserType {
   id: number;
@@ -19,7 +20,7 @@ export interface UserType {
   roles: any[];
   banned: any;
   userInfo: any;
-  tags: any[];
+  tags: TagType[];
   followingTags: any[];
   followingUsers: any[];
   ignoringTags: any[];

@@ -28,6 +28,8 @@ import { parseDate } from './lib/assets/parseDate';
 import QuestionStats from './components/QuestionStats/QuestionStats';
 import CustomTag from './components/CustomTag/CustomTag';
 import TestStats from './components/TestStats/TestStats';
+import { getStringTags } from './lib/assets/getStringTags';
+import { sliceText } from './lib/assets/sliceText';
 
 export {
   Button,
@@ -60,5 +62,7 @@ export {
   QuestionStats,
   CustomTag,
   TestStats,
+  getStringTags,
+  sliceText,
 };
 export type { ResponseUserData };

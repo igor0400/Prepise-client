@@ -18,7 +18,7 @@ const Header: FC = () => {
   const { isAuth, data } = useTypedSelector((state) => state.user);
 
   const isDefaultAvatar = useMemo(
-    () => data?.avatar && data.avatar.split('/')[3] === 'users',
+    () => data?.avatar && data.avatar.split('/')[2] === 'default',
     [data],
   );
 

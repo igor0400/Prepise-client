@@ -1,22 +1,24 @@
 import { Spinner, useMediaQuery } from '@chakra-ui/react';
 import classNames from 'classnames';
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 
 interface Props {
   className?: string;
+  style?: CSSProperties;
 }
 
-const CenteredLoader: FC<Props> = ({ className }) => {
+const CenteredLoader: FC<Props> = ({ className, style }) => {
   const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
 
   return (
     <div
-      className={classNames('flex w-full h-full items-center justify-center', {
+      className={classNames('flex items-center justify-center', {
         [className ?? '']: className,
       })}
       style={{
         height: `calc(100vh - ${isLargerThan640 ? 80 : 65}px)`,
         width: '100%',
+        ...style,
       }}
     >
       <Spinner
