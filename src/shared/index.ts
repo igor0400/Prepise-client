@@ -30,6 +30,7 @@ import CustomTag from './components/CustomTag/CustomTag';
 import TestStats from './components/TestStats/TestStats';
 import { getStringTags } from './lib/assets/getStringTags';
 import { sliceText } from './lib/assets/sliceText';
+import DiscordIcon from './components/Icons/Discord';
 
 export {
   Button,
@@ -64,5 +65,6 @@ export {
   TestStats,
   getStringTags,
   sliceText,
+  DiscordIcon,
 };
 export type { ResponseUserData };
