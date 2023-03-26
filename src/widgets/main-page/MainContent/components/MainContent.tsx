@@ -15,7 +15,7 @@ const MainContent: FC = () => {
     <div
       className={classNames('flex w-full flex-col', {
         'px-3 py-8': isSmallerThan980,
-        'p-10': !isSmallerThan980,
+        'px-10 pt-10 pb-28': !isSmallerThan980,
       })}
     >
       <Content />
