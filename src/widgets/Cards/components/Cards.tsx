@@ -23,7 +23,7 @@ const Cards: FC = () => {
   }, []);
 
   return (
-    <div className="cards padding-50 max-w-6xl mx-auto my-14">
+    <div className="cards padding-50 max-w-6xl mx-auto mt-14 mb-28">
       {cardsArr.map((item: ChangedSettings, i: number) => (
         <div key={i} className="my-14">
           <h2 className="text-2xl sm:text-3xl font-bold text-center pb-6">
