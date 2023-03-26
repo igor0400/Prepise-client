@@ -8,9 +8,7 @@ const Home: NextPage = () => {
     <PageWrapper nopadding>
       <section className="flex">
         <MainNavBar />
-        <div className="flex p-10 w-full flex-col">
-          <MainContent />
-        </div>
+        <MainContent />
       </section>
     </PageWrapper>
   );

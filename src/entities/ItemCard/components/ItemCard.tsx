@@ -18,6 +18,7 @@ import doneImg from '../../../../public/images/icons/done-arrow.svg';
 interface Props {
   favouriteBtn: ReactNode;
   activeTags: FilterItem[];
+  size?: 'big' | 'small';
   [key: string]: any;
 }
 
@@ -35,6 +36,7 @@ const ItemCard: FC<Props> = ({
   usedUsersInfo,
   imgs,
   testQuestionInfo,
+  size = 'big',
 }) => {
   const { data } = useTypedSelector((state) => state.user);
   const uId = data?.id;
@@ -68,7 +70,9 @@ const ItemCard: FC<Props> = ({
         <div className="flex justify-between items-start">
           <Link href={`/questions/${id}`}>
             <h4
-              className="max-w-xs text-lg"
+              className={classNames('max-w-xs', {
+                'text-lg': size == 'big',
+              })}
               style={{ fontFamily: 'inherit', fontWeight: 600 }}
             >
               {title}

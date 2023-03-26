@@ -18,15 +18,17 @@ interface Props {
   item: any;
   storeName: UserFavourites;
   dataUrl: string;
+  size?: 'big' | 'small';
 }
 
-const FavouriteIconBtn: FC<Props> = ({ item, storeName, dataUrl }) => {
+const FavouriteIconBtn: FC<Props> = ({ item, storeName, dataUrl, size = 'big' }) => {
   const router = useRouter();
   const { request, loading } = useRequest();
   const dispatch = useDispatch();
   const { data, isAuth } = useTypedSelector((state) => state.user);
   const favouriteItems: any = data && data[storeName] ? data[storeName] : [];
   const { id: iId } = item;
+  const iconSize = size === 'big' ? 15 : 13;
 
   const isFavourite = useMemo(() => {
     if (favouriteItems) {
@@ -67,8 +69,8 @@ const FavouriteIconBtn: FC<Props> = ({ item, storeName, dataUrl }) => {
     <Image
       src={isFavourite ? favouriteFilled : favouriteInline}
       alt="favourite"
-      width={15}
-      height={15}
+      width={iconSize}
+      height={iconSize}
       className="cursor-pointer"
       onClick={addFavourite}
     />

@@ -1,5 +1,6 @@
-import { Fade } from '@chakra-ui/react';
+import { Fade, useMediaQuery } from '@chakra-ui/react';
 import { Input } from 'antd';
+import classNames from 'classnames';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { UserFavourites } from '../../../../entities/User';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
@@ -29,6 +30,8 @@ const MainEntityFrame: FC<Props> = ({
   const [allItems, setAllItems] = useState<any[]>([]);
   const [items, setItems] = useState<any[]>([]);
   const { request, loading } = useRequest(false);
+  const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
+  const [isSmallerThan380] = useMediaQuery('(max-width: 380px)');
 
   useEffect(() => {
     setData();
@@ -59,8 +62,10 @@ const MainEntityFrame: FC<Props> = ({
 
   return (
     <>
-      <h2 className="font-bold text-2xl">{title}</h2>
-      {description && <p className="pt-5 max-w-4xl">{description}</p>}
+      <h2 className="font-bold text-xl sm:text-2xl">{title}</h2>
+      {description && (
+        <p className="pt-5 text-sm sm:text-base max-w-4xl">{description}</p>
+      )}
 
       <Input
         placeholder={searchPlaceholder}
@@ -77,15 +82,27 @@ const MainEntityFrame: FC<Props> = ({
       ) : (
         <Fade
           in={true}
-          className="pt-5 grid gap-3 w-full"
-          style={{ gridTemplateColumns: 'repeat(auto-fit, 300px)' }}
+          className={classNames('pt-3 grid w-full', {
+            'gap-2': isSmallerThan380,
+            'gap-3': !isSmallerThan380,
+          })}
+          style={
+            !isSmallerThan380
+              ? { gridTemplateColumns: 'repeat(auto-fit, 300px)' }
+              : undefined
+          }
         >
           {items.map((item: any) => (
             <ItemCard
+              size={isSmallerThan380 ? 'small' : 'big'}
               key={item.id}
               item={item}
               favouriteBtn={
-                <FavouriteIconBtn item={item} {...favouriteSettings} />
+                <FavouriteIconBtn
+                  size={isSmallerThan980 ? 'small' : 'big'}
+                  item={item}
+                  {...favouriteSettings}
+                />
               }
             />
           ))}

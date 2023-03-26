@@ -8,6 +8,7 @@ import { ModalFormData } from '../model/types/select-model';
 import { Button } from '@chakra-ui/react';
 import { useClearCustomForm, useRequest } from '../../../../shared';
 import { modalSubmitRequest } from '../lib/api/modalSubmitRequest';
+import { CloseIcon } from '@chakra-ui/icons';
 
 interface Props {
   updateTags: Function[];
@@ -57,6 +58,7 @@ const SelectModal: FC<Props> = ({
       open={isModalOpen}
       footer={false}
       onCancel={handleCancel}
+      // closeIcon={<CloseIcon />}
     >
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <FormInput
@@ -80,7 +82,7 @@ const SelectModal: FC<Props> = ({
           variant="solid"
           type="submit"
           isLoading={isLoading}
-          className="text-white mt-5"
+          className="text-white mt-5 bg-sky-700"
         >
           Добавить
         </Button>

@@ -6,9 +6,16 @@ interface Props {
   text: string;
   isActive?: boolean;
   onClick?: () => any;
+  size?: 'big' | 'small';
 }
 
-const NavItem: FC<Props> = ({ Icon, text, onClick, isActive = false }) => {
+const NavItem: FC<Props> = ({
+  Icon,
+  text,
+  onClick,
+  isActive = false,
+  size = 'big',
+}) => {
   return (
     <li
       className={classNames('cursor-pointer py-3 px-2', {
@@ -21,12 +28,14 @@ const NavItem: FC<Props> = ({ Icon, text, onClick, isActive = false }) => {
           color={isActive ? '#5C5C5C' : '#C3CAD9'}
           style={{ width: '25px', height: '25px' }}
         />
-        <p
-          style={{ color: isActive ? '#5C5C5C' : '#C3CAD9' }}
-          className="font-medium pl-2"
-        >
-          {text}
-        </p>
+        {size === 'big' && (
+          <p
+            style={{ color: isActive ? '#5C5C5C' : '#C3CAD9' }}
+            className="font-medium pl-2"
+          >
+            {text}
+          </p>
+        )}
       </div>
     </li>
   );

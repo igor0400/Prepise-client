@@ -41,7 +41,7 @@ const UserCard: FC<Props> = ({ favouriteBtn, item }) => {
           </p>
         )}
 
-        <p className="text-blue-500 text-end text-md">
+        <p className="text-blue-500 text-end text-sm pt-1 sm:pt-2">
           {getStringTags(tags, 20)}
         </p>
       </CardBody>

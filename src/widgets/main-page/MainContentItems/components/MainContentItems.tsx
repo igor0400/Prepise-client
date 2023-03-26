@@ -1,4 +1,4 @@
-import { Fade } from '@chakra-ui/react';
+import { Fade, useMediaQuery } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
 import {
@@ -10,6 +10,7 @@ import { getItems } from '../lib/api/getItems';
 import { FiltersState, FiltersStateItem } from '../../MainContentFrame';
 import { filterItems } from '../lib/assets/filterItems';
 import { UserFavourites } from '../../../../entities/User';
+import classNames from 'classnames';
 
 interface Props {
   filtersItem: FiltersStateItem;
@@ -34,6 +35,8 @@ const MainContentItems: FC<Props> = ({
   const [changeItems, setChangeItems] = useState(0);
   const { request, loading } = useRequest(false);
   const filters = useTypedSelector((state) => state.filters[name]);
+  const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
+  const [isSmallerThan490] = useMediaQuery('(max-width: 490px)');
 
   useEffect(() => {
     getData();
@@ -67,14 +70,28 @@ const MainContentItems: FC<Props> = ({
   return (
     <Fade
       in={true}
-      className="grid gap-4 w-full auto-rows-min"
-      style={{ gridTemplateColumns: 'repeat(auto-fit, 400px)' }}
+      className={classNames('grid w-full auto-rows-min', {
+        'gap-4': !isSmallerThan980,
+        'gap-2': isSmallerThan980,
+      })}
+      style={
+        !isSmallerThan490
+          ? { gridTemplateColumns: 'repeat(auto-fit, 400px)' }
+          : undefined
+      }
     >
       {items.map((item) => (
         <ItemCard
           {...item}
-          favouriteBtn={<FavouriteIconBtn item={item} {...favouriteSettings} />}
+          favouriteBtn={
+            <FavouriteIconBtn
+              size={isSmallerThan980 ? 'small' : 'big'}
+              item={item}
+              {...favouriteSettings}
+            />
+          }
           activeTags={filtersItem.tags}
+          size={isSmallerThan980 ? 'small' : 'big'}
           key={item.id}
         />
       ))}
