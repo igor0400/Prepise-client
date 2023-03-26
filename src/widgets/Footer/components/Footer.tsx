@@ -8,8 +8,8 @@ import { DiscordIcon } from '../../../shared';
 const Footer: FC = () => {
   return (
     <footer className="footer bg-zinc-300 padding-50 flex justify-center">
-      <div>
-        <div className="flex items-center gap-3">
+      <div className="text-center">
+        <div className="flex justify-center items-center gap-3">
           <Link href="mailto:prepise@mail.ru">
             <AlternateEmailIcon style={{ width: 25, height: 25 }} />
           </Link>
@@ -21,14 +21,16 @@ const Footer: FC = () => {
           </Link>
         </div>
 
-        <p>
-          developed by{' '}
+        <p className="prod mt-1 sm:my-1">
+          Prod. by{' '}
           <Link href="https://github.com/igor0400" target="_blank">
             igor0400
           </Link>
         </p>
 
-        <p>© {new Date().getFullYear()} Prepise</p>
+        <p className="text-gray-600 text-sm">
+          © {new Date().getFullYear()} Prepise
+        </p>
       </div>
     </footer>
   );

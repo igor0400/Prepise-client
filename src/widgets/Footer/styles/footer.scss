@@ -5,10 +5,15 @@
   padding-bottom: 20px;
   border-top: 2px solid $line;
   font-weight: 700;
-  // background: $mainbackground;
   @media screen and (max-width: 425px) {
-    font-size: 13px;
-    font-weight: 600;
+    p {
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .prod {
+      font-size: 14px;
+    }
+
     padding-top: 15px;
     padding-bottom: 15px;
   }
