@@ -28,6 +28,7 @@ const MainContentFrame: FC<Props> = (props) => {
         flex: !isSmallerThan980,
       })}
     >
+      {isSmallerThan980 && <div></div>}
       <MainContentFilters name={name} />
       <MainContentItems {...props} filtersItem={filters} />
     </div>

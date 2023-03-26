@@ -24,7 +24,7 @@ const QuestionStats: FC<Props> = ({ likes = 0, viewes = 0 }) => {
           alt="viewes"
           width={18}
           height={18}
-          className="pt-0.5"
+          className="pt-1 sm:pt-0.5"
         />
       </div>
     </div>

@@ -41,7 +41,7 @@ const MainContentFilters: FC<Props> = ({ name }) => {
             <Button
               colorScheme="blue"
               variant="solid"
-              className="bg-sky-700 text-white mt-5 w-56 flex mx-auto"
+              className="bg-sky-700 text-white mt-5 w-56 flex mx-auto justify-center"
               size="sm"
               onClick={handleCancel}
             >
