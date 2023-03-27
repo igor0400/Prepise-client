@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import { PageWrapper } from '../shared';
+import { NotFound, PageWrapper } from '../shared';
 
 const Custom404: NextPage = () => {
   return (
-    <PageWrapper title="Prepise » ошибка 404" nopadding>
-      <h3>404 not found</h3>
+    <PageWrapper title="Prepise » Страница не найдена" nopadding>
+      <NotFound>Страница не найдена</NotFound>
     </PageWrapper>
   );
 };
