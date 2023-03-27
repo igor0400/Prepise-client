@@ -9,6 +9,7 @@ import { FiltersState } from '../model/store/filtersSilce';
 
 interface Props {
   name: keyof FiltersState;
+  title: string;
   url: string;
   ItemCard: FC<any>;
   favouriteSettings: {
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const MainContentFrame: FC<Props> = (props) => {
-  const { name } = props;
+  const { name, title } = props;
   const filters = useTypedSelector((state) => state.filters[name]);
   const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
 
@@ -28,6 +29,7 @@ const MainContentFrame: FC<Props> = (props) => {
         flex: !isSmallerThan980,
       })}
     >
+      {isSmallerThan980 && <h2 className="font-bold text-xl sm:text-2xl pb-5">{title}</h2>}
       <MainContentFilters name={name} />
       <MainContentItems {...props} filtersItem={filters} />
     </div>

@@ -6,6 +6,7 @@ const MainBlockQuestions: FC = () => {
   return (
     <MainContentFrame
       name="blockQuestions"
+      title="Блоки вопросов"
       url="blocks/default"
       ItemCard={ItemCard}
       favouriteSettings={{

@@ -5,6 +5,7 @@ import MainContentFrame from '../../MainContentFrame';
 const MainTests: FC = () => {
   return (
     <MainContentFrame
+      title="Тесты"
       name="tests"
       url="questions/test"
       ItemCard={ItemCard}
