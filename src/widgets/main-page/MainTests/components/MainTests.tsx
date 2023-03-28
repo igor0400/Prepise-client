@@ -8,7 +8,10 @@ const MainTests: FC = () => {
       title="Тесты"
       name="tests"
       url="questions/test"
-      ItemCard={ItemCard}
+      itemCard={{
+        Component: ItemCard,
+        link: 'tests',
+      }}
       favouriteSettings={{
         storeName: 'favouriteTestQuestions',
         dataUrl: 'favourites/test-questions/:id',

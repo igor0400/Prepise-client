@@ -8,7 +8,10 @@ const MainBlockQuestions: FC = () => {
       name="blockQuestions"
       title="Блоки вопросов"
       url="blocks/default"
-      ItemCard={ItemCard}
+      itemCard={{
+        Component: ItemCard,
+        link: 'questions-blocks'
+      }}
       favouriteSettings={{
         storeName: 'favouriteBlocks',
         dataUrl: 'favourites/blocks/:id',

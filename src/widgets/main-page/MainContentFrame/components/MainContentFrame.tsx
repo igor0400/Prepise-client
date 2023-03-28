@@ -11,7 +11,10 @@ interface Props {
   name: keyof FiltersState;
   title: string;
   url: string;
-  ItemCard: FC<any>;
+  itemCard: {
+    Component: FC<any>;
+    link: string;
+  };
   favouriteSettings: {
     storeName: UserFavourites;
     dataUrl: string;
@@ -29,7 +32,9 @@ const MainContentFrame: FC<Props> = (props) => {
         flex: !isSmallerThan980,
       })}
     >
-      {isSmallerThan980 && <h2 className="font-bold text-xl sm:text-2xl pb-5">{title}</h2>}
+      {isSmallerThan980 && (
+        <h2 className="font-bold text-xl sm:text-2xl pb-5">{title}</h2>
+      )}
       <MainContentFilters name={name} />
       <MainContentItems {...props} filtersItem={filters} />
     </div>

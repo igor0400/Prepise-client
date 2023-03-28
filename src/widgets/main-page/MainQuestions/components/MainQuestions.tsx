@@ -8,7 +8,10 @@ const MainQuestions: FC = () => {
       title="Вопросы"
       name="questions"
       url="questions/default"
-      ItemCard={ItemCard}
+      itemCard={{
+        Component: ItemCard,
+        link: 'questions',
+      }}
       favouriteSettings={{
         storeName: 'favouriteQuestions',
         dataUrl: 'favourites/questions/:id',

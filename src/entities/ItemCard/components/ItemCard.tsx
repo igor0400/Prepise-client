@@ -20,6 +20,7 @@ interface Props {
   activeTags: FilterItem[];
   size?: 'big' | 'small';
   [key: string]: any;
+  link: string;
 }
 
 const ItemCard: FC<Props> = ({
@@ -37,6 +38,7 @@ const ItemCard: FC<Props> = ({
   imgs,
   testQuestionInfo,
   size = 'big',
+  link,
 }) => {
   const { data } = useTypedSelector((state) => state.user);
   const uId = data?.id;
@@ -68,7 +70,7 @@ const ItemCard: FC<Props> = ({
         })}
       >
         <div className="flex justify-between items-start">
-          <Link href={`/questions/${id}`}>
+          <Link href={`/${link}/${id}`}>
             <h4
               className={classNames('max-w-xs', {
                 'text-lg': size == 'big',
@@ -83,7 +85,7 @@ const ItemCard: FC<Props> = ({
         </div>
 
         {description && (
-          <Link href={`/questions/${id}`}>
+          <Link href={`/${link}/${id}`}>
             <Text className="pt-2 font-medium text-gray-500">
               {description}
             </Text>

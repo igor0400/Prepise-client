@@ -15,7 +15,10 @@ import classNames from 'classnames';
 interface Props {
   filtersItem: FiltersStateItem;
   url: string;
-  ItemCard: FC<any>;
+  itemCard: {
+    Component: FC<any>;
+    link: string;
+  };
   name: keyof FiltersState;
   favouriteSettings: {
     storeName: UserFavourites;
@@ -26,7 +29,7 @@ interface Props {
 const MainContentItems: FC<Props> = ({
   filtersItem,
   url,
-  ItemCard,
+  itemCard,
   name,
   favouriteSettings,
 }) => {
@@ -37,6 +40,7 @@ const MainContentItems: FC<Props> = ({
   const filters = useTypedSelector((state) => state.filters[name]);
   const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
   const [isSmallerThan490] = useMediaQuery('(max-width: 490px)');
+  const { Component: ItemCard, link } = itemCard;
 
   useEffect(() => {
     getData();
@@ -82,6 +86,7 @@ const MainContentItems: FC<Props> = ({
     >
       {items.map((item) => (
         <ItemCard
+          link={link}
           {...item}
           favouriteBtn={
             <FavouriteIconBtn
