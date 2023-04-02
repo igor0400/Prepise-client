@@ -50,7 +50,10 @@ const UserRegisterForm: FC = () => {
       setValue={setValue}
       userType="user"
       sendMail={
-        <SendEmailCodeText email={getValues('email')} setError={setError} />
+        <SendEmailCodeText
+          getEmail={() => getValues('email')}
+          setError={setError}
+        />
       }
     />
   );

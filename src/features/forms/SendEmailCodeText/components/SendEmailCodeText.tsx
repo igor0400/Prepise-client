@@ -5,16 +5,18 @@ import classNames from 'classnames';
 import { useRequest } from '../../../../shared';
 
 interface Props {
-  email: string;
+  getEmail: Function;
   setError: Function;
 }
 
-const SendEmailCodeText: FC<Props> = ({ email, setError }) => {
+const SendEmailCodeText: FC<Props> = ({ getEmail, setError }) => {
   const toast = useToast();
   const [disable, setDisable] = useState<boolean>(false);
   const { request, loading } = useRequest(false);
 
   const handleClick = async () => {
+    const email = getEmail();
+
     if (!email) {
       setError('email', {
         type: 'custom',

@@ -1,17 +1,11 @@
-import React, { FC, useState, ReactNode, useEffect } from 'react';
-import {
-  FormControl,
-  Radio,
-  RadioGroup,
-  Stack,
-  FormLabel,
-  Button,
-} from '@chakra-ui/react';
+import React, { FC, ReactNode } from 'react';
+import { Button } from '@chakra-ui/react';
 
 import FormIconInput from '../../FormIconInput';
 import PasswordInput from '../../PasswordInput';
 
 import { InputData } from '../model/types/form-types';
+import FormGenderRadio from '../../FormGenderRadio';
 
 interface Props {
   handleSubmit: () => any;
@@ -34,19 +28,6 @@ const RegisterFormFrame: FC<Props> = ({
   userType,
   isSubmitting,
 }) => {
-  const [gender, setGender] = useState<string>('male');
-
-  useEffect(() => {
-    if (userType === 'user') {
-      setValue('gender', gender);
-    }
-  }, []);
-
-  const handleChangeGender = (value: string) => {
-    setGender(value);
-    setValue('gender', value);
-  };
-
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
       {settings.map(({ id, label, placeholder, Icon, type }) => (
@@ -80,25 +61,7 @@ const RegisterFormFrame: FC<Props> = ({
         </React.Fragment>
       ))}
 
-      {userType === 'user' && (
-        <FormControl className="pt-3">
-          <FormLabel htmlFor="gender" className="mb-0">
-            Пол:
-          </FormLabel>
-          <RadioGroup
-            id="gender"
-            defaultValue="male"
-            onChange={handleChangeGender}
-            value={gender}
-            colorScheme="green"
-          >
-            <Stack direction="row">
-              <Radio value="male">Мужской</Radio>
-              <Radio value="female">Женский</Radio>
-            </Stack>
-          </RadioGroup>
-        </FormControl>
-      )}
+      {userType === 'user' && <FormGenderRadio setValue={setValue} />}
 
       <Button
         colorScheme="green"
