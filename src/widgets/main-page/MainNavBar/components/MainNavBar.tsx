@@ -11,7 +11,7 @@ const MainNavBar: FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const nav = searchParams.get('nav');
-  const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
+  const [isSmallerThan1115] = useMediaQuery('(max-width: 1115px)');
 
   const isNavValid = useMemo(() => {
     for (let item of navItems) {
@@ -24,11 +24,11 @@ const MainNavBar: FC = () => {
   return (
     <ul
       className={classNames('border-r-2', {
-        'pt-10': !isSmallerThan980,
-        'pt-8': isSmallerThan980,
+        'pt-10': !isSmallerThan1115,
+        'pt-8': isSmallerThan1115,
       })}
       style={{
-        minWidth: isSmallerThan980 ? '50px' : '252px',
+        minWidth: isSmallerThan1115 ? '50px' : '252px',
         minHeight: '100vh',
         borderColor: '#edeff2',
       }}
@@ -41,7 +41,7 @@ const MainNavBar: FC = () => {
             item.search === nav || (!isNavValid && item.search === 'questions')
           }
           onClick={() => router.push({ query: { nav: item.search } })}
-          size={isSmallerThan980 ? 'small' : 'big'}
+          size={isSmallerThan1115 ? 'small' : 'big'}
         />
       ))}
     </ul>

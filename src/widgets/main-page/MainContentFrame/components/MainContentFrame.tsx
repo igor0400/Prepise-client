@@ -24,15 +24,15 @@ interface Props {
 const MainContentFrame: FC<Props> = (props) => {
   const { name, title } = props;
   const filters = useTypedSelector((state) => state.filters[name]);
-  const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
+  const [isSmallerThan1115] = useMediaQuery('(max-width: 1115px)');
 
   return (
     <div
       className={classNames('w-full', {
-        flex: !isSmallerThan980,
+        flex: !isSmallerThan1115,
       })}
     >
-      {isSmallerThan980 && (
+      {isSmallerThan1115 && (
         <h2 className="font-bold text-xl sm:text-2xl pb-5">{title}</h2>
       )}
       <MainContentFilters name={name} />

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import TelegramIcon from '@mui/icons-material/Telegram';
+import EmailIcon from '@mui/icons-material/Email';
 import { DiscordIcon } from '../../../shared';
 
 const Footer: FC = () => {
@@ -11,7 +11,7 @@ const Footer: FC = () => {
       <div className="text-center">
         <div className="flex justify-center items-center gap-3">
           <Link href="mailto:prepise@mail.ru">
-            <AlternateEmailIcon style={{ width: 25, height: 25 }} />
+            <EmailIcon style={{ width: 25, height: 25 }} />
           </Link>
           <Link href="/" target="_blank">
             <TelegramIcon style={{ width: 28, height: 28 }} />

@@ -1,12 +1,13 @@
-import {
-  Card,
-  CardBody,
-  Tag,
-  TagCloseButton,
-  TagLabel,
-} from '@chakra-ui/react';
+import { Card, CardBody, useMediaQuery } from '@chakra-ui/react';
 import { Input } from 'antd';
-import { ChangeEvent, FC, useDeferredValue, useEffect, useState } from 'react';
+import {
+  CSSProperties,
+  ChangeEvent,
+  FC,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react';
 import { useDispatch } from 'react-redux';
 import { CustomTag, useRequest, useTypedSelector } from '../../../../shared';
 import {
@@ -93,10 +94,10 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
   };
 
   return (
-    <Card className="mt-5">
-      <CardBody>
-        <h4 className="text-center font-semibold">{title}</h4>
-        <div className="pt-3">
+    <Card className="mt-5 filter-item">
+      <CardBody className="filter-item__body__with-padding">
+        <h4 className="text-base md:text-center font-semibold">{title}</h4>
+        <div className="pt-1 md:pt-3">
           {activeItems.map((item) => (
             <CustomTag
               key={item.id}
@@ -109,7 +110,7 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
         </div>
       </CardBody>
       <CardBody
-        className="border-t-2 border-gray-200"
+        className="border-t-2 border-gray-200 filter-item__body"
         style={{ paddingTop: 5 }}
       >
         <label htmlFor="items-search" className="text-sm text-gray-400">

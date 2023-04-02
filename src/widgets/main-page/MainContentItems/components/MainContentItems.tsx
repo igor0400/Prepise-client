@@ -38,7 +38,7 @@ const MainContentItems: FC<Props> = ({
   const [changeItems, setChangeItems] = useState(0);
   const { request, loading } = useRequest(false);
   const filters = useTypedSelector((state) => state.filters[name]);
-  const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
+  const [isSmallerThan1115] = useMediaQuery('(max-width: 1115px)');
   const [isSmallerThan490] = useMediaQuery('(max-width: 490px)');
   const { Component: ItemCard, link } = itemCard;
 
@@ -75,8 +75,8 @@ const MainContentItems: FC<Props> = ({
     <Fade
       in={true}
       className={classNames('grid w-full auto-rows-min', {
-        'gap-4': !isSmallerThan980,
-        'gap-2': isSmallerThan980,
+        'gap-4': !isSmallerThan1115,
+        'gap-2': isSmallerThan1115,
       })}
       style={
         !isSmallerThan490
@@ -90,13 +90,13 @@ const MainContentItems: FC<Props> = ({
           {...item}
           favouriteBtn={
             <FavouriteIconBtn
-              size={isSmallerThan980 ? 'small' : 'big'}
+              size={isSmallerThan1115 ? 'small' : 'big'}
               item={item}
               {...favouriteSettings}
             />
           }
           activeTags={filtersItem.tags}
-          size={isSmallerThan980 ? 'small' : 'big'}
+          size={isSmallerThan1115 ? 'small' : 'big'}
           key={item.id}
         />
       ))}

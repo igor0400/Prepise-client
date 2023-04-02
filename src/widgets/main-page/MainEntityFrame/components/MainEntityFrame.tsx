@@ -30,7 +30,7 @@ const MainEntityFrame: FC<Props> = ({
   const [allItems, setAllItems] = useState<any[]>([]);
   const [items, setItems] = useState<any[]>([]);
   const { request, loading } = useRequest(false);
-  const [isSmallerThan980] = useMediaQuery('(max-width: 980px)');
+  const [isSmallerThan1115] = useMediaQuery('(max-width: 1115px)');
   const [isSmallerThan380] = useMediaQuery('(max-width: 380px)');
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const MainEntityFrame: FC<Props> = ({
               item={item}
               favouriteBtn={
                 <FavouriteIconBtn
-                  size={isSmallerThan980 ? 'small' : 'big'}
+                  size={isSmallerThan1115 ? 'small' : 'big'}
                   item={item}
                   {...favouriteSettings}
                 />
