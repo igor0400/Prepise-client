@@ -39,7 +39,7 @@ const MainContentItems: FC<Props> = ({
   const [changeItems, setChangeItems] = useState(0);
   const { request, loading } = useRequest(false);
   const filters = useTypedSelector((state) => state.filters[name]);
-  const [isSmallerThan1115] = useMediaQuery('(max-width: 1115px)');
+  const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
   const [isSmallerThan490] = useMediaQuery('(max-width: 490px)');
   const { Component: ItemCard, link } = itemCard;
 
@@ -66,10 +66,10 @@ const MainContentItems: FC<Props> = ({
     return (
       <CenteredLoader
         className={classNames('', {
-          'pb-32': !isSmallerThan1115,
-          'mt-20': isSmallerThan1115,
+          'pb-32': !isSmallerThan1279,
+          'mt-20': isSmallerThan1279,
         })}
-        style={isSmallerThan1115 ? { height: 'fit-content' } : undefined}
+        style={isSmallerThan1279 ? { height: 'fit-content' } : undefined}
       />
     );
 
@@ -79,8 +79,8 @@ const MainContentItems: FC<Props> = ({
     <Fade
       in={true}
       className={classNames('grid w-full auto-rows-min', {
-        'gap-4': !isSmallerThan1115,
-        'gap-2': isSmallerThan1115,
+        'gap-4': !isSmallerThan1279,
+        'gap-2': isSmallerThan1279,
       })}
       style={
         !isSmallerThan490
@@ -94,13 +94,13 @@ const MainContentItems: FC<Props> = ({
           {...item}
           favouriteBtn={
             <FavouriteIconBtn
-              size={isSmallerThan1115 ? 'small' : 'big'}
+              size={isSmallerThan1279 ? 'small' : 'big'}
               item={item}
               {...favouriteSettings}
             />
           }
           activeTags={filtersItem.tags}
-          size={isSmallerThan1115 ? 'small' : 'big'}
+          size={isSmallerThan1279 ? 'small' : 'big'}
           key={item.id}
         />
       ))}

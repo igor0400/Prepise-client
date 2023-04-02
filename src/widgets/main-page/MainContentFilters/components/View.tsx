@@ -8,11 +8,11 @@ interface Props {
 }
 
 const View: FC<Props> = ({ name }) => {
-  const [isBigerThan1115] = useMediaQuery('(min-width: 1115px)');
+  const [isBigerThan1279] = useMediaQuery('(min-width: 1279px)');
 
   return (
     <>
-      {isBigerThan1115 && (
+      {isBigerThan1279 && (
         <h3 className="text-xl font-semibold text-gray-400 text-center">
           Фильтры
         </h3>

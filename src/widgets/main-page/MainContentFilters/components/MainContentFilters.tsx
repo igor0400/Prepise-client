@@ -21,13 +21,13 @@ interface Props {
 }
 
 const MainContentFilters: FC<Props> = ({ name }) => {
-  const [isSmallerThan1115] = useMediaQuery('(max-width: 1115px)');
+  const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef(null);
 
   return (
     <>
-      {isSmallerThan1115 ? (
+      {isSmallerThan1279 ? (
         <>
           <AntButton
             className="mb-3"
