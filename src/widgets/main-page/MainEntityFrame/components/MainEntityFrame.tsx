@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { UserFavourites } from '../../../../entities/User';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
-import { useRequest, CenteredLoader } from '../../../../shared';
+import { useRequest, CenteredLoader, EmptyItems } from '../../../../shared';
 import { getData } from '../lib/api/getData';
 
 interface Props {
@@ -76,9 +76,7 @@ const MainEntityFrame: FC<Props> = ({
       {loading ? (
         <CenteredLoader className="mt-20" style={{ height: 'fit-content' }} />
       ) : !items.length ? (
-        <h3 className="text-xl font-semibold flex justify-center mt-10 w-full">
-          Список элементов пуст
-        </h3>
+        <EmptyItems />
       ) : (
         <Fade
           in={true}

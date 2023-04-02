@@ -5,8 +5,9 @@ import MainContentFrame from '../../MainContentFrame';
 const MainBlockTests: FC = () => {
   return (
     <MainContentFrame
-      title="Блоки тестов"
       name="blockTests"
+      title="Блоки тестов"
+      description="Это совмещённые по смыслу тесты. Вы сможете завершить прохождение блока только после ответа на все тесты."
       url="blocks/test"
       itemCard={{
         Component: ItemCard,

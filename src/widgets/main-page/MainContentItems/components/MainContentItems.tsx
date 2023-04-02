@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
 import {
   CenteredLoader,
+  EmptyItems,
   useRequest,
   useTypedSelector,
 } from '../../../../shared';
@@ -61,15 +62,18 @@ const MainContentItems: FC<Props> = ({
     }
   }
 
-  if (loading) return <CenteredLoader className="pb-32" />;
-
-  if (!items?.length) {
+  if (loading)
     return (
-      <h3 className="text-xl font-bold flex justify-center mt-20 w-full">
-        Список элементов пуст
-      </h3>
+      <CenteredLoader
+        className={classNames('', {
+          'pb-32': !isSmallerThan1115,
+          'mt-20': isSmallerThan1115,
+        })}
+        style={isSmallerThan1115 ? { height: 'fit-content' } : undefined}
+      />
     );
-  }
+
+  if (!items?.length) return <EmptyItems />;
 
   return (
     <Fade

@@ -32,6 +32,7 @@ import { getStringTags } from './lib/assets/getStringTags';
 import { sliceText } from './lib/assets/sliceText';
 import DiscordIcon from './components/Icons/Discord';
 import NotFound from './components/NotFound/NotFound';
+import EmptyItems from './components/EmptyItems/EmptyItems';
 
 export {
   Button,
@@ -68,5 +69,6 @@ export {
   sliceText,
   DiscordIcon,
   NotFound,
+  EmptyItems,
 };
 export type { ResponseUserData };

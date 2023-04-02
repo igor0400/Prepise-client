@@ -7,10 +7,11 @@ const MainBlockQuestions: FC = () => {
     <MainContentFrame
       name="blockQuestions"
       title="Блоки вопросов"
+      description="Это совмещённые по смыслу вопросы. Для перехода на страницу блока нажмите на его название."
       url="blocks/default"
       itemCard={{
         Component: ItemCard,
-        link: 'questions-blocks'
+        link: 'questions-blocks',
       }}
       favouriteSettings={{
         storeName: 'favouriteBlocks',

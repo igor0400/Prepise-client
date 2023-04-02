@@ -30,7 +30,7 @@ const MainContentFilters: FC<Props> = ({ name }) => {
       {isSmallerThan1115 ? (
         <>
           <AntButton
-            className="mb-2"
+            className="mb-3"
             icon={<TuneIcon fontSize="small" className="pr-1 mb-1" />}
             onClick={onOpen}
           >

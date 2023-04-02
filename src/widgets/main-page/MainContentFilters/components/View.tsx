@@ -1,14 +1,23 @@
+import { useMediaQuery } from '@chakra-ui/react';
 import { FC } from 'react';
 import FiltersItem from '../../FiltersItem';
-import { FiltersState } from "../../MainContentFrame";
+import { FiltersState } from '../../MainContentFrame';
 
 interface Props {
   name: keyof FiltersState;
 }
 
 const View: FC<Props> = ({ name }) => {
+  const [isBigerThan1115] = useMediaQuery('(min-width: 1115px)');
+
   return (
     <>
+      {isBigerThan1115 && (
+        <h3 className="text-xl font-semibold text-gray-400 text-center">
+          Фильтры
+        </h3>
+      )}
+
       <FiltersItem
         title="По тегам"
         label="Добавить тег"
