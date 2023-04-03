@@ -1,5 +1,6 @@
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
 import { Input } from 'antd';
+import classNames from 'classnames';
 import { ChangeEvent, FC, useEffect, useMemo, useState } from 'react';
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
   register: Function;
   setValue: Function;
   addItem: (func: Function) => any;
+  disablePadding?: boolean;
 }
 
 const FormInput: FC<Props> = ({
@@ -22,6 +24,7 @@ const FormInput: FC<Props> = ({
   register,
   setValue,
   addItem,
+  disablePadding = false,
 }) => {
   const [inputValue, setInputValue] = useState('');
 
@@ -44,7 +47,9 @@ const FormInput: FC<Props> = ({
   return (
     <FormControl
       isInvalid={isInvalid}
-      className="pt-6 flex flex-col text-gray-600"
+      className={classNames('flex flex-col text-gray-600', {
+        'pt-6': !disablePadding,
+      })}
     >
       <FormLabel htmlFor={id}>{label}</FormLabel>
       <Input

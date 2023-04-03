@@ -86,7 +86,11 @@ const ItemCard: FC<Props> = ({
 
         {description && (
           <Link href={`/${link}/${id}`}>
-            <Text className="pt-2 font-medium text-gray-500">
+            <Text
+              className={classNames('pt-2 font-medium text-gray-500', {
+                'text-sm': size == 'small',
+              })}
+            >
               {description}
             </Text>
           </Link>

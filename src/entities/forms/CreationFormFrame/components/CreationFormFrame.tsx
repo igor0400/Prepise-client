@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react';
+import { Button, useDisclosure } from '@chakra-ui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import React, { FC, useMemo, useState } from 'react';
@@ -52,8 +52,8 @@ const CreationFormFrame: FC<Props> = ({
   const { request, loading } = useRequest();
   const router = useRouter();
   const [updateTagsFunc, setUpdateTagsFunc] = useState<Function[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isResetDisabled, setIsResetDisabled] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onSubmit = async (values: FormData) => {
     if (!isSubmitting && !loading) {
@@ -123,7 +123,7 @@ const CreationFormFrame: FC<Props> = ({
                     {...defaultProps}
                     optionsUrl={optionsUrl ?? ''}
                     setUpdateTagsFunc={setUpdateTagsFunc}
-                    openModal={() => setIsModalOpen(true)}
+                    openModal={onOpen}
                   />
                 ) : type === 'image' || type === 'file' ? (
                   <FormFileInput {...defaultProps} type={type} />
@@ -173,8 +173,8 @@ const CreationFormFrame: FC<Props> = ({
         </div>
       </form>
       <SelectModal
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
+        isModalOpen={isOpen}
+        closeModal={onClose}
         updateTags={updateTagsFunc}
       />
     </div>

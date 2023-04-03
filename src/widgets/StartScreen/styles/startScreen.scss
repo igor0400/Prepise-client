@@ -1,5 +1,12 @@
 .start-screen {
-  padding: 21vh 10px 25vh;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media screen and (max-width: 640px) {
+    height: calc(100vh - 65px);
+  }
+
   .gradient-btn {
     display: flex;
     justify-content: center;
