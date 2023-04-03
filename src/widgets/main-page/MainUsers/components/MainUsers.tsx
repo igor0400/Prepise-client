@@ -8,6 +8,7 @@ const MainUsers: FC = () => {
       title="Пользователи"
       description="Это список зарегистрированных пользователей. Вы можете подписаться на пользователя, перейдя в его профиль, и следить за его деятельностью."
       ItemCard={UserCard}
+      itemsName="пользователей"
       itemsUrl="users"
       favouriteSettings={{
         storeName: 'favouriteUsers',

@@ -17,6 +17,7 @@ const MainQuestions: FC = () => {
         storeName: 'favouriteQuestions',
         dataUrl: 'favourites/questions/:id',
       }}
+      itemsName="вопросов"
     />
   );
 };

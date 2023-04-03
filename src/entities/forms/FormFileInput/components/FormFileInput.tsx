@@ -41,6 +41,12 @@ const FormFileInput: FC<Props> = ({
     setValue(id, clearFiles);
   };
 
+  const dummyRequest = ({ onSuccess }: any) => {
+    setTimeout(() => {
+      onSuccess('ok');
+    }, 0);
+  };
+
   return (
     <FormControl
       isInvalid={isInvalid}
@@ -52,8 +58,11 @@ const FormFileInput: FC<Props> = ({
         listType={type === 'image' ? 'picture' : 'text'}
         maxCount={10}
         onChange={onChange}
+        customRequest={dummyRequest}
         fileList={files}
-        className={classNames('', { 'image-uploader': type === 'image' })}
+        className={classNames('', {
+          'image-uploader': type === 'image',
+        })}
         accept={type === 'image' ? 'image/*' : undefined}
       >
         <Button

@@ -17,6 +17,7 @@ const MainTests: FC = () => {
         storeName: 'favouriteTestQuestions',
         dataUrl: 'favourites/test-questions/:id',
       }}
+      itemsName="тестов"
     />
   );
 };

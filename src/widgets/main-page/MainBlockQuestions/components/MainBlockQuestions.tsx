@@ -17,6 +17,7 @@ const MainBlockQuestions: FC = () => {
         storeName: 'favouriteBlocks',
         dataUrl: 'favourites/blocks/:id',
       }}
+      itemsName="блоков с вопросами"
     />
   );
 };

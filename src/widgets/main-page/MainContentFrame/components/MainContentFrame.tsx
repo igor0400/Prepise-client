@@ -20,6 +20,7 @@ interface Props {
     storeName: UserFavourites;
     dataUrl: string;
   };
+  itemsName: string;
 }
 
 const MainContentFrame: FC<Props> = (props) => {
@@ -40,7 +41,10 @@ const MainContentFrame: FC<Props> = (props) => {
         })}
       >
         <MainContentFilters name={name} />
-        <MainContentItems {...props} filtersItem={filters} />
+        <MainContentItems
+          {...props}
+          filtersItem={filters}
+        />
       </div>
     </div>
   );

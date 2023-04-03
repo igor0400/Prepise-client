@@ -11,6 +11,7 @@ interface Props {
   title: string;
   description?: string;
   ItemCard: FC<any>;
+  itemsName: string;
   itemsUrl: string;
   favouriteSettings: {
     storeName: UserFavourites;
@@ -24,6 +25,7 @@ const MainEntityFrame: FC<Props> = ({
   description,
   ItemCard,
   favouriteSettings,
+  itemsName,
   itemsUrl,
   searchPlaceholder,
 }) => {
@@ -76,7 +78,7 @@ const MainEntityFrame: FC<Props> = ({
       {loading ? (
         <CenteredLoader className="mt-20" style={{ height: 'fit-content' }} />
       ) : !items.length ? (
-        <EmptyItems />
+        <EmptyItems itemsName={itemsName} />
       ) : (
         <Fade
           in={true}

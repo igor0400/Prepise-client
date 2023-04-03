@@ -8,6 +8,7 @@ const MainCompanies: FC = () => {
       title="Компании"
       description="Это список зарегистрированных компаний. Вы можете подписаться на компанию, перейдя в её профиль, и следить за её деятельностью и предложениями о работе."
       ItemCard={UserCard}
+      itemsName="компаний"
       itemsUrl="companies"
       favouriteSettings={{
         storeName: 'favouriteCompanies',

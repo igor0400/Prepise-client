@@ -17,6 +17,7 @@ const MainBlockTests: FC = () => {
         storeName: 'favouriteTestBlocks',
         dataUrl: 'favourites/test-blocks/:id',
       }}
+      itemsName="блоков с тестами"
     />
   );
 };

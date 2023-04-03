@@ -25,6 +25,7 @@ interface Props {
     storeName: UserFavourites;
     dataUrl: string;
   };
+  itemsName: string;
 }
 
 const MainContentItems: FC<Props> = ({
@@ -33,6 +34,7 @@ const MainContentItems: FC<Props> = ({
   itemCard,
   name,
   favouriteSettings,
+  itemsName,
 }) => {
   const [allItems, setAllItems] = useState<any[]>([]);
   const [items, setItems] = useState<any[]>([]);
@@ -73,7 +75,7 @@ const MainContentItems: FC<Props> = ({
       />
     );
 
-  if (!items?.length) return <EmptyItems />;
+  if (!items?.length) return <EmptyItems itemsName={itemsName} />;
 
   return (
     <Fade
