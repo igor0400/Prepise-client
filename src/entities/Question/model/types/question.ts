@@ -21,6 +21,6 @@ export interface QuestionType {
   tags: any[];
   block: any[];
   user: any;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }

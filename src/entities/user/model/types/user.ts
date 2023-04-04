@@ -39,6 +39,6 @@ export interface UserType {
   posts: any[];
   achievements: any[];
   connection: any;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }

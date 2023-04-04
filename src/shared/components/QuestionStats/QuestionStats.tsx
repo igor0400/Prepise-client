@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { FC } from 'react';
-import likesIcon from '../../../../public/images/icons/like.svg';
+import likesIcon from '../../../../public/images/icons/light-like.svg';
 import viewesIcon from '../../../../public/images/icons/view.svg';
 
 interface Props {

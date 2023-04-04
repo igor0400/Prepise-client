@@ -3,12 +3,12 @@ import { api } from '../../../../../shared';
 
 interface DataType {
   authorId: number;
-  createdAt: Date;
+  createdAt: string;
   description: string;
   followers: number;
   id: number;
   name: string;
-  updatedAt: Date;
+  updatedAt: string;
   used: number;
 }
 
