@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: false,
   images: {
-    domains: ['prepise.com', 'localhost'],
+    domains: ['api.prepise.com', 'prepise.com', 'localhost'],
   },
 };

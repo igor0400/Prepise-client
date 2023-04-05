@@ -12,23 +12,31 @@ import {
   UserFavourites,
 } from '../../../entities/User';
 import { useDispatch } from 'react-redux';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, useToast } from '@chakra-ui/react';
+import { QuestionType } from '../../../entities/Question';
+import { BlockType } from '../../../entities/Block';
 
 interface Props {
-  item: any;
+  item: QuestionType | BlockType;
   storeName: UserFavourites;
   dataUrl: string;
-  size?: 'big' | 'small';
+  size?: 'big' | 'small' | number;
 }
 
-const FavouriteIconBtn: FC<Props> = ({ item, storeName, dataUrl, size = 'big' }) => {
+const FavouriteIconBtn: FC<Props> = ({
+  item,
+  storeName,
+  dataUrl,
+  size = 'big',
+}) => {
   const router = useRouter();
+  const toast = useToast();
   const { request, loading } = useRequest();
   const dispatch = useDispatch();
   const { data, isAuth } = useTypedSelector((state) => state.user);
   const favouriteItems: any = data && data[storeName] ? data[storeName] : [];
   const { id: iId } = item;
-  const iconSize = size === 'big' ? 15 : 13;
+  const iconSize = typeof size === 'number' ? size : size === 'big' ? 15 : 13;
 
   const isFavourite = useMemo(() => {
     if (favouriteItems) {
@@ -42,14 +50,19 @@ const FavouriteIconBtn: FC<Props> = ({ item, storeName, dataUrl, size = 'big' })
 
   const addFavourite = async () => {
     if (!isAuth) {
+      toast({
+        description: 'Авторизируйтесь',
+        status: 'info',
+        duration: 2000,
+      });
       router.push({
         pathname: '/auth/login',
-        query: { redirect: router.pathname.slice(1) },
+        query: { redirect: router.asPath.slice(1) },
       });
       return;
     }
 
-    const url = dataUrl.replaceAll(':id', iId);
+    const url = dataUrl.replaceAll(':id', String(iId));
 
     if (isFavourite) {
       const data = await request(deleteFavourite, true, url);
@@ -63,7 +76,15 @@ const FavouriteIconBtn: FC<Props> = ({ item, storeName, dataUrl, size = 'big' })
     }
   };
 
-  if (loading) return <Spinner size="sm" />;
+  if (loading)
+    return (
+      <div
+        className="flex items-center justify-center"
+        style={{ width: iconSize, height: iconSize }}
+      >
+        <Spinner size="sm" />
+      </div>
+    );
 
   return (
     <Image

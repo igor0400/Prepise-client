@@ -9,7 +9,7 @@ interface Props {
 
 const UsedUserInfo: FC<Props> = ({ createdAt, updatedAt, viewes }) => {
   return (
-    <div className="flex gap-2 text-sm text-gray-500">
+    <div className="flex gap-2 text-xs md:text-sm text-gray-500">
       <p>
         Опубликовано:{' '}
         <span className="text-black">{getParseDate(createdAt)}</span>
