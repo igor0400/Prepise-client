@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { FC, useMemo } from 'react';
 import favouriteInline from '../../../../public/images/icons/fvourite-inline.svg';
 import favouriteFilled from '../../../../public/images/icons/fvourite-filled.svg';
-import { useRequest, useTypedSelector } from '../../../shared';
+import { redirectToLogin, useRequest, useTypedSelector } from '../../../shared';
 import { useRouter } from 'next/router';
 import { postFavourite } from '../lib/api/postFavourite';
 import { deleteFavourite } from '../lib/api/deleteFavourite';
@@ -50,15 +50,7 @@ const FavouriteIconBtn: FC<Props> = ({
 
   const addFavourite = async () => {
     if (!isAuth) {
-      toast({
-        description: 'Авторизируйтесь',
-        status: 'info',
-        duration: 2000,
-      });
-      router.push({
-        pathname: '/auth/login',
-        query: { redirect: router.asPath.slice(1) },
-      });
+      redirectToLogin(toast, router);
       return;
     }
 

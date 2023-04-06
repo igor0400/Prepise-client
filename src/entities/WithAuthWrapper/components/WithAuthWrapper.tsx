@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { FC, ReactNode, useEffect, useState } from 'react';
 import { resetUserData } from '../../User';
 import { useDispatch } from 'react-redux';
-import { FillPageLoader } from '../../../shared';
+import { FillPageLoader, redirectToLogin } from '../../../shared';
 import { useToast } from '@chakra-ui/react';
 
 interface Props {
@@ -21,16 +21,7 @@ const WithAuthWrapper: FC<Props> = ({ children }) => {
     if (token && !isToken) {
       setIsToken(true);
     } else if (!token) {
-      toast({
-        description: 'Авторизируйтесь',
-        status: 'info',
-        duration: 2000,
-      });
-      dispatch(resetUserData());
-      router.push({
-        pathname: '/auth/login',
-        query: { redirect: router.asPath.slice(1) },
-      });
+      redirectToLogin(toast, router);
     }
   });
 

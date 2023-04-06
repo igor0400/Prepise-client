@@ -34,6 +34,7 @@ import DiscordIcon from './components/Icons/Discord';
 import NotFound from './components/NotFound/NotFound';
 import EmptyItems from './components/EmptyItems/EmptyItems';
 import UsedUserInfo from './components/UsedUserInfo/UsedUserInfo';
+import { redirectToLogin } from './lib/assets/redirectToLogin';
 
 export {
   Button,
@@ -72,5 +73,6 @@ export {
   NotFound,
   EmptyItems,
   UsedUserInfo,
+  redirectToLogin,
 };
 export type { ResponseUserData };

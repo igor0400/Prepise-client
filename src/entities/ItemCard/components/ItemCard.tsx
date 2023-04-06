@@ -105,17 +105,16 @@ const ItemCard: FC<Props> = ({
         )}
 
         {tags?.length > 0 && (
-          <>
+          <div className="flex flex-wrap gap-1 mt-2">
             {tags.map((item: any) => (
               <TagInCard
                 key={item.id}
                 id={item.id}
                 name={item.name}
                 activeTags={activeTags}
-                className="mt-2"
               />
             ))}
-          </>
+          </div>
         )}
 
         {isViewed && <p className="text-sm pt-2 text-gray-500">Просмотрено</p>}

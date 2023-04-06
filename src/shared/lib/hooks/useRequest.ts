@@ -1,14 +1,17 @@
 import { useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../entities/User';
+import { resetUserData, setUserData } from '../../../entities/User';
 import { authErrorHeadler, errorHandlerMessage } from '../api/handlers';
+import { redirectToLogin } from '../assets/redirectToLogin';
 
 export const useRequest = (secure: boolean = true) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(false);
   const toast = useToast();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const request = useCallback(
     async (request: Function, withMessage: boolean = true, ...args: any[]) => {
@@ -18,7 +21,9 @@ export const useRequest = (secure: boolean = true) => {
         const data = await request(...args);
         return data;
       } catch (e: any) {
-        if (secure) {
+        const status = await e?.response?.status;
+
+        if (secure && status === 401) {
           // вызов refresh если access token истек
           const user = await authErrorHeadler();
           if (user) {
@@ -30,7 +35,8 @@ export const useRequest = (secure: boolean = true) => {
               returnError(e, withMessage);
             }
           } else {
-            returnError(e, withMessage);
+            dispatch(resetUserData());
+            redirectToLogin(toast, router);
           }
         } else {
           returnError(e, withMessage);
