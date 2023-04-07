@@ -26,14 +26,13 @@ const ItemPageBar: FC<Props> = ({ item, favouriteSettings }) => {
 
   const reactionsSize = isLargerThan768 ? 28 : 25;
 
-  // доделать адаптив
-
   return (
     <div
       className={classNames(
-        'justify-between rounded-lg border-2 border-gray-300 py-5 px-2 sm:px-5',
+        'justify-between rounded-lg border-2 border-gray-300',
         {
-          flex: isLargerThan591,
+          'p-2': !isLargerThan591,
+          'flex p-5': isLargerThan591,
         },
       )}
     >
@@ -45,9 +44,11 @@ const ItemPageBar: FC<Props> = ({ item, favouriteSettings }) => {
           viewes={viewes}
         />
       </div>
-      <div className={classNames("flex gap-2", {
-        'justify-end mt-2': !isLargerThan591
-      })}>
+      <div
+        className={classNames('flex gap-2', {
+          'mt-2': !isLargerThan591,
+        })}
+      >
         <div className="flex gap-1 items-center">
           <span className="text-xl md:text-2xl font-semibold">55</span>
           <Image
