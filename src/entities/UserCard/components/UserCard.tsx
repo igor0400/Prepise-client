@@ -1,7 +1,7 @@
 import { Avatar, Card, CardBody } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 import { UserType } from '../../User/model/types/user';
-import { getStringTags, sliceText } from '../../../shared';
+import { getFileUrl, getStringTags, sliceText } from '../../../shared';
 import Link from 'next/link';
 
 interface Props {
@@ -21,7 +21,7 @@ const UserCard: FC<Props> = ({ favouriteBtn, item }) => {
               <Avatar
                 className="w-14 h-14"
                 name={name}
-                src={`${process.env.NEXT_PUBLIC_SERVER}${avatar}`}
+                src={getFileUrl(avatar)}
               />
               <div className="pl-2">
                 <h3 className="font-semibold text-lg">{name}</h3>

@@ -35,6 +35,12 @@ import NotFound from './components/NotFound/NotFound';
 import EmptyItems from './components/EmptyItems/EmptyItems';
 import UsedUserInfo from './components/UsedUserInfo/UsedUserInfo';
 import { redirectToLogin } from './lib/assets/redirectToLogin';
+import ItemInfo from './components/ItemInfo/ItemInfo';
+import ImgsGalary from './components/ImgsGalary/ImgsGalary';
+import { getFileUrl } from './lib/assets/getFileUrl';
+import ShareBtn from './components/ShareBtn/ShareBtn';
+import { handleDownload } from './lib/assets/handleDownload';
+import DownloadBtn from './components/DownloadBtn/DownloadBtn';
 
 export {
   Button,
@@ -74,5 +80,11 @@ export {
   EmptyItems,
   UsedUserInfo,
   redirectToLogin,
+  ItemInfo,
+  ImgsGalary,
+  getFileUrl,
+  ShareBtn,
+  handleDownload,
+  DownloadBtn,
 };
 export type { ResponseUserData };

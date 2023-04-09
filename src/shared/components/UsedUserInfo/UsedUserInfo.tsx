@@ -1,3 +1,5 @@
+import { useMediaQuery } from '@chakra-ui/react';
+import classNames from 'classnames';
 import React, { FC } from 'react';
 import { getParseDate } from '../../lib/assets/getParseDate';
 
@@ -8,8 +10,14 @@ interface Props {
 }
 
 const UsedUserInfo: FC<Props> = ({ createdAt, updatedAt, viewes }) => {
+  const [isLargerThan475] = useMediaQuery('(min-width: 475px)');
+
   return (
-    <div className="flex gap-2 text-xs md:text-sm text-gray-500">
+    <div
+      className={classNames('gap-2 text-xs md:text-sm text-gray-500', {
+        flex: isLargerThan475,
+      })}
+    >
       <p>
         Опубликовано:{' '}
         <span className="text-black">{getParseDate(createdAt)}</span>

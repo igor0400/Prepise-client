@@ -2,6 +2,7 @@ import { Skeleton } from 'antd';
 import classNames from 'classnames';
 import Image from 'next/image';
 import React, { FC, useState } from 'react';
+import { getFileUrl } from '../../lib/assets/getFileUrl';
 
 interface Props {
   maxCount: number;
@@ -40,7 +41,7 @@ const SlicedImages: FC<Props> = ({ maxCount, imgs, className }) => {
               )}
 
               <Image
-                src={`${process.env.NEXT_PUBLIC_SERVER}${url}`}
+                src={getFileUrl(url)}
                 onError={(e) => {
                   //@ts-ignore
                   e.target.style.display = 'none';

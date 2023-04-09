@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 
 import Image from 'next/image';
-import { Button, SearchInput } from '../../../shared';
+import { Button, getFileUrl, SearchInput } from '../../../shared';
 import Link from 'next/link';
 import { Dropdown } from 'antd';
 
@@ -76,7 +76,7 @@ const Header: FC = () => {
                   background: isDefaultAvatar ? '#fff' : 'none',
                 }}
                 name={data?.name ?? 'Загрузка...'}
-                src={`${process.env.NEXT_PUBLIC_SERVER}${data?.avatar}`}
+                src={getFileUrl(data?.avatar ?? '')}
               />
             </Link>
           ) : (

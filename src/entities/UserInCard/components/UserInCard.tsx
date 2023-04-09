@@ -2,7 +2,7 @@ import { Avatar } from '@chakra-ui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { FC } from 'react';
-import { parseDate } from '../../../shared';
+import { getFileUrl, parseDate } from '../../../shared';
 import { UserType } from '../../User';
 
 interface Props extends UserType {
@@ -23,7 +23,7 @@ const UserInCard: FC<Props> = ({ id, avatar, name, date, className }) => {
       <Avatar
         size="sm"
         name={name}
-        src={`${process.env.NEXT_PUBLIC_SERVER}${avatar}`}
+        src={getFileUrl(avatar)}
         className="p-1"
         style={{
           boxShadow: '0px 0px 2px 1px rgba(0, 0, 0, 0.25)',

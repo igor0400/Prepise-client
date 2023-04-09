@@ -17,12 +17,13 @@ interface Props {
     storeName: UserFavourites;
     dataUrl: string;
   };
+  className?: string;
 }
 
-const ItemPageBar: FC<Props> = ({ item, favouriteSettings }) => {
+const ItemPageBar: FC<Props> = ({ item, favouriteSettings, className }) => {
   const { title, createdAt, updatedAt, viewes } = item;
   const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
-  const [isLargerThan591] = useMediaQuery('(min-width: 591px)');
+  const [isLargerThan651] = useMediaQuery('(min-width: 651px)');
 
   const reactionsSize = isLargerThan768 ? 28 : 25;
 
@@ -31,8 +32,9 @@ const ItemPageBar: FC<Props> = ({ item, favouriteSettings }) => {
       className={classNames(
         'justify-between rounded-lg border-2 border-gray-300',
         {
-          'p-2': !isLargerThan591,
-          'flex p-5': isLargerThan591,
+          'p-2': !isLargerThan651,
+          'flex p-5': isLargerThan651,
+          [className ?? '']: className,
         },
       )}
     >
@@ -46,7 +48,7 @@ const ItemPageBar: FC<Props> = ({ item, favouriteSettings }) => {
       </div>
       <div
         className={classNames('flex gap-2', {
-          'mt-2': !isLargerThan591,
+          'mt-2': !isLargerThan651,
         })}
       >
         <div className="flex gap-1 items-center">
