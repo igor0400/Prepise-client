@@ -26,11 +26,11 @@ export const userSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
-    addFavourite: (state, action: PayloadAction<AddFavourite>) => {
+    addItem: (state, action: PayloadAction<AddFavourite>) => {
       const { item, sectionName } = action.payload;
       if (state.data) state.data[sectionName].push(item);
     },
-    deleteFavourite: (state, action: PayloadAction<DeleteFavourite>) => {
+    deleteItem: (state, action: PayloadAction<DeleteFavourite>) => {
       const { itemId, sectionName } = action.payload;
 
       if (state.data && state.data[sectionName]) {
@@ -46,8 +46,8 @@ export const {
   setUserData,
   resetUserData,
   setLoading,
-  addFavourite,
-  deleteFavourite,
+  addItem,
+  deleteItem,
 } = userSlice.actions;
 
 export const { selectAll } = userAdapter.getSelectors(

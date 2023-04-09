@@ -7,9 +7,10 @@ import Fancybox from './Fancybox';
 interface Props {
   imgs: string[];
   className?: string;
+  setShow: (value: boolean) => any;
 }
 
-const ImgsGalary: FC<Props> = ({ imgs, className }) => {
+const ImgsGalary: FC<Props> = ({ imgs, className, setShow }) => {
   const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
   const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
 
@@ -19,7 +20,17 @@ const ImgsGalary: FC<Props> = ({ imgs, className }) => {
     <Fancybox className={className}>
       {imgs.map((url, i) => (
         <a data-fancybox="gallery" href={getFileUrl(url)} key={i}>
-          <Image alt="img" src={getFileUrl(url)} width={size} height={size} />
+          <Image
+            alt="img"
+            src={getFileUrl(url)}
+            width={size}
+            height={size}
+            onError={(e) => {
+              //@ts-ignore
+              e.target.style.display = 'none';
+              if (i + 1 === imgs.length) setShow(false);
+            }}
+          />
         </a>
       ))}
     </Fancybox>

@@ -1,17 +1,16 @@
 import { useToast } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
 import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { resetUserData, setUserData } from '../../../entities/User';
 import { authErrorHeadler, errorHandlerMessage } from '../api/handlers';
-import { redirectToLogin } from '../assets/redirectToLogin';
+import { useRedirectToLogin } from './useRedirectToLogin';
 
 export const useRequest = (secure: boolean = true) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(false);
   const toast = useToast();
   const dispatch = useDispatch();
-  const router = useRouter();
+  const redirectToLogin = useRedirectToLogin();
 
   const request = useCallback(
     async (request: Function, withMessage: boolean = true, ...args: any[]) => {
@@ -36,7 +35,7 @@ export const useRequest = (secure: boolean = true) => {
             }
           } else {
             dispatch(resetUserData());
-            redirectToLogin(toast, router);
+            redirectToLogin();
           }
         } else {
           returnError(e, withMessage);

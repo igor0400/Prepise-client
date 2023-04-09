@@ -1,9 +1,5 @@
-import { useRouter } from 'next/router';
 import { FC, ReactNode, useEffect, useState } from 'react';
-import { resetUserData } from '../../User';
-import { useDispatch } from 'react-redux';
-import { FillPageLoader, redirectToLogin } from '../../../shared';
-import { useToast } from '@chakra-ui/react';
+import { FillPageLoader, useRedirectToLogin } from '../../../shared';
 
 interface Props {
   children: ReactNode;
@@ -11,9 +7,7 @@ interface Props {
 
 const WithAuthWrapper: FC<Props> = ({ children }) => {
   const [isToken, setIsToken] = useState(false);
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const toast = useToast();
+  const redirect = useRedirectToLogin();
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -21,7 +15,7 @@ const WithAuthWrapper: FC<Props> = ({ children }) => {
     if (token && !isToken) {
       setIsToken(true);
     } else if (!token) {
-      redirectToLogin(toast, router);
+      redirect();
     }
   });
 

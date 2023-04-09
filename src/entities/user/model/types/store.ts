@@ -1,6 +1,12 @@
 import { UserType } from './user';
 
-export type UserFavourites =
+export type UserItems =
+  | 'tags'
+  | 'followingTags'
+  | 'ignoringTags'
+  | 'followingUsers'
+  | 'posts'
+  | 'interviewes'
   | 'favouriteQuestions'
   | 'favouriteTestQuestions'
   | 'favouriteBlocks'
@@ -17,10 +23,10 @@ export interface UserState {
 
 export interface AddFavourite {
   item: any;
-  sectionName: UserFavourites;
+  sectionName: UserItems;
 }
 
 export interface DeleteFavourite {
   itemId: number;
-  sectionName: UserFavourites;
+  sectionName: UserItems;
 }

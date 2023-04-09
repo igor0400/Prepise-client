@@ -2,23 +2,26 @@ import Image from 'next/image';
 import { FC, useMemo } from 'react';
 import favouriteInline from '../../../../public/images/icons/fvourite-inline.svg';
 import favouriteFilled from '../../../../public/images/icons/fvourite-filled.svg';
-import { redirectToLogin, useRequest, useTypedSelector } from '../../../shared';
-import { useRouter } from 'next/router';
+import {
+  useRedirectToLogin,
+  useRequest,
+  useTypedSelector,
+} from '../../../shared';
 import { postFavourite } from '../lib/api/postFavourite';
 import { deleteFavourite } from '../lib/api/deleteFavourite';
 import {
-  addFavourite as storeAddFavourite,
-  deleteFavourite as storeDeleteFavourite,
-  UserFavourites,
+  addItem as storeAddFavourite,
+  deleteItem as storeDeleteFavourite,
+  UserItems,
 } from '../../../entities/User';
 import { useDispatch } from 'react-redux';
-import { Spinner, useToast } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
 import { QuestionType } from '../../../entities/Question';
 import { BlockType } from '../../../entities/Block';
 
 interface Props {
   item: QuestionType | BlockType;
-  storeName: UserFavourites;
+  storeName: UserItems;
   dataUrl: string;
   size?: 'big' | 'small' | number;
 }
@@ -29,11 +32,11 @@ const FavouriteIconBtn: FC<Props> = ({
   dataUrl,
   size = 'big',
 }) => {
-  const router = useRouter();
-  const toast = useToast();
+  const redirect = useRedirectToLogin();
   const { request, loading } = useRequest();
   const dispatch = useDispatch();
   const { data, isAuth } = useTypedSelector((state) => state.user);
+
   const favouriteItems: any = data && data[storeName] ? data[storeName] : [];
   const { id: iId } = item;
   const iconSize = typeof size === 'number' ? size : size === 'big' ? 15 : 13;
@@ -48,10 +51,9 @@ const FavouriteIconBtn: FC<Props> = ({
     return false;
   }, [favouriteItems]);
 
-  const addFavourite = async () => {
+  const addItem = async () => {
     if (!isAuth) {
-      redirectToLogin(toast, router);
-      return;
+      return redirect();
     }
 
     const url = dataUrl.replaceAll(':id', String(iId));
@@ -85,7 +87,7 @@ const FavouriteIconBtn: FC<Props> = ({
       width={iconSize}
       height={iconSize}
       className="cursor-pointer"
-      onClick={addFavourite}
+      onClick={addItem}
     />
   );
 };

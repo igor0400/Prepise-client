@@ -7,14 +7,14 @@ import Image from 'next/image';
 import FavouriteIconBtn from '../../../features/FavouriteIconBtn';
 import { QuestionType } from '../../Question';
 import { BlockType } from '../../Block';
-import { UserFavourites } from '../../User';
+import { UserItems } from '../../User';
 import { useMediaQuery } from '@chakra-ui/react';
 import classNames from 'classnames';
 
 interface Props {
   item: QuestionType | BlockType;
   favouriteSettings: {
-    storeName: UserFavourites;
+    storeName: UserItems;
     dataUrl: string;
   };
   className?: string;

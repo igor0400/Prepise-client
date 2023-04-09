@@ -2,7 +2,7 @@ import { Fade, useMediaQuery } from '@chakra-ui/react';
 import { Input } from 'antd';
 import classNames from 'classnames';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { UserFavourites } from '../../../../entities/User';
+import { UserItems } from '../../../../entities/User';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
 import { useRequest, CenteredLoader, EmptyItems } from '../../../../shared';
 import { getData } from '../lib/api/getData';
@@ -14,7 +14,7 @@ interface Props {
   itemsName: string;
   itemsUrl: string;
   favouriteSettings: {
-    storeName: UserFavourites;
+    storeName: UserItems;
     dataUrl: string;
   };
   searchPlaceholder: string;

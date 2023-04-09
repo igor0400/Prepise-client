@@ -15,13 +15,13 @@ import { useClearCustomForm } from './lib/hooks/useClearCustomForm';
 import { useTypedSelector } from './lib/hooks/useTypedSelector';
 import FillPageLoader from './components/FillPageLoader/FillPageLoader';
 import NavItem from './components/NavItem/NavItem';
-import BlockQuestionIcon from './components/Icons/BlockQuestions';
-import QuestionIcon from './components/Icons/Question';
-import PaperIcon from './components/Icons/Paper';
-import BlockPapersIcon from './components/Icons/BlockPapers';
-import TagIcon from './components/Icons/Tag';
-import UserIcon from './components/Icons/User';
-import CompanyIcon from './components/Icons/Company';
+import BlockQuestionIcon from './Icons/BlockQuestions';
+import QuestionIcon from './Icons/Question';
+import PaperIcon from './Icons/Paper';
+import BlockPapersIcon from './Icons/BlockPapers';
+import TagIcon from './Icons/Tag';
+import UserIcon from './Icons/User';
+import CompanyIcon from './Icons/Company';
 import CenteredLoader from './components/CenteredLoader/CenteredLoader';
 import SlicedImages from './components/SlicedImages/SlicedImages';
 import { parseDate } from './lib/assets/parseDate';
@@ -30,17 +30,18 @@ import CustomTag from './components/CustomTag/CustomTag';
 import TestStats from './components/TestStats/TestStats';
 import { getStringTags } from './lib/assets/getStringTags';
 import { sliceText } from './lib/assets/sliceText';
-import DiscordIcon from './components/Icons/Discord';
+import DiscordIcon from './Icons/Discord';
 import NotFound from './components/NotFound/NotFound';
 import EmptyItems from './components/EmptyItems/EmptyItems';
 import UsedUserInfo from './components/UsedUserInfo/UsedUserInfo';
-import { redirectToLogin } from './lib/assets/redirectToLogin';
 import ItemInfo from './components/ItemInfo/ItemInfo';
 import ImgsGalary from './components/ImgsGalary/ImgsGalary';
 import { getFileUrl } from './lib/assets/getFileUrl';
-import ShareBtn from './components/ShareBtn/ShareBtn';
 import { handleDownload } from './lib/assets/handleDownload';
-import DownloadBtn from './components/DownloadBtn/DownloadBtn';
+import DownloadFile from './components/DownloadFile/DownloadFile';
+import { parseFileSize } from './lib/assets/parseFileSize';
+import InlineBtn from './components/InlineBtn/InlineBtn';
+import { useRedirectToLogin } from './lib/hooks/useRedirectToLogin';
 
 export {
   Button,
@@ -79,12 +80,13 @@ export {
   NotFound,
   EmptyItems,
   UsedUserInfo,
-  redirectToLogin,
   ItemInfo,
   ImgsGalary,
   getFileUrl,
-  ShareBtn,
   handleDownload,
-  DownloadBtn,
+  DownloadFile,
+  parseFileSize,
+  InlineBtn,
+  useRedirectToLogin,
 };
 export type { ResponseUserData };

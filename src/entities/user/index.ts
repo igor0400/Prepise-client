@@ -4,17 +4,10 @@ import {
   setUserData,
   resetUserData,
   setLoading,
-  addFavourite,
-  deleteFavourite,
+  addItem,
+  deleteItem,
 } from './model/store/userSlice';
-import { UserFavourites } from './model/types/store';
+import { UserItems } from './model/types/store';
 
-export type { UserType, UserFavourites };
-export {
-  user,
-  setUserData,
-  resetUserData,
-  setLoading,
-  addFavourite,
-  deleteFavourite,
-};
+export type { UserType, UserItems };
+export { user, setUserData, resetUserData, setLoading, addItem, deleteItem };

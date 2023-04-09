@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@chakra-ui/react';
 import classNames from 'classnames';
 import { FC } from 'react';
-import { UserFavourites } from '../../../../entities/User';
+import { UserItems } from '../../../../entities/User';
 import { useTypedSelector } from '../../../../shared';
 import MainContentFilters from '../../MainContentFilters';
 import MainContentItems from '../../MainContentItems';
@@ -17,7 +17,7 @@ interface Props {
     link: string;
   };
   favouriteSettings: {
-    storeName: UserFavourites;
+    storeName: UserItems;
     dataUrl: string;
   };
   itemsName: string;
@@ -41,10 +41,7 @@ const MainContentFrame: FC<Props> = (props) => {
         })}
       >
         <MainContentFilters name={name} />
-        <MainContentItems
-          {...props}
-          filtersItem={filters}
-        />
+        <MainContentItems {...props} filtersItem={filters} />
       </div>
     </div>
   );

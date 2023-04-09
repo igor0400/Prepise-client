@@ -10,7 +10,7 @@ import {
 import { getItems } from '../lib/api/getItems';
 import { FiltersState, FiltersStateItem } from '../../MainContentFrame';
 import { filterItems } from '../lib/assets/filterItems';
-import { UserFavourites } from '../../../../entities/User';
+import { UserItems } from '../../../../entities/User';
 import classNames from 'classnames';
 
 interface Props {
@@ -22,7 +22,7 @@ interface Props {
   };
   name: keyof FiltersState;
   favouriteSettings: {
-    storeName: UserFavourites;
+    storeName: UserItems;
     dataUrl: string;
   };
   itemsName: string;
