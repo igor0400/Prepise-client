@@ -10,7 +10,7 @@ interface Props {
 
 const DownloadBtn: FC<Props> = ({ url, name, size }) => {
   // сделать размер файла
-  // и обрезание размера
+  // и обрезание названия
 
   return (
     <button
