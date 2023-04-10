@@ -1,3 +1,4 @@
+import { Divider } from '@chakra-ui/react';
 import React, { FC, useState } from 'react';
 import ItemPageBar from '../../../entities/ItemPageBar';
 import { QuestionType } from '../../../entities/Question';
@@ -7,12 +8,15 @@ import {
   getFileUrl,
   ImgsGalary,
   ItemInfo,
+  useTypedSelector,
 } from '../../../shared';
+import CreateCommentForm from '../../forms/CreateCommentForm';
 import ItemPageToolbar from '../../ItemPageToolbar';
 import Section from './Section';
 
 const Question: FC<QuestionType> = (item) => {
   const {
+    id,
     interviewPosition,
     defaultQuestionInfo,
     section,
@@ -20,11 +24,11 @@ const Question: FC<QuestionType> = (item) => {
     imgs,
     files,
     tags,
-    authorId
+    authorId,
+    comments,
   } = item;
   const [showImgs, setShowImgs] = useState(true);
-
-  // адаптировать и вынести всё в frame
+  const userId = useTypedSelector((state) => state.user.data?.id);
 
   return (
     <div className="pt-14 pb-28 max-w-5xl mx-auto">
@@ -41,12 +45,14 @@ const Question: FC<QuestionType> = (item) => {
         position={interviewPosition}
         company={defaultQuestionInfo?.interviewCompany}
       />
+
       {content && (
         <div
           className="mt-4 bg-slate-200 p-2 rounded"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
       )}
+
       {imgs?.length > 0 && showImgs && (
         <Section title="Изображения">
           <ImgsGalary
@@ -56,6 +62,7 @@ const Question: FC<QuestionType> = (item) => {
           />
         </Section>
       )}
+
       {files?.length > 0 && (
         <Section title="Файлы">
           <div className="flex flex-col gap-1">
@@ -70,6 +77,7 @@ const Question: FC<QuestionType> = (item) => {
           </div>
         </Section>
       )}
+
       {tags?.length > 0 && (
         <Section title="Теги">
           <div className="flex flex-wrap gap-1">
@@ -80,7 +88,29 @@ const Question: FC<QuestionType> = (item) => {
         </Section>
       )}
 
-      <ItemPageToolbar className="mt-12" authorId={authorId} />
+      <ItemPageToolbar
+        className="mt-12"
+        authorId={authorId}
+        withUser={userId !== authorId}
+      />
+
+      <Divider className="border-b-2 mt-8 mb-6" />
+
+      <CreateCommentForm
+        title="Комментировать"
+        placeholder="Комментарий..."
+        url={`questions/comment/${id}`}
+      />
+
+      {comments.length > 0 && (
+        <div className="mt-10">
+          {comments.map(({ text, id }: any) => (
+            <p key={id} className="mt-1">
+              {text}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

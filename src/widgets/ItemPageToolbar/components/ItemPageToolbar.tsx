@@ -9,9 +9,14 @@ import { InlineBtn, useTypedSelector } from '../../../shared';
 interface Props {
   className?: string;
   authorId: number;
+  withUser?: boolean;
 }
 
-const ItemPageToolbar: FC<Props> = ({ className, authorId }) => {
+const ItemPageToolbar: FC<Props> = ({
+  className,
+  authorId,
+  withUser = true,
+}) => {
   const userId = useTypedSelector((state) => state.user.data?.id);
   const followings = useTypedSelector(
     (state) => state.user.data?.followingUsers,
@@ -47,7 +52,7 @@ const ItemPageToolbar: FC<Props> = ({ className, authorId }) => {
           </>
         )}
       </div>
-      <UserInItemPageCard userId={authorId} />
+      {withUser && <UserInItemPageCard userId={authorId} />}
     </div>
   );
 };

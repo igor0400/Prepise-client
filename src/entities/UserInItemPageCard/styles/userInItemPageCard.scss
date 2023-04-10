@@ -1,0 +1,8 @@
+.user-in-item-page-card {
+  &__body {
+    padding: 12px 20px !important;
+    @media (max-width: 640px) {
+      padding: 8px 16px !important;
+    }
+  }
+}

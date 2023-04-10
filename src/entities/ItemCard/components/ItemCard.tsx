@@ -98,7 +98,7 @@ const ItemCard: FC<Props> = ({
 
         {imgs?.length > 0 && (
           <SlicedImages
-            className="flex gap-2 pt-4"
+            className="flex justify-start gap-1 pt-4"
             maxCount={4}
             imgs={imgs.map((item: any) => item.url)}
           />

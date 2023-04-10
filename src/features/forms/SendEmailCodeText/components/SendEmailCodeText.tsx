@@ -33,17 +33,21 @@ const SendEmailCodeText: FC<Props> = ({ getEmail, setError }) => {
   return (
     <p className="pt-1 text-sm">
       Код будет отправлен вам на почту.{' '}
-      <button
-        type="button"
-        onClick={handleClick}
-        style={{ color: 'rgb(0 78 255)' }}
-        disabled={disable || loading}
-        className={classNames('', {
-          'cursor-not-allowed': disable || loading,
-        })}
-      >
-        Отправить
-      </button>
+      {loading ? (
+        <span style={{ color: 'rgb(0 78 255)' }}>Отправка...</span>
+      ) : (
+        <button
+          type="button"
+          onClick={handleClick}
+          style={{ color: 'rgb(0 78 255)' }}
+          disabled={disable}
+          className={classNames('', {
+            'cursor-not-allowed': disable,
+          })}
+        >
+          Отправить
+        </button>
+      )}
     </p>
   );
 };

@@ -29,8 +29,12 @@ const UserInItemPageCard: FC<Props> = ({ userId }) => {
   return (
     <Card className="w-fit">
       <Link href={`/users/${id}`}>
-        <CardBody className="py-2 px-4 sm:py-3 sm:px-5 flex items-center">
-          <Avatar className="w-8 sm:w-10 h-8 sm:h-10" name={name} src={getFileUrl(avatar)} />
+        <CardBody className="flex items-center user-in-item-page-card__body">
+          <Avatar
+            className="w-8 sm:w-10 h-8 sm:h-10"
+            name={name}
+            src={getFileUrl(avatar)}
+          />
           <h3 className="font-semibold text-sm sm:text-base pl-2">{name}</h3>
         </CardBody>
       </Link>

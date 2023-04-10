@@ -32,7 +32,7 @@ const SlicedImages: FC<Props> = ({ maxCount, imgs, className }) => {
               <Skeleton.Image active={true} style={{ width: 70, height: 70 }} />
             ) : null}
             <div
-              className={classNames('relative', { 'opacity-0': !isImgLoad })}
+              className={classNames('relative', { 'opacity-0 w-0 h-0': !isImgLoad })}
             >
               {moreImages > 0 && isLast && (
                 <div className="absolute w-full h-full bg-opacity-50 bg-black text-white flex justify-center items-center font-semibold text-2xl pr-2">
