@@ -50,6 +50,8 @@ const CreateCommentForm: FC<Props> = ({
   const id = 'comment';
   const isLoading = isSubmitting || loading;
 
+  //
+
   return (
     <form className={className} onSubmit={handleSubmit(onSubmit)}>
       <FormDefaultTextarea
@@ -64,6 +66,7 @@ const CreateCommentForm: FC<Props> = ({
         type={isLoading ? 'button' : 'submit'}
         variant="solid"
         size="sm"
+        colorScheme="blue"
         className="bg-blue-600 hover:bg-blue-700 text-white mt-2 float-right"
       >
         Отправить
