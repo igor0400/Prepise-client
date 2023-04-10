@@ -50,8 +50,6 @@ const CreateCommentForm: FC<Props> = ({
   const id = 'comment';
   const isLoading = isSubmitting || loading;
 
-  //
-
   return (
     <form className={className} onSubmit={handleSubmit(onSubmit)}>
       <FormDefaultTextarea
