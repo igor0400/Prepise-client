@@ -3,11 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import FormDefaultTextarea from '../../../../entities/forms/FormDefaultTextarea';
-import {
-  useRedirectToLogin,
-  useRequest,
-  useTypedSelector,
-} from '../../../../shared';
+import { useRequest } from '../../../../shared';
 import { schema } from '../config/form-schemas';
 import { postComment } from '../lib/api/postComment';
 import { FormData } from '../model/types';
@@ -65,7 +61,8 @@ const CreateCommentForm: FC<Props> = ({
         variant="solid"
         size="sm"
         colorScheme="blue"
-        className="bg-blue-600 hover:bg-blue-700 text-white mt-2 flex ml-auto"
+        className="bg-blue-600 hover:bg-blue-700 text-white mt-2 ml-auto"
+        style={{ display: 'flex' }}
       >
         Отправить
       </Button>
