@@ -32,10 +32,9 @@ const FavouriteIconBtn: FC<Props> = ({
   dataUrl,
   size = 'big',
 }) => {
-  const redirect = useRedirectToLogin();
-  const { request, loading } = useRequest();
+  const { request, loading } = useRequest(true, true);
   const dispatch = useDispatch();
-  const { data, isAuth } = useTypedSelector((state) => state.user);
+  const { data } = useTypedSelector((state) => state.user);
 
   const favouriteItems: any = data && data[storeName] ? data[storeName] : [];
   const { id: iId } = item;
@@ -52,10 +51,6 @@ const FavouriteIconBtn: FC<Props> = ({
   }, [favouriteItems]);
 
   const addItem = async () => {
-    if (!isAuth) {
-      return redirect();
-    }
-
     const url = dataUrl.replaceAll(':id', String(iId));
 
     if (isFavourite) {

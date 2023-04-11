@@ -42,6 +42,8 @@ import DownloadFile from './components/DownloadFile/DownloadFile';
 import { parseFileSize } from './lib/assets/parseFileSize';
 import InlineBtn from './components/InlineBtn/InlineBtn';
 import { useRedirectToLogin } from './lib/hooks/useRedirectToLogin';
+import { sortByDate } from './lib/assets/sortByDate';
+import Comment from './components/Comment/Comment';
 
 export {
   Button,
@@ -88,5 +90,7 @@ export {
   parseFileSize,
   InlineBtn,
   useRedirectToLogin,
+  sortByDate,
+  Comment,
 };
 export type { ResponseUserData };

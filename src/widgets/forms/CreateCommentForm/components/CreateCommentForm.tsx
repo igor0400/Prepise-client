@@ -17,6 +17,7 @@ interface Props {
   placeholder: string;
   url: string;
   className?: string;
+  createComment: (comment: any) => void;
 }
 
 const CreateCommentForm: FC<Props> = ({
@@ -24,9 +25,8 @@ const CreateCommentForm: FC<Props> = ({
   placeholder,
   url,
   className,
+  createComment,
 }) => {
-  const isAuth = useTypedSelector((state) => state.user.isAuth);
-  const redirectToLogin = useRedirectToLogin();
   const {
     handleSubmit,
     register,
@@ -35,15 +35,15 @@ const CreateCommentForm: FC<Props> = ({
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
-  const { request, loading } = useRequest();
+  const { request, loading } = useRequest(true, true);
 
   const onSubmit = async (values: FormData) => {
-    if (isAuth) {
-      const { comment } = values;
-      const data = await request(postComment, true, url, comment);
+    const { comment } = values;
+    const data = await request(postComment, true, url, comment);
+
+    if (data) {
+      createComment(data);
       setValue('comment', '');
-    } else {
-      redirectToLogin();
     }
   };
 
@@ -65,7 +65,7 @@ const CreateCommentForm: FC<Props> = ({
         variant="solid"
         size="sm"
         colorScheme="blue"
-        className="bg-blue-600 hover:bg-blue-700 text-white mt-2 float-right"
+        className="bg-blue-600 hover:bg-blue-700 text-white mt-2 flex ml-auto"
       >
         Отправить
       </Button>

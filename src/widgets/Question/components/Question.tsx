@@ -1,6 +1,7 @@
 import { Divider } from '@chakra-ui/react';
 import React, { FC, useState } from 'react';
-import ItemPageBar from '../../../entities/ItemPageBar';
+import { CommentType } from '../../../entities/Comment';
+import ItemPageBar from '../../ItemPageBar';
 import { QuestionType } from '../../../entities/Question';
 import {
   CustomTag,
@@ -8,8 +9,10 @@ import {
   getFileUrl,
   ImgsGalary,
   ItemInfo,
+  sortByDate,
   useTypedSelector,
 } from '../../../shared';
+import CemmentsList from '../../CemmentsList';
 import CreateCommentForm from '../../forms/CreateCommentForm';
 import ItemPageToolbar from '../../ItemPageToolbar';
 import Section from './Section';
@@ -25,10 +28,17 @@ const Question: FC<QuestionType> = (item) => {
     files,
     tags,
     authorId,
-    comments,
+    comments: initialComments,
   } = item;
   const [showImgs, setShowImgs] = useState(true);
   const userId = useTypedSelector((state) => state.user.data?.id);
+  const [comments, setComments] = useState(
+    sortByDate<CommentType>(initialComments, 'newest'),
+  );
+
+  const createComment = (comment: any) => {
+    setComments((state) => [comment, ...state]);
+  };
 
   return (
     <div className="pt-14 pb-28 max-w-5xl mx-auto">
@@ -38,6 +48,7 @@ const Question: FC<QuestionType> = (item) => {
           storeName: 'favouriteQuestions',
           dataUrl: 'favourites/questions/:id',
         }}
+        reactionsUrl="questions"
         className="mb-4"
       />
       <ItemInfo
@@ -100,16 +111,11 @@ const Question: FC<QuestionType> = (item) => {
         title="Комментировать"
         placeholder="Комментарий..."
         url={`questions/comment/${id}`}
+        createComment={createComment}
       />
 
       {comments.length > 0 && (
-        <div className="mt-10">
-          {comments.map(({ text, id }: any) => (
-            <p key={id} className="mt-1">
-              {text}
-            </p>
-          ))}
-        </div>
+        <CemmentsList comments={comments} className="mt-6" />
       )}
     </div>
   );

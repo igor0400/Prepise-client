@@ -16,23 +16,17 @@ interface Props {
 }
 
 const FollowBtn: FC<Props> = ({ authorId }) => {
-  const isAuth = useTypedSelector((state) => state.user.isAuth);
-  const { request, loading } = useRequest();
-  const redirect = useRedirectToLogin();
+  const { request, loading } = useRequest(true, true);
   const dispatch = useDispatch();
 
   const onClick = async () => {
     if (!loading) {
-      if (isAuth) {
-        const data = await request(postFollowing, true, [String(authorId)]);
-        if (data) {
-          const user = await request(getUser, true, authorId);
-          if (user) {
-            dispatch(addItem({ item: user, sectionName: 'followingUsers' }));
-          }
+      const data = await request(postFollowing, true, [String(authorId)]);
+      if (data) {
+        const user = await request(getUser, true, authorId);
+        if (user) {
+          dispatch(addItem({ item: user, sectionName: 'followingUsers' }));
         }
-      } else {
-        redirect();
       }
     }
   };

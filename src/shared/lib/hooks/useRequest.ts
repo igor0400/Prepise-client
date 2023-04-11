@@ -4,16 +4,23 @@ import { useDispatch } from 'react-redux';
 import { resetUserData, setUserData } from '../../../entities/User';
 import { authErrorHeadler, errorHandlerMessage } from '../api/handlers';
 import { useRedirectToLogin } from './useRedirectToLogin';
+import { useTypedSelector } from './useTypedSelector';
 
-export const useRequest = (secure: boolean = true) => {
+export const useRequest = (
+  secure: boolean = true,
+  redirect: boolean = false,
+) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<any>(false);
   const toast = useToast();
   const dispatch = useDispatch();
   const redirectToLogin = useRedirectToLogin();
+  const { isAuth } = useTypedSelector((state) => state.user);
 
   const request = useCallback(
     async (request: Function, withMessage: boolean = true, ...args: any[]) => {
+      if (!isAuth && redirect) return redirectToLogin();
+
       setLoading(true);
 
       try {

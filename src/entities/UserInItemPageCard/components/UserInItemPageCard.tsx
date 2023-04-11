@@ -11,7 +11,7 @@ interface Props {
 
 const UserInItemPageCard: FC<Props> = ({ userId }) => {
   const [user, setUser] = useState<null | UserType>(null);
-  const { request } = useRequest();
+  const { request } = useRequest(false);
 
   useEffect(() => {
     setUserData();

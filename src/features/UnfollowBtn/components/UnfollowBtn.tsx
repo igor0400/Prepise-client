@@ -10,7 +10,7 @@ interface Props {
 }
 
 const UnfollowBtn: FC<Props> = ({ authorId }) => {
-  const { request, loading } = useRequest();
+  const { request, loading } = useRequest(true, true);
   const dispatch = useDispatch();
 
   const onClick = async () => {

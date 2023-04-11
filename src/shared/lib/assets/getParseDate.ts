@@ -59,7 +59,11 @@ export const getParseDate = (data: string) => {
       if (daysDiff === 1) return 'Вчера';
       if (daysDiff === 2) return 'Позавчера';
 
-      return `${daysDiff} дня назад`;
+      const ddEnd = +String(daysDiff).slice(-1);
+
+      if (ddEnd > 0 && ddEnd < 5) return `${daysDiff} дня назад`;
+
+      return `${daysDiff} дней назад`;
     }
 
     return `${days}-го ${months[month]}`;
