@@ -36,17 +36,15 @@ const ItemPageBar: FC<Props> = ({
     usedUsersInfo,
   } = item;
   const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
-  const [isLargerThan651] = useMediaQuery('(min-width: 651px)');
-
-  console.log(usedUsersInfo);
+  const [isLargerThan661] = useMediaQuery('(min-width: 661px)');
 
   return (
     <div
       className={classNames(
         'justify-between rounded-lg border-2 border-gray-300',
         {
-          'p-2': !isLargerThan651,
-          'flex p-5': isLargerThan651,
+          'p-2': !isLargerThan661,
+          'flex p-5': isLargerThan661,
           [className ?? '']: className,
         },
       )}
@@ -60,8 +58,8 @@ const ItemPageBar: FC<Props> = ({
         />
       </div>
       <div
-        className={classNames('flex items-center gap-1 sm:gap-2', {
-          'mt-2': !isLargerThan651,
+        className={classNames('flex items-center gap-1.5 sm:gap-2', {
+          'mt-2': !isLargerThan661,
         })}
       >
         <Reactions

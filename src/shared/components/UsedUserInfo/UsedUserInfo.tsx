@@ -10,12 +10,12 @@ interface Props {
 }
 
 const UsedUserInfo: FC<Props> = ({ createdAt, updatedAt, viewes }) => {
-  const [isLargerThan475] = useMediaQuery('(min-width: 475px)');
+  const [isLargerThan521] = useMediaQuery('(min-width: 521px)');
 
   return (
     <div
       className={classNames('gap-2 text-xs md:text-sm text-gray-500', {
-        flex: isLargerThan475,
+        flex: isLargerThan521,
       })}
     >
       <p>

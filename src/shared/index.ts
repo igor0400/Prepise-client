@@ -44,6 +44,8 @@ import InlineBtn from './components/InlineBtn/InlineBtn';
 import { useRedirectToLogin } from './lib/hooks/useRedirectToLogin';
 import { sortByDate } from './lib/assets/sortByDate';
 import Comment from './components/Comment/Comment';
+import Likes from './components/Likes/Likes';
+import Dislikes from './components/Dislikes/Dislikes';
 
 export {
   Button,
@@ -92,5 +94,7 @@ export {
   useRedirectToLogin,
   sortByDate,
   Comment,
+  Likes,
+  Dislikes,
 };
 export type { ResponseUserData };

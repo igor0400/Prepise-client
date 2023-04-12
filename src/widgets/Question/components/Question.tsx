@@ -41,7 +41,7 @@ const Question: FC<QuestionType> = (item) => {
   };
 
   return (
-    <div className="pt-14 pb-28 max-w-5xl mx-auto">
+    <div className="pt-8 sm:pt-14 pb-20 sm:pb-28 max-w-5xl mx-auto">
       <ItemPageBar
         item={item}
         favouriteSettings={{

@@ -1,10 +1,8 @@
 import { useMediaQuery } from '@chakra-ui/react';
-import Image from 'next/image';
 import React, { FC, useEffect, useState } from 'react';
 
-import like from 'public/images/icons/like.svg';
-import dislike from 'public/images/icons/dislike.svg';
-import { useRequest, useTypedSelector } from '../../../shared';
+import { Dislikes, Likes, useRequest, useTypedSelector } from '../../../shared';
+import { deleteReaction } from '../lib/api/deleteReaction';
 import { postReaction } from '../lib/api/postReaction';
 
 interface Props {
@@ -24,12 +22,19 @@ const Reactions: FC<Props> = ({
 }) => {
   const userId = useTypedSelector((state) => state.user.data?.id);
   const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
-  const { request } = useRequest(true, true);
-  const [aciveReaction, setActiveReaction] = useState<
+  const { request: likesRequest, loading: likesLoading } = useRequest(
+    true,
+    true,
+  );
+  const { request: dislikesRequest, loading: dislikesLoading } = useRequest(
+    true,
+    true,
+  );
+  const [activeReaction, setActiveReaction] = useState<
     'like' | 'dislike' | null
   >(null);
-
-  // сделать реакции
+  const [viewLikes, setViewLikes] = useState(likes ?? 0);
+  const [viewDislikes, setViewDislikes] = useState(dislikes ?? 0);
 
   useEffect(() => {
     for (let item of usedUsersInfo) {
@@ -43,39 +48,83 @@ const Reactions: FC<Props> = ({
   const reactionsSize = isLargerThan768 ? 28 : 25;
 
   const handleClick = async (type: 'like' | 'dislike') => {
-    const data = await request(postReaction, true, `${url}/${type}/${itemId}`);
-    console.log(data);
+    if (likesLoading || dislikesLoading) return;
+
+    if (type === 'like') {
+      if (activeReaction !== 'like') {
+        const data = await likesRequest(
+          postReaction,
+          true,
+          `${url}/${type}/${itemId}`,
+        );
+
+        if (data) {
+          if (activeReaction === 'dislike') {
+            setViewDislikes((state) => state - 1);
+          }
+          setViewLikes((state) => state + 1);
+          setActiveReaction('like');
+        }
+      } else {
+        const data = await likesRequest(
+          deleteReaction,
+          true,
+          `${url}/${type}/${itemId}`,
+        );
+
+        if (data) {
+          setViewLikes((state) => state - 1);
+          setActiveReaction(null);
+        }
+      }
+    } else {
+      if (activeReaction !== 'dislike') {
+        const data = await dislikesRequest(
+          postReaction,
+          true,
+          `${url}/${type}/${itemId}`,
+        );
+
+        if (data) {
+          if (activeReaction === 'like') {
+            setViewLikes((state) => state - 1);
+          }
+          setViewDislikes((state) => state + 1);
+          setActiveReaction('dislike');
+        }
+      } else {
+        const data = await dislikesRequest(
+          deleteReaction,
+          true,
+          `${url}/${type}/${itemId}`,
+        );
+
+        if (data) {
+          setViewDislikes((state) => state - 1);
+          setActiveReaction(null);
+        }
+      }
+    }
   };
 
   return (
     <>
-      <div className="flex gap-1 items-center">
-        <span className="text-xl md:text-2xl font-semibold">
-          {aciveReaction === 'like' ? likes + 1 : likes}
-        </span>
-        <Image
-          src={like}
-          alt="like"
-          className="pb-2 cursor-pointer"
-          width={reactionsSize}
-          height={reactionsSize}
-          onClick={() => handleClick('like')}
-        />
-      </div>
+      <Likes
+        likes={viewLikes}
+        size={reactionsSize}
+        onClick={() => handleClick('like')}
+        active={activeReaction === 'like'}
+        isLoading={likesLoading}
+      />
 
-      <div className="flex gap-1 items-center pr-0.5">
-        <span className="text-xl md:text-2xl font-semibold">
-          {aciveReaction === 'dislike' ? dislikes + 1 : dislikes}
-        </span>
-        <Image
-          src={dislike}
-          alt="dislike"
-          className="pt-2 cursor-pointer"
-          width={reactionsSize}
-          height={reactionsSize}
-          onClick={() => handleClick('dislike')}
-        />
-      </div>
+      <Dislikes
+        dislikes={viewDislikes}
+        size={reactionsSize}
+        onClick={() => handleClick('dislike')}
+        className="pr-0.5"
+        active={activeReaction === 'dislike'}
+        isLoading={dislikesLoading}
+      />
     </>
   );
 };
