@@ -77,13 +77,8 @@ const Question: FC<QuestionType> = (item) => {
       {files?.length > 0 && (
         <Section title="Файлы">
           <div className="flex flex-col gap-1">
-            {files.map(({ url, name, size }, i) => (
-              <DownloadFile
-                key={i}
-                url={getFileUrl(url)}
-                name={name}
-                size={size}
-              />
+            {files.map(({ url, ...args }, i) => (
+              <DownloadFile key={i} url={getFileUrl(url)} {...args} />
             ))}
           </div>
         </Section>
@@ -105,7 +100,7 @@ const Question: FC<QuestionType> = (item) => {
         withUser={userId !== authorId}
       />
 
-      <Divider className="border-b-2 mt-8 mb-6" />
+      <Divider className="mt-8 mb-6" style={{ borderBottomWidth: 2 }} />
 
       <CreateCommentForm
         title="Комментировать"

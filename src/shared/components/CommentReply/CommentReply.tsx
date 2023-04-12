@@ -5,10 +5,10 @@ import { getParseDate } from '../../lib/assets/getParseDate';
 interface Props {
   reply: CommentReplyType;
   className?: string;
-  replyBtn?: ReactNode;
+  editBtn?: ReactNode;
 }
 
-const CommentReply: FC<Props> = ({ reply, className, replyBtn }) => {
+const CommentReply: FC<Props> = ({ reply, className, editBtn }) => {
   const { user, text, createdAt } = reply;
 
   return (
@@ -22,7 +22,7 @@ const CommentReply: FC<Props> = ({ reply, className, replyBtn }) => {
 
       <p className="text-sm sm:text-base text-gray-700">{text}</p>
 
-      {replyBtn}
+      {editBtn}
     </div>
   );
 };

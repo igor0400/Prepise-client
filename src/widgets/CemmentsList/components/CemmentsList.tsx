@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { CommentType } from '../../../entities/Comment';
-import { Comment } from '../../../shared';
+import { Comment, useTypedSelector } from '../../../shared';
 
 interface Props {
   comments: CommentType[];
@@ -8,6 +8,8 @@ interface Props {
 }
 
 const CemmentsList: FC<Props> = ({ comments, className }) => {
+  const userId = useTypedSelector((state) => state.user.data?.id);
+
   return (
     <div className={className}>
       {comments.map((comment) => (
@@ -15,10 +17,18 @@ const CemmentsList: FC<Props> = ({ comments, className }) => {
           key={comment.id}
           className="mt-2"
           comment={comment}
+          userId={userId}
           replyBtn={
-            <button className="flex ml-auto text-xs sm:text-sm text-blue-500">
-              изменить
+            <button className="text-xs sm:text-sm text-blue-500">
+              ответить
             </button>
+          }
+          editBtn={
+            userId === comment.authorId ? (
+              <button className="text-xs sm:text-sm text-blue-500">
+                изменить
+              </button>
+            ) : undefined
           }
         />
       ))}
