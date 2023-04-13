@@ -1,5 +1,5 @@
 import { Divider } from '@chakra-ui/react';
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { CommentType } from '../../../entities/Comment';
 import ItemPageBar from '../../ItemPageBar';
 import { QuestionType } from '../../../entities/Question';
@@ -10,12 +10,14 @@ import {
   ImgsGalary,
   ItemInfo,
   sortByDate,
+  useRequest,
   useTypedSelector,
 } from '../../../shared';
 import CommentsList from '../../CommentsList';
 import CreateCommentForm from '../../../features/forms/CreateCommentForm';
 import ItemPageToolbar from '../../ItemPageToolbar';
 import Section from './Section';
+import { postView } from '../lib/api/postView';
 
 const Question: FC<QuestionType> = (item) => {
   const {
@@ -28,6 +30,7 @@ const Question: FC<QuestionType> = (item) => {
     files,
     tags,
     authorId,
+    usedUsersInfo,
     comments: initialComments,
   } = item;
   const [showImgs, setShowImgs] = useState(true);
@@ -35,10 +38,25 @@ const Question: FC<QuestionType> = (item) => {
   const [comments, setComments] = useState(
     sortByDate<CommentType>(initialComments, 'newest'),
   );
+  const { request } = useRequest(true, false);
 
   const createComment = (comment: any) => {
     setComments((state) => [comment, ...state]);
   };
+
+  useEffect(() => {
+    if (userId) {
+      postData();
+    }
+  }, []);
+
+  async function postData() {
+    for (let info of usedUsersInfo) {
+      if (info?.userId === userId) return;
+    }
+
+    await request(postView, false, `questions/view/${id}`);
+  }
 
   return (
     <div className="pt-8 sm:pt-14 pb-20 sm:pb-28 max-w-5xl mx-auto">
