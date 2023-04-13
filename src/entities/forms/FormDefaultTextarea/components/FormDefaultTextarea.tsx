@@ -35,7 +35,7 @@ const FormDefaultTextarea: FC<Props> = ({
         {...register(id)}
         placeholder={placeholder}
         className="text-sm sm:text-base"
-        style={{ background: 'f3f4f6' }}
+        style={{ background: '#f3f4f6' }}
       />
 
       <FormErrorMessage className="text-xs sm:text-sm">
