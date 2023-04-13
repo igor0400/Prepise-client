@@ -12,8 +12,8 @@ import {
   sortByDate,
   useTypedSelector,
 } from '../../../shared';
-import CemmentsList from '../../CemmentsList';
-import CreateCommentForm from '../../forms/CreateCommentForm';
+import CommentsList from '../../CommentsList';
+import CreateCommentForm from '../../../features/forms/CreateCommentForm';
 import ItemPageToolbar from '../../ItemPageToolbar';
 import Section from './Section';
 
@@ -110,7 +110,7 @@ const Question: FC<QuestionType> = (item) => {
       />
 
       {comments.length > 0 && (
-        <CemmentsList comments={comments} className="mt-6" />
+        <CommentsList url="questions" comments={comments} className="mt-6" />
       )}
     </div>
   );

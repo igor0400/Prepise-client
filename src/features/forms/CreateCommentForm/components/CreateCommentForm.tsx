@@ -1,15 +1,15 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Spinner } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import FormDefaultTextarea from '../../../../entities/forms/FormDefaultTextarea';
-import { useRequest } from '../../../../shared';
+import { useRequest, useTypedSelector } from '../../../../shared';
 import { schema } from '../config/form-schemas';
 import { postComment } from '../lib/api/postComment';
 import { FormData } from '../model/types';
 
 interface Props {
-  title: string;
+  title?: string;
   placeholder: string;
   url: string;
   className?: string;
@@ -32,13 +32,14 @@ const CreateCommentForm: FC<Props> = ({
     resolver: yupResolver(schema),
   });
   const { request, loading } = useRequest(true, true);
+  const user = useTypedSelector((state) => state.user.data);
 
   const onSubmit = async (values: FormData) => {
     const { comment } = values;
     const data = await request(postComment, true, url, comment);
 
     if (data) {
-      createComment(data);
+      createComment({ ...data, user });
       setValue('comment', '');
     }
   };
@@ -64,7 +65,7 @@ const CreateCommentForm: FC<Props> = ({
         className="bg-blue-600 hover:bg-blue-700 text-white mt-2 ml-auto"
         style={{ display: 'flex' }}
       >
-        Отправить
+        {isLoading ? <Spinner size="sm" className="mx-8" /> : 'Отправить'}
       </Button>
     </form>
   );

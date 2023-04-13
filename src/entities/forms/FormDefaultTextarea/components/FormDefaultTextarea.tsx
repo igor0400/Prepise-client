@@ -8,7 +8,7 @@ import React, { FC } from 'react';
 
 interface Props {
   id: string;
-  label: string;
+  label?: string;
   placeholder: string;
   error?: string;
   isInvalid: boolean;
@@ -25,14 +25,16 @@ const FormDefaultTextarea: FC<Props> = ({
 }) => {
   return (
     <FormControl isInvalid={isInvalid} className="flex flex-col text-gray-600">
-      <FormLabel htmlFor={id} className="font-semibold text-sm sm:text-base">
-        {label}
-      </FormLabel>
+      {label && (
+        <FormLabel htmlFor={id} className="font-semibold text-sm sm:text-base">
+          {label}
+        </FormLabel>
+      )}
 
       <Textarea
         {...register(id)}
         placeholder={placeholder}
-        className="text-sm sm:text-base"
+        className="text-sm sm:text-base bg-gray-100"
       />
 
       <FormErrorMessage className="text-xs sm:text-sm">
