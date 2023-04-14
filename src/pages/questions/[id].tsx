@@ -1,4 +1,3 @@
-import { Spinner } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -6,7 +5,6 @@ import { QuestionType } from '../../entities/Question';
 import {
   api,
   CenteredLoader,
-  FillPageLoader,
   PageWrapper,
   useRequest,
 } from '../../shared';
