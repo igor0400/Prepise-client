@@ -34,7 +34,7 @@ const QuestionPage: NextPage<Props> = () => {
     const value = await request(async () => {
       const args = await api.get(`questions/default/${id}`).json();
       return args;
-    }, true);
+    }, false);
 
     if (value) setData(value);
 
