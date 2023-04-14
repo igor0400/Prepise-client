@@ -38,7 +38,7 @@ const Question: FC<QuestionType> = (item) => {
   const [comments, setComments] = useState(
     sortByDate<CommentType>(initialComments, 'newest'),
   );
-  const { request } = useRequest(true, false);
+  const { request } = useRequest(true);
 
   const createComment = (comment: any) => {
     setComments((state) => [comment, ...state]);

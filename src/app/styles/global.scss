@@ -57,3 +57,10 @@ main {
 .ant-modal-content {
   min-width: 300px;
 }
+
+.full-height {
+  height: calc(100vh - 80px);
+  @media screen and (max-width: 640px) {
+    height: calc(100vh - 65px);
+  }
+}

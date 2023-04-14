@@ -11,7 +11,7 @@ import arrow from '../../../../public/images/icons/arrow-right.svg';
 const StartScreen: FC = () => {
   return (
     <CirclesWrapper>
-      <div className="start-screen text-center justify-center padding-50 relative">
+      <div className="start-screen full-height text-center justify-center padding-50 relative">
         <Image
           src={logo}
           alt="logo"
