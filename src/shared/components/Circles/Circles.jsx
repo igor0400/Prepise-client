@@ -3,6 +3,7 @@ import { KawaseBlurFilter } from '@pixi/filter-kawase-blur';
 import { createNoise2D } from 'simplex-noise';
 import { debounce } from 'debounce';
 import { useEffect } from 'react';
+import { useMediaQuery } from '@chakra-ui/react';
 
 function random(min, max) {
    return Math.random() * (max - min) + min;
@@ -160,7 +161,9 @@ const Circles = () => {
      <div className="absolute top-0 left-0 h-full">
        <div className="relative h-full">
          <div className="background h-full w-full absolute top-0 left-0"></div>
-         <canvas className="min-max-width orb-canvas h-full w-max"></canvas>
+         <canvas
+           className="min-max-width orb-canvas h-full"
+         ></canvas>
        </div>
      </div>
    );

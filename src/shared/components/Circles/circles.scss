@@ -1,3 +1,9 @@
 .background {
   background: rgba(247, 248, 250, 0.3);
 }
+.orb-canvas {
+  width: 100vw;
+  @media screen and (min-width: 769px) {
+    width: calc(100vw - 10px);
+  }
+}
