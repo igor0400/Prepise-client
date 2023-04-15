@@ -13,7 +13,13 @@ const TestStats: FC<Props> = ({ likes = 0, replies = 0 }) => {
     <div className="flex items-end text-gray-500">
       <div className="flex pr-1">
         <p className="font-medium pr-0.5 pt-1.5">{likes}</p>
-        <Image src={likesIcon} alt="likes" width={18} height={18} />
+        <Image
+          src={likesIcon}
+          alt="likes"
+          width={18}
+          height={18}
+          style={{ paddingTop: 1 }}
+        />
       </div>
       <div className="flex">
         <p className="font-medium pt-1" style={{ paddingRight: 1 }}>

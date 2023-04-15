@@ -160,7 +160,7 @@ const Circles = () => {
      <div className="absolute top-0 left-0 h-full">
        <div className="relative h-full">
          <div className="background h-full w-full absolute top-0 left-0"></div>
-         <canvas className="min-max-width orb-canvas h-full w-screen"></canvas>
+         <canvas className="min-max-width orb-canvas h-full w-max"></canvas>
        </div>
      </div>
    );

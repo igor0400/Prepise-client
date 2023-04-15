@@ -43,8 +43,11 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
   async function getData() {
     const data = await request(getItems, false, url);
     if (data) {
-      setItems(data.slice(0, 10));
-      setAllItems(data);
+      const validData = data.filter(
+        (item: any) => !activeItems.map((i) => i.id).includes(item.id),
+      );
+      setItems(validData.slice(0, 10));
+      setAllItems(validData);
     }
   }
 
