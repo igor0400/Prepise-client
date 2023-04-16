@@ -43,7 +43,7 @@ const Reactions: FC<Props> = ({
         if (item.isLike) setActiveReaction('like');
       }
     }
-  }, [usedUsersInfo]);
+  }, [usedUsersInfo, userId]);
 
   const reactionsSize = isLargerThan768 ? 28 : 25;
 

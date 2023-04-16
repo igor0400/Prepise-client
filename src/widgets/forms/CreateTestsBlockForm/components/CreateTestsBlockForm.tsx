@@ -24,7 +24,7 @@ const CreateTestsBlockForm: FC = () => {
     setBlockEntitiesWithLS(dispatch, 'test');
   }, []);
 
-  const appendSubmit = (data: any) => {
+  const afterSubmit = (data: any) => {
     resetBlockEntitiesWithLS(dispatch, 'test');
   };
 
@@ -40,9 +40,10 @@ const CreateTestsBlockForm: FC = () => {
       redirectUrl="/tests-blocks/:id"
       title="Создать блок тестов"
       description="Для группировки тестов по смыслу, вы можете создать блок тестов. Ответы пользователей на ваш тест вы можете посмотреть в ##/profile.профиле##."
-      appendSubmit={appendSubmit}
+      afterSubmit={afterSubmit}
       submitBtnText="Опубликовать"
       addEntityUrl="block-test"
+      className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32"
     />
   );
 };

@@ -46,6 +46,7 @@ import { sortByDate } from './lib/assets/sortByDate';
 import Comment from './components/Comment/Comment';
 import Likes from './components/Likes/Likes';
 import Dislikes from './components/Dislikes/Dislikes';
+import { generateFormData } from './lib/assets/generateFormData';
 
 export {
   Button,
@@ -96,5 +97,6 @@ export {
   Comment,
   Likes,
   Dislikes,
+  generateFormData,
 };
 export type { ResponseUserData };

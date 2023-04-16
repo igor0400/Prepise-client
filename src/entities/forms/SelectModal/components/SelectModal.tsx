@@ -13,6 +13,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { useClearCustomForm, useRequest } from '../../../../shared';
 import { modalSubmitRequest } from '../lib/api/modalSubmitRequest';
@@ -32,6 +33,7 @@ const SelectModal: FC<Props> = ({ updateTags, isModalOpen, closeModal }) => {
   } = useForm<ModalFormData>({
     resolver: yupResolver(modalSchema),
   });
+  const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
 
   const { request, loading } = useRequest();
   const { clear, addItem } = useClearCustomForm();
@@ -52,7 +54,11 @@ const SelectModal: FC<Props> = ({ updateTags, isModalOpen, closeModal }) => {
   };
 
   return (
-    <Modal isOpen={isModalOpen} onClose={closeModal}>
+    <Modal
+      isOpen={isModalOpen}
+      onClose={closeModal}
+      isCentered={!isLargerThan768}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Добавить тег</ModalHeader>

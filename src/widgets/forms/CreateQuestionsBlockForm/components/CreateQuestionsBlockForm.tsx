@@ -24,7 +24,7 @@ const CreateQuestionsBlockForm: FC = () => {
     setBlockEntitiesWithLS(dispatch, 'question');
   }, []);
 
-  const appendSubmit = (data: any) => {
+  const afterSubmit = (data: any) => {
     resetBlockEntitiesWithLS(dispatch, 'question');
   };
 
@@ -40,9 +40,10 @@ const CreateQuestionsBlockForm: FC = () => {
       redirectUrl="/questions-blocks/:id"
       title="Создать блок вопросов"
       description="Для группировки вопросов по смыслу, вы можете создать блок вопросов."
-      appendSubmit={appendSubmit}
+      afterSubmit={afterSubmit}
       submitBtnText="Опубликовать"
       addEntityUrl="block-question"
+      className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32"
     />
   );
 };

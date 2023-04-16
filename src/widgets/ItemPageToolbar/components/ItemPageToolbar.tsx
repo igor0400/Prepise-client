@@ -1,20 +1,22 @@
 import classNames from 'classnames';
-import React, { FC, useMemo } from 'react';
+import React, { FC, ReactNode, useMemo } from 'react';
 import UserInItemPageCard from '../../../entities/UserInItemPageCard';
 import FollowBtn from '../../../features/FollowBtn';
 import ShareBtn from '../../../features/ShareBtn';
 import UnfollowBtn from '../../../features/UnfollowBtn';
-import { InlineBtn, useTypedSelector } from '../../../shared';
+import { useTypedSelector } from '../../../shared';
 
 interface Props {
   className?: string;
   authorId: number;
   withUser?: boolean;
+  changeBtn: ReactNode;
 }
 
 const ItemPageToolbar: FC<Props> = ({
   className,
   authorId,
+  changeBtn,
   withUser = true,
 }) => {
   const userId = useTypedSelector((state) => state.user.data?.id);
@@ -39,9 +41,7 @@ const ItemPageToolbar: FC<Props> = ({
       <div className="flex flex-wrap gap-2">
         <ShareBtn />
         {userId === authorId ? (
-          <InlineBtn border="blue" className="text-sm sm:text-base">
-            Изменить вопрос
-          </InlineBtn>
+          changeBtn
         ) : (
           <>
             {isUserFollowed ? (

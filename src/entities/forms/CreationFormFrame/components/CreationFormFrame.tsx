@@ -1,8 +1,7 @@
 import { Button, useDisclosure } from '@chakra-ui/react';
 import classNames from 'classnames';
-import Link from 'next/link';
-import React, { FC, useMemo, useState } from 'react';
-import { parseText, useClearCustomForm } from '../../../../shared';
+import React, { FC, useState } from 'react';
+import { useClearCustomForm } from '../../../../shared';
 import FormACInput from '../../FormACInput';
 import FormInput from '../../FormInput';
 import FormTagsSelect from '../../FormTagsSelect';
@@ -15,6 +14,7 @@ import FormSwitch from '../../FormSwitch';
 import { InputData, OptionData } from '../model/types';
 import FormFileInput from '../../FormFileInput';
 import FormCreateQuestion from '../../FormCreateQuestion';
+import Description from './Description';
 
 interface Props {
   handleSubmit: Function;
@@ -23,13 +23,14 @@ interface Props {
   errors: any;
   settings: { inputs: InputData[]; options: OptionData[] };
   isSubmitting: boolean;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   submitUrl: string;
-  redirectUrl: string;
-  appendSubmit?: Function;
+  redirectUrl?: string;
+  afterSubmit?: Function;
   submitBtnText: string;
   addEntityUrl?: string;
+  className?: string;
 }
 
 const CreationFormFrame: FC<Props> = ({
@@ -43,12 +44,12 @@ const CreationFormFrame: FC<Props> = ({
   settings,
   submitUrl,
   redirectUrl,
-  appendSubmit,
+  afterSubmit,
   submitBtnText,
   addEntityUrl,
+  className,
 }) => {
   const { clear, addItem } = useClearCustomForm();
-  const { texts, links } = useMemo(() => parseText(description), []);
   const { request, loading } = useRequest();
   const router = useRouter();
   const [updateTagsFunc, setUpdateTagsFunc] = useState<Function[]>([]);
@@ -58,11 +59,14 @@ const CreationFormFrame: FC<Props> = ({
   const onSubmit = async (values: FormData) => {
     if (!isSubmitting && !loading) {
       const data = await request(submitRequest, true, submitUrl, values);
-      
+
       if (data) {
         clear();
-        router.push(data?.id ? redirectUrl.replaceAll(':id', data?.id) : '/');
-        if (typeof appendSubmit === 'function') appendSubmit(data);
+        if (redirectUrl) {
+          router.push(data?.id ? redirectUrl.replaceAll(':id', data?.id) : '/');
+        }
+
+        if (typeof afterSubmit === 'function') afterSubmit(data);
       }
     }
   };
@@ -78,20 +82,15 @@ const CreationFormFrame: FC<Props> = ({
   const isLoading = loading || isSubmitting;
 
   return (
-    <div className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32">
-      <h3 className="text-2xl text-center font-bold pb-5">{title}</h3>
-      <p className="bg-green-100 py-3 px-4 mb-5 rounded-xl border border-gray-300">
-        {texts.map((item, i) => (
-          <React.Fragment key={i}>
-            {item}
-            {links && links[i] ? (
-              <Link href={links[i].link} className="text-blue-600">
-                {links[i].text}
-              </Link>
-            ) : null}
-          </React.Fragment>
-        ))}
-      </p>
+    <div className={className}>
+      {title && (
+        <h3 className="text-2xl text-center font-bold pb-5">{title}</h3>
+      )}
+      {description && (
+        <p className="bg-green-100 py-3 px-4 mb-5 rounded-xl border border-gray-300">
+          <Description description={description} />
+        </p>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         {settings.inputs.map(

@@ -19,7 +19,7 @@ const CreateBlockQuestionForm: FC = () => {
   });
   const dispatch = useDispatch();
 
-  const appendSubmit = (data: any) => {
+  const afterSubmit = (data: any) => {
     if (data?.id) {
       const question = { title: data.title, id: String(data.id) };
       addBlockEntityWithLS(dispatch, 'question', question);
@@ -28,7 +28,7 @@ const CreateBlockQuestionForm: FC = () => {
 
   return (
     <CreationFormFrame
-      appendSubmit={appendSubmit}
+      afterSubmit={afterSubmit}
       settings={{ inputs, options }}
       handleSubmit={handleSubmit}
       register={register}
@@ -40,6 +40,7 @@ const CreateBlockQuestionForm: FC = () => {
       title="Добавить вопрос"
       description="Постарайтесь понятно описать то, как вы отвечали на вопрос, и возможно, дать советы другим пользователям."
       submitBtnText="Добавить"
+      className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32"
     />
   );
 };

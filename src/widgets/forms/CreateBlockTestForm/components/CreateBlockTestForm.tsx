@@ -19,7 +19,7 @@ const CreateBlockTestForm: FC = () => {
   });
   const dispatch = useDispatch();
 
-  const appendSubmit = (data: any) => {
+  const afterSubmit = (data: any) => {
     if (data?.id) {
       const test = { title: data.title, id: String(data.id) };
       addBlockEntityWithLS(dispatch, 'test', test);
@@ -28,7 +28,7 @@ const CreateBlockTestForm: FC = () => {
 
   return (
     <CreationFormFrame
-      appendSubmit={appendSubmit}
+      afterSubmit={afterSubmit}
       settings={{ inputs, options }}
       handleSubmit={handleSubmit}
       register={register}
@@ -40,6 +40,7 @@ const CreateBlockTestForm: FC = () => {
       title="Добавить тест"
       description="Постарайтесь понятно описать задание, чтобы пользователь, который проходить тест, смог понять что вы от него хотите."
       submitBtnText="Добавить"
+      className="max-w-5xl mx-auto px-3 sm:px-10 pt-14 pb-32"
     />
   );
 };
