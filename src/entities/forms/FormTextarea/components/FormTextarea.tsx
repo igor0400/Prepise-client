@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { CSSProperties, FC, useEffect, useState } from 'react';
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { settings } from '../configs/textarea-config';
@@ -13,6 +13,7 @@ interface Props {
   isInvalid: boolean;
   setValue: Function;
   addItem: (func: Function) => any;
+  style?: CSSProperties;
 }
 
 const FormTextarea: FC<Props> = ({
@@ -23,6 +24,7 @@ const FormTextarea: FC<Props> = ({
   isInvalid,
   setValue,
   addItem,
+  style,
 }) => {
   const [textareaValue, setTextareaValue] = useState<string>('');
 
@@ -46,6 +48,7 @@ const FormTextarea: FC<Props> = ({
     <FormControl
       isInvalid={isInvalid}
       className="pt-7 flex flex-col text-gray-600"
+      style={style}
     >
       <FormLabel htmlFor={id}>{label}</FormLabel>
 

@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
@@ -57,6 +58,7 @@ const ChangeItemPageModal: FC<Props> = ({
   const [updateTagsFunc, setUpdateTagsFunc] = useState<Function[]>([]);
   const [isResetDisabled, setIsResetDisabled] = useState(false);
   const router = useRouter();
+  const [isLargerThan470] = useMediaQuery('(min-width: 470px)');
 
   const onSubmit = async (values: FormData) => {
     if (!isSubmitting && !loading) {
@@ -123,7 +125,10 @@ const ChangeItemPageModal: FC<Props> = ({
                   };
 
                   return (
-                    <React.Fragment key={i}>
+                    <div
+                      style={{ maxWidth: isLargerThan470 ? '100%' : '89%' }}
+                      key={i}
+                    >
                       {type === 'auto-complete' ? (
                         <FormACInput
                           {...defaultProps}
@@ -146,7 +151,7 @@ const ChangeItemPageModal: FC<Props> = ({
                           openModal={onTagsOpen}
                         />
                       ) : null}
-                    </React.Fragment>
+                    </div>
                   );
                 },
               )}

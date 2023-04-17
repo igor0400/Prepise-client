@@ -43,6 +43,8 @@ const ItemPageFrame: FC<Props> = ({ item, changeBtn }) => {
 
   console.log(item);
 
+  // адоптировать это под все items
+
   const [showImgs, setShowImgs] = useState(true);
   const userId = useTypedSelector((state) => state.user.data?.id);
   const [comments, setComments] = useState(
