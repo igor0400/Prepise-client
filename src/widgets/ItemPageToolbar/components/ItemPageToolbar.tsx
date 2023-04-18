@@ -1,10 +1,12 @@
 import classNames from 'classnames';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { FC, ReactNode, useMemo } from 'react';
 import UserInItemPageCard from '../../../entities/UserInItemPageCard';
 import FollowBtn from '../../../features/FollowBtn';
 import ShareBtn from '../../../features/ShareBtn';
 import UnfollowBtn from '../../../features/UnfollowBtn';
-import { useTypedSelector } from '../../../shared';
+import { InlineBtn, useTypedSelector } from '../../../shared';
 
 interface Props {
   className?: string;
@@ -23,6 +25,7 @@ const ItemPageToolbar: FC<Props> = ({
   const followings = useTypedSelector(
     (state) => state.user.data?.followingUsers,
   );
+  const router = useRouter();
 
   const isUserFollowed = useMemo(
     () => followings?.map((i) => i.id).includes(authorId),
@@ -51,6 +54,13 @@ const ItemPageToolbar: FC<Props> = ({
             )}
           </>
         )}
+        <InlineBtn
+          className="text-sm sm:text-base"
+          border="gray"
+          onClick={() => router.back()}
+        >
+          Назад
+        </InlineBtn>
       </div>
       {withUser && <UserInItemPageCard userId={authorId} />}
     </div>

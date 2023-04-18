@@ -5,7 +5,7 @@ interface Props {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
   className?: string;
-  border?: 'blue' | 'green';
+  border?: 'blue' | 'green' | 'gray';
 }
 
 const InlineBtn: FC<Props> = ({
@@ -17,6 +17,7 @@ const InlineBtn: FC<Props> = ({
   const borderColors = {
     green: 'border-green-600',
     blue: 'border-blue-600',
+    gray: 'border-gray-600',
   };
   const borderColor = borderColors[border] ?? borderColors.green;
 

@@ -19,31 +19,43 @@ import ItemPageToolbar from '../../ItemPageToolbar';
 import Section from './Section';
 import { postView } from '../lib/api/postView';
 import { BlockType } from '../../../entities/Block';
+import { UserItems } from '../../../entities/User';
 
 interface Props {
-  item: QuestionType;
+  item: QuestionType | BlockType;
   changeBtn: ReactNode;
+  favouriteSettings: {
+    storeName: UserItems;
+    dataUrl: string;
+  };
+  url: string;
 }
 
-const ItemPageFrame: FC<Props> = ({ item, changeBtn }) => {
+const ItemPageFrame: FC<Props> = ({
+  item,
+  changeBtn,
+  favouriteSettings,
+  url,
+}) => {
   const {
     id,
-    interviewPosition,
-    defaultQuestionInfo,
+    interviewPosition = undefined,
+    defaultQuestionInfo = {},
     section,
     content,
-    imgs,
-    files,
+    imgs = [],
+    files = [],
     tags,
     authorId,
     usedUsersInfo,
     commented,
+    questions = [],
     comments: initialComments,
-  } = item;
+  } = { ...item };
 
-  console.log(item);
+  console.log(questions);
 
-  // адоптировать это под все items
+  // отрисовать вопросы и сделать удаление их
 
   const [showImgs, setShowImgs] = useState(true);
   const userId = useTypedSelector((state) => state.user.data?.id);
@@ -67,18 +79,15 @@ const ItemPageFrame: FC<Props> = ({ item, changeBtn }) => {
       if (info?.userId === userId) return;
     }
 
-    await request(postView, false, `questions/view/${id}`);
+    await request(postView, false, `${url}/view/${id}`);
   }
 
   return (
     <div className="pt-8 sm:pt-14 pb-20 sm:pb-28 max-w-5xl mx-auto">
       <ItemPageBar
         item={item}
-        favouriteSettings={{
-          storeName: 'favouriteQuestions',
-          dataUrl: 'favourites/questions/:id',
-        }}
-        reactionsUrl="questions"
+        favouriteSettings={favouriteSettings}
+        reactionsUrl={url}
         className="mb-4"
       />
       <ItemInfo
@@ -138,16 +147,12 @@ const ItemPageFrame: FC<Props> = ({ item, changeBtn }) => {
           <CreateCommentForm
             title="Комментировать"
             placeholder="Комментарий..."
-            url={`questions/comment/${id}`}
+            url={`${url}/comment/${id}`}
             createComment={createComment}
           />
 
           {comments.length > 0 && (
-            <CommentsList
-              url="questions"
-              comments={comments}
-              className="mt-6"
-            />
+            <CommentsList url={url} comments={comments} className="mt-6" />
           )}
         </>
       )}

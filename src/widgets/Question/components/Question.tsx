@@ -8,6 +8,11 @@ const Question: FC<QuestionType> = (item) => {
     <ItemPageFrame
       item={item}
       changeBtn={<ChangeQuestionModal itemId={item.id} />}
+      favouriteSettings={{
+        storeName: 'favouriteQuestions',
+        dataUrl: 'favourites/questions/:id',
+      }}
+      url="questions"
     />
   );
 };

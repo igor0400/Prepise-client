@@ -2,9 +2,9 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { BlockType } from '../../entities/Block';
-import { QuestionType } from '../../entities/Question';
 import { api, CenteredLoader, PageWrapper, useRequest } from '../../shared';
 import { NotFound } from '../../shared';
+import Block from '../../widgets/Block';
 
 interface Props {
   data: BlockType | undefined;
@@ -12,7 +12,7 @@ interface Props {
 
 const BlockQuestionsPage: NextPage<Props> = () => {
   const { request } = useRequest(false);
-  const [data, setData] = useState<QuestionType | null>(null);
+  const [data, setData] = useState<BlockType | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -56,7 +56,7 @@ const BlockQuestionsPage: NextPage<Props> = () => {
 
   return (
     <PageWrapper title={`Prepise » ${title}`} description={title}>
-      Block
+      <Block {...data} />
     </PageWrapper>
   );
 };

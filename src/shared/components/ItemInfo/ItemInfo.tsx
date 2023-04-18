@@ -4,8 +4,8 @@ import React, { FC } from 'react';
 
 interface Props {
   section: string;
-  position: string;
-  company: string;
+  position?: string;
+  company?: string;
 }
 
 const ItemInfo: FC<Props> = ({ section, position, company }) => {

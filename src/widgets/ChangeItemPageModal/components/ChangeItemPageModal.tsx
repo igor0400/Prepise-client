@@ -90,7 +90,7 @@ const ChangeItemPageModal: FC<Props> = ({
           className="text-sm sm:text-base"
           onClick={onOpen}
         >
-          Изменить вопрос
+          Изменить
         </InlineBtn>
       </div>
 

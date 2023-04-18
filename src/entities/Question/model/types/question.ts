@@ -19,7 +19,7 @@ export interface QuestionType {
   usedUsersInfo: any[];
   comments: any[];
   tags: any[];
-  block: any[];
+  block: any;
   user: any;
   createdAt: string;
   updatedAt: string;
