@@ -20,6 +20,7 @@ import Section from './Section';
 import { postView } from '../lib/api/postView';
 import { BlockType } from '../../../entities/Block';
 import { UserItems } from '../../../entities/User';
+import QuestionLineCard from '../../../entities/QuestionLineCard';
 
 interface Props {
   item: QuestionType | BlockType;
@@ -49,14 +50,12 @@ const ItemPageFrame: FC<Props> = ({
     authorId,
     usedUsersInfo,
     commented,
-    questions = [],
+    type,
+    questions: itemQuestions = [],
     comments: initialComments,
   } = { ...item };
 
-  console.log(questions);
-
-  // отрисовать вопросы и сделать удаление их
-
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [showImgs, setShowImgs] = useState(true);
   const userId = useTypedSelector((state) => state.user.data?.id);
   const [comments, setComments] = useState(
@@ -72,6 +71,7 @@ const ItemPageFrame: FC<Props> = ({
     if (userId) {
       postData();
     }
+    if (itemQuestions.length > 0) setQuestions(itemQuestions);
   }, []);
 
   async function postData() {
@@ -81,6 +81,12 @@ const ItemPageFrame: FC<Props> = ({
 
     await request(postView, false, `${url}/view/${id}`);
   }
+
+  const deleteQuestion = (questionId: number) => {
+    setQuestions((state) => state.filter(({ id }) => id !== questionId));
+  };
+
+  // сделать форму для ответов на тесты и отметить выполненные в блоке тостов
 
   return (
     <div className="pt-8 sm:pt-14 pb-20 sm:pb-28 max-w-5xl mx-auto">
@@ -101,6 +107,21 @@ const ItemPageFrame: FC<Props> = ({
           className="mt-4 bg-slate-200 p-2 rounded"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
+      )}
+
+      {questions?.length > 0 && (
+        <Section
+          title={type === 'default' ? 'Вопросы' : 'Тесты'}
+          className="flex flex-col gap-2"
+        >
+          {questions.map((item) => (
+            <QuestionLineCard
+              key={item.id}
+              {...item}
+              deleteItem={deleteQuestion}
+            />
+          ))}
+        </Section>
       )}
 
       {imgs?.length > 0 && showImgs && (

@@ -4,12 +4,15 @@ import ChangeQuestionModal from '../../forms/ChangeQuestionModal';
 import ItemPageFrame from '../../ItemPageFrame';
 
 const Question: FC<QuestionType> = (item) => {
+  const { id, type } = item;
+
   return (
     <ItemPageFrame
       item={item}
-      changeBtn={<ChangeQuestionModal itemId={item.id} />}
+      changeBtn={<ChangeQuestionModal itemId={id} />}
       favouriteSettings={{
-        storeName: 'favouriteQuestions',
+        storeName:
+          type === 'default' ? 'favouriteQuestions' : 'favouriteTestQuestions',
         dataUrl: 'favourites/questions/:id',
       }}
       url="questions"

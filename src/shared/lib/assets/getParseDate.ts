@@ -18,10 +18,11 @@ const months = [
 
 const getMinsEnd = (minutes: number) => {
   const end = +String(minutes).slice(-1);
+  const isNeedChange = minutes < 10 || minutes > 14;
 
-  if (end === 1) return 'у';
+  if (end === 1 && isNeedChange) return 'у';
 
-  if (end < 5 && end > 1) return 'ы';
+  if (end < 5 && end > 1 && isNeedChange) return 'ы';
 
   return '';
 };

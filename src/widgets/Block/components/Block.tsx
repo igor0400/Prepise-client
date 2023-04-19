@@ -4,12 +4,15 @@ import ChangeBlockModal from '../../forms/ChangeBlockModal';
 import ItemPageFrame from '../../ItemPageFrame';
 
 const Block: FC<BlockType> = (item) => {
+  const { id, type } = item;
+
   return (
     <ItemPageFrame
       item={item}
-      changeBtn={<ChangeBlockModal itemId={item.id} />}
+      changeBtn={<ChangeBlockModal itemId={id} />}
       favouriteSettings={{
-        storeName: 'favouriteBlocks',
+        storeName:
+          type === 'default' ? 'favouriteBlocks' : 'favouriteTestBlocks',
         dataUrl: 'favourites/blocks/:id',
       }}
       url="blocks"

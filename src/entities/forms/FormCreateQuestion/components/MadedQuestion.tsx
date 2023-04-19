@@ -13,7 +13,7 @@ interface Props {
 }
 
 const MadedQuestion: FC<Props> = ({ id, title, type }) => {
-  const { request, loading } = useRequest();
+  const { request, loading } = useRequest(true, true);
   const dispatch = useDispatch();
 
   const handledDleteQuestion = async () => {

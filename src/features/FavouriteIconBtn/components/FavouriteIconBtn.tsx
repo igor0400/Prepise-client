@@ -1,12 +1,8 @@
 import Image from 'next/image';
-import { FC, useMemo } from 'react';
+import { FC, MouseEvent, useMemo } from 'react';
 import favouriteInline from '../../../../public/images/icons/fvourite-inline.svg';
 import favouriteFilled from '../../../../public/images/icons/fvourite-filled.svg';
-import {
-  useRedirectToLogin,
-  useRequest,
-  useTypedSelector,
-} from '../../../shared';
+import { useRequest, useTypedSelector } from '../../../shared';
 import { postFavourite } from '../lib/api/postFavourite';
 import { deleteFavourite } from '../lib/api/deleteFavourite';
 import {
@@ -50,7 +46,8 @@ const FavouriteIconBtn: FC<Props> = ({
     return false;
   }, [favouriteItems]);
 
-  const addItem = async () => {
+  const addItem = async (e: MouseEvent<HTMLElement>) => {
+    e.preventDefault();
     const url = dataUrl.replaceAll(':id', String(iId));
 
     if (isFavourite) {

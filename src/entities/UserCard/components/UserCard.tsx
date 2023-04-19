@@ -14,9 +14,9 @@ const UserCard: FC<Props> = ({ favouriteBtn, item }) => {
 
   return (
     <Card>
-      <CardBody>
-        <div className="flex justify-between items-start">
-          <Link href={type === 'user' ? `/users/${id}` : `/companies/${id}`}>
+      <Link href={type === 'user' ? `/users/${id}` : `/companies/${id}`}>
+        <CardBody>
+          <div className="flex justify-between items-start">
             <div className="flex">
               <Avatar
                 className="w-14 h-14"
@@ -30,21 +30,21 @@ const UserCard: FC<Props> = ({ favouriteBtn, item }) => {
                 )}
               </div>
             </div>
-          </Link>
 
-          {favouriteBtn}
-        </div>
+            {favouriteBtn}
+          </div>
 
-        {description && (
-          <p className="pt-2 font-medium text-sm">
-            {sliceText(description, 60)}
+          {description && (
+            <p className="pt-2 font-medium text-sm">
+              {sliceText(description, 60)}
+            </p>
+          )}
+
+          <p className="text-blue-500 text-end text-sm pt-1 sm:pt-2">
+            {getStringTags(tags, 20)}
           </p>
-        )}
-
-        <p className="text-blue-500 text-end text-sm pt-1 sm:pt-2">
-          {getStringTags(tags, 20)}
-        </p>
-      </CardBody>
+        </CardBody>
+      </Link>
     </Card>
   );
 };
