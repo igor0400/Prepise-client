@@ -56,6 +56,7 @@ const CreateReplyForm: FC<Props> = ({
         isInvalid={Boolean(errors[id])}
         setValue={setValue}
         disablePadding
+        labelFontW={600}
       />
       <Button
         type={isLoading ? 'button' : 'submit'}

@@ -16,6 +16,7 @@ interface Props {
   addItem?: (func: Function) => any;
   style?: CSSProperties;
   disablePadding?: boolean;
+  labelFontW?: number;
 }
 
 const FormTextarea: FC<Props> = ({
@@ -28,6 +29,7 @@ const FormTextarea: FC<Props> = ({
   addItem,
   style,
   disablePadding = false,
+  labelFontW = 500,
 }) => {
   const [textareaValue, setTextareaValue] = useState<string>('');
 
@@ -55,7 +57,9 @@ const FormTextarea: FC<Props> = ({
       })}
       style={{ maxWidth: '100%', ...style }}
     >
-      <FormLabel htmlFor={id}>{label}</FormLabel>
+      <FormLabel htmlFor={id} style={{ fontWeight: labelFontW }}>
+        {label}
+      </FormLabel>
 
       <SunEditor
         setContents={textareaValue}

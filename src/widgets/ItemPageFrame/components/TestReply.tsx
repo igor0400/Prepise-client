@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import CreateReplyForm from '../../../features/forms/CreateReplyForm';
 import { useTypedSelector } from '../../../shared';
+import ReplyView from './ReplyView';
 
 interface Props {
   replies: any[];
@@ -13,19 +14,11 @@ const TestReply: FC<Props> = ({ replies, questionId }) => {
 
   useEffect(() => {
     for (let reply of replies) {
-      // if (reply.authorId === userId) setReply(reply);
+      if (reply.authorId === userId) setReply(reply);
     }
   }, [replies]);
 
-  // сделать title жирнее
-  // отрисовать reply, сделать изменение и тд
-
-  if (reply)
-    return (
-      <div className="border-2 p-3 rounded-md">
-        <div dangerouslySetInnerHTML={{ __html: reply.text }}></div>
-      </div>
-    );
+  if (reply) return <ReplyView reply={reply} />;
 
   const createReply = (reply: any) => {
     setReply(reply);

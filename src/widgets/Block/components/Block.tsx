@@ -6,14 +6,17 @@ import ItemPageFrame from '../../ItemPageFrame';
 const Block: FC<BlockType> = (item) => {
   const { id, type } = item;
 
+  const isDefault = type === 'default';
+  const storeName = isDefault ? 'favouriteBlocks' : 'favouriteTestBlocks';
+  const url = isDefault ? 'blocks' : 'test-blocks';
+
   return (
     <ItemPageFrame
       item={item}
       changeBtn={<ChangeBlockModal itemId={id} />}
       favouriteSettings={{
-        storeName:
-          type === 'default' ? 'favouriteBlocks' : 'favouriteTestBlocks',
-        dataUrl: 'favourites/blocks/:id',
+        storeName,
+        dataUrl: `favourites/${url}/:id`,
       }}
       url="blocks"
     />

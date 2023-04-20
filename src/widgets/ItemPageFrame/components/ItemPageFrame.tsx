@@ -88,8 +88,6 @@ const ItemPageFrame: FC<Props> = ({
     setQuestions((state) => state.filter(({ id }) => id !== questionId));
   };
 
-  // сделать форму для ответов на тесты и отметить выполненные в блоке тестов
-  
   return (
     <div className="pt-8 sm:pt-14 pb-20 sm:pb-28 max-w-5xl mx-auto">
       <ItemPageBar
@@ -102,13 +100,16 @@ const ItemPageFrame: FC<Props> = ({
         section={section}
         position={interviewPosition}
         company={defaultQuestionInfo?.interviewCompany}
+        questions={authorId === userId ? undefined : questions}
       />
+
       {content && (
         <div
-          className="mt-4 bg-slate-200 p-2 rounded"
+          className="mt-4 bg-slate-200 p-2 sm:p-3 rounded"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
       )}
+
       {questions?.length > 0 && (
         <Section
           title={type === 'default' ? 'Вопросы' : 'Тесты'}
@@ -123,6 +124,7 @@ const ItemPageFrame: FC<Props> = ({
           ))}
         </Section>
       )}
+
       {imgs?.length > 0 && showImgs && (
         <Section title="Изображения">
           <ImgsGalary
@@ -132,6 +134,7 @@ const ItemPageFrame: FC<Props> = ({
           />
         </Section>
       )}
+
       {files?.length > 0 && (
         <Section title="Файлы">
           <div className="flex flex-col gap-1">
@@ -141,6 +144,7 @@ const ItemPageFrame: FC<Props> = ({
           </div>
         </Section>
       )}
+
       {tags?.length > 0 && (
         <Section title="Теги">
           <div className="flex flex-wrap gap-1">
@@ -150,6 +154,7 @@ const ItemPageFrame: FC<Props> = ({
           </div>
         </Section>
       )}
+
       <ItemPageToolbar
         className="mt-12"
         authorId={authorId}
@@ -157,7 +162,7 @@ const ItemPageFrame: FC<Props> = ({
         changeBtn={changeBtn}
       />
 
-      {testQuestionInfo && (
+      {testQuestionInfo && authorId !== userId && (
         <>
           <Divider className="my-6" style={{ borderBottomWidth: 2 }} />
           <TestReply replies={testQuestionInfo?.replies} questionId={id} />

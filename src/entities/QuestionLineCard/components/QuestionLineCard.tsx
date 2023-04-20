@@ -3,11 +3,13 @@ import Image from 'next/image';
 import React, { FC, MouseEvent, MouseEventHandler, useMemo } from 'react';
 import { QuestionType } from '../../Question/model/types/question';
 import { DeleteIcon } from '@chakra-ui/icons';
-
-import viewesIcon from '../../../../public/images/icons/view.svg';
 import Link from 'next/link';
 import { useRequest, useTypedSelector } from '../../../shared';
 import { deleteQuestion } from '../lib/api/deleteQuestion';
+import classNames from 'classnames';
+
+import viewesIcon from '../../../../public/images/icons/view.svg';
+import doneIcon from '../../../../public/images/icons/done-arrow.svg';
 
 interface Props extends QuestionType {
   deleteItem: (itemId: number) => any;
@@ -30,7 +32,17 @@ const QuestionLineCard: FC<Props> = ({
       if (info.userId === userId && info.view) return true;
     }
     return false;
-  }, [userId]);
+  }, [userId, usedUsersInfo]);
+
+  const isDone = useMemo(() => {
+    if (authorId === userId) return false;
+
+    for (let info of usedUsersInfo) {
+      if (info.userId === userId && info.done) return true;
+    }
+
+    return false;
+  }, [userId, usedUsersInfo]);
 
   const handleClick = async (e: MouseEvent<SVGElement>) => {
     e.preventDefault();
@@ -46,7 +58,9 @@ const QuestionLineCard: FC<Props> = ({
 
   return (
     <Card
-      className="max-w-lg"
+      className={classNames('max-w-lg', {
+        'border border-blue-500': isDone,
+      })}
       style={isViewed ? { background: '#EAEAEA' } : undefined}
     >
       <Link href={type === 'default' ? `/questions/${id}` : `/tests/${id}`}>
@@ -56,6 +70,10 @@ const QuestionLineCard: FC<Props> = ({
         >
           <p>{title}</p>
           <div className="flex items-center gap-2">
+            {isDone && (
+              <Image src={doneIcon} alt="done" width={16} height={16} />
+            )}
+
             <div className="flex gap-0.5 items-center">
               <span>{viewes}</span>
               <Image
