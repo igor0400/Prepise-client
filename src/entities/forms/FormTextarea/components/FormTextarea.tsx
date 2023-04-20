@@ -2,6 +2,7 @@ import { CSSProperties, FC, useEffect, useState } from 'react';
 import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { settings } from '../configs/textarea-config';
+import classNames from 'classnames';
 
 const SunEditor = dynamic(import('suneditor-react'), { ssr: false });
 
@@ -9,11 +10,12 @@ interface Props {
   id: string;
   label: string;
   placeholder: string;
-  error: string;
+  error?: string;
   isInvalid: boolean;
   setValue: Function;
-  addItem: (func: Function) => any;
+  addItem?: (func: Function) => any;
   style?: CSSProperties;
+  disablePadding?: boolean;
 }
 
 const FormTextarea: FC<Props> = ({
@@ -25,11 +27,12 @@ const FormTextarea: FC<Props> = ({
   setValue,
   addItem,
   style,
+  disablePadding = false,
 }) => {
   const [textareaValue, setTextareaValue] = useState<string>('');
 
   useEffect(() => {
-    addItem(clearValue);
+    if (addItem) addItem(clearValue);
   }, []);
 
   function clearValue() {
@@ -47,8 +50,10 @@ const FormTextarea: FC<Props> = ({
   return (
     <FormControl
       isInvalid={isInvalid}
-      className="pt-7 flex flex-col text-gray-600"
-      style={style}
+      className={classNames('flex flex-col text-gray-600', {
+        'pt-7': !disablePadding,
+      })}
+      style={{ maxWidth: '100%', ...style }}
     >
       <FormLabel htmlFor={id}>{label}</FormLabel>
 

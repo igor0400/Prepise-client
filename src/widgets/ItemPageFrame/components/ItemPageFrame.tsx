@@ -21,6 +21,7 @@ import { postView } from '../lib/api/postView';
 import { BlockType } from '../../../entities/Block';
 import { UserItems } from '../../../entities/User';
 import QuestionLineCard from '../../../entities/QuestionLineCard';
+import TestReply from './TestReply';
 
 interface Props {
   item: QuestionType | BlockType;
@@ -51,6 +52,7 @@ const ItemPageFrame: FC<Props> = ({
     usedUsersInfo,
     commented,
     type,
+    testQuestionInfo = undefined,
     questions: itemQuestions = [],
     comments: initialComments,
   } = { ...item };
@@ -86,8 +88,8 @@ const ItemPageFrame: FC<Props> = ({
     setQuestions((state) => state.filter(({ id }) => id !== questionId));
   };
 
-  // сделать форму для ответов на тесты и отметить выполненные в блоке тостов
-
+  // сделать форму для ответов на тесты и отметить выполненные в блоке тестов
+  
   return (
     <div className="pt-8 sm:pt-14 pb-20 sm:pb-28 max-w-5xl mx-auto">
       <ItemPageBar
@@ -101,14 +103,12 @@ const ItemPageFrame: FC<Props> = ({
         position={interviewPosition}
         company={defaultQuestionInfo?.interviewCompany}
       />
-
       {content && (
         <div
           className="mt-4 bg-slate-200 p-2 rounded"
           dangerouslySetInnerHTML={{ __html: content }}
         ></div>
       )}
-
       {questions?.length > 0 && (
         <Section
           title={type === 'default' ? 'Вопросы' : 'Тесты'}
@@ -123,7 +123,6 @@ const ItemPageFrame: FC<Props> = ({
           ))}
         </Section>
       )}
-
       {imgs?.length > 0 && showImgs && (
         <Section title="Изображения">
           <ImgsGalary
@@ -133,7 +132,6 @@ const ItemPageFrame: FC<Props> = ({
           />
         </Section>
       )}
-
       {files?.length > 0 && (
         <Section title="Файлы">
           <div className="flex flex-col gap-1">
@@ -143,7 +141,6 @@ const ItemPageFrame: FC<Props> = ({
           </div>
         </Section>
       )}
-
       {tags?.length > 0 && (
         <Section title="Теги">
           <div className="flex flex-wrap gap-1">
@@ -153,13 +150,19 @@ const ItemPageFrame: FC<Props> = ({
           </div>
         </Section>
       )}
-
       <ItemPageToolbar
         className="mt-12"
         authorId={authorId}
         withUser={userId !== authorId}
         changeBtn={changeBtn}
       />
+
+      {testQuestionInfo && (
+        <>
+          <Divider className="my-6" style={{ borderBottomWidth: 2 }} />
+          <TestReply replies={testQuestionInfo?.replies} questionId={id} />
+        </>
+      )}
 
       {commented && (
         <>
