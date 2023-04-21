@@ -13,8 +13,9 @@ const ReplyView: FC<Props> = ({ reply }) => {
       <h6 className="mb-2 text-sm sm:text-base font-semibold">Ваш ответ</h6>
 
       <div
-        className={classNames('bg-gray-200 p-2 sm:p-3 rounded-md', {
-          'border border-green-500': accepted,
+        className={classNames('bg-gray-200 p-2 sm:p-3 rounded-md border', {
+          'border-green-500': accepted,
+          'border-blue-500': !accepted,
         })}
       >
         <div dangerouslySetInnerHTML={{ __html: text }}></div>
