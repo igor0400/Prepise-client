@@ -6,11 +6,7 @@ import { api, CenteredLoader, PageWrapper, useRequest } from '../../shared';
 import { NotFound } from '../../shared';
 import Block from '../../widgets/Block';
 
-interface Props {
-  data: BlockType | undefined;
-}
-
-const BlockQuestionsPage: NextPage<Props> = () => {
+const BlockQuestionsPage: NextPage = () => {
   const { request } = useRequest(false);
   const [data, setData] = useState<BlockType | null>(null);
   const [loading, setLoading] = useState(true);

@@ -6,11 +6,7 @@ import { api, CenteredLoader, PageWrapper, useRequest } from '../../shared';
 import { NotFound } from '../../shared';
 import Question from '../../widgets/Question';
 
-interface Props {
-  data: QuestionType | undefined;
-}
-
-const TestPage: NextPage<Props> = () => {
+const TestPage: NextPage = () => {
   const { request } = useRequest(false);
   const [data, setData] = useState<QuestionType | null>(null);
   const [loading, setLoading] = useState(true);

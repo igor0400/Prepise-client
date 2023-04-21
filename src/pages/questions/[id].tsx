@@ -11,11 +11,7 @@ import {
 import { NotFound } from '../../shared';
 import Question from '../../widgets/Question';
 
-interface Props {
-  data: QuestionType | undefined;
-}
-
-const QuestionPage: NextPage<Props> = () => {
+const QuestionPage: NextPage = () => {
   const { request } = useRequest(false);
   const [data, setData] = useState<QuestionType | null>(null);
   const [loading, setLoading] = useState(true);

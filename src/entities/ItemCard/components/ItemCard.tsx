@@ -39,6 +39,7 @@ const ItemCard: FC<Props> = ({
   testQuestionInfo,
   size = 'big',
   link,
+  questions = [],
 }) => {
   const { data } = useTypedSelector((state) => state.user);
   const uId = data?.id;
@@ -61,6 +62,20 @@ const ItemCard: FC<Props> = ({
 
     return false;
   }, [data]);
+
+  const doned = useMemo(() => {
+    let result = 0;
+
+    if (questions?.length < 1) return result;
+
+    for (let question of questions) {
+      for (let info of question.usedUsersInfo) {
+        if (info.userId === uId && info.done) result++;
+      }
+    }
+
+    return result;
+  }, [questions, uId]);
 
   return (
     <Card>
@@ -133,8 +148,19 @@ const ItemCard: FC<Props> = ({
             </p>
           )}
 
+          {doned > 0 && (
+            <p style={{ color: '#3284FF' }} className="text-sm font-medium">
+              Выполнено:{' '}
+              <span>
+                {doned} / {questions.length}
+              </span>
+            </p>
+          )}
+
           <div className="flex justify-between mt-auto pt-10 items-end">
-            <UserInCard {...user} date={createdAt} />
+            <object type="owo/uwu">
+              <UserInCard {...user} date={createdAt} />
+            </object>
             {testQuestionInfo ? (
               <TestStats
                 likes={likes}

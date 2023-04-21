@@ -18,7 +18,7 @@ const UserInItemPageCard: FC<Props> = ({ userId }) => {
   }, []);
 
   async function setUserData() {
-    const data = await request(getUser, true, userId);
+    const data = await request(getUser, false, userId);
     if (data) setUser(data);
   }
 
