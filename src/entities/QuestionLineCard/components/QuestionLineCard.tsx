@@ -58,10 +58,11 @@ const QuestionLineCard: FC<Props> = ({
 
   return (
     <Card
-      className={classNames('max-w-lg', {
-        'border border-blue-500': isDone,
-      })}
-      style={isViewed ? { background: '#EAEAEA' } : undefined}
+      className="max-w-lg"
+      style={{
+        background: isViewed ? '#EAEAEA' : undefined,
+        border: isDone ? '1px solid #3b82f6' : undefined,
+      }}
     >
       <Link href={type === 'default' ? `/questions/${id}` : `/tests/${id}`}>
         <CardBody
