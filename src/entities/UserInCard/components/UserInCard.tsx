@@ -1,6 +1,7 @@
 import { Avatar } from '@chakra-ui/react';
 import classNames from 'classnames';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { getFileUrl, parseDate } from '../../../shared';
 import { UserType } from '../../User';
@@ -12,10 +13,14 @@ interface Props extends UserType {
 
 const UserInCard: FC<Props> = ({ id, avatar, name, date, className }) => {
   const parsedDate = parseDate(date);
+  const router = useRouter();
 
   return (
-    <Link
-      href={`/users/${id}`}
+    <div
+      onClick={(e) => {
+        e.preventDefault();
+        router.push(`/users/${id}`);
+      }}
       className={classNames('flex', {
         [className ?? '']: className,
       })}
@@ -36,7 +41,7 @@ const UserInCard: FC<Props> = ({ id, avatar, name, date, className }) => {
         <p className="text-sm font-medium text-opacity-70">{name}</p>
         <p className="text-xs text-gray-500">{parsedDate}</p>
       </div>
-    </Link>
+    </div>
   );
 };
 

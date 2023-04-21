@@ -158,9 +158,8 @@ const ItemCard: FC<Props> = ({
           )}
 
           <div className="flex justify-between mt-auto pt-10 items-end">
-            <object type="owo/uwu">
-              <UserInCard {...user} date={createdAt} />
-            </object>
+            <UserInCard {...user} date={createdAt} />
+
             {testQuestionInfo ? (
               <TestStats
                 likes={likes}
