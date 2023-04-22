@@ -1,11 +1,10 @@
-import { useMediaQuery } from '@chakra-ui/react';
-import classNames from 'classnames';
 import { FC } from 'react';
 import { UserItems } from '../../../../entities/User';
 import { useTypedSelector } from '../../../../shared';
 import MainContentFilters from '../../MainContentFilters';
 import MainContentItems from '../../MainContentItems';
 import { FiltersState } from '../model/store/filtersSilce';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 interface Props {
   name: keyof FiltersState;
@@ -26,7 +25,6 @@ interface Props {
 const MainContentFrame: FC<Props> = (props) => {
   const { name, title, description } = props;
   const filters = useTypedSelector((state) => state.filters[name]);
-  const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
 
   return (
     <div className="w-full">
@@ -35,13 +33,16 @@ const MainContentFrame: FC<Props> = (props) => {
         <p className="py-5 text-sm sm:text-base max-w-4xl">{description}</p>
       </div>
 
-      <div
-        className={classNames('w-full', {
-          flex: !isSmallerThan1279,
-        })}
-      >
+      <div className="w-full min-[1280px]:flex">
         <MainContentFilters name={name} />
-        <MainContentItems {...props} filtersItem={filters} />
+        <Scrollbars
+          autoHide
+          style={{ width: '100%' }}
+          autoHeight
+          autoHeightMax={924}
+        >
+          <MainContentItems {...props} filtersItem={filters} />
+        </Scrollbars>
       </div>
     </div>
   );

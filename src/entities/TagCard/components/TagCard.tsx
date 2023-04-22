@@ -13,6 +13,9 @@ interface Props {
 const TagCard: FC<Props> = ({ favouriteBtn, item, size = 'big' }) => {
   const { name, description, used } = item;
 
+  // прибить использования к низу
+  // сделать полосу navbar на главной 
+
   return (
     <Card>
       <CardBody>

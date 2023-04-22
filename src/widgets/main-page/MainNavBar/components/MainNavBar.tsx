@@ -5,7 +5,6 @@ import { navItems } from '../configs/nav-items';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from '@chakra-ui/react';
-import classNames from 'classnames';
 
 const MainNavBar: FC = () => {
   const router = useRouter();
@@ -23,14 +22,10 @@ const MainNavBar: FC = () => {
 
   return (
     <ul
-      className={classNames('border-r-2', {
-        'pt-10': !isSmallerThan1279,
-        'pt-8': isSmallerThan1279,
-      })}
+      className="pt-10 max-[1279px]:pt-8 fixed z-50"
       style={{
         minWidth: isSmallerThan1279 ? '50px' : '252px',
         minHeight: '100vh',
-        borderColor: '#edeff2',
       }}
     >
       {navItems.map((item, i) => (

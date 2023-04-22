@@ -42,6 +42,7 @@ const MainContentItems: FC<Props> = ({
   const { request, loading } = useRequest(false);
   const filters = useTypedSelector((state) => state.filters[name]);
   const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
+  const [isSmallerThan1650] = useMediaQuery('(max-width: 1650px)');
   const [isSmallerThan490] = useMediaQuery('(max-width: 490px)');
   const { Component: ItemCard, link } = itemCard;
 
@@ -77,11 +78,15 @@ const MainContentItems: FC<Props> = ({
   return (
     <Fade
       in={true}
-      className="grid w-full auto-rows-min gap-2 sm:gap-3 2xl:gap-4"
+      className="grid w-full auto-rows-min gap-2 sm:gap-3 2xl:gap-4 pt-0.5 pl-0.5 pb-3 pr-3"
       style={
-        !isSmallerThan490
-          ? { gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))' }
-          : undefined
+        isSmallerThan490
+          ? undefined
+          : {
+              gridTemplateColumns: `repeat(auto-fill, minmax(${
+                isSmallerThan1650 ? 300 : 360
+              }px, 1fr))`,
+            }
       }
     >
       {items.map((item) => (

@@ -8,10 +8,13 @@ const MainContent: FC = () => {
   const nav = searchParams.get('nav');
   const Content = tabsContent[nav] ?? tabsContent.questions;
 
-  // сделать скроллы
-
   return (
-    <div className="flex w-full flex-col px-10 pt-10 pb-28 max-[330px]:px-2 max-[1279px]:px-3 max-[1279px]:pt-8 max-[1279px]:pb-20">
+    <div
+      className="flex w-full flex-col border-l-2 px-10 pt-10 pb-28 max-[330px]:px-2 max-[1279px]:px-3 max-[1279px]:pt-8 max-[1279px]:pb-20 ml-[50px] min-[1280px]:ml-[252px]"
+      style={{
+        borderColor: '#edeff2',
+      }}
+    >
       <Content />
     </div>
   );
