@@ -129,33 +129,31 @@ const ItemCard: FC<Props> = ({
             </div>
           )}
 
-          {isViewed && (
-            <p className="text-sm pt-2 text-gray-500">Просмотрено</p>
-          )}
-          {isDone && (
-            <p
-              className="text-sm font-medium flex"
-              style={{ color: '#3284FF' }}
-            >
-              Выполнено
-              <Image
-                className="ml-0.5"
-                src={doneImg}
-                alt="done"
-                width={12}
-                height={12}
-              />
-            </p>
-          )}
-
-          {doned > 0 && (
-            <p style={{ color: '#3284FF' }} className="text-sm font-medium">
-              Выполнено:{' '}
-              <span>
-                {doned} / {questions.length}
-              </span>
-            </p>
-          )}
+          <div className="pt-2 text-sm">
+            {isViewed && !isDone && !doned && (
+              <p className="text-gray-500">Просмотрено</p>
+            )}
+            {isDone && (
+              <p className="font-medium flex" style={{ color: '#3284FF' }}>
+                Выполнено
+                <Image
+                  className="ml-0.5"
+                  src={doneImg}
+                  alt="done"
+                  width={12}
+                  height={12}
+                />
+              </p>
+            )}
+            {doned > 0 && (
+              <p style={{ color: '#3284FF' }} className="font-medium">
+                Выполнено:{' '}
+                <span>
+                  {doned} / {questions.length}
+                </span>
+              </p>
+            )}
+          </div>
 
           <div className="flex justify-between mt-auto pt-10 items-end">
             <UserInCard {...user} date={createdAt} />

@@ -67,10 +67,7 @@ const MainContentItems: FC<Props> = ({
   if (loading)
     return (
       <CenteredLoader
-        className={classNames('', {
-          'pb-32': !isSmallerThan1279,
-          'mt-20': isSmallerThan1279,
-        })}
+        className="max-[1279px]:mt-20 min-[1279px]:pb-32"
         style={isSmallerThan1279 ? { height: 'fit-content' } : undefined}
       />
     );
@@ -80,13 +77,10 @@ const MainContentItems: FC<Props> = ({
   return (
     <Fade
       in={true}
-      className={classNames('grid w-full auto-rows-min', {
-        'gap-4': !isSmallerThan1279,
-        'gap-2': isSmallerThan1279,
-      })}
+      className="grid w-full auto-rows-min gap-2 sm:gap-3 2xl:gap-4"
       style={
         !isSmallerThan490
-          ? { gridTemplateColumns: 'repeat(auto-fit, 400px)' }
+          ? { gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))' }
           : undefined
       }
     >

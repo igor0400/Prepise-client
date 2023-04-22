@@ -2,25 +2,16 @@ import { FC } from 'react';
 import { tabsContent } from '../configs/tabs-content';
 //@ts-ignore
 import { useSearchParams } from 'next/navigation';
-import { useMediaQuery } from '@chakra-ui/react';
-import classNames from 'classnames';
 
 const MainContent: FC = () => {
   const searchParams = useSearchParams();
   const nav = searchParams.get('nav');
-  const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
-  const [isSmallerThan330] = useMediaQuery('(max-width: 330px)');
   const Content = tabsContent[nav] ?? tabsContent.questions;
 
+  // сделать скроллы
+
   return (
-    <div
-      className={classNames('flex w-full flex-col', {
-        'pt-8 pb-20': isSmallerThan1279,
-        'px-10 pt-10 pb-28': !isSmallerThan1279 && !isSmallerThan330,
-        'px-3': isSmallerThan1279 && !isSmallerThan330,
-        'px-2': isSmallerThan330,
-      })}
-    >
+    <div className="flex w-full flex-col px-10 pt-10 pb-28 max-[330px]:px-2 max-[1279px]:px-3 max-[1279px]:pt-8 max-[1279px]:pb-20">
       <Content />
     </div>
   );
