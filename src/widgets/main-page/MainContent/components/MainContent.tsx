@@ -10,7 +10,7 @@ const MainContent: FC = () => {
 
   return (
     <div
-      className="flex w-full flex-col border-l-2 px-10 pt-10 pb-28 max-[330px]:px-2 max-[1279px]:px-3 max-[1279px]:pt-8 max-[1279px]:pb-20 ml-[50px] min-[1280px]:ml-[252px]"
+      className="min-h-screen flex w-full flex-col border-l-2 px-10 pt-10 pb-28 max-[330px]:px-2 max-[1279px]:px-3 max-[1279px]:pt-8 max-[1279px]:pb-20 ml-[50px] min-[1280px]:ml-[252px]"
       style={{
         borderColor: '#edeff2',
       }}

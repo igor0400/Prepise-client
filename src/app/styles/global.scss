@@ -64,3 +64,10 @@ main {
     height: calc(100vh - 65px);
   }
 }
+
+.min-full-height {
+  min-height: calc(100vh - 80px);
+  @media screen and (max-width: 640px) {
+    min-height: calc(100vh - 65px);
+  }
+}

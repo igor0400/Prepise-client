@@ -11,7 +11,6 @@ import { getItems } from '../lib/api/getItems';
 import { FiltersState, FiltersStateItem } from '../../MainContentFrame';
 import { filterItems } from '../lib/assets/filterItems';
 import { UserItems } from '../../../../entities/User';
-import classNames from 'classnames';
 
 interface Props {
   filtersItem: FiltersStateItem;

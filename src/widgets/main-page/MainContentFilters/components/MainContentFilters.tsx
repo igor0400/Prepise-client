@@ -67,7 +67,7 @@ const MainContentFilters: FC<Props> = ({ name }) => {
           </Modal>
         </>
       ) : (
-        <div className="pr-5 w-96 h-min">
+        <div className="pr-5 max-w-[300px] h-min">
           <View name={name} />
         </div>
       )}

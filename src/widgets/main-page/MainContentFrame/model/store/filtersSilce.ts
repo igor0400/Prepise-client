@@ -1,25 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-
-export interface FilterItem {
-  id: number;
-  title?: string;
-  name?: string;
-}
-
-export interface StateItem {
-  tags: FilterItem[];
-  companies: FilterItem[];
-  positions: FilterItem[];
-  sections: FilterItem[];
-}
-
-export interface FiltersState {
-  questions: StateItem;
-  blockQuestions: StateItem;
-  tests: StateItem;
-  blockTests: StateItem;
-}
+import { FiltersState, Payload, StateItem } from '../types/store';
 
 const filtersAdapter = createEntityAdapter();
 
@@ -36,12 +17,6 @@ const initialState: FiltersState = {
   tests: stateItem,
   blockTests: stateItem,
 };
-
-interface Payload {
-  itemName: keyof FiltersState;
-  itemEntity: keyof StateItem;
-  item: FilterItem;
-}
 
 export const filtersSlice = createSlice({
   name: 'filters',

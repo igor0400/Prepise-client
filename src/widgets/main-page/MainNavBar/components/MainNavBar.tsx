@@ -24,8 +24,7 @@ const MainNavBar: FC = () => {
     <ul
       className="pt-10 max-[1279px]:pt-8 fixed z-50"
       style={{
-        minWidth: isSmallerThan1279 ? '50px' : '252px',
-        minHeight: '100vh',
+        width: isSmallerThan1279 ? '50px' : '252px',
       }}
     >
       {navItems.map((item, i) => (
