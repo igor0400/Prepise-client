@@ -47,6 +47,7 @@ import Comment from './components/Comment/Comment';
 import Likes from './components/Likes/Likes';
 import Dislikes from './components/Dislikes/Dislikes';
 import { generateFormData } from './lib/assets/generateFormData';
+import { socket } from './lib/api/socket';
 
 export {
   Button,
@@ -98,5 +99,6 @@ export {
   Likes,
   Dislikes,
   generateFormData,
+  socket,
 };
 export type { ResponseUserData };

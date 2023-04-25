@@ -1,64 +1,25 @@
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import { QuestionType } from '../../entities/Question';
-import {
-  api,
-  CenteredLoader,
-  PageWrapper,
-  useRequest,
-} from '../../shared';
-import { NotFound } from '../../shared';
+import { PageWrapper } from '../../shared';
+import { useGetInfoById } from '../../shared/lib/hooks/useGetInfoById';
+import PageLoader from '../../widgets/PageLoader';
 import Question from '../../widgets/Question';
 
 const QuestionPage: NextPage = () => {
-  const { request } = useRequest(false);
-  const [data, setData] = useState<QuestionType | null>(null);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-
-  useEffect(() => {
-    getData();
-  }, [router]);
-
-  async function getData() {
-    const id = router?.query?.id;
-    if (!id) return;
-
-    setLoading(true);
-
-    const value = await request(async () => {
-      const args = await api.get(`questions/default/${id}`).json();
-      return args;
-    }, false);
-
-    if (value) setData(value);
-
-    setLoading(false);
-  }
-
-  if (loading) {
-    return (
-      <PageWrapper title="Prepise » Ищем вопрос...">
-        <CenteredLoader />
-      </PageWrapper>
-    );
-  }
-
-  if (!data) {
-    return (
-      <PageWrapper title="Prepise » Вопрос не найден">
-        <NotFound>Вопрос не найден</NotFound>
-      </PageWrapper>
-    );
-  }
-
-  const { title } = data;
+  const { data, loading } = useGetInfoById<QuestionType>('questions/default');
 
   return (
-    <PageWrapper title={`Prepise » ${title}`} description={title}>
-      <Question {...data} />
-    </PageWrapper>
+    <PageLoader
+      loading={loading}
+      data={data}
+      loadingTitle="Ищем вопрос..."
+      notFoundTitle="Вопрос не найден"
+      notFoundText="Вопрос не найден"
+    >
+      <PageWrapper title={`Prepise » ${data?.title}`} description={data?.title}>
+        {data && <Question {...data} />}
+      </PageWrapper>
+    </PageLoader>
   );
 };
 
