@@ -20,7 +20,7 @@ const PageLoader: FC<Props> = ({
 }) => {
   if (loading) {
     return (
-      <PageWrapper title={`Prepise » ${loadingTitle}`}>
+      <PageWrapper title={loadingTitle}>
         <CenteredLoader />
       </PageWrapper>
     );
@@ -28,7 +28,7 @@ const PageLoader: FC<Props> = ({
 
   if (!data) {
     return (
-      <PageWrapper title={`Prepise » ${notFoundTitle}`}>
+      <PageWrapper title={notFoundTitle}>
         <NotFound>{notFoundText}</NotFound>
       </PageWrapper>
     );

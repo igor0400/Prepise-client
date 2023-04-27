@@ -16,7 +16,7 @@ const BlockQuestionsPage: NextPage = () => {
       notFoundTitle="Блок не найден"
       notFoundText="Блок вопросов не найден"
     >
-      <PageWrapper title={`Prepise » ${data?.title}`} description={data?.title}>
+      <PageWrapper title={data?.title} description={data?.title}>
         {data && <Block {...data} />}
       </PageWrapper>
     </PageLoader>

@@ -4,7 +4,7 @@ import { PageWrapper } from '../shared';
 
 const Home: NextPage = () => {
   return (
-    <PageWrapper title="Prepise » Профиль">
+    <PageWrapper title="Профиль">
       <WithAuthWrapper>profile</WithAuthWrapper>
     </PageWrapper>
   );

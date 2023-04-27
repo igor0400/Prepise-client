@@ -16,7 +16,7 @@ const TestPage: NextPage = () => {
       notFoundTitle="Тест не найден"
       notFoundText="Тест не найден"
     >
-      <PageWrapper title={`Prepise » ${data?.title}`} description={data?.title}>
+      <PageWrapper title={data?.title} description={data?.title}>
         {data && <Question {...data} />}
       </PageWrapper>
     </PageLoader>

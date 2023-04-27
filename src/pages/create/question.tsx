@@ -6,7 +6,7 @@ import WithAuthWrapper from '../../entities/WithAuthWrapper';
 const CreateQuestion: NextPage = () => {
   return (
     <WithAuthWrapper>
-      <PageWrapper title="Prepise » Создание вопроса" nopadding>
+      <PageWrapper title="Создание вопроса" nopadding>
         <CreateQuestionForm />
       </PageWrapper>
     </WithAuthWrapper>

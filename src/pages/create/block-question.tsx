@@ -6,7 +6,7 @@ import CreateBlockQuestionForm from '../../widgets/forms/CreateBlockQuestionForm
 const CreateBlockQuestion: NextPage = () => {
   return (
     <WithAuthWrapper>
-      <PageWrapper title="Prepise » Создание вопроса для блока" nopadding>
+      <PageWrapper title="Создание вопроса для блока" nopadding>
         <CreateBlockQuestionForm />
       </PageWrapper>
     </WithAuthWrapper>

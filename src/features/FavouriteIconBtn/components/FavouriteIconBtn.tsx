@@ -9,6 +9,7 @@ import {
   addItem as storeAddFavourite,
   deleteItem as storeDeleteFavourite,
   UserItems,
+  UserType,
 } from '../../../entities/User';
 import { useDispatch } from 'react-redux';
 import { Spinner } from '@chakra-ui/react';
@@ -16,7 +17,7 @@ import { QuestionType } from '../../../entities/Question';
 import { BlockType } from '../../../entities/Block';
 
 interface Props {
-  item: QuestionType | BlockType;
+  item: QuestionType | BlockType | UserType;
   storeName: UserItems;
   dataUrl: string;
   size?: 'big' | 'small' | number;

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { UsedUserInfo } from '../../../shared';
 
 import FavouriteIconBtn from '../../../features/FavouriteIconBtn';

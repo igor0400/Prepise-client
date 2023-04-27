@@ -6,7 +6,7 @@ import CreateTestForm from '../../widgets/forms/CreateTestForm';
 const CreateTest: NextPage = () => {
   return (
     <WithAuthWrapper>
-      <PageWrapper title="Prepise » Создание теста" nopadding>
+      <PageWrapper title="Создание теста" nopadding>
         <CreateTestForm />
       </PageWrapper>
     </WithAuthWrapper>

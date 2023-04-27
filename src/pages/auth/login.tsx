@@ -6,7 +6,7 @@ import WithoutAuthWrapper from '../../entities/WithoutAuthWrapper';
 const Login: NextPage = () => {
   return (
     <WithoutAuthWrapper>
-      <PageWrapper title="Prepise » Вход" nopadding>
+      <PageWrapper title="Вход" nopadding>
         <LoginForm />
       </PageWrapper>
     </WithoutAuthWrapper>

@@ -6,7 +6,7 @@ import WithoutAuthWrapper from '../../entities/WithoutAuthWrapper';
 const Register: NextPage = () => {
   return (
     <WithoutAuthWrapper>
-      <PageWrapper title="Prepise » Регистрация" nopadding>
+      <PageWrapper title="Регистрация" nopadding>
         <RegisterForm />
       </PageWrapper>
     </WithoutAuthWrapper>

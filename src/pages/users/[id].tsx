@@ -16,7 +16,7 @@ const UserPage: NextPage = () => {
       notFoundTitle="Пользователь не найден"
       notFoundText="Пользователь не найден"
     >
-      <PageWrapper title={`Prepise » ${data?.name}`} description={data?.name}>
+      <PageWrapper title={data?.name} description={data?.name}>
         {data && <UserPageFrame {...data} />}
       </PageWrapper>
     </PageLoader>
