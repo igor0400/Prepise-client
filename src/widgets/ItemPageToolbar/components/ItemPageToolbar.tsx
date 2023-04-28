@@ -1,7 +1,8 @@
 import classNames from 'classnames';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { FC, ReactNode, useMemo } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
+import InlineFollowBtn from '../../../entities/InlineFollowBtn';
+import InlineUnfollowBtn from '../../../entities/InlineUnfollowBtn';
 import UserInItemPageCard from '../../../entities/UserInItemPageCard';
 import FollowBtn from '../../../features/FollowBtn';
 import ShareBtn from '../../../features/ShareBtn';
@@ -48,9 +49,9 @@ const ItemPageToolbar: FC<Props> = ({
         ) : (
           <>
             {isUserFollowed ? (
-              <UnfollowBtn authorId={authorId} />
+              <UnfollowBtn authorId={authorId} Btn={InlineUnfollowBtn} />
             ) : (
-              <FollowBtn authorId={authorId} />
+              <FollowBtn authorId={authorId} Btn={InlineFollowBtn} />
             )}
           </>
         )}

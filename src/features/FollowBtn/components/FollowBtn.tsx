@@ -1,21 +1,16 @@
-import { Spinner } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../entities/User';
-import {
-  InlineBtn,
-  useRedirectToLogin,
-  useRequest,
-  useTypedSelector,
-} from '../../../shared';
+import { useRequest } from '../../../shared';
 import { getUser } from '../lib/api/getUser';
 import { postFollowing } from '../lib/api/postFollowing';
 
 interface Props {
   authorId: number;
+  Btn: Function;
 }
 
-const FollowBtn: FC<Props> = ({ authorId }) => {
+const FollowBtn: FC<Props> = ({ authorId, Btn }) => {
   const { request, loading } = useRequest(true, true);
   const dispatch = useDispatch();
 
@@ -31,15 +26,7 @@ const FollowBtn: FC<Props> = ({ authorId }) => {
     }
   };
 
-  return (
-    <InlineBtn onClick={onClick} border="blue" className="text-sm sm:text-base">
-      {loading ? (
-        <Spinner size="sm" className="mx-20" />
-      ) : (
-        'Подписаться на автора'
-      )}
-    </InlineBtn>
-  );
+  return <Btn onClick={onClick} loading={loading} />;
 };
 
 export default FollowBtn;

@@ -1,15 +1,15 @@
-import { Spinner } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteItem } from '../../../entities/User';
-import { InlineBtn, useRequest } from '../../../shared';
+import { useRequest } from '../../../shared';
 import { deleteFollowing } from '../lib/api/deleteFollowing';
 
 interface Props {
   authorId: number;
+  Btn: Function;
 }
 
-const UnfollowBtn: FC<Props> = ({ authorId }) => {
+const UnfollowBtn: FC<Props> = ({ authorId, Btn }) => {
   const { request, loading } = useRequest(true, true);
   const dispatch = useDispatch();
 
@@ -28,15 +28,7 @@ const UnfollowBtn: FC<Props> = ({ authorId }) => {
     }
   };
 
-  return (
-    <InlineBtn onClick={onClick} border="blue" className="text-sm sm:text-base">
-      {loading ? (
-        <Spinner size="sm" className="mx-20" />
-      ) : (
-        'Отписаться от автора'
-      )}
-    </InlineBtn>
-  );
+  return <Btn onClick={onClick} loading={loading} />;
 };
 
 export default UnfollowBtn;

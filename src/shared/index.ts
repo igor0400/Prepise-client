@@ -48,6 +48,7 @@ import Likes from './components/Likes/Likes';
 import Dislikes from './components/Dislikes/Dislikes';
 import { generateFormData } from './lib/assets/generateFormData';
 import { socket } from './lib/api/socket';
+import OutlineBtn from './components/OutlineBtn/OutlineBtn';
 
 export {
   Button,
@@ -93,6 +94,7 @@ export {
   DownloadFile,
   parseFileSize,
   InlineBtn,
+  OutlineBtn,
   useRedirectToLogin,
   sortByDate,
   Comment,
