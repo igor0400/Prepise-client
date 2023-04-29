@@ -1,12 +1,26 @@
 import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import { UserType } from '../../entities/User';
 import { PageWrapper } from '../../shared';
+import { useGetInfoById } from '../../shared/lib/hooks/useGetInfoById';
+import PageLoader from '../../widgets/PageLoader';
+import UserPageFrame from '../../widgets/UserPage';
 
 const CompanyPage: NextPage = () => {
-  const router = useRouter();
-  const id = router?.query?.id;
+  const { data, loading } = useGetInfoById<UserType>('companies');
 
-  return <PageWrapper title={`Prepise`}>Сомпания с id: {id}</PageWrapper>;
+  return (
+    <PageLoader
+      loading={loading}
+      data={data}
+      loadingTitle="Ищем компанию..."
+      notFoundTitle="Компания не найдена"
+      notFoundText="Компания не найдена"
+    >
+      <PageWrapper title={data?.name} description={data?.name}>
+        {data && <UserPageFrame {...data} />}
+      </PageWrapper>
+    </PageLoader>
+  );
 };
 
 export default CompanyPage;

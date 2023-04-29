@@ -9,8 +9,9 @@ import { useTypedSelector } from './useTypedSelector';
 export const useRequest = (
   secure: boolean = true,
   redirect: boolean = false,
+  initialLoading: boolean = false,
 ) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(initialLoading);
   const [error, setError] = useState<any>(false);
   const toast = useToast();
   const dispatch = useDispatch();

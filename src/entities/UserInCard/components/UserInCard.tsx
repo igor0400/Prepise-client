@@ -11,15 +11,16 @@ interface Props extends UserType {
   className?: string;
 }
 
-const UserInCard: FC<Props> = ({ id, avatar, name, date, className }) => {
+const UserInCard: FC<Props> = ({ id, avatar, name, date, className, type }) => {
   const parsedDate = parseDate(date);
   const router = useRouter();
+  const url = type === 'user' ? 'users' : 'companies';
 
   return (
     <div
       onClick={(e) => {
         e.preventDefault();
-        router.push(`/users/${id}`);
+        router.push(`/${url}/${id}`);
       }}
       className={classNames('flex', {
         [className ?? '']: className,

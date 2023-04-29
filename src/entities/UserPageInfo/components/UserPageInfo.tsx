@@ -35,11 +35,13 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
       />
       <div>
         <div className="flex gap-1 sm:gap-1.5 items-center">
-          <h1 className="text-xl sm:text-2xl font-semibold break-all">{name}</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold break-all">
+            {name}
+          </h1>
           {favouriteBtn}
         </div>
         {(location || online) && (
-          <div className="py-2">
+          <div className="pt-2">
             {location && (
               <div className="flex gap-1">
                 <Image
@@ -56,7 +58,7 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
           </div>
         )}
 
-        {followBtn}
+        <div className="pt-2">{followBtn}</div>
       </div>
     </div>
   );

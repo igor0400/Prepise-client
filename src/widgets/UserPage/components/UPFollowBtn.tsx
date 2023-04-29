@@ -7,9 +7,10 @@ import { useTypedSelector } from '../../../shared';
 
 interface Props {
   authorId: number;
+  type: 'user' | 'company';
 }
 
-const UPFollowBtn: FC<Props> = ({ authorId }) => {
+const UPFollowBtn: FC<Props> = ({ authorId, type }) => {
   const followings = useTypedSelector(
     (state) => state.user.data?.followingUsers,
   );
@@ -21,9 +22,12 @@ const UPFollowBtn: FC<Props> = ({ authorId }) => {
   return (
     <>
       {isUserFollowed ? (
-        <UnfollowBtn authorId={authorId} Btn={UserPageUnfollowBtn} />
+        <UnfollowBtn
+          authorId={authorId}
+          Btn={UserPageUnfollowBtn}
+        />
       ) : (
-        <FollowBtn authorId={authorId} Btn={UserPageFollowBtn} />
+        <FollowBtn authorId={authorId} type={type} Btn={UserPageFollowBtn} />
       )}
     </>
   );

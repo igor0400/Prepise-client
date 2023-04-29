@@ -4,7 +4,7 @@ import { api } from '../api/default-requests';
 import { useRequest } from './useRequest';
 
 export const useGetInfoById = <T>(startUrl: string) => {
-  const { request, loading } = useRequest(false);
+  const { request, loading } = useRequest(false, false, true);
   const [data, setData] = useState<T | null>(null);
   const router = useRouter();
 
