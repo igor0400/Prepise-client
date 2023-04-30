@@ -76,7 +76,7 @@ const MainContentItems: FC<Props> = ({
 
   return (
     <Fade
-      in={true}
+      in
       className="grid w-full auto-rows-min gap-2 sm:gap-3 2xl:gap-4 pt-0.5 pl-0.5 pb-3 pr-3"
       style={
         isSmallerThan490

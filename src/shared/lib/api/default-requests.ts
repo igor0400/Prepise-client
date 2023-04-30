@@ -3,6 +3,7 @@ import ky from 'ky';
 export const api = ky.create({
   prefixUrl: process.env.NEXT_PUBLIC_SERVER,
   credentials: 'include',
+  timeout: 100000,
 });
 
 // сделано в функции для того чтобы постоянно получать актуальный токен

@@ -17,10 +17,11 @@ import doneImg from '../../../../public/images/icons/done-arrow.svg';
 
 interface Props {
   favouriteBtn: ReactNode;
-  activeTags: FilterItem[];
+  activeTags?: FilterItem[];
   size?: 'big' | 'small';
   [key: string]: any;
   link: string;
+  compact?: boolean;
 }
 
 const ItemCard: FC<Props> = ({
@@ -40,11 +41,14 @@ const ItemCard: FC<Props> = ({
   size = 'big',
   link,
   questions = [],
+  compact = false,
 }) => {
   const { data } = useTypedSelector((state) => state.user);
   const uId = data?.id;
 
   const isViewed = useMemo(() => {
+    if (!usedUsersInfo) return false;
+
     for (let { questionId, userId, view, blockId } of usedUsersInfo) {
       if (questionId === id && uId === userId && view) return true;
       if (blockId === id && uId === userId && view) return true;
@@ -84,6 +88,7 @@ const ItemCard: FC<Props> = ({
           className={classNames('flex flex-col rounded-md', {
             'bg-gray-200': isViewed,
           })}
+          style={{ padding: size === 'big' ? 20 : 15 }}
         >
           <div className="flex justify-between items-start">
             <h4
@@ -155,16 +160,21 @@ const ItemCard: FC<Props> = ({
             )}
           </div>
 
-          <div className="flex justify-between mt-auto pt-10 items-end">
-            <UserInCard {...user} date={createdAt} />
+          <div
+            className={classNames('flex justify-between mt-auto items-end', {
+              'pt-10': !compact,
+            })}
+          >
+            {user ? <UserInCard {...user} date={createdAt} /> : <div></div>}
 
             {testQuestionInfo ? (
               <TestStats
                 likes={likes}
                 replies={testQuestionInfo?.replies?.length ?? 0}
+                size={size}
               />
             ) : (
-              <QuestionStats likes={likes} viewes={viewes} />
+              <QuestionStats likes={likes} viewes={viewes} size={size} />
             )}
           </div>
         </CardBody>

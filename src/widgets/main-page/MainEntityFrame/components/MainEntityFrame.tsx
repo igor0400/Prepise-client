@@ -81,7 +81,7 @@ const MainEntityFrame: FC<Props> = ({
         <EmptyItems itemsName={itemsName} />
       ) : (
         <Fade
-          in={true}
+          in
           className={classNames('pt-3 grid w-full', {
             'gap-2': isSmallerThan380,
             'gap-3': !isSmallerThan380,

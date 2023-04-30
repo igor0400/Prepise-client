@@ -50,7 +50,7 @@ const PageWrapper: FC<Props> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Fade
-        in={true}
+        in
         className={classNames('content-wrapper h-full', {
           'padding-50': !nopadding,
         })}

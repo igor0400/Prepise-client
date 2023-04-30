@@ -1,10 +1,11 @@
 import { Avatar, useMediaQuery } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
-import { getFileUrl } from '../../../shared';
+import { getFileUrl, OutlineBtn, useTypedSelector } from '../../../shared';
 
 import point from '../../../../public/images/icons/point.svg';
 import Image from 'next/image';
 import { UserType } from '../../User/model/types/user';
+import Link from 'next/link';
 
 interface Props {
   user: UserType;
@@ -13,7 +14,8 @@ interface Props {
 }
 
 const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
-  const { avatar, name, connection, location } = user;
+  const userId = useTypedSelector((state) => state.user.data?.id);
+  const { avatar, name, connection, location, id } = user;
   const online = connection?.online;
   const isDefaultAvatar = avatar.split('/')[2] === 'default';
   const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
@@ -38,10 +40,10 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
           <h1 className="text-xl sm:text-2xl font-semibold break-all">
             {name}
           </h1>
-          {favouriteBtn}
+          {userId !== id && favouriteBtn}
         </div>
         {(location || online) && (
-          <div className="pt-2">
+          <div className="pt-1">
             {location && (
               <div className="flex gap-1">
                 <Image
@@ -58,7 +60,20 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
           </div>
         )}
 
-        <div className="pt-2">{followBtn}</div>
+        <div className="pt-2">
+          {userId === id ? (
+            <Link href="/profile">
+              <OutlineBtn
+                className="text-xs sm:text-sm py-[4px] px-[10px] sm:px-2"
+                bg="gray"
+              >
+                Редактировать
+              </OutlineBtn>
+            </Link>
+          ) : (
+            followBtn
+          )}
+        </div>
       </div>
     </div>
   );
