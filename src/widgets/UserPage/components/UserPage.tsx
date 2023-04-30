@@ -7,6 +7,7 @@ import FavouriteIconBtn from '../../../features/FavouriteIconBtn';
 import { CustomTag } from '../../../shared';
 import UserPageTabs from '../../UserPageTabs';
 import UPFollowBtn from './FollowBtn';
+import Section from './Section';
 
 interface FavSettings {
   storeName: UserItems;
@@ -40,21 +41,25 @@ const UserPage: FC<UserType> = (item) => {
       <UserPageStat user={item} className="pt-4" />
 
       {description && (
-        <div className="pt-4">
-          <h3 className="font-semibold text-lg">Описание</h3>
-          <p className="font-medium text-gray-700">{description}</p>
-        </div>
+        <Section title="Описание">
+          <p className="font-medium text-sm sm:text-base text-gray-700">
+            {description}
+          </p>
+        </Section>
       )}
 
       {tags?.length > 0 && (
-        <div className="pt-4">
-          <h3 className="font-semibold text-lg mb-1">Теги</h3>
-          <div className="flex flex-wrap gap-1">
+        <Section title="Теги">
+          <div className="flex flex-wrap gap-1 mt-0.5">
             {tags.map(({ name }, i) => (
-              <CustomTag key={i} label={name} />
+              <CustomTag
+                key={i}
+                label={name}
+                size={isLargerThan640 ? 'md' : 'sm'}
+              />
             ))}
           </div>
-        </div>
+        </Section>
       )}
 
       <UserPageTabs
