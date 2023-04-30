@@ -55,6 +55,7 @@ const ItemPageFrame: FC<Props> = ({
     testQuestionInfo = undefined,
     questions: itemQuestions = [],
     comments: initialComments,
+    user,
   } = { ...item };
 
   const [questions, setQuestions] = useState<QuestionType[]>([]);
@@ -158,6 +159,7 @@ const ItemPageFrame: FC<Props> = ({
       <ItemPageToolbar
         className="mt-12"
         authorId={authorId}
+        authorType={user?.type}
         withUser={userId !== authorId}
         changeBtn={changeBtn}
       />

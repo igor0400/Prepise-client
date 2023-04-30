@@ -12,6 +12,7 @@ import { InlineBtn, useTypedSelector } from '../../../shared';
 interface Props {
   className?: string;
   authorId: number;
+  authorType: 'user' | 'company';
   withUser?: boolean;
   changeBtn: ReactNode;
 }
@@ -21,6 +22,7 @@ const ItemPageToolbar: FC<Props> = ({
   authorId,
   changeBtn,
   withUser = true,
+  authorType,
 }) => {
   const userId = useTypedSelector((state) => state.user.data?.id);
   const followings = useTypedSelector(
@@ -51,7 +53,11 @@ const ItemPageToolbar: FC<Props> = ({
             {isUserFollowed ? (
               <UnfollowBtn authorId={authorId} Btn={InlineUnfollowBtn} />
             ) : (
-              <FollowBtn authorId={authorId} Btn={InlineFollowBtn} />
+              <FollowBtn
+                type={authorType}
+                authorId={authorId}
+                Btn={InlineFollowBtn}
+              />
             )}
           </>
         )}
