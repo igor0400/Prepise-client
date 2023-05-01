@@ -15,15 +15,13 @@ interface FavSettings {
 }
 
 const UserPage: FC<UserType> = (item) => {
-  const { type, description, tags, questions, blocks, id } = item;
+  const { type, description, tags, questions, blocks, posts, id } = item;
   const isUser = type === 'user';
   const favouriteSettings: FavSettings = {
     dataUrl: `favourites/${isUser ? 'users' : 'companies'}/:id`,
     storeName: isUser ? 'favouriteUsers' : 'favouriteCompanies',
   };
   const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
-
-  // сделать посты
 
   return (
     <div className="max-w-3xl mx-auto pt-8 sm:pt-14 pb-20 sm:pb-28">
@@ -64,6 +62,7 @@ const UserPage: FC<UserType> = (item) => {
 
       <UserPageTabs
         className="mt-5"
+        posts={posts}
         questions={questions.filter((i) => i.type === 'default')}
         tests={questions.filter((i) => i.type === 'test')}
         blocksQuestions={blocks.filter((i) => i.type === 'default')}

@@ -35,7 +35,7 @@ const MainContentFrame: FC<Props> = (props) => {
 
       <div className="min-[1280px]:flex">
         <MainContentFilters name={name} />
-        <Scrollbars autoHide autoHeight autoHeightMax={952}>
+        <Scrollbars autoHide autoHeight autoHeightMax={1000}>
           <MainContentItems {...props} filtersItem={filters} />
         </Scrollbars>
       </div>

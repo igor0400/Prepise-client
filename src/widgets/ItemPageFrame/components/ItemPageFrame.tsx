@@ -1,4 +1,4 @@
-import { Divider } from '@chakra-ui/react';
+import { Divider, useMediaQuery } from '@chakra-ui/react';
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { CommentType } from '../../../entities/Comment';
 import ItemPageBar from '../../ItemPageBar';
@@ -64,6 +64,8 @@ const ItemPageFrame: FC<Props> = ({
   const [comments, setComments] = useState(
     sortByDate<CommentType>(initialComments, 'newest'),
   );
+  const [isLargerThan768] = useMediaQuery('(min-width: 768px)');
+  const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
   const { request } = useRequest(true);
 
   const createComment = (comment: any) => {
@@ -88,6 +90,8 @@ const ItemPageFrame: FC<Props> = ({
   const deleteQuestion = (questionId: number) => {
     setQuestions((state) => state.filter(({ id }) => id !== questionId));
   };
+
+  const imgsGalarySize = isLargerThan768 ? 150 : isLargerThan640 ? 100 : 80;
 
   return (
     <div className="pt-8 sm:pt-14 pb-20 sm:pb-28 max-w-5xl mx-auto">
@@ -132,6 +136,8 @@ const ItemPageFrame: FC<Props> = ({
             className="flex gap-1 flex-wrap"
             imgs={imgs.map((i) => i.url)}
             setShow={setShowImgs}
+            imgHeight={imgsGalarySize}
+            imgWidth={imgsGalarySize}
           />
         </Section>
       )}

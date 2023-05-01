@@ -4,9 +4,12 @@ import PanelFrame from './PanelFrame';
 import { QuestionType } from '../../../entities/Question';
 import { BlockType } from '../../../entities/Block';
 import Scrollbars from 'react-custom-scrollbars-2';
+import { PostType } from '../../../entities/Post';
+import Posts from '../../Posts';
 
 interface Props {
   className?: string;
+  posts: PostType[];
   questions: QuestionType[];
   tests: QuestionType[];
   blocksQuestions: BlockType[];
@@ -15,6 +18,7 @@ interface Props {
 
 const UserPageTabs: FC<Props> = ({
   className,
+  posts,
   questions,
   blocksQuestions,
   tests,
@@ -23,7 +27,7 @@ const UserPageTabs: FC<Props> = ({
   return (
     <Tabs className={className}>
       <Scrollbars autoHide autoHeight>
-        <TabList className="min-w-max w-full mb-4 mt-1">
+        <TabList className="min-w-max w-full mb-4 mt-1 mx-1">
           <Tab>Посты</Tab>
           <Tab>Вопросы</Tab>
           <Tab>Блоки вопросов</Tab>
@@ -33,7 +37,9 @@ const UserPageTabs: FC<Props> = ({
       </Scrollbars>
 
       <TabPanels>
-        <TabPanel>Посты</TabPanel>
+        <TabPanel style={{ padding: '10px 0 16px' }}>
+          <Posts items={posts} />
+        </TabPanel>
         <TabPanel style={{ padding: '10px 0 16px' }}>
           <PanelFrame
             items={questions}

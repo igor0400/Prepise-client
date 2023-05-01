@@ -1,3 +1,5 @@
+import { ImageType } from '../../../Image';
+
 export interface QuestionType {
   id: number;
   authorId: number;
@@ -13,7 +15,7 @@ export interface QuestionType {
   viewes: number;
   defaultQuestionInfo: any;
   testQuestionInfo: any;
-  imgs: any[];
+  imgs: ImageType[];
   files: any[];
   banned: any;
   usedUsersInfo: any[];
