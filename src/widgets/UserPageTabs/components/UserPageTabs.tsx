@@ -27,7 +27,7 @@ const UserPageTabs: FC<Props> = ({
   return (
     <Tabs className={className}>
       <Scrollbars autoHide autoHeight>
-        <TabList className="min-w-max w-full mb-4 mt-1 mx-1">
+        <TabList className="min-w-max w-full mb-4 mt-1 px-1">
           <Tab>Посты</Tab>
           <Tab>Вопросы</Tab>
           <Tab>Блоки вопросов</Tab>
