@@ -7,6 +7,9 @@ import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
 import { useRequest, CenteredLoader, EmptyItems } from '../../../../shared';
 import { getData } from '../lib/api/getData';
 
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import Scrollbars from 'react-custom-scrollbars-2';
+
 interface Props {
   title: string;
   description?: string;
@@ -34,6 +37,7 @@ const MainEntityFrame: FC<Props> = ({
   const { request, loading } = useRequest(false);
   const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
   const [isSmallerThan380] = useMediaQuery('(max-width: 380px)');
+  const [showDescr, setShowDescr] = useState(false);
 
   useEffect(() => {
     setData();
@@ -64,49 +68,63 @@ const MainEntityFrame: FC<Props> = ({
 
   return (
     <>
-      <h2 className="font-bold text-xl sm:text-2xl">{title}</h2>
-      {description && (
-        <p className="pt-5 text-sm sm:text-base max-w-4xl">{description}</p>
-      )}
+      <div className="pb-4">
+        <div
+          className="flex items-center gap-0.5 cursor-pointer w-fit"
+          onClick={() => setShowDescr((state) => !state)}
+        >
+          <h2 className="font-bold text-xl sm:text-2xl">{title}</h2>
+          <HelpOutlineIcon className="mt-1 text-xl sm:text-2xl" />
+        </div>
+        {showDescr && (
+          <Fade in>
+            <p className="pt-1.5 sm:pt-3 text-sm sm:text-base max-w-4xl">
+              {description}
+            </p>
+          </Fade>
+        )}
+      </div>
 
       <Input
         placeholder={searchPlaceholder}
-        className="w-64 mt-8"
+        className="w-64"
         onChange={onSearch}
       />
 
       {loading ? (
-        <CenteredLoader className="mt-20" style={{ height: 'fit-content' }} />
+        <CenteredLoader className="mt-28" style={{ height: 'fit-content' }} />
       ) : !items.length ? (
         <EmptyItems itemsName={itemsName} />
       ) : (
-        <Fade
-          in
-          className={classNames('pt-3 grid w-full', {
-            'gap-2': isSmallerThan380,
-            'gap-3': !isSmallerThan380,
-          })}
-          style={
-            !isSmallerThan380
-              ? { gridTemplateColumns: 'repeat(auto-fit, 300px)' }
-              : undefined
-          }
-        >
-          {items.map((item: any) => (
-            <ItemCard
-              size={isSmallerThan380 ? 'small' : 'big'}
-              key={item.id}
-              item={item}
-              favouriteBtn={
-                <FavouriteIconBtn
-                  size={isSmallerThan1279 ? 'small' : 'big'}
-                  item={item}
-                  {...favouriteSettings}
-                />
-              }
-            />
-          ))}
-        </Fade>
+        <Scrollbars autoHide autoHeight autoHeightMax={1000}>
+          <Fade
+            in
+            className={classNames('pt-3 grid w-full pl-0.5 pb-3 pr-3', {
+              'gap-2': isSmallerThan380,
+              'gap-3': !isSmallerThan380,
+            })}
+            style={
+              !isSmallerThan380
+                ? { gridTemplateColumns: 'repeat(auto-fit, 300px)' }
+                : undefined
+            }
+          >
+            {items.map((item: any) => (
+              <ItemCard
+                size={isSmallerThan380 ? 'small' : 'big'}
+                key={item.id}
+                item={item}
+                favouriteBtn={
+                  <FavouriteIconBtn
+                    size={isSmallerThan1279 ? 'small' : 'big'}
+                    item={item}
+                    {...favouriteSettings}
+                  />
+                }
+              />
+            ))}
+          </Fade>
+        </Scrollbars>
       )}
     </>
   );

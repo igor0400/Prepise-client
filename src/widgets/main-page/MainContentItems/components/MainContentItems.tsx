@@ -11,6 +11,7 @@ import { getItems } from '../lib/api/getItems';
 import { FiltersState, FiltersStateItem } from '../../MainContentFrame';
 import { filterItems } from '../lib/assets/filterItems';
 import { UserItems } from '../../../../entities/User';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 
 interface Props {
   filtersItem: FiltersStateItem;
@@ -67,7 +68,7 @@ const MainContentItems: FC<Props> = ({
   if (loading)
     return (
       <CenteredLoader
-        className="max-[1279px]:mt-20 min-[1279px]:pb-32"
+        className="max-[1279px]:mt-28 min-[1279px]:pb-32"
         style={isSmallerThan1279 ? { height: 'fit-content' } : undefined}
       />
     );
@@ -75,36 +76,38 @@ const MainContentItems: FC<Props> = ({
   if (!items?.length) return <EmptyItems itemsName={itemsName} />;
 
   return (
-    <Fade
-      in
-      className="grid w-full auto-rows-min gap-2 sm:gap-3 2xl:gap-4 pt-0.5 pl-0.5 pb-3 pr-3"
-      style={
-        isSmallerThan490
-          ? undefined
-          : {
-              gridTemplateColumns: `repeat(auto-fill, minmax(${
-                isSmallerThan1650 ? 300 : 360
-              }px, 1fr))`,
+    <Scrollbars autoHide autoHeight autoHeightMax={1000}>
+      <Fade
+        in
+        className="grid w-full auto-rows-min gap-2 sm:gap-3 2xl:gap-4 pt-0.5 pl-0.5 pb-3 pr-3"
+        style={
+          isSmallerThan490
+            ? undefined
+            : {
+                gridTemplateColumns: `repeat(auto-fill, minmax(${
+                  isSmallerThan1650 ? 300 : 360
+                }px, 1fr))`,
+              }
+        }
+      >
+        {items.map((item) => (
+          <ItemCard
+            link={link}
+            {...item}
+            favouriteBtn={
+              <FavouriteIconBtn
+                size={isSmallerThan1279 ? 'small' : 'big'}
+                item={item}
+                {...favouriteSettings}
+              />
             }
-      }
-    >
-      {items.map((item) => (
-        <ItemCard
-          link={link}
-          {...item}
-          favouriteBtn={
-            <FavouriteIconBtn
-              size={isSmallerThan1279 ? 'small' : 'big'}
-              item={item}
-              {...favouriteSettings}
-            />
-          }
-          activeTags={filtersItem.tags}
-          size={isSmallerThan1279 ? 'small' : 'big'}
-          key={item.id}
-        />
-      ))}
-    </Fade>
+            activeTags={filtersItem.tags}
+            size={isSmallerThan1279 ? 'small' : 'big'}
+            key={item.id}
+          />
+        ))}
+      </Fade>
+    </Scrollbars>
   );
 };
 

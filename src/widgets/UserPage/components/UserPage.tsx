@@ -23,8 +23,6 @@ const UserPage: FC<UserType> = (item) => {
   };
   const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
 
-  // сделать сотрудников у компаний
-
   return (
     <div className="max-w-3xl mx-auto pt-8 sm:pt-14 pb-20 sm:pb-28">
       <UserPageInfo
