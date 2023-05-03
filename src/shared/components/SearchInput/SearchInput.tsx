@@ -8,7 +8,7 @@ const SearchInput: FC = () => {
   const [inputFocus, setInputFocus] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // убрать их shared
+  // убрать из shared
 
   return (
     <>
