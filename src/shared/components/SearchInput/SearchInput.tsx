@@ -1,3 +1,4 @@
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { FC, useState } from 'react';
@@ -5,6 +6,9 @@ import search from '../../../../public/images/icons/search.svg';
 
 const SearchInput: FC = () => {
   const [inputFocus, setInputFocus] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // убрать их shared
 
   return (
     <>
@@ -13,6 +17,7 @@ const SearchInput: FC = () => {
           'search-input justify-between rounded-md ml-10 mr-2 sm:flex hidden',
           { 'border-2': inputFocus, 'p-0.5': !inputFocus },
         )}
+        onClick={onOpen}
       >
         <input
           className="font-semibold text-base p-2.5 h-9 grow"
@@ -29,7 +34,7 @@ const SearchInput: FC = () => {
           height={27}
         />
       </div>
-      <div className="grow sm:hidden flex mr-1">
+      <div className="grow sm:hidden flex mr-1"  onClick={onOpen}>
         <svg
           className="cursor-pointer ml-auto mr-1"
           width={35}
@@ -44,6 +49,21 @@ const SearchInput: FC = () => {
           />
         </svg>
       </div>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Поиск</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            В разработке...
+          </ModalBody>
+
+          <ModalFooter>
+            footer
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };
