@@ -1,10 +1,10 @@
 import { useMediaQuery } from '@chakra-ui/react';
 import { FC } from 'react';
 import FiltersItem from '../../FiltersItem';
-import { FiltersState } from '../../MainContentFrame';
+import { SlicedFiltersState } from '../../MainContentFrame';
 
 interface Props {
-  name: keyof FiltersState;
+  name: keyof SlicedFiltersState;
 }
 
 const View: FC<Props> = ({ name }) => {
