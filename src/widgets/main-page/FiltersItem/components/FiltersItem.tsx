@@ -14,8 +14,8 @@ import {
   addFilterItem,
   deleteFilterItem,
   FilterItem,
-  FiltersState,
   FiltersStateItem,
+  SlicedFiltersState,
 } from '../../MainContentFrame';
 import { getItems } from '../lib/api/getItems';
 
@@ -24,7 +24,7 @@ interface Props {
   label: string;
   url: string;
   name: keyof FiltersStateItem;
-  contentName: keyof FiltersState;
+  contentName: keyof SlicedFiltersState;
   marginTop?: number;
 }
 

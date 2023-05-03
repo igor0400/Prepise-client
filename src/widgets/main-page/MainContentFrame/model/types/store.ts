@@ -21,7 +21,7 @@ export interface FiltersState {
   companies: string;
 }
 
-export type SlicedPayloadItems = Omit<
+export type SlicedFiltersState = Omit<
   FiltersState,
   'tags' | 'users' | 'companies'
 >;
@@ -31,7 +31,7 @@ export type SimplePayloadItems = Omit<
 >;
 
 export interface SlicedPayload {
-  itemName: keyof SlicedPayloadItems;
+  itemName: keyof SlicedFiltersState;
   itemEntity: keyof StateItem;
   item: FilterItem;
 }
