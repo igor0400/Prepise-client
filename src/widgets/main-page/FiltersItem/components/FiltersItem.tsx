@@ -25,9 +25,17 @@ interface Props {
   url: string;
   name: keyof FiltersStateItem;
   contentName: keyof FiltersState;
+  marginTop?: number;
 }
 
-const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
+const FiltersItem: FC<Props> = ({
+  title,
+  label,
+  url,
+  name,
+  contentName,
+  marginTop = 5,
+}) => {
   const activeItems = useTypedSelector(
     (state) => state.filters[contentName][name],
   );
@@ -97,7 +105,7 @@ const FiltersItem: FC<Props> = ({ title, label, url, name, contentName }) => {
   };
 
   return (
-    <Card className="mt-5 filter-item">
+    <Card className={`mt-${marginTop} filter-item`}>
       <CardBody className="filter-item__body__with-padding">
         <h4 className="text-base md:text-center font-semibold">{title}</h4>
         <div className="pt-1 md:pt-3">

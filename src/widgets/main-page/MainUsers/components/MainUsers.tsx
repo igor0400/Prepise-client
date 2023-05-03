@@ -5,6 +5,7 @@ import MainEntityFrame from '../../MainEntityFrame';
 const MainUsers: FC = () => {
   return (
     <MainEntityFrame
+      name="users"
       title="Пользователи"
       description="Это список зарегистрированных пользователей. Вы можете подписаться на пользователя, перейдя в его профиль, и следить за его деятельностью."
       ItemCard={UserCard}

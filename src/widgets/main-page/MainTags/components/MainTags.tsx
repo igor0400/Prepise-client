@@ -5,6 +5,7 @@ import MainEntityFrame from '../../MainEntityFrame';
 const MainTags: FC = () => {
   return (
     <MainEntityFrame
+      name="tags"
       title="Теги"
       description="Тег - это ключевое слово или словосочетание, которое помогает понять тему вашего вопроса или блока. Использование правильных тегов облегчает другим пользователям поиск и ответ на ваш вопрос."
       ItemCard={TagCard}

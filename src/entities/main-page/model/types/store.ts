@@ -3,12 +3,18 @@ import { QuestionType } from '../../../Question';
 import { TagType } from '../../../Tag';
 import { UserType } from '../../../User';
 
+type Items<T> = T[] | null;
+interface Data<T> {
+  items: Items<T>;
+  allItems: Items<T>;
+}
+
 export interface MainPageState {
-  questions: QuestionType[] | null;
-  blockQuestions: BlockType[] | null;
-  tests: QuestionType[] | null;
-  blockTests: BlockType[] | null;
-  tags: TagType[] | null;
-  users: UserType[] | null;
-  companies: UserType[] | null;
+  questions: Data<QuestionType>;
+  blockQuestions: Data<BlockType>;
+  tests: Data<QuestionType>;
+  blockTests: Data<BlockType>;
+  tags: Data<TagType>;
+  users: Data<UserType>;
+  companies: Data<UserType>;
 }

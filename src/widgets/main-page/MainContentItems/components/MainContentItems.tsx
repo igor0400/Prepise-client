@@ -12,6 +12,8 @@ import { FiltersState, FiltersStateItem } from '../../MainContentFrame';
 import { filterItems } from '../lib/assets/filterItems';
 import { UserItems } from '../../../../entities/User';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import { setItemData, changeItemsData } from '../../../../entities/main-page';
+import { useDispatch } from 'react-redux';
 
 interface Props {
   filtersItem: FiltersStateItem;
@@ -20,7 +22,7 @@ interface Props {
     Component: FC<any>;
     link: string;
   };
-  name: keyof FiltersState;
+  name: keyof Omit<FiltersState, 'tags' | 'users' | 'companies'>;
   favouriteSettings: {
     storeName: UserItems;
     dataUrl: string;
@@ -36,32 +38,39 @@ const MainContentItems: FC<Props> = ({
   favouriteSettings,
   itemsName,
 }) => {
-  const [allItems, setAllItems] = useState<any[]>([]);
-  const [items, setItems] = useState<any[]>([]);
-  const [changeItems, setChangeItems] = useState(0);
   const { request, loading } = useRequest(false);
   const filters = useTypedSelector((state) => state.filters[name]);
   const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
   const [isSmallerThan1650] = useMediaQuery('(max-width: 1650px)');
   const [isSmallerThan490] = useMediaQuery('(max-width: 490px)');
   const { Component: ItemCard, link } = itemCard;
+  const { items, allItems } = useTypedSelector((state) => state.mainPage[name]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getData();
+    if (!items) {
+      getData();
+    }
   }, []);
 
   useEffect(() => {
-    if (changeItems !== 0) setItems(filterItems(allItems, filters));
-  }, [filters, changeItems]);
+    if (allItems) {
+      dispatch(
+        changeItemsData({
+          name,
+          data: filterItems(allItems, filters),
+        }),
+      );
+    }
+  }, [filters]);
 
   async function getData() {
     const data = await request(getItems, true, url);
 
     if (data) {
-      const sortedData = data.sort((a: any, b: any) => b.id - a.id);
-      setItems((state) => state.concat(sortedData));
-      setAllItems((state) => state.concat(sortedData));
-      setChangeItems((state) => state + 1);
+      dispatch(
+        setItemData({ name, data: filterItems(data, filters), allData: data }),
+      );
     }
   }
 

@@ -13,7 +13,7 @@ const View: FC<Props> = ({ name }) => {
   return (
     <>
       {isBigerThan1279 && (
-        <h3 className="text-xl font-semibold text-gray-400 text-center">
+        <h3 className="text-xl font-semibold text-gray-400 text-center pb-3">
           Фильтры
         </h3>
       )}
@@ -24,6 +24,7 @@ const View: FC<Props> = ({ name }) => {
         url="tags"
         name="tags"
         contentName={name}
+        marginTop={0}
       />
       <FiltersItem
         title="По разделам"

@@ -16,10 +16,27 @@ export interface FiltersState {
   blockQuestions: StateItem;
   tests: StateItem;
   blockTests: StateItem;
+  tags: string;
+  users: string;
+  companies: string;
 }
 
-export interface Payload {
-  itemName: keyof FiltersState;
+export type SlicedPayloadItems = Omit<
+  FiltersState,
+  'tags' | 'users' | 'companies'
+>;
+export type SimplePayloadItems = Omit<
+  FiltersState,
+  'questions' | 'blockQuestions' | 'tests' | 'blockTests'
+>;
+
+export interface SlicedPayload {
+  itemName: keyof SlicedPayloadItems;
   itemEntity: keyof StateItem;
   item: FilterItem;
+}
+
+export interface SimplePayload {
+  itemName: keyof SimplePayloadItems;
+  value: string;
 }

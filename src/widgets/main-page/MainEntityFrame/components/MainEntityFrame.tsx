@@ -4,13 +4,30 @@ import classNames from 'classnames';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { UserItems } from '../../../../entities/User';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
-import { useRequest, CenteredLoader, EmptyItems } from '../../../../shared';
+import {
+  useRequest,
+  CenteredLoader,
+  EmptyItems,
+  useTypedSelector,
+} from '../../../../shared';
 import { getData } from '../lib/api/getData';
 
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Scrollbars from 'react-custom-scrollbars-2';
+import {
+  changeItemsData,
+  MainPageState,
+  setItemData,
+} from '../../../../entities/main-page';
+import { useDispatch } from 'react-redux';
+import { addSimpleFilterItem } from '../../MainContentFrame';
+import { getFilteredItems } from '../lib/assets/getFilteredItems';
 
 interface Props {
+  name: keyof Omit<
+    MainPageState,
+    'questions' | 'blockQuestions' | 'tests' | 'blockTests'
+  >;
   title: string;
   description?: string;
   ItemCard: FC<any>;
@@ -24,6 +41,7 @@ interface Props {
 }
 
 const MainEntityFrame: FC<Props> = ({
+  name,
   title,
   description,
   ItemCard,
@@ -32,37 +50,50 @@ const MainEntityFrame: FC<Props> = ({
   itemsUrl,
   searchPlaceholder,
 }) => {
-  const [allItems, setAllItems] = useState<any[]>([]);
-  const [items, setItems] = useState<any[]>([]);
   const { request, loading } = useRequest(false);
   const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
   const [isSmallerThan380] = useMediaQuery('(max-width: 380px)');
   const [showDescr, setShowDescr] = useState(false);
+  const { items, allItems } = useTypedSelector((state) => state.mainPage[name]);
+  const filter = useTypedSelector((state) => state.filters[name]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setData();
+    if (!items) {
+      setData();
+    }
   }, []);
 
   async function setData() {
     const data = await request(getData, true, itemsUrl);
 
     if (data) {
-      setAllItems(data);
-      setItems(data.slice(0, 100));
+      dispatch(
+        setItemData({
+          name,
+          data: getFilteredItems(data, filter).slice(0, 100),
+          allData: data,
+        }),
+      );
     }
   }
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e?.target?.value;
 
-    if (value) {
-      const filteredItems = allItems.filter((i: any) =>
-        i.name.toLowerCase().includes(value.toLowerCase()),
-      );
+    if (!allItems) return;
 
-      setItems(filteredItems.slice(0, 100));
+    if (value) {
+      dispatch(addSimpleFilterItem({ itemName: name, value }));
+      dispatch(
+        changeItemsData({
+          name,
+          data: getFilteredItems(allItems, value).slice(0, 100),
+        }),
+      );
     } else {
-      setItems(allItems.slice(0, 100));
+      dispatch(addSimpleFilterItem({ itemName: name, value: '' }));
+      dispatch(changeItemsData({ name, data: allItems.slice(0, 100) }));
     }
   };
 
@@ -89,11 +120,12 @@ const MainEntityFrame: FC<Props> = ({
         placeholder={searchPlaceholder}
         className="w-64"
         onChange={onSearch}
+        defaultValue={filter}
       />
 
       {loading ? (
         <CenteredLoader className="mt-28" style={{ height: 'fit-content' }} />
-      ) : !items.length ? (
+      ) : !items || items?.length < 1 ? (
         <EmptyItems itemsName={itemsName} />
       ) : (
         <Scrollbars autoHide autoHeight autoHeightMax={1000}>
