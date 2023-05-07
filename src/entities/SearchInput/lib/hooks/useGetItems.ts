@@ -8,11 +8,13 @@ import { getItems } from '../api/getItems';
 export const useGetItems = <T>(url: string, name: SearchStateKeys) => {
   const { value } = useTypedSelector((state) => state.search);
   const itemsData = useTypedSelector((state) => state.search[name]);
-  const { request } = useRequest(false);
+  const { request, loading } = useRequest(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!itemsData.allItems.length) getData();
+    if (!itemsData.allItems.length) {
+      getData();
+    }
   }, []);
 
   useEffect(() => {
@@ -28,5 +30,5 @@ export const useGetItems = <T>(url: string, name: SearchStateKeys) => {
     if (data) dispatch(setItemsData({ data, name }));
   }
 
-  return itemsData.items;
+  return { items: itemsData.items, loading };
 };

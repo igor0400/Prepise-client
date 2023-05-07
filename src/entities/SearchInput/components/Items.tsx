@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { useGetItems } from '../lib/hooks/useGetItems';
 import SearchItemCard from '../../SearchItemCard';
 import { SearchStateKeys } from '../model/store/searchSlice';
+import { Spinner } from '@chakra-ui/react';
 
 interface Props {
   onClose(): void;
@@ -11,7 +12,20 @@ interface Props {
 }
 
 const Items: FC<Props> = ({ onClose, getUrl, name, redirectUrl }) => {
-  const items = useGetItems(getUrl, name);
+  const { items, loading } = useGetItems(getUrl, name);
+
+  if (loading) {
+    return (
+      <Spinner
+        size="lg"
+        className="flex mx-auto my-2"
+        thickness="3px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+      />
+    );
+  }
 
   if (!items.length) {
     return (
