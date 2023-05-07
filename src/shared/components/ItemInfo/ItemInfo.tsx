@@ -9,9 +9,16 @@ interface Props {
   position?: string;
   company?: string;
   questions?: QuestionType[];
+  type: 'default' | 'test';
 }
 
-const ItemInfo: FC<Props> = ({ section, position, company, questions }) => {
+const ItemInfo: FC<Props> = ({
+  section,
+  position,
+  company,
+  questions,
+  type,
+}) => {
   const [isLargerThan465] = useMediaQuery('(min-width: 465px)');
   const userId = useTypedSelector((state) => state.user.data?.id);
 
@@ -53,7 +60,7 @@ const ItemInfo: FC<Props> = ({ section, position, company, questions }) => {
         </p>
       )}
 
-      {questions && questions?.length > 0 && (
+      {questions && questions?.length > 0 && type === 'test' && (
         <p>
           Выполнено:{' '}
           <span className="text-blue-500 font-medium">

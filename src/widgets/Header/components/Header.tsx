@@ -1,7 +1,8 @@
 import { FC, useMemo } from 'react';
 
 import Image from 'next/image';
-import { Button, getFileUrl, SearchInput } from '../../../shared';
+import { Button, getFileUrl } from '../../../shared';
+import SearchInput from '../../../entities/SearchInput';
 import Link from 'next/link';
 import { Dropdown } from 'antd';
 

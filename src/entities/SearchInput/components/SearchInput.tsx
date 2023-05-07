@@ -1,40 +1,32 @@
-import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react';
-import classNames from 'classnames';
+import { useDisclosure } from '@chakra-ui/react';
 import Image from 'next/image';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import search from '../../../../public/images/icons/search.svg';
+import SearchModal from './Modal';
 
 const SearchInput: FC = () => {
-  const [inputFocus, setInputFocus] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  // убрать из shared
 
   return (
     <>
       <div
-        className={classNames(
-          'search-input justify-between rounded-md ml-10 mr-2 sm:flex hidden',
-          { 'border-2': inputFocus, 'p-0.5': !inputFocus },
-        )}
+        className="search-input justify-between rounded-md ml-10 mr-2 sm:flex hidden items-center cursor-pointer"
         onClick={onOpen}
       >
-        <input
-          className="font-semibold text-base p-2.5 h-9 grow"
-          type="text"
-          placeholder="Поиск..."
-          onFocus={() => setInputFocus(true)}
-          onBlur={() => setInputFocus(false)}
-        />
+        <div className="grow h-10 flex items-center">
+          <p className="pt-0.5 font-semibold text-base px-3 leading-4 text-gray-400">
+            Поиск...
+          </p>
+        </div>
         <Image
-          className="mr-2.5 my-1 cursor-pointer"
+          className="mr-3 my-1 cursor-pointer"
           src={search}
           alt="search"
           width={27}
           height={27}
         />
       </div>
-      <div className="grow sm:hidden flex mr-1"  onClick={onOpen}>
+      <div className="grow sm:hidden flex mr-1" onClick={onOpen}>
         <svg
           className="cursor-pointer ml-auto mr-1"
           width={35}
@@ -50,20 +42,7 @@ const SearchInput: FC = () => {
         </svg>
       </div>
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Поиск</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            В разработке...
-          </ModalBody>
-
-          <ModalFooter>
-            footer
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <SearchModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

@@ -11,13 +11,13 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { FC, useRef } from 'react';
-import { FiltersState } from '../../MainContentFrame';
+import { SlicedFiltersState } from '../../MainContentFrame';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Button as AntButton } from 'antd';
 import View from './View';
 
 interface Props {
-  name: keyof FiltersState;
+  name: keyof SlicedFiltersState;
 }
 
 const MainContentFilters: FC<Props> = ({ name }) => {

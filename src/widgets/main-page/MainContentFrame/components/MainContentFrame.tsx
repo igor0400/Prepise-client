@@ -3,13 +3,13 @@ import { UserItems } from '../../../../entities/User';
 import { useTypedSelector } from '../../../../shared';
 import MainContentFilters from '../../MainContentFilters';
 import MainContentItems from '../../MainContentItems';
-import { FiltersState } from '../model/types/store';
+import { SlicedFiltersState } from '../model/types/store';
 import { Fade } from '@chakra-ui/react';
 
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 interface Props {
-  name: keyof FiltersState;
+  name: keyof SlicedFiltersState;
   title: string;
   description: string;
   url: string;

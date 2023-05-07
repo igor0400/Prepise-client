@@ -102,6 +102,7 @@ const ItemPageFrame: FC<Props> = ({
         className="mb-4"
       />
       <ItemInfo
+        type={type}
         section={section}
         position={interviewPosition}
         company={defaultQuestionInfo?.interviewCompany}

@@ -6,7 +6,6 @@ import { api, secureApi } from './lib/api/default-requests';
 import { authErrorHeadler } from './lib/api/handlers';
 import { useRequest } from './lib/hooks/useRequest';
 import { ResponseUserData } from './model/types/response-user-data';
-import SearchInput from './components/SearchInput/SearchInput';
 import { parseText } from './lib/assets/parseText';
 import TripleLoader from './components/TripleLoader/TripleLoader';
 import MenuIcon from './components/MenuIcon/MenuIcon';
@@ -59,7 +58,6 @@ export {
   secureApi,
   authErrorHeadler,
   useRequest,
-  SearchInput,
   parseText,
   TripleLoader,
   MenuIcon,
