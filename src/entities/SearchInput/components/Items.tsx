@@ -16,14 +16,15 @@ const Items: FC<Props> = ({ onClose, getUrl, name, redirectUrl }) => {
 
   if (loading) {
     return (
-      <Spinner
-        size="lg"
-        className="flex mx-auto my-2"
-        thickness="3px"
-        speed="0.65s"
-        emptyColor="gray.200"
-        color="blue.500"
-      />
+      <div className="flex mx-auto my-2">
+        <Spinner
+          size="lg"
+          thickness="3px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+        />
+      </div>
     );
   }
 
