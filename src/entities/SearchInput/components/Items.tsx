@@ -16,7 +16,7 @@ const Items: FC<Props> = ({ onClose, getUrl, name, redirectUrl }) => {
 
   if (loading) {
     return (
-      <div className="flex mx-auto my-2">
+      <div className="flex my-2 justify-center">
         <Spinner
           size="lg"
           thickness="3px"

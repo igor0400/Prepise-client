@@ -19,7 +19,7 @@ export const useGetItems = <T>(url: string, name: SearchStateKeys) => {
 
   useEffect(() => {
     const filteredItems = [...itemsData.allItems].filter((i: any) =>
-      i.title.includes(value),
+      i.title.toLowerCase().includes(value.toLowerCase()),
     );
 
     dispatch(changeItemsData({ data: filteredItems, name }));

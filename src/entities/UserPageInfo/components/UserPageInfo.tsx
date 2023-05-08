@@ -3,9 +3,11 @@ import { FC, ReactNode } from 'react';
 import { getFileUrl, OutlineBtn, useTypedSelector } from '../../../shared';
 
 import point from '../../../../public/images/icons/point.svg';
+import clock from '../../../../public/images/icons/clock.svg';
 import Image from 'next/image';
 import { UserType } from '../../User/model/types/user';
 import Link from 'next/link';
+import { getParseDate } from '../../../shared/lib/assets/getParseDate';
 
 interface Props {
   user: UserType;
@@ -16,12 +18,14 @@ interface Props {
 const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
   const userId = useTypedSelector((state) => state.user.data?.id);
   const { avatar, name, connection, location, id } = user;
-  const online = connection?.online;
   const isDefaultAvatar = avatar.split('/')[2] === 'default';
   const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
 
   const avatarSize = isLargerThan640 ? 150 : 115;
   const locationIconSize = isLargerThan640 ? 14 : 12;
+  const onlineIconSize = isLargerThan640 ? 15 : 13;
+  const isOnline = connection?.online;
+  const lastSeen = getParseDate(connection?.updatedAt ?? '');
 
   return (
     <div className="user-page-info flex gap-2 sm:gap-5">
@@ -42,7 +46,7 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
           </h1>
           {userId !== id && favouriteBtn}
         </div>
-        {(location || online) && (
+        {(location || connection) && (
           <div className="pt-1">
             {location && (
               <div className="flex gap-1">
@@ -54,6 +58,19 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
                 />
                 <p className="text-[#767676] font-medium text-xs sm:text-sm">
                   {location}
+                </p>
+              </div>
+            )}
+            {connection && (
+              <div className="flex gap-1">
+                <Image
+                  src={clock}
+                  alt="clock"
+                  width={onlineIconSize}
+                  height={onlineIconSize}
+                />
+                <p className="text-[#767676] font-medium text-xs sm:text-sm">
+                  {isOnline ? 'В сети' : lastSeen}
                 </p>
               </div>
             )}

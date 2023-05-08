@@ -9,11 +9,13 @@ interface Props {
 const OnlineWrapper: FC<Props> = ({ children }) => {
   const { isAuth } = useTypedSelector((state) => state.user);
 
-  // useEffect(() => {
-  //   if (isAuth) {
-  //     socket.connect();
-  //   }
-  // }, [isAuth]);
+  useEffect(() => {
+    const sock = socket('users');
+
+    if (isAuth) {
+      sock.connect();
+    }
+  }, [isAuth]);
 
   return <>{children}</>;
 };

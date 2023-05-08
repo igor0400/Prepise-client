@@ -1,10 +1,15 @@
-// import { io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 
-// const URL = process.env.NEXT_PUBLIC_SOCKET ?? 'http://localhost:9090';
-// const URL = 'http://localhost:9090/users';
+export const socket = (url: string) => {
+  const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET ?? 'ws://localhost:9090';
+  const URL = url ? `${SERVER_URL}/${url}` : SERVER_URL;
 
-// export const socket = io(URL, {
-//   autoConnect: false,
-// });
-
-export const socket = undefined;
+  return io(URL, {
+    autoConnect: false,
+    extraHeaders: {
+      Authorization: `Bearer ${
+        typeof window !== 'undefined' && localStorage.getItem('accessToken')
+      }`,
+    },
+  });
+};
