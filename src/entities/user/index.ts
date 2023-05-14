@@ -6,8 +6,19 @@ import {
   setLoading,
   addItem,
   deleteItem,
+  addItems,
 } from './model/store/userSlice';
-import { UserItems } from './model/types/store';
+import { UserItems, UserFavouriteItems } from './model/types/store';
+import { useGetUserItems } from './lib/hooks/useGetUserItems';
 
-export type { UserType, UserItems };
-export { user, setUserData, resetUserData, setLoading, addItem, deleteItem };
+export type { UserType, UserItems, UserFavouriteItems };
+export {
+  user,
+  setUserData,
+  resetUserData,
+  setLoading,
+  addItem,
+  deleteItem,
+  addItems,
+  useGetUserItems,
+};

@@ -1,5 +1,5 @@
 import { Fade, useMediaQuery } from '@chakra-ui/react';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
 import {
   CenteredLoader,
@@ -46,6 +46,8 @@ const MainContentItems: FC<Props> = ({
   const { Component: ItemCard, link } = itemCard;
   const { items, allItems } = useTypedSelector((state) => state.mainPage[name]);
   const dispatch = useDispatch();
+
+  // сделать кнопку смотреть еще, на странице пользователя и на главной (в двух местах)
 
   useEffect(() => {
     if (!items) {

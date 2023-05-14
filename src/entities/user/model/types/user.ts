@@ -26,6 +26,8 @@ export interface UserType {
   ignoringTags: any[];
   questions: any[];
   blocks: any[];
+  tests: any[];
+  testBlocks: any[];
   favouriteQuestions: QuestionType[];
   favouriteTestQuestions: any[];
   favouriteBlocks: any[];

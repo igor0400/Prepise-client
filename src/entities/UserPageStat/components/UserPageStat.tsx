@@ -10,8 +10,13 @@ interface Props {
 }
 
 const UserPageStat: FC<Props> = ({ user, className }) => {
-  const { followers, questions, blocks } = user;
-  const { likes, viewes } = getViewesAndLikes(questions.concat(blocks));
+  const { followers, questions, blocks, tests, testBlocks } = user;
+  const { likes, viewes } = getViewesAndLikes([
+    ...questions,
+    ...blocks,
+    ...tests,
+    ...testBlocks,
+  ]);
 
   return (
     <div

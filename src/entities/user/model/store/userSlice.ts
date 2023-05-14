@@ -1,7 +1,12 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { UserType } from '../..';
-import { AddFavourite, DeleteFavourite, UserState } from '../types/store';
+import {
+  AddFavourite,
+  AddFavourites,
+  DeleteFavourite,
+  UserState,
+} from '../types/store';
 
 const userAdapter = createEntityAdapter();
 
@@ -28,7 +33,25 @@ export const userSlice = createSlice({
     },
     addItem: (state, action: PayloadAction<AddFavourite>) => {
       const { item, sectionName } = action.payload;
-      if (state.data) state.data[sectionName].push(item);
+      if (state.data) {
+        if (state.data[sectionName]) {
+          state.data[sectionName].push(item);
+        } else {
+          state.data[sectionName] = [item];
+        }
+      }
+    },
+    addItems: (state, action: PayloadAction<AddFavourites>) => {
+      const { items, sectionName } = action.payload;
+      if (state.data) {
+        const section = state.data[sectionName];
+
+        if (section) {
+          state.data[sectionName] = [...section, ...items];
+        } else {
+          state.data[sectionName] = items;
+        }
+      }
     },
     deleteItem: (state, action: PayloadAction<DeleteFavourite>) => {
       const { itemId, sectionName } = action.payload;
@@ -48,6 +71,7 @@ export const {
   setLoading,
   addItem,
   deleteItem,
+  addItems,
 } = userSlice.actions;
 
 export const { selectAll } = userAdapter.getSelectors(

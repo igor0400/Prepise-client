@@ -1,12 +1,25 @@
 import { UserType } from './user';
 
 export type UserItems =
+  | 'questions'
+  | 'blocks'
+  | 'tests'
+  | 'testBlocks'
   | 'tags'
   | 'followingTags'
   | 'ignoringTags'
   | 'followingUsers'
   | 'posts'
   | 'interviewes'
+  | 'favouriteQuestions'
+  | 'favouriteTestQuestions'
+  | 'favouriteBlocks'
+  | 'favouriteTestBlocks'
+  | 'favouriteUsers'
+  | 'favouriteCompanies'
+  | 'favouriteTags';
+
+export type UserFavouriteItems =
   | 'favouriteQuestions'
   | 'favouriteTestQuestions'
   | 'favouriteBlocks'
@@ -23,6 +36,11 @@ export interface UserState {
 
 export interface AddFavourite {
   item: any;
+  sectionName: UserItems;
+}
+
+export interface AddFavourites {
+  items: any[];
   sectionName: UserItems;
 }
 

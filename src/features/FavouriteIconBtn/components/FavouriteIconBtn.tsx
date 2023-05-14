@@ -40,7 +40,7 @@ const FavouriteIconBtn: FC<Props> = ({
   const isFavourite = useMemo(() => {
     if (favouriteItems) {
       for (let fvtItem of favouriteItems) {
-        if (fvtItem.id === iId) return true;
+        if (fvtItem.itemId === iId) return true;
       }
     }
 
@@ -59,7 +59,16 @@ const FavouriteIconBtn: FC<Props> = ({
     } else {
       const data = await request(postFavourite, true, url);
 
-      if (data) dispatch(storeAddFavourite({ sectionName: storeName, item }));
+      if (data)
+        dispatch(
+          storeAddFavourite({
+            sectionName: storeName,
+            item: {
+              userId: data?.id,
+              itemId: iId,
+            },
+          }),
+        );
     }
   };
 

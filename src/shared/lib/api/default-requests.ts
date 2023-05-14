@@ -16,3 +16,8 @@ export const secureApi = () => {
     },
   });
 };
+
+export const defaultGet = async (url: string) => {
+  const data = await api.get(url).json();
+  return data;
+};

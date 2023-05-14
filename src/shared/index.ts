@@ -2,7 +2,7 @@ import Button from './components/Button/Button';
 import ShadowCard from './components/ShadowCard/ShadowCard';
 import CirclesWrapper from './lib/hocs/CirclesWrapper/CirclesWrapper';
 import PageWrapper from './lib/hocs/PageWrapper/PageWrapper';
-import { api, secureApi } from './lib/api/default-requests';
+import { api, secureApi, defaultGet } from './lib/api/default-requests';
 import { authErrorHeadler } from './lib/api/handlers';
 import { useRequest } from './lib/hooks/useRequest';
 import { ResponseUserData } from './model/types/response-user-data';
@@ -100,5 +100,6 @@ export {
   Dislikes,
   generateFormData,
   socket,
+  defaultGet,
 };
 export type { ResponseUserData };

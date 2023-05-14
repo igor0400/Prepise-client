@@ -134,38 +134,40 @@ const ItemCard: FC<Props> = ({
             </div>
           )}
 
-          <div className="pt-2 text-sm">
-            {isViewed && !isDone && !doned && (
-              <p className="text-gray-500">Просмотрено</p>
-            )}
-            {isDone && (
-              <p className="font-medium flex" style={{ color: '#3284FF' }}>
-                Выполнено
-                <Image
-                  className="ml-0.5"
-                  src={doneImg}
-                  alt="done"
-                  width={12}
-                  height={12}
-                />
-              </p>
-            )}
-            {doned > 0 && (
-              <p style={{ color: '#3284FF' }} className="font-medium">
-                Выполнено:{' '}
-                <span>
-                  {doned} / {questions.length}
-                </span>
-              </p>
-            )}
-          </div>
+          {!compact && (
+            <div className="pt-2 text-sm">
+              {isViewed && !isDone && !doned && (
+                <p className="text-gray-500">Просмотрено</p>
+              )}
+              {isDone && (
+                <p className="font-medium flex" style={{ color: '#3284FF' }}>
+                  Выполнено
+                  <Image
+                    className="ml-0.5"
+                    src={doneImg}
+                    alt="done"
+                    width={12}
+                    height={12}
+                  />
+                </p>
+              )}
+              {doned > 0 && (
+                <p style={{ color: '#3284FF' }} className="font-medium">
+                  Выполнено:{' '}
+                  <span>
+                    {doned} / {questions.length}
+                  </span>
+                </p>
+              )}
+            </div>
+          )}
 
           <div
             className={classNames('flex justify-between mt-auto items-end', {
               'pt-10': !compact,
             })}
           >
-            {user ? <UserInCard {...user} date={createdAt} /> : <div></div>}
+            {user && !compact ? <UserInCard {...user} date={createdAt} /> : <div></div>}
 
             {testQuestionInfo ? (
               <TestStats
