@@ -7,6 +7,8 @@ type Items<T> = T[] | null;
 interface Data<T> {
   items: Items<T>;
   allItems: Items<T>;
+  offset: number;
+  moreDisabled: boolean;
 }
 
 export interface MainPageState {

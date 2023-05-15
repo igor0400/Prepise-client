@@ -1,4 +1,4 @@
-import { FiltersStateItem } from '../../../MainContentFrame';
+import { FiltersStateItem } from '../../../../widgets/main-page/MainContentFrame';
 
 export const filterItems = (items: any[], filters: FiltersStateItem) => {
   let result = [...items];

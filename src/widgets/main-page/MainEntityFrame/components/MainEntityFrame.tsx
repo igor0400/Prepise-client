@@ -1,27 +1,26 @@
 import { Fade, useMediaQuery } from '@chakra-ui/react';
 import { Input } from 'antd';
 import classNames from 'classnames';
-import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import { UserItems } from '../../../../entities/User';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
 import {
-  useRequest,
   CenteredLoader,
   EmptyItems,
   useTypedSelector,
 } from '../../../../shared';
-import { getData } from '../lib/api/getData';
 
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import Scrollbars from 'react-custom-scrollbars-2';
 import {
   changeItemsData,
+  getFilteredItems,
   MainPageState,
-  setItemData,
 } from '../../../../entities/main-page';
 import { useDispatch } from 'react-redux';
 import { addSimpleFilterItem } from '../../MainContentFrame';
-import { getFilteredItems } from '../lib/assets/getFilteredItems';
+import { useGetItems } from '../../../../entities/main-page';
+import ShowMoreBtn from '../../../../entities/ShowMoreBtn';
 
 interface Props {
   name: keyof Omit<
@@ -50,33 +49,13 @@ const MainEntityFrame: FC<Props> = ({
   itemsUrl,
   searchPlaceholder,
 }) => {
-  const { request, loading } = useRequest(false);
   const [isSmallerThan1279] = useMediaQuery('(max-width: 1279px)');
   const [isSmallerThan380] = useMediaQuery('(max-width: 380px)');
   const [showDescr, setShowDescr] = useState(false);
-  const { items, allItems } = useTypedSelector((state) => state.mainPage[name]);
   const filter = useTypedSelector((state) => state.filters[name]);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!items) {
-      setData();
-    }
-  }, []);
-
-  async function setData() {
-    const data = await request(getData, true, itemsUrl);
-
-    if (data) {
-      dispatch(
-        setItemData({
-          name,
-          data: getFilteredItems(data, filter).slice(0, 100),
-          allData: data,
-        }),
-      );
-    }
-  }
+  const { items, allItems, loading, moreLoading, moreDisabled, getMoreItems } =
+    useGetItems(name, itemsUrl);
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e?.target?.value;
@@ -88,12 +67,12 @@ const MainEntityFrame: FC<Props> = ({
       dispatch(
         changeItemsData({
           name,
-          data: getFilteredItems(allItems, value).slice(0, 100),
+          data: getFilteredItems(allItems, value).slice(0, 20),
         }),
       );
     } else {
       dispatch(addSimpleFilterItem({ itemName: name, value: '' }));
-      dispatch(changeItemsData({ name, data: allItems.slice(0, 100) }));
+      dispatch(changeItemsData({ name, data: allItems.slice(0, 20) }));
     }
   };
 
@@ -129,33 +108,38 @@ const MainEntityFrame: FC<Props> = ({
         <EmptyItems itemsName={itemsName} />
       ) : (
         <Scrollbars autoHide autoHeight autoHeightMax={1000}>
-          <Fade
-            in
-            className={classNames('pt-3 grid w-full pl-0.5 pb-3 pr-3', {
-              'gap-2': isSmallerThan380,
-              'gap-3': !isSmallerThan380,
-            })}
-            style={
-              !isSmallerThan380
-                ? { gridTemplateColumns: 'repeat(auto-fit, 300px)' }
-                : undefined
-            }
-          >
-            {items.map((item: any) => (
-              <ItemCard
-                size={isSmallerThan380 ? 'small' : 'big'}
-                key={item.id}
-                item={item}
-                favouriteBtn={
-                  <FavouriteIconBtn
-                    size={isSmallerThan1279 ? 'small' : 'big'}
-                    item={item}
-                    {...favouriteSettings}
-                  />
-                }
-              />
-            ))}
-          </Fade>
+          <div className="pl-0.5 pb-3 pr-3">
+            <Fade
+              in
+              className={classNames('pt-3 grid w-full', {
+                'gap-2': isSmallerThan380,
+                'gap-3': !isSmallerThan380,
+              })}
+              style={
+                !isSmallerThan380
+                  ? { gridTemplateColumns: 'repeat(auto-fit, 300px)' }
+                  : undefined
+              }
+            >
+              {items.map((item: any) => (
+                <ItemCard
+                  size={isSmallerThan380 ? 'small' : 'big'}
+                  key={item.id}
+                  item={item}
+                  favouriteBtn={
+                    <FavouriteIconBtn
+                      size={isSmallerThan1279 ? 'small' : 'big'}
+                      item={item}
+                      {...favouriteSettings}
+                    />
+                  }
+                />
+              ))}
+            </Fade>
+            {!moreDisabled && (
+              <ShowMoreBtn onClick={getMoreItems} loading={moreLoading} />
+            )}
+          </div>
         </Scrollbars>
       )}
     </>

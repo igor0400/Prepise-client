@@ -25,7 +25,6 @@ export const useGetUserItems = (storeName: Names, userId: number) => {
       true,
       `${urls[storeName]}?authorId=${userId}`,
     );
-    console.log(data);
     
     if (data) setItems(data);
   }
