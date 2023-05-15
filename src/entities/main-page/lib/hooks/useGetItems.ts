@@ -15,7 +15,7 @@ export const useGetItems = (name: keyof MainPageState, url: string) => {
   const { request: moreRequest, loading: moreLoading } = useRequest(false);
   const dispatch = useDispatch();
 
-  const itemsPadding = 20;
+  const loadItemsLength = 20;
 
   useEffect(() => {
     if (!items) {
@@ -27,11 +27,11 @@ export const useGetItems = (name: keyof MainPageState, url: string) => {
     const data = await request(
       defaultGet,
       true,
-      `${url}?limit=${itemsPadding}`,
+      `${url}?limit=${loadItemsLength}`,
     );
     const filteredItems =
       typeof filters === 'string'
-        ? getFilteredItems(data, filters).slice(0, itemsPadding)
+        ? getFilteredItems(data, filters).slice(0, loadItemsLength)
         : filterItems(data, filters);
 
     if (data) {
@@ -40,8 +40,8 @@ export const useGetItems = (name: keyof MainPageState, url: string) => {
           name,
           data: filteredItems,
           allData: data,
-          offset: itemsPadding,
-          moreDisabled: data?.length < itemsPadding ? true : false,
+          offset: loadItemsLength,
+          moreDisabled: data?.length < loadItemsLength ? true : false,
         }),
       );
     }
@@ -51,14 +51,14 @@ export const useGetItems = (name: keyof MainPageState, url: string) => {
     const data = await moreRequest(
       defaultGet,
       true,
-      `${url}?offset=${offset}&limit=${itemsPadding}`,
+      `${url}?offset=${offset}&limit=${loadItemsLength}`,
     );
     const filteredItems =
       typeof filters === 'string'
-        ? getFilteredItems(data, filters).slice(0, itemsPadding)
+        ? getFilteredItems(data, filters).slice(0, loadItemsLength)
         : filterItems(data, filters);
 
-    const isDataSmall = data?.length < itemsPadding;
+    const isDataSmall = data?.length < loadItemsLength;
 
     if (data) {
       dispatch(
@@ -66,12 +66,12 @@ export const useGetItems = (name: keyof MainPageState, url: string) => {
           name,
           data: filteredItems,
           allData: data,
-          offset: isDataSmall ? offset + data.length : offset + itemsPadding,
+          offset: isDataSmall ? offset + data.length : offset + loadItemsLength,
           moreDisabled: isDataSmall ? true : false,
         }),
       );
     }
-  }, [offset]);
+  }, [offset, filters]);
 
   return {
     allItems,

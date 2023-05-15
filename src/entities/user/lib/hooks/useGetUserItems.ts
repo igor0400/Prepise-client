@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { defaultGet, useRequest } from '../../../../shared';
 
 type Names = 'questions' | 'blocks' | 'tests' | 'testBlocks' | 'posts';
@@ -12,8 +12,13 @@ const urls: { [key: string]: string } = {
 };
 
 export const useGetUserItems = (storeName: Names, userId: number) => {
+  const { request, loading } = useRequest(false);
+  const { request: moreRequest, loading: moreLoading } = useRequest(false);
   const [items, setItems] = useState<any[]>([]);
-  const { request, loading } = useRequest(false, false, true);
+  const [offset, setOffset] = useState(0);
+  const [moreDisabled, setMoreDisabled] = useState(false);
+
+  const loadItemsLength = 20;
 
   useEffect(() => {
     getItems();
@@ -23,11 +28,37 @@ export const useGetUserItems = (storeName: Names, userId: number) => {
     const data = await request(
       defaultGet,
       true,
-      `${urls[storeName]}?authorId=${userId}`,
+      `${urls[storeName]}?authorId=${userId}&limit=${loadItemsLength}`,
     );
-    
-    if (data) setItems(data);
+
+    if (data) {
+      setItems(data);
+      setOffset(loadItemsLength);
+
+      if (data?.length < loadItemsLength) setMoreDisabled(true);
+    }
   }
 
-  return { items, loading };
+  const getMoreItems = useCallback(async () => {
+    const data = await moreRequest(
+      defaultGet,
+      true,
+      `${urls[storeName]}?authorId=${userId}&limit=${loadItemsLength}&offset=${offset}`,
+    );
+
+    const isDataSmall = data?.length < loadItemsLength;
+
+    if (data) {
+      setItems((state) => [...state, ...data]);
+
+      if (isDataSmall) {
+        setOffset((state) => state + data.length);
+        setMoreDisabled(true);
+      } else {
+        setOffset((state) => state + loadItemsLength);
+      }
+    }
+  }, [offset]);
+
+  return { items, loading, moreLoading, moreDisabled, getMoreItems };
 };

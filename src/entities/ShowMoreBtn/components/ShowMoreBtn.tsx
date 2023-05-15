@@ -19,6 +19,7 @@ const ShowMoreBtn: FC<Props> = ({ onClick, loading }) => {
       }
       className="mt-5 flex mx-auto"
       onClick={onClick}
+      disabled={loading}
     >
       {loading ? <Spinner size="sm" className="mx-11" /> : 'Загрузить ещё'}
     </Button>
