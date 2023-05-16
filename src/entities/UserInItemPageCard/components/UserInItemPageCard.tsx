@@ -34,6 +34,7 @@ const UserInItemPageCard: FC<Props> = ({ userId }) => {
             className="w-8 sm:w-10 h-8 sm:h-10"
             name={name}
             src={getFileUrl(avatar)}
+            style={{ background: '#fff' }}
           />
           <h3 className="font-semibold text-sm sm:text-base pl-2">{name}</h3>
         </CardBody>

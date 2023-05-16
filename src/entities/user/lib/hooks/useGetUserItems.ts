@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { defaultGet, useRequest } from '../../../../shared';
+import { loadItemsLength } from '../../config';
 
 type Names = 'questions' | 'blocks' | 'tests' | 'testBlocks' | 'posts';
 
@@ -17,8 +18,6 @@ export const useGetUserItems = (storeName: Names, userId: number) => {
   const [items, setItems] = useState<any[]>([]);
   const [offset, setOffset] = useState(0);
   const [moreDisabled, setMoreDisabled] = useState(false);
-
-  const loadItemsLength = 20;
 
   useEffect(() => {
     getItems();

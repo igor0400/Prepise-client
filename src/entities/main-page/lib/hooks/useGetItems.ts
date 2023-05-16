@@ -5,6 +5,7 @@ import { filterItems } from '../assets/filterItems';
 import { getFilteredItems } from '../assets/getFilteredItems';
 import { setItemData, updateItemData } from '../../model/store/mainPageSlice';
 import { MainPageState } from '../../model/types/store';
+import { loadItemsLength } from '../../config';
 
 export const useGetItems = (name: keyof MainPageState, url: string) => {
   const { items, allItems, offset, moreDisabled }: any = useTypedSelector(
@@ -14,8 +15,6 @@ export const useGetItems = (name: keyof MainPageState, url: string) => {
   const { request, loading } = useRequest(false);
   const { request: moreRequest, loading: moreLoading } = useRequest(false);
   const dispatch = useDispatch();
-
-  const loadItemsLength = 20;
 
   useEffect(() => {
     if (!items) {

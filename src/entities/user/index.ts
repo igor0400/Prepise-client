@@ -10,6 +10,7 @@ import {
 } from './model/store/userSlice';
 import { UserItems, UserFavouriteItems } from './model/types/store';
 import { useGetUserItems } from './lib/hooks/useGetUserItems';
+import { useIsDefaultAvatar } from './lib/hooks/useIsDefaultAvatar';
 
 export type { UserType, UserItems, UserFavouriteItems };
 export {
@@ -21,4 +22,5 @@ export {
   deleteItem,
   addItems,
   useGetUserItems,
+  useIsDefaultAvatar,
 };

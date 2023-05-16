@@ -18,7 +18,6 @@ interface Props {
 const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
   const userId = useTypedSelector((state) => state.user.data?.id);
   const { avatar, name, connection, location, id } = user;
-  const isDefaultAvatar = avatar.split('/')[2] === 'default';
   const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
 
   const avatarSize = isLargerThan640 ? 150 : 115;
@@ -34,7 +33,7 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
         style={{
           width: avatarSize,
           height: avatarSize,
-          background: isDefaultAvatar ? '#fff' : 'none',
+          background: '#fff',
         }}
         name={name}
         src={getFileUrl(avatar)}

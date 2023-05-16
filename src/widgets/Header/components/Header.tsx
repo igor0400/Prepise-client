@@ -14,14 +14,11 @@ import { Avatar } from '@chakra-ui/react';
 import logo from '../../../../public/images/logo100x56.svg';
 import plus from '../../../../public/images/icons/plus.svg';
 import { MenuIcon } from '../../../shared';
+import { useIsDefaultAvatar } from '../../../entities/User';
 
 const Header: FC = () => {
   const { isAuth, data } = useTypedSelector((state) => state.user);
-
-  const isDefaultAvatar = useMemo(
-    () => data?.avatar && data.avatar.split('/')[2] === 'default',
-    [data],
-  );
+  const isDefaultAvatar = useIsDefaultAvatar();
 
   return (
     <div className="header-wrapper">
@@ -74,7 +71,7 @@ const Header: FC = () => {
                 className="avatar ml-2 hidden xl:block justify-end"
                 style={{
                   padding: isDefaultAvatar ? '6px' : 0,
-                  background: isDefaultAvatar ? '#fff' : 'none',
+                  background: '#fff',
                 }}
                 name={data?.name ?? 'Загрузка...'}
                 src={getFileUrl(data?.avatar ?? '')}
