@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import { Divider } from '@chakra-ui/react';
 import Image from 'next/image';
 import { Tab } from '../model/types/tab';
-import { useTypedSelector } from '../../../shared';
+import { useTypedSelector } from '../../../../shared';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { setActiveTab } from '../../../entities/profile';
+import { setActiveTab } from '../../../../entities/profile';
 
 interface Props extends Tab {
   index: number;

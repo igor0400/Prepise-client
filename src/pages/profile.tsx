@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import WithAuthWrapper from '../entities/WithAuthWrapper';
 import { PageWrapper } from '../shared';
-import Profile from '../widgets/Profile';
+import Profile from '../widgets/profile-page/Profile';
 
 const Home: NextPage = () => {
   return (

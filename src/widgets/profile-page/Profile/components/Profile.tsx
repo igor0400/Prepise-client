@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { useTypedSelector } from '../../../shared';
+import { useTypedSelector } from '../../../../shared';
+import ProfileContent from '../../ProfileContent';
 import ProfileNavbar from '../../ProfileNavbar';
 import ProfileWrapper from './ProfileWrapper';
 
@@ -10,7 +11,7 @@ const Profile: FC = () => {
 
   return (
     <ProfileWrapper navbar={<ProfileNavbar />}>
-      <div>контент</div>
+      <ProfileContent />
     </ProfileWrapper>
   );
 };

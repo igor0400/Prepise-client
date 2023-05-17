@@ -15,7 +15,7 @@ import {
   BlockQuestionIcon,
   PaperIcon,
   QuestionIcon,
-} from '../../../shared';
+} from '../../../../shared';
 import { Tab } from '../model/types/tab';
 
 export const tabs: Tab[][] = [
