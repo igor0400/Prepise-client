@@ -6,7 +6,7 @@ const profileAdapter = createEntityAdapter();
 
 const initialState: ProfileState = {
   navbar: {
-    activeTab: '',
+    activeTab: 'chat',
   },
 };
 
