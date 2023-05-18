@@ -6,6 +6,7 @@ import { useTypedSelector } from '../../../../shared';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { setActiveTab } from '../../../../entities/profile';
+import { useRouter } from 'next/router';
 
 interface Props extends Tab {
   index: number;
@@ -17,9 +18,11 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
     (state) => state.profile.navbar.activeTab,
   );
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleClick = () => {
     dispatch(setActiveTab(id));
+    router.push({ query: { ...router.query, tab: id } });
   };
 
   const isFirst = index === 0;

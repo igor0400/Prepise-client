@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { UserType } from '../../User/model/types/user';
-import { getViewesAndLikes } from '../lib/assets/getViewes';
+import { getUserStat } from '../../User';
 import StatItem from './StatItem';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 const UserPageStat: FC<Props> = ({ user, className }) => {
   const { followers, questions, blocks, tests, testBlocks } = user;
-  const { likes, viewes } = getViewesAndLikes([
+  const { likes, viewes } = getUserStat([
     ...questions,
     ...blocks,
     ...tests,

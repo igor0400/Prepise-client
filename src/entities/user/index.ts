@@ -8,11 +8,12 @@ import {
   deleteItem,
   addItems,
 } from './model/store/userSlice';
-import { UserItems, UserFavouriteItems } from './model/types/store';
+import { UserItems, UserSections } from './model/types/store';
 import { useGetUserItems } from './lib/hooks/useGetUserItems';
 import { useIsDefaultAvatar } from './lib/hooks/useIsDefaultAvatar';
+import { getUserStat } from './lib/assets/getUserStat';
 
-export type { UserType, UserItems, UserFavouriteItems };
+export type { UserType, UserItems, UserSections };
 export {
   user,
   setUserData,
@@ -23,4 +24,5 @@ export {
   addItems,
   useGetUserItems,
   useIsDefaultAvatar,
+  getUserStat,
 };

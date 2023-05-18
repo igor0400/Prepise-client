@@ -1,7 +1,7 @@
 import { BlockType } from '../../../Block';
 import { QuestionType } from '../../../Question';
 
-export const getViewesAndLikes = (items: Array<QuestionType | BlockType>) => {
+export const getUserStat = (items: Array<QuestionType | BlockType>) => {
   let viewes = 0;
   let likes = 0;
 

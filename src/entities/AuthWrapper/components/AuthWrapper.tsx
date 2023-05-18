@@ -1,14 +1,9 @@
 import { FC, useEffect, ReactNode } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  addItems,
-  setLoading,
-  setUserData,
-  UserFavouriteItems,
-} from '../../User';
+import { addItems, setLoading, setUserData, UserSections } from '../../User';
 import { FillPageLoader, useRequest } from '../../../shared';
 import { useTypedSelector } from '../../../shared';
-import { getFavourites } from '../lib/api/get-favourites';
+import { getSections } from '../lib/api/get-sections';
 import { getUserData } from '../lib/api/get-user-data';
 
 interface Props {
@@ -16,14 +11,13 @@ interface Props {
 }
 
 const AuthWrapper: FC<Props> = ({ children }) => {
-  const { loading, isAuth } = useTypedSelector((state) => state.user);
+  const { loading, isAuth, data } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
   const { request } = useRequest(true);
 
   useEffect(() => {
     if (localStorage.getItem('accessToken') && !isAuth && !loading) {
       setData();
-      getUserFavourites();
     }
   });
 
@@ -33,24 +27,35 @@ const AuthWrapper: FC<Props> = ({ children }) => {
 
     if (user) {
       dispatch(setUserData(user));
+      getUserSections();
     }
 
     dispatch(setLoading(false));
   }
 
-  async function getUserFavourites() {
-    const sections: { url: string; sectionName: UserFavouriteItems }[] = [
-      { url: 'questions', sectionName: 'favouriteQuestions' },
-      { url: 'tests', sectionName: 'favouriteTestQuestions' },
-      { url: 'blocks', sectionName: 'favouriteBlocks' },
-      { url: 'testBlocks', sectionName: 'favouriteTestBlocks' },
-      { url: 'users', sectionName: 'favouriteUsers' },
-      { url: 'companies', sectionName: 'favouriteCompanies' },
-      { url: 'tags', sectionName: 'favouriteTags' },
+  async function getUserSections() {
+    const sections: { url: string; sectionName: UserSections }[] = [
+      { url: 'favourites/questions', sectionName: 'favouriteQuestions' },
+      { url: 'favourites/tests', sectionName: 'favouriteTestQuestions' },
+      { url: 'favourites/blocks', sectionName: 'favouriteBlocks' },
+      { url: 'favourites/testBlocks', sectionName: 'favouriteTestBlocks' },
+      { url: 'favourites/users', sectionName: 'favouriteUsers' },
+      { url: 'favourites/companies', sectionName: 'favouriteCompanies' },
+      { url: 'favourites/tags', sectionName: 'favouriteTags' },
+      {
+        url: `questions/default?authorId=${data?.id}`,
+        sectionName: 'questions',
+      },
+      { url: `questions/test?authorId=${data?.id}`, sectionName: 'tests' },
+      { url: `blocks/default?authorId=${data?.id}`, sectionName: 'blocks' },
+      {
+        url: `blocks/test?authorId=${data?.id}`,
+        sectionName: 'testBlocks',
+      },
     ];
 
     sections.forEach(async ({ url, sectionName }) => {
-      const items = await request(getFavourites, false, url);
+      const items = await request(getSections, false, url);
 
       if (items) {
         dispatch(addItems({ items, sectionName }));

@@ -19,7 +19,11 @@ export type UserItems =
   | 'favouriteCompanies'
   | 'favouriteTags';
 
-export type UserFavouriteItems =
+export type UserSections =
+  | 'questions'
+  | 'blocks'
+  | 'tests'
+  | 'testBlocks'
   | 'favouriteQuestions'
   | 'favouriteTestQuestions'
   | 'favouriteBlocks'
