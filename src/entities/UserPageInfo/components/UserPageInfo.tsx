@@ -1,13 +1,17 @@
 import { Avatar, useMediaQuery } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
-import { getFileUrl, OutlineBtn, useTypedSelector } from '../../../shared';
+import {
+  getFileUrl,
+  OutlineBtn,
+  useTypedSelector,
+  getParseDate,
+} from '../../../shared';
 
 import point from '../../../../public/images/icons/point.svg';
 import clock from '../../../../public/images/icons/clock.svg';
 import Image from 'next/image';
 import { UserType } from '../../User/model/types/user';
 import Link from 'next/link';
-import { getParseDate } from '../../../shared/lib/assets/getParseDate';
 
 interface Props {
   user: UserType;

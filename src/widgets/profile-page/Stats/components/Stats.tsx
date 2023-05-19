@@ -30,7 +30,7 @@ const Stats: FC = () => {
 
   return (
     <ProfileContentWrapper title="Статистика" icon={stats}>
-      <div className="flex gap-5">
+      <div className="flex flex-wrap gap-5">
         {cards.map((item, i) => (
           <Card key={i} {...item} />
         ))}

@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { setActiveTab } from '../../../../entities/profile';
 import { useRouter } from 'next/router';
+import { getSortedNotify } from '../../../../entities/Notification';
 
 interface Props extends Tab {
   index: number;
@@ -19,6 +20,9 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
   );
   const dispatch = useDispatch();
   const router = useRouter();
+  const user = useTypedSelector((state) => state.user.data);
+  const items = user?.notifications;
+  const { yang } = getSortedNotify(items ?? []);
 
   const handleClick = () => {
     dispatch(setActiveTab(id));
@@ -28,6 +32,7 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
   const isFirst = index === 0;
   const isLast = index + 1 === itemsLen;
   const isActive = activeItem === id;
+  const newNotify = yang.length;
 
   return (
     <>
@@ -53,7 +58,7 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
           onClick={handleClick}
         >
           <div
-            className="flex items-center justify-center mx-1.5"
+            className="flex items-center justify-center mx-1.5 relative"
             style={{ width: 22 }}
           >
             {icon?.src ? (
@@ -65,6 +70,11 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
               />
             ) : (
               icon
+            )}
+            {id === 'notify' && newNotify > 0 && (
+              <p className="absolute -top-1.5 left-1.5 bg-red-600 text-[10px] py-0.5 px-2 rounded-full text-white font-semibold">
+                {newNotify}
+              </p>
             )}
           </div>
           <p className="font-medium">{name}</p>

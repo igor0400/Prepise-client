@@ -1,3 +1,5 @@
+import { BlockType } from '../../../Block';
+import { NotificationType } from '../../../Notification';
 import { QuestionType } from '../../../Question';
 import { TagType } from '../../../Tag';
 
@@ -24,10 +26,10 @@ export interface UserType {
   followingTags: any[];
   followingUsers: any[];
   ignoringTags: any[];
-  questions: any[];
-  blocks: any[];
-  tests: any[];
-  testBlocks: any[];
+  questions: QuestionType[];
+  blocks: BlockType[];
+  tests: QuestionType[];
+  testBlocks: BlockType[];
   favouriteQuestions: QuestionType[];
   favouriteTestQuestions: any[];
   favouriteBlocks: any[];
@@ -36,7 +38,7 @@ export interface UserType {
   favouriteCompanies: any[];
   favouriteTags: any[];
   interviewes: any[];
-  notifications: any[];
+  notifications: NotificationType[];
   settings: any[];
   posts: any[];
   achievements: any[];

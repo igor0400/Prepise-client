@@ -1,7 +1,6 @@
 import { useMediaQuery } from '@chakra-ui/react';
 import { FC, useState } from 'react';
-import { ImgsGalary } from '../../../shared';
-import { getParseDate } from '../../../shared/lib/assets/getParseDate';
+import { ImgsGalary, getParseDate } from '../../../shared';
 import { PostType } from '../model/types/post';
 
 const Post: FC<PostType> = ({ text, images, createdAt }) => {

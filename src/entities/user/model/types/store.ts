@@ -17,7 +17,8 @@ export type UserItems =
   | 'favouriteTestBlocks'
   | 'favouriteUsers'
   | 'favouriteCompanies'
-  | 'favouriteTags';
+  | 'favouriteTags'
+  | 'notifications';
 
 export type UserSections =
   | 'questions'

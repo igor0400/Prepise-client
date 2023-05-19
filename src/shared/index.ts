@@ -48,6 +48,7 @@ import Dislikes from './components/Dislikes/Dislikes';
 import { generateFormData } from './lib/assets/generateFormData';
 import { socket } from './lib/api/socket';
 import OutlineBtn from './components/OutlineBtn/OutlineBtn';
+import { getParseDate } from './lib/assets/getParseDate';
 
 export {
   Button,
@@ -101,5 +102,6 @@ export {
   generateFormData,
   socket,
   defaultGet,
+  getParseDate,
 };
 export type { ResponseUserData };

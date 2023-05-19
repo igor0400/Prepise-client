@@ -15,11 +15,11 @@ const ProfileContent: FC = () => {
     const tab = router.query?.tab;
 
     if (tab) {
-      dispatch(setActiveTab(String(tab)));
-
       if (!contents[String(tab)]) {
         dispatch(setActiveTab('notify'));
         router.push({ query: { ...router.query, tab: 'notify' } });
+      } else {
+        dispatch(setActiveTab(String(tab)));
       }
     } else {
       router.push({ query: { ...router.query, tab: activeTab } });
