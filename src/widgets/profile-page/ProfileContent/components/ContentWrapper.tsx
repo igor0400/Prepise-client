@@ -3,7 +3,7 @@ import React, { FC, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
-  title: string;
+  title: string | ReactNode;
   icon: any;
   iconSize?: number;
 }
@@ -19,7 +19,7 @@ const ContentWrapper: FC<Props> = ({ children, title, icon, iconSize }) => {
           {icon?.src ? (
             <Image
               src={icon}
-              alt={title}
+              alt="icon"
               width={iconSize ?? 28}
               height={iconSize ?? 28}
             />
@@ -27,7 +27,12 @@ const ContentWrapper: FC<Props> = ({ children, title, icon, iconSize }) => {
             icon
           )}
         </div>
-        <h2 className="text-2xl font-bold">{title}</h2>
+
+        {typeof title === 'string' ? (
+          <h2 className="text-2xl font-bold">{title}</h2>
+        ) : (
+          title
+        )}
       </div>
       {children}
     </div>

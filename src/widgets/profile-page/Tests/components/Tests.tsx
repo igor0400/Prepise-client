@@ -3,17 +3,24 @@ import { useGetPersonalItems } from '../../../../entities/User';
 import UserItemsFrame from '../../../../entities/UserItemsFrame';
 import { PaperIcon } from '../../../../shared';
 import { ProfileContentWrapper } from '../../ProfileContent';
+import Title from './Title';
 
 const Tests: FC = () => {
   const { items, loading, moreLoading, moreDisabled, getMoreItems } =
     useGetPersonalItems('tests');
 
-  // сделать все без wrapper-ов и сделать в redux profile страницы
-  // сделать три страницы и ренерить их в зависимости от active page в redux
+  // сделать redux и страницы
+  // сделать в itemCard кнопку с ссылкой на тест
 
   return (
     <ProfileContentWrapper
-      title="Мои тесты"
+      title={
+        <Title
+          main={{ title: 'Мои тесты' }}
+          test={{ title: 'Всем привет', id: 1 }}
+          reply={{ title: 'Всем привет', id: 1 }}
+        />
+      }
       icon={<PaperIcon style={{ width: 28, height: 28 }} color="#000" />}
     >
       <UserItemsFrame
