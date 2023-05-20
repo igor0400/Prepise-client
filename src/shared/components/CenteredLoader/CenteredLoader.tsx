@@ -10,12 +10,9 @@ interface Props {
 const CenteredLoader: FC<Props> = ({ className, style }) => {
   return (
     <div
-      className={classNames(
-        'flex items-center justify-center full-height w-full',
-        {
-          [className ?? '']: className,
-        },
-      )}
+      className={classNames('flex items-center justify-center w-full', {
+        [className ?? '']: className,
+      })}
       style={style}
     >
       <Spinner

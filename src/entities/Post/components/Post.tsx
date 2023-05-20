@@ -1,14 +1,19 @@
 import { useMediaQuery } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import classNames from 'classnames';
+import { CSSProperties, FC, useState } from 'react';
 import { ImgsGalary, getParseDate } from '../../../shared';
 import { PostType } from '../model/types/post';
 
-const Post: FC<PostType> = ({ text, images, createdAt }) => {
+interface Props extends PostType {
+  style?: CSSProperties;
+}
+
+const Post: FC<Props> = ({ text, images, createdAt, style }) => {
   const [showImgs, setShowImgs] = useState(true);
   const [isLargerThan500] = useMediaQuery('(min-width: 500px)');
 
   return (
-    <div className="bg-white p-3 rounded-md">
+    <div className="bg-white p-3 rounded-md" style={style}>
       <p>{text}</p>
       <p className="text-xs text-gray-500">{getParseDate(createdAt)}</p>
       {showImgs && (

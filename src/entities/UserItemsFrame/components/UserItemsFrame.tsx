@@ -1,15 +1,16 @@
 import { Fade, useMediaQuery } from '@chakra-ui/react';
 import { FC } from 'react';
-import { BlockType } from '../../../entities/Block';
-import ItemCard from '../../../entities/ItemCard';
-import { QuestionType } from '../../../entities/Question';
-import ShowMoreBtn from '../../../entities/ShowMoreBtn';
-import { UserItems } from '../../../entities/User';
+import { BlockType } from '../../Block';
+import ItemCard from '../../ItemCard';
+import { QuestionType } from '../../Question';
+import ShowMoreBtn from '../../ShowMoreBtn';
+import { UserItems } from '../../User';
 import FavouriteIconBtn from '../../../features/FavouriteIconBtn';
-import { EmptyItems } from '../../../shared';
+import { CenteredLoader, EmptyItems } from '../../../shared';
 
 interface Props {
   items: QuestionType[] | BlockType[];
+  itemsLoading: boolean;
   favouriteSettings: {
     storeName: UserItems;
     dataUrl: string;
@@ -22,14 +23,17 @@ interface Props {
   };
 }
 
-const PanelFrame: FC<Props> = ({
+const UserItemsFrame: FC<Props> = ({
   items,
   favouriteSettings,
   itemCardLink,
   more,
+  itemsLoading,
 }) => {
   const [isSmallerThan641] = useMediaQuery('(max-width: 641px)');
   const { loading, disabled, getItems } = more;
+
+  if (itemsLoading) return <CenteredLoader className="my-16" />;
 
   if (items?.length < 1) return <EmptyItems />;
 
@@ -58,4 +62,4 @@ const PanelFrame: FC<Props> = ({
   );
 };
 
-export default PanelFrame;
+export default UserItemsFrame;

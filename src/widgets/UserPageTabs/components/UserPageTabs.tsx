@@ -1,10 +1,7 @@
 import { FC } from 'react';
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
-import PanelFrame from './PanelFrame';
-import { QuestionType } from '../../../entities/Question';
-import { BlockType } from '../../../entities/Block';
+import UserItemsFrame from '../../../entities/UserItemsFrame';
 import Scrollbars from 'react-custom-scrollbars-2';
-import { PostType } from '../../../entities/Post';
 import Posts from '../../Posts';
 import { useGetUserItems } from '../../../entities/User';
 
@@ -16,30 +13,35 @@ interface Props {
 const UserPageTabs: FC<Props> = ({ className, authorId }) => {
   const {
     items: questions,
+    loading: questionsLoading,
     moreLoading: questionsMoreLoading,
     moreDisabled: questionsMoreDisabled,
     getMoreItems: questionsGetMoreItems,
   } = useGetUserItems('questions', authorId);
   const {
     items: tests,
+    loading: testsLoading,
     moreLoading: testsMoreLoading,
     moreDisabled: testsMoreDisabled,
     getMoreItems: testsGetMoreItems,
   } = useGetUserItems('tests', authorId);
   const {
     items: blocks,
+    loading: blocksLoading,
     moreLoading: blocksMoreLoading,
     moreDisabled: blocksMoreDisabled,
     getMoreItems: blocksGetMoreItems,
   } = useGetUserItems('blocks', authorId);
   const {
     items: testBlocks,
+    loading: testBlocksLoading,
     moreLoading: testBlocksMoreLoading,
     moreDisabled: testBlocksMoreDisabled,
     getMoreItems: testBlocksGetMoreItems,
   } = useGetUserItems('testBlocks', authorId);
   const {
     items: posts,
+    loading: postsLoading,
     moreLoading: postsMoreLoading,
     moreDisabled: postsMoreDisabled,
     getMoreItems: postsGetMoreItems,
@@ -61,6 +63,7 @@ const UserPageTabs: FC<Props> = ({ className, authorId }) => {
         <TabPanel style={{ padding: '10px 0 16px' }}>
           <Posts
             items={posts}
+            itemsLoading={postsLoading}
             more={{
               loading: postsMoreLoading,
               disabled: postsMoreDisabled,
@@ -69,8 +72,9 @@ const UserPageTabs: FC<Props> = ({ className, authorId }) => {
           />
         </TabPanel>
         <TabPanel style={{ padding: '10px 0 16px' }}>
-          <PanelFrame
+          <UserItemsFrame
             items={questions}
+            itemsLoading={questionsLoading}
             favouriteSettings={{
               storeName: 'favouriteQuestions',
               dataUrl: 'favourites/questions/:id',
@@ -84,8 +88,9 @@ const UserPageTabs: FC<Props> = ({ className, authorId }) => {
           />
         </TabPanel>
         <TabPanel style={{ padding: '10px 0 16px' }}>
-          <PanelFrame
+          <UserItemsFrame
             items={blocks}
+            itemsLoading={blocksLoading}
             favouriteSettings={{
               storeName: 'favouriteBlocks',
               dataUrl: 'favourites/blocks/:id',
@@ -99,8 +104,9 @@ const UserPageTabs: FC<Props> = ({ className, authorId }) => {
           />
         </TabPanel>
         <TabPanel style={{ padding: '10px 0 16px' }}>
-          <PanelFrame
+          <UserItemsFrame
             items={tests}
+            itemsLoading={testsLoading}
             favouriteSettings={{
               storeName: 'favouriteTestQuestions',
               dataUrl: 'favourites/test-questions/:id',
@@ -114,8 +120,9 @@ const UserPageTabs: FC<Props> = ({ className, authorId }) => {
           />
         </TabPanel>
         <TabPanel style={{ padding: '10px 0 16px' }}>
-          <PanelFrame
+          <UserItemsFrame
             items={testBlocks}
+            itemsLoading={testBlocksLoading}
             favouriteSettings={{
               storeName: 'favouriteTestBlocks',
               dataUrl: 'favourites/test-blocks/:id',

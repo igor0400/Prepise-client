@@ -21,7 +21,7 @@ const PageLoader: FC<Props> = ({
   if (loading) {
     return (
       <PageWrapper title={loadingTitle}>
-        <CenteredLoader />
+        <CenteredLoader className="full-height" />
       </PageWrapper>
     );
   }

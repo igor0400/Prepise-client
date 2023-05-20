@@ -36,10 +36,7 @@ const UserPage: FC<UserType> = (item) => {
         }
         followBtn={<UPFollowBtn type={type} authorId={id} />}
       />
-      {/* <UserPageStat
-        user={{ ...item, questions, tests, blocks, testBlocks }}
-        className="pt-4"
-      /> */}
+      <UserPageStat user={item} className="pt-4" />
 
       {description && (
         <Section title="Описание">

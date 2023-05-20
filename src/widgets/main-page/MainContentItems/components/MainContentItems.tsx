@@ -63,7 +63,7 @@ const MainContentItems: FC<Props> = ({
   if (loading)
     return (
       <CenteredLoader
-        className="max-[1279px]:mt-28 min-[1279px]:pb-32"
+        className="max-[1279px]:mt-28 min-[1279px]:pb-32 full-height"
         style={isSmallerThan1279 ? { height: 'fit-content' } : undefined}
       />
     );

@@ -84,16 +84,16 @@ export const tabs: Tab[][] = [
       icon: <QuestionIcon style={{ width: 22, height: 22 }} color="#000" />,
     },
     {
-      id: 'tests',
-      name: 'Мои тесты',
-      icon: <PaperIcon style={{ width: 22, height: 22 }} color="#000" />,
-    },
-    {
       id: 'blocks',
       name: 'Мои блоки',
       icon: (
         <BlockQuestionIcon style={{ width: 22, height: 22 }} color="#000" />
       ),
+    },
+    {
+      id: 'tests',
+      name: 'Мои тесты',
+      icon: <PaperIcon style={{ width: 22, height: 22 }} color="#000" />,
     },
     {
       id: 'testBlocks',
