@@ -19,7 +19,7 @@ const AuthWrapper: FC<Props> = ({ children }) => {
     if (localStorage.getItem('accessToken') && !isAuth && !loading) {
       setData();
     }
-  });
+  }, [isAuth, loading]);
 
   async function setData() {
     dispatch(setLoading(true));

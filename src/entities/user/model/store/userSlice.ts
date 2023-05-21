@@ -7,6 +7,7 @@ import {
   DeleteFavourite,
   UserState,
 } from '../types/store';
+import { ReplyType } from '../../../Reply';
 
 const userAdapter = createEntityAdapter();
 
@@ -53,6 +54,15 @@ export const userSlice = createSlice({
         }
       }
     },
+    deleteFavouriteItem: (state, action: PayloadAction<DeleteFavourite>) => {
+      const { itemId, sectionName } = action.payload;
+
+      if (state.data && state.data[sectionName]) {
+        state.data[sectionName] = state.data[sectionName].filter(
+          (item) => item.itemId !== itemId,
+        );
+      }
+    },
     deleteItem: (state, action: PayloadAction<DeleteFavourite>) => {
       const { itemId, sectionName } = action.payload;
 
@@ -62,6 +72,7 @@ export const userSlice = createSlice({
         );
       }
     },
+    
   },
 });
 
@@ -71,6 +82,7 @@ export const {
   setLoading,
   addItem,
   deleteItem,
+  deleteFavouriteItem,
   addItems,
 } = userSlice.actions;
 

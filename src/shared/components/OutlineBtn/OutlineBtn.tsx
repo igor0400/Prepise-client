@@ -5,7 +5,7 @@ interface Props {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
   className?: string;
-  bg?: 'blue' | 'green' | 'gray';
+  bg?: 'blue' | 'green' | 'gray' | 'red';
 }
 
 const OutlineBtn: FC<Props> = ({
@@ -18,6 +18,7 @@ const OutlineBtn: FC<Props> = ({
     green: 'bg-green-600',
     blue: 'bg-blue-600',
     gray: 'bg-gray-600',
+    red: 'bg-red-600',
   };
   const bgColor = bgColors[bg] ?? bgColors.green;
 

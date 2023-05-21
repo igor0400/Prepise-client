@@ -9,6 +9,7 @@ import follows from 'public/images/icons/follows.svg';
 import favourite from 'public/images/icons/fvourite-inline.svg';
 import achievements from 'public/images/icons/achievements.svg';
 import interviewes from 'public/images/icons/interviewes.svg';
+import signOut from 'public/images/icons/signOut.svg';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import {
   BlockPapersIcon,
@@ -118,6 +119,14 @@ export const tabs: Tab[][] = [
       id: 'settings',
       name: 'Настройки',
       icon: settings,
+    },
+  ],
+  [
+    {
+      id: 'singOut',
+      name: 'Выйти',
+      icon: signOut,
+      iconSize: 20,
     },
   ],
 ];

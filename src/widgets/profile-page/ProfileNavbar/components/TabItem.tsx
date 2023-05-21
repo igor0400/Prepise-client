@@ -5,9 +5,10 @@ import { Tab } from '../model/types/tab';
 import { useTypedSelector } from '../../../../shared';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { setActiveTab } from '../../../../entities/profile';
+import { resetProfileData, setActiveTab } from '../../../../entities/profile';
 import { useRouter } from 'next/router';
 import { getSortedNotify } from '../../../../entities/Notification';
+import { resetUserData } from '../../../../entities/User';
 
 interface Props extends Tab {
   index: number;
@@ -25,8 +26,14 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
   const { yang } = getSortedNotify(items ?? []);
 
   const handleClick = () => {
-    dispatch(setActiveTab(id));
-    router.push({ query: { ...router.query, tab: id } });
+    if (id === 'singOut') {
+      dispatch(resetProfileData());
+      dispatch(resetUserData());
+      localStorage.removeItem('accessToken');
+    } else {
+      dispatch(setActiveTab(id));
+      router.push({ query: { tab: id } });
+    }
   };
 
   const isFirst = index === 0;

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteItem } from '../../../entities/User';
+import { deleteFavouriteItem } from '../../../entities/User';
 import { useRequest } from '../../../shared';
 import { deleteFollowing } from '../lib/api/deleteFollowing';
 
@@ -19,7 +19,7 @@ const UnfollowBtn: FC<Props> = ({ authorId, Btn }) => {
 
       if (data) {
         dispatch(
-          deleteItem({
+          deleteFavouriteItem({
             itemId: authorId,
             sectionName: 'followingUsers',
           }),

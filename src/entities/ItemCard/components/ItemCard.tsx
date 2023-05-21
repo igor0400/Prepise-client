@@ -22,6 +22,7 @@ interface Props {
   [key: string]: any;
   link: string;
   compact?: boolean;
+  replyBtn?: ReactNode;
 }
 
 const ItemCard: FC<Props> = ({
@@ -42,6 +43,7 @@ const ItemCard: FC<Props> = ({
   link,
   questions = [],
   compact = false,
+  replyBtn,
 }) => {
   const { data } = useTypedSelector((state) => state.user);
   const uId = data?.id;
@@ -167,16 +169,26 @@ const ItemCard: FC<Props> = ({
               'pt-10': !compact,
             })}
           >
-            {user && !compact ? <UserInCard {...user} date={createdAt} /> : <div></div>}
-
-            {testQuestionInfo ? (
-              <TestStats
-                likes={likes}
-                replies={testQuestionInfo?.replies?.length ?? 0}
-                size={size}
-              />
+            {user && !compact ? (
+              <UserInCard {...user} date={createdAt} />
             ) : (
-              <QuestionStats likes={likes} viewes={viewes} size={size} />
+              <div></div>
+            )}
+
+            {replyBtn ? (
+              <div className="pt-2">{replyBtn}</div>
+            ) : (
+              <>
+                {testQuestionInfo ? (
+                  <TestStats
+                    likes={likes}
+                    replies={testQuestionInfo?.replies?.length ?? 0}
+                    size={size}
+                  />
+                ) : (
+                  <QuestionStats likes={likes} viewes={viewes} size={size} />
+                )}
+              </>
             )}
           </div>
         </CardBody>

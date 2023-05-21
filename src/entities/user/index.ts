@@ -6,6 +6,7 @@ import {
   setLoading,
   addItem,
   deleteItem,
+  deleteFavouriteItem,
   addItems,
 } from './model/store/userSlice';
 import { UserItems, UserSections } from './model/types/store';
@@ -22,6 +23,7 @@ export {
   setLoading,
   addItem,
   deleteItem,
+  deleteFavouriteItem,
   addItems,
   useGetUserItems,
   useIsDefaultAvatar,

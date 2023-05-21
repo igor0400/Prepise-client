@@ -7,7 +7,7 @@ import { postFavourite } from '../lib/api/postFavourite';
 import { deleteFavourite } from '../lib/api/deleteFavourite';
 import {
   addItem as storeAddFavourite,
-  deleteItem as storeDeleteFavourite,
+  deleteFavouriteItem,
   UserItems,
   UserType,
 } from '../../../entities/User';
@@ -54,12 +54,13 @@ const FavouriteIconBtn: FC<Props> = ({
     if (isFavourite) {
       const data = await request(deleteFavourite, true, url);
 
-      if (data)
-        dispatch(storeDeleteFavourite({ sectionName: storeName, itemId: iId }));
+      if (data) {
+        dispatch(deleteFavouriteItem({ sectionName: storeName, itemId: iId }));
+      }
     } else {
       const data = await request(postFavourite, true, url);
 
-      if (data)
+      if (data) {
         dispatch(
           storeAddFavourite({
             sectionName: storeName,
@@ -69,6 +70,7 @@ const FavouriteIconBtn: FC<Props> = ({
             },
           }),
         );
+      }
     }
   };
 

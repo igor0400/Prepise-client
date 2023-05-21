@@ -21,6 +21,7 @@ interface Props {
     disabled: boolean;
     getItems: Function;
   };
+  ReplyBtn?: FC<{ itemId: number }>;
 }
 
 const UserItemsFrame: FC<Props> = ({
@@ -29,6 +30,7 @@ const UserItemsFrame: FC<Props> = ({
   itemCardLink,
   more,
   itemsLoading,
+  ReplyBtn,
 }) => {
   const [isSmallerThan641] = useMediaQuery('(max-width: 641px)');
   const { loading, disabled, getItems } = more;
@@ -54,6 +56,7 @@ const UserItemsFrame: FC<Props> = ({
             }
             size={isSmallerThan641 ? 'small' : 'big'}
             key={item.id}
+            replyBtn={ReplyBtn ? <ReplyBtn itemId={item.id} /> : undefined}
           />
         ))}
       </Fade>

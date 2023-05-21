@@ -6,7 +6,6 @@ import { DeleteIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
 import { useRequest, useTypedSelector } from '../../../shared';
 import { deleteQuestion } from '../lib/api/deleteQuestion';
-import classNames from 'classnames';
 
 import viewesIcon from '../../../../public/images/icons/view.svg';
 import doneIcon from '../../../../public/images/icons/done-arrow.svg';

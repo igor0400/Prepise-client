@@ -7,7 +7,7 @@ type Names = 'questions' | 'blocks' | 'tests' | 'testBlocks' | 'posts';
 const urls: { [key: string]: string } = {
   questions: 'questions/default',
   blocks: 'blocks/default',
-  tests: 'blocks/test',
+  tests: 'questions/test',
   testBlocks: 'blocks/test',
   posts: 'posts/users',
 };

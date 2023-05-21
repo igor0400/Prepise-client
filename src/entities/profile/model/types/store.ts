@@ -19,4 +19,8 @@ export interface ProfileState {
   tests: Data<QuestionType>;
   testBlocks: Data<BlockType>;
   posts: Data<PostType>;
+  tabs: {
+    testId?: number;
+    replyId?: number;
+  };
 }

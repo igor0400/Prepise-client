@@ -1,25 +1,25 @@
-import { FC, ReactNode, useEffect, useState } from 'react';
-import { FillPageLoader, useRedirectToLogin } from '../../../shared';
+import { FC, ReactNode, useEffect } from 'react';
+import {
+  FillPageLoader,
+  useRedirectToLogin,
+  useTypedSelector,
+} from '../../../shared';
 
 interface Props {
   children: ReactNode;
 }
 
 const WithAuthWrapper: FC<Props> = ({ children }) => {
-  const [isToken, setIsToken] = useState(false);
   const redirect = useRedirectToLogin();
+  const { isAuth, loading } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
-
-    if (token && !isToken) {
-      setIsToken(true);
-    } else if (!token) {
+    if (!isAuth && !loading && !localStorage.getItem('accessToken')) {
       redirect();
     }
-  });
+  }, [isAuth, loading]);
 
-  if (!isToken) {
+  if (loading) {
     return <FillPageLoader />;
   }
 

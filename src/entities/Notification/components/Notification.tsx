@@ -37,9 +37,11 @@ const Notification: FC<NotificationType> = ({ id, text, link, createdAt }) => {
       </div>
       <div className="flex gap-1">
         <p>{text}</p>
-        <Link href={link} className="text-blue-500">
-          Смотреть
-        </Link>
+        {link && (
+          <Link href={link} className="text-blue-500">
+            Смотреть
+          </Link>
+        )}
       </div>
     </div>
   );
