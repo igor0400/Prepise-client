@@ -8,6 +8,8 @@ import {
   deleteItem,
   deleteFavouriteItem,
   addItems,
+  deleteFollowing,
+  addFollowing,
 } from './model/store/userSlice';
 import { UserItems, UserSections } from './model/types/store';
 import { useGetUserItems } from './lib/hooks/useGetUserItems';
@@ -29,4 +31,6 @@ export {
   useIsDefaultAvatar,
   getUserStat,
   useGetPersonalItems,
+  deleteFollowing,
+  addFollowing,
 };

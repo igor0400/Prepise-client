@@ -1,9 +1,9 @@
 import { secureApi } from '../../../../shared';
 
-export const deleteFollowing = async (fUsers: string[]) => {
+export const deleteFollowing = async (userId: number) => {
   const data = await secureApi()
     .delete('users/following-users', {
-      json: { followedUsers: fUsers },
+      json: { userId },
     })
     .json();
 

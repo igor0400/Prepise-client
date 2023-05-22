@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteFavouriteItem } from '../../../entities/User';
 import { useRequest } from '../../../shared';
+import { deleteFollowing as storeDeleteFollowing } from '../../../entities/User';
 import { deleteFollowing } from '../lib/api/deleteFollowing';
 
 interface Props {
@@ -15,15 +15,10 @@ const UnfollowBtn: FC<Props> = ({ authorId, Btn }) => {
 
   const onClick = async () => {
     if (!loading) {
-      const data = await request(deleteFollowing, true, [String(authorId)]);
+      const data = await request(deleteFollowing, true, authorId);
 
       if (data) {
-        dispatch(
-          deleteFavouriteItem({
-            itemId: authorId,
-            sectionName: 'followingUsers',
-          }),
-        );
+        dispatch(storeDeleteFollowing(authorId));
       }
     }
   };

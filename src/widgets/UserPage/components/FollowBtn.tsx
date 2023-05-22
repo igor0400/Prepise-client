@@ -14,18 +14,16 @@ const UPFollowBtn: FC<Props> = ({ authorId, type }) => {
   const followings = useTypedSelector(
     (state) => state.user.data?.followingUsers,
   );
+  const userId = useTypedSelector((state) => state.user.data?.id);
   const isUserFollowed = useMemo(
-    () => followings?.map((i) => i.id).includes(authorId),
+    () => followings?.map((i) => i.followedUserId).includes(userId),
     [followings],
   );
 
   return (
     <>
       {isUserFollowed ? (
-        <UnfollowBtn
-          authorId={authorId}
-          Btn={UserPageUnfollowBtn}
-        />
+        <UnfollowBtn authorId={authorId} Btn={UserPageUnfollowBtn} />
       ) : (
         <FollowBtn authorId={authorId} type={type} Btn={UserPageFollowBtn} />
       )}

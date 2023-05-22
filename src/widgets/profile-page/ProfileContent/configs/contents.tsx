@@ -1,4 +1,5 @@
 import Blocks from '../../Blocks';
+import Follows from '../../Follows';
 import InWork from '../../InWork';
 import Notifications from '../../Notifications';
 import Posts from '../../Posts';
@@ -12,7 +13,7 @@ export const contents: any = {
   chat: <InWork />,
   userInfo: <InWork />,
   stats: <Stats />,
-  follows: <InWork />,
+  follows: <Follows />,
   favourite: <InWork />,
   achievements: <InWork />,
   interviewes: <InWork />,

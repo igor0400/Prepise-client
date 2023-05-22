@@ -82,7 +82,7 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
 
         <div className="pt-2">
           {userId === id ? (
-            <Link href="/profile">
+            <Link href="/profile?tab=userInfo">
               <OutlineBtn
                 className="text-xs sm:text-sm py-[4px] px-[10px] sm:px-2"
                 bg="gray"

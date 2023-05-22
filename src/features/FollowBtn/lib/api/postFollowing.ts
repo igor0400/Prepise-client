@@ -1,9 +1,9 @@
 import { secureApi } from '../../../../shared';
 
-export const postFollowing = async (fUsers: string[]) => {
+export const postFollowing = async (userId: number) => {
   const data = await secureApi()
     .post('users/following-users', {
-      json: { followedUsers: fUsers },
+      json: { userId },
     })
     .json();
 

@@ -19,6 +19,12 @@ const initialState: ProfileState = {
   tests: { items: null, allItems: null, offset: 0, moreDisabled: false },
   testBlocks: { items: null, allItems: null, offset: 0, moreDisabled: false },
   posts: { items: null, allItems: null, offset: 0, moreDisabled: false },
+  followingUsers: {
+    items: null,
+    allItems: null,
+    offset: 0,
+    moreDisabled: false,
+  },
   tabs: {
     testId: undefined,
     replyId: undefined,
@@ -122,12 +128,7 @@ export const profileSlice = createSlice({
       }
     },
     resetData: (state) => {
-      state.tests = {
-        items: null,
-        allItems: null,
-        offset: 0,
-        moreDisabled: false,
-      };
+      state = initialState;
     },
   },
 });

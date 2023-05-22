@@ -1,6 +1,7 @@
 import { BlockType } from '../../../Block';
 import { PostType } from '../../../Post';
 import { QuestionType } from '../../../Question';
+import { UserType } from '../../../User';
 
 type Items<T> = T[] | null;
 interface Data<T> {
@@ -19,6 +20,7 @@ export interface ProfileState {
   tests: Data<QuestionType>;
   testBlocks: Data<BlockType>;
   posts: Data<PostType>;
+  followingUsers: Data<UserType>;
   tabs: {
     testId?: number;
     replyId?: number;

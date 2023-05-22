@@ -10,6 +10,7 @@ const urls: { [key: string]: string } = {
   tests: 'questions/test',
   testBlocks: 'blocks/test',
   posts: 'posts/users',
+  followingUsers: 'users/following-users',
 };
 
 export const useGetPersonalItems = (

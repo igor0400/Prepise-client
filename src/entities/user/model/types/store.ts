@@ -31,7 +31,8 @@ export type UserSections =
   | 'favouriteTestBlocks'
   | 'favouriteUsers'
   | 'favouriteCompanies'
-  | 'favouriteTags';
+  | 'favouriteTags'
+  | 'followingUsers';
 
 export interface UserState {
   isAuth: boolean;
