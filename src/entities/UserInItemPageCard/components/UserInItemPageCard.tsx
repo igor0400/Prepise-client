@@ -25,7 +25,7 @@ const UserInItemPageCard: FC<Props> = ({ userId }) => {
   if (!user) return <></>;
 
   const { avatar, id, name } = user;
-  name;
+
   return (
     <Card className="w-fit">
       <Link href={`/users/${id}`}>

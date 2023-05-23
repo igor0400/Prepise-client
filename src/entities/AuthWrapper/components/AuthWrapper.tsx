@@ -43,7 +43,7 @@ const AuthWrapper: FC<Props> = ({ children }) => {
       { url: 'favourites/companies', sectionName: 'favouriteCompanies' },
       { url: 'favourites/tags', sectionName: 'favouriteTags' },
       {
-        url: `users/following-users?authorId=${data?.id}`,
+        url: `users/following-users`,
         sectionName: 'followingUsers',
       },
     ];

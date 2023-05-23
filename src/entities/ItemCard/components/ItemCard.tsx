@@ -153,7 +153,7 @@ const ItemCard: FC<Props> = ({
                   />
                 </p>
               )}
-              {doned > 0 && (
+              {doned > 0 && uId !== user?.id && (
                 <p style={{ color: '#3284FF' }} className="font-medium">
                   Выполнено:{' '}
                   <span>

@@ -49,6 +49,7 @@ import { generateFormData } from './lib/assets/generateFormData';
 import { socket } from './lib/api/socket';
 import OutlineBtn from './components/OutlineBtn/OutlineBtn';
 import { getParseDate } from './lib/assets/getParseDate';
+import { defaultSecureGet } from './lib/api/default-requests';
 
 export {
   Button,
@@ -103,5 +104,6 @@ export {
   socket,
   defaultGet,
   getParseDate,
+  defaultSecureGet,
 };
 export type { ResponseUserData };

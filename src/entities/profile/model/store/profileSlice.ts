@@ -128,7 +128,7 @@ export const profileSlice = createSlice({
       }
     },
     resetData: (state) => {
-      state = initialState;
+      state = JSON.parse(JSON.stringify(initialState));
     },
   },
 });

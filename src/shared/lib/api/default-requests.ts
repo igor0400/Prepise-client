@@ -21,3 +21,8 @@ export const defaultGet = async (url: string) => {
   const data = await api.get(url).json();
   return data;
 };
+
+export const defaultSecureGet = async (url: string) => {
+  const data = await secureApi().get(url).json();
+  return data;
+};

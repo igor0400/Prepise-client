@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { defaultGet, useRequest, useTypedSelector } from '../../../../shared';
+import { defaultGet, defaultSecureGet, useRequest, useTypedSelector } from '../../../../shared';
 import { loadItemsLength } from '../../config';
 import { ProfileState, setItemData, updateItemData } from '../../../profile';
 
@@ -33,7 +33,7 @@ export const useGetPersonalItems = (
 
   async function getData() {
     const data = await request(
-      defaultGet,
+      defaultSecureGet,
       true,
       `${url}?limit=${loadItemsLength}&authorId=${userId}`,
     );
