@@ -1,11 +1,20 @@
 import classNames from 'classnames';
 import { FC, MouseEventHandler, ReactNode } from 'react';
 
+const bgColors = {
+  green: 'bg-green-600',
+  blue: 'bg-blue-600',
+  gray: 'bg-gray-600',
+  red: 'bg-red-600',
+  black: 'bg-black',
+};
+
 interface Props {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
   className?: string;
-  bg?: 'blue' | 'green' | 'gray' | 'red';
+  bg?: keyof typeof bgColors;
+  [key: string]: any;
 }
 
 const OutlineBtn: FC<Props> = ({
@@ -13,13 +22,8 @@ const OutlineBtn: FC<Props> = ({
   onClick,
   className,
   bg = 'green',
+  ...args
 }) => {
-  const bgColors = {
-    green: 'bg-green-600',
-    blue: 'bg-blue-600',
-    gray: 'bg-gray-600',
-    red: 'bg-red-600',
-  };
   const bgColor = bgColors[bg] ?? bgColors.green;
 
   return (
@@ -32,6 +36,7 @@ const OutlineBtn: FC<Props> = ({
           [bgColor]: bgColor,
         },
       )}
+      {...args}
     >
       {children}
     </button>

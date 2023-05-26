@@ -1,4 +1,5 @@
 import Blocks from '../../Blocks';
+import ChangePass from '../../ChangePass';
 import Favourites from '../../Favourites';
 import Follows from '../../Follows';
 import InWork from '../../InWork';
@@ -23,6 +24,6 @@ export const contents: any = {
   blocks: <Blocks />,
   tests: <Tests />,
   testBlocks: <TestBlocks />,
-  changePass: <InWork />,
+  changePass: <ChangePass />,
   sessions: <InWork />,
 };

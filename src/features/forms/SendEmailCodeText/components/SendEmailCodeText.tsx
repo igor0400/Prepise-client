@@ -3,13 +3,15 @@ import sendEmailCode from '../lib/api/send-email-code';
 import { useToast } from '@chakra-ui/react';
 import classNames from 'classnames';
 import { useRequest } from '../../../../shared';
+import { sendChangePassCode } from '../lib/api/send-change-pass-code';
 
 interface Props {
   getEmail: Function;
   setError: Function;
+  changePass?: boolean;
 }
 
-const SendEmailCodeText: FC<Props> = ({ getEmail, setError }) => {
+const SendEmailCodeText: FC<Props> = ({ getEmail, setError, changePass }) => {
   const toast = useToast();
   const [disable, setDisable] = useState<boolean>(false);
   const { request, loading } = useRequest(false);
@@ -26,7 +28,9 @@ const SendEmailCodeText: FC<Props> = ({ getEmail, setError }) => {
     }
 
     setDisable(true);
-    await request(sendEmailCode, true, toast, email);
+
+    const reqFunc = changePass ? sendChangePassCode : sendEmailCode;
+    await request(reqFunc, true, toast, email);
     setTimeout(() => setDisable(false), 3000);
   };
 
