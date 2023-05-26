@@ -115,11 +115,6 @@ export const tabs: Tab[][] = [
       icon: sessions,
       iconSize: 20,
     },
-    {
-      id: 'settings',
-      name: 'Настройки',
-      icon: settings,
-    },
   ],
   [
     {

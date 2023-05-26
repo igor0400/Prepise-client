@@ -1,4 +1,5 @@
 import Blocks from '../../Blocks';
+import Favourites from '../../Favourites';
 import Follows from '../../Follows';
 import InWork from '../../InWork';
 import Notifications from '../../Notifications';
@@ -14,7 +15,7 @@ export const contents: any = {
   userInfo: <InWork />,
   stats: <Stats />,
   follows: <Follows />,
-  favourite: <InWork />,
+  favourite: <Favourites />,
   achievements: <InWork />,
   interviewes: <InWork />,
   posts: <Posts />,
@@ -24,5 +25,4 @@ export const contents: any = {
   testBlocks: <TestBlocks />,
   changePass: <InWork />,
   sessions: <InWork />,
-  settings: <InWork />,
 };

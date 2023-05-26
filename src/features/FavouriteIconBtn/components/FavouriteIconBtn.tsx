@@ -67,6 +67,7 @@ const FavouriteIconBtn: FC<Props> = ({
             item: {
               userId: data?.id,
               itemId: iId,
+              item,
             },
           }),
         );

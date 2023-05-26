@@ -1,4 +1,4 @@
-import { FC, useEffect, ReactNode } from 'react';
+import { FC, useEffect, ReactNode, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItems, setLoading, setUserData, UserSections } from '../../User';
 import { FillPageLoader, useRequest } from '../../../shared';
@@ -14,10 +14,16 @@ const AuthWrapper: FC<Props> = ({ children }) => {
   const { loading, isAuth, data } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
   const { request } = useRequest(true);
+  const [isSetData, setIsSetData] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('accessToken') && !isAuth && !loading) {
       setData();
+      setIsSetData(true);
+    }
+
+    if (!isSetData && isAuth && !loading && !data?.favouriteQuestions) {
+      getUserSections();
     }
   }, [isAuth, loading]);
 

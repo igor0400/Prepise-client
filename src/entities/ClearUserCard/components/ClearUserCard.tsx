@@ -4,10 +4,12 @@ import React, { FC } from 'react';
 import { getFileUrl } from '../../../shared';
 import { UserType } from '../../User';
 
-const ClearUserCard: FC<UserType> = ({ id, avatar, name }) => {
+const ClearUserCard: FC<UserType> = ({ id, avatar, name, type }) => {
+  const url = type === 'user' ? 'users' : 'companies';
+
   return (
     <div className="py-3 pl-3 pr-7 rounded-md shadow-md w-fit">
-      <Link href={`/users/${id}`} className="flex items-center">
+      <Link href={`/${url}/${id}`} className="flex items-center">
         <Avatar
           className="w-8 sm:w-10 h-8 sm:h-10"
           name={name}

@@ -3,7 +3,7 @@ import { ProfileContentWrapper } from '../../ProfileContent';
 import follows from 'public/images/icons/follows-bold.svg';
 import { useGetPersonalItems } from '../../../../entities/User';
 import ClearUserCard from '../../../../entities/ClearUserCard';
-import { CenteredLoader } from '../../../../shared';
+import { CenteredLoader, EmptyItems } from '../../../../shared';
 import ShowMoreBtn from '../../../../entities/ShowMoreBtn';
 
 const Follows: FC = () => {
@@ -14,11 +14,13 @@ const Follows: FC = () => {
     <ProfileContentWrapper title="Подписки" icon={follows}>
       {loading ? (
         <CenteredLoader className="my-16" />
+      ) : !items?.length ? (
+        <EmptyItems />
       ) : (
         <>
           <div className="flex gap-3 flex-wrap">
             {items.map((item: any) => (
-              <ClearUserCard {...item.user} />
+              <ClearUserCard {...item.user} key={item.id} />
             ))}
           </div>
           {!moreDisabled && (
