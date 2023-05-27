@@ -127,8 +127,8 @@ export const profileSlice = createSlice({
         });
       }
     },
-    resetData: (state) => {
-      state = JSON.parse(JSON.stringify(initialState));
+    resetData: () => {
+      return JSON.parse(JSON.stringify(initialState));
     },
   },
 });

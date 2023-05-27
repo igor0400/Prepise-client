@@ -15,6 +15,7 @@ export interface UserType {
   followers: number;
   likes: number;
   dislikes: number;
+  viewes: number;
   location: string;
   birthday: string;
   summary: string;

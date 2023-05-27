@@ -1,26 +1,23 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { ProfileContentWrapper } from '../../ProfileContent';
 import stats from 'public/images/icons/stats-bold.svg';
 import Card from './Card';
 import { useTypedSelector } from '../../../../shared';
-import { getUserStat } from '../../../../entities/User';
 
 const Stats: FC = () => {
   const user = useTypedSelector((state) => state.user.data);
-  const { likes, viewes } = getUserStat([
-    ...(user?.blocks ?? []),
-    ...(user?.questions ?? []),
-    ...(user?.tests ?? []),
-    ...(user?.testBlocks ?? []),
-  ]);
   const cards = [
     {
       title: 'Просмотры',
-      count: viewes,
+      count: user?.viewes ?? 0,
     },
     {
       title: 'Лайки',
-      count: likes,
+      count: user?.likes ?? 0,
+    },
+    {
+      title: 'Дизлайки',
+      count: user?.dislikes ?? 0,
     },
     {
       title: 'Подписчики',

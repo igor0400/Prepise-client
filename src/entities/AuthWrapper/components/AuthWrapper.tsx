@@ -14,15 +14,11 @@ const AuthWrapper: FC<Props> = ({ children }) => {
   const { loading, isAuth, data } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
   const { request } = useRequest(true);
-  const [isSetData, setIsSetData] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('accessToken') && !isAuth && !loading) {
       setData();
-      setIsSetData(true);
-    }
-
-    if (!isSetData && isAuth && !loading && !data?.favouriteQuestions) {
+    } else if (isAuth && !loading && !data?.favouriteQuestions) {
       getUserSections();
     }
   }, [isAuth, loading]);
@@ -57,7 +53,7 @@ const AuthWrapper: FC<Props> = ({ children }) => {
     sections.forEach(async ({ url, sectionName }) => {
       const items = await request(getSections, false, url);
 
-      if (items) {
+      if (items && data && !data[sectionName]) {
         dispatch(addItems({ items, sectionName }));
       }
     });
