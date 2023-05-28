@@ -23,7 +23,7 @@ const Header: FC = () => {
   return (
     <div className="header-wrapper">
       <header className="header min-max-width flex justify-between padding-50">
-        <Link href="/">
+        <Link href="/main">
           <Image
             src={logo}
             alt="logo"

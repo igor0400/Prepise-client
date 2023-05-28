@@ -7,6 +7,7 @@ export const itemsNames: { [key: string]: UserSections } = {
   testBlocks: 'favouriteTestBlocks',
   users: 'favouriteUsers',
   companies: 'favouriteCompanies',
+  tags: 'favouriteTags',
 };
 
 export const itemsLinks = {
@@ -16,4 +17,15 @@ export const itemsLinks = {
   testBlocks: 'tests-blocks',
   users: 'users',
   companies: 'companies',
+  tags: '',
 };
+
+export const selectOptions = [
+  { value: 'questions', label: 'Вопросы' },
+  { value: 'tests', label: 'Тесты' },
+  { value: 'blocks', label: 'Блоки' },
+  { value: 'testBlocks', label: 'Блоки тестов' },
+  { value: 'users', label: 'Пользователи' },
+  { value: 'companies', label: 'Компании' },
+  { value: 'tags', label: 'Теги' },
+];

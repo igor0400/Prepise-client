@@ -1,6 +1,6 @@
 import { api } from '../../../../../shared';
 
-export default async function sendEmailCode(toast: Function, email: string) {
+export default async function sendRegisterCode(toast: Function, email: string) {
   await api.post('email/verify', {
     json: { email },
   });

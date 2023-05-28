@@ -15,7 +15,7 @@ const TagCard: FC<Props> = ({ favouriteBtn, item, size = 'big' }) => {
 
   return (
     <Card>
-      <CardBody className="flex flex-col justify-between">
+      <CardBody className="flex flex-col justify-between min-w-[250px]">
         <div>
           <div className="flex justify-between items-start">
             <h3

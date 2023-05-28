@@ -50,7 +50,7 @@ const CreationFormFrame: FC<Props> = ({
   className,
 }) => {
   const { clear, addItem } = useClearCustomForm();
-  const { request, loading } = useRequest();
+  const { request, loading } = useRequest(true);
   const router = useRouter();
   const [updateTagsFunc, setUpdateTagsFunc] = useState<Function[]>([]);
   const [isResetDisabled, setIsResetDisabled] = useState(false);

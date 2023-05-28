@@ -9,7 +9,7 @@ const Sessions: FC = () => {
       icon={sessions}
       iconSize={26}
     >
-      <p className='text-xl font-semibold text-center'>Скоро...</p>
+      <p className="text-xl font-semibold text-center pt-10">Скоро...</p>
     </ProfileContentWrapper>
   );
 };

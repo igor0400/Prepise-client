@@ -15,8 +15,8 @@ const UserCard: FC<Props> = ({ favouriteBtn, item }) => {
   return (
     <Card>
       <Link href={type === 'user' ? `/users/${id}` : `/companies/${id}`}>
-        <CardBody>
-          <div className="flex justify-between items-start gap-10">
+        <CardBody className="min-w-[250px]">
+          <div className="flex justify-between items-start">
             <div className="flex">
               <Avatar
                 className="w-14 h-14"

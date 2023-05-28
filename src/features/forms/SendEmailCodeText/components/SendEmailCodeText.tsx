@@ -1,17 +1,22 @@
 import { FC, useState } from 'react';
-import sendEmailCode from '../lib/api/send-email-code';
+import sendRegisterCode from '../lib/api/send-register-code';
 import { useToast } from '@chakra-ui/react';
 import classNames from 'classnames';
 import { useRequest } from '../../../../shared';
-import { sendChangePassCode } from '../lib/api/send-change-pass-code';
+import { sendChangePassCode } from '../../SendEmailCodeText/lib/api/send-change-pass-code';
+import { sendDefaultCode } from '../lib/api/send-default-code';
 
 interface Props {
   getEmail: Function;
-  setError: Function;
-  changePass?: boolean;
+  setError?: Function;
+  type?: 'register' | 'changePass' | 'default';
 }
 
-const SendEmailCodeText: FC<Props> = ({ getEmail, setError, changePass }) => {
+const SendEmailCodeText: FC<Props> = ({
+  getEmail,
+  setError,
+  type = 'default',
+}) => {
   const toast = useToast();
   const [disable, setDisable] = useState<boolean>(false);
   const { request, loading } = useRequest(false);
@@ -19,7 +24,7 @@ const SendEmailCodeText: FC<Props> = ({ getEmail, setError, changePass }) => {
   const handleClick = async () => {
     const email = getEmail();
 
-    if (!email) {
+    if (!email && setError) {
       setError('email', {
         type: 'custom',
         message: 'Это обязательное поле',
@@ -29,7 +34,12 @@ const SendEmailCodeText: FC<Props> = ({ getEmail, setError, changePass }) => {
 
     setDisable(true);
 
-    const reqFunc = changePass ? sendChangePassCode : sendEmailCode;
+    const reqFunc =
+      type === 'changePass'
+        ? sendChangePassCode
+        : type === 'register'
+        ? sendRegisterCode
+        : sendDefaultCode;
     await request(reqFunc, true, toast, email);
     setTimeout(() => setDisable(false), 3000);
   };

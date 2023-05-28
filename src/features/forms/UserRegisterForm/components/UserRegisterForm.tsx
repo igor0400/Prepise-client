@@ -53,6 +53,7 @@ const UserRegisterForm: FC = () => {
         <SendEmailCodeText
           getEmail={() => getValues('email')}
           setError={setError}
+          type="register"
         />
       }
     />

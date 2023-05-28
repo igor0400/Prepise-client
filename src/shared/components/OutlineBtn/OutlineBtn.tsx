@@ -5,6 +5,7 @@ const bgColors = {
   green: 'bg-green-600',
   blue: 'bg-blue-600',
   gray: 'bg-gray-600',
+  lightGray: 'bg-gray-300',
   red: 'bg-red-600',
   black: 'bg-black',
 };

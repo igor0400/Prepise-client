@@ -1,6 +1,11 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { defaultGet, defaultSecureGet, useRequest, useTypedSelector } from '../../../../shared';
+import {
+  defaultGet,
+  defaultSecureGet,
+  useRequest,
+  useTypedSelector,
+} from '../../../../shared';
 import { loadItemsLength } from '../../config';
 import { ProfileState, setItemData, updateItemData } from '../../../profile';
 
@@ -20,8 +25,8 @@ export const useGetPersonalItems = (
     (state) => state.profile[name],
   );
   const userId = useTypedSelector((state) => state.user.data?.id);
-  const { request, loading } = useRequest(false);
-  const { request: moreRequest, loading: moreLoading } = useRequest(false);
+  const { request, loading } = useRequest(true, true);
+  const { request: moreRequest, loading: moreLoading } = useRequest(true, true);
   const dispatch = useDispatch();
   const url = urls[name];
 

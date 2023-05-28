@@ -93,7 +93,7 @@ const ChangePass: FC = () => {
           <SendEmailCodeText
             getEmail={() => data?.email}
             setError={setError}
-            changePass
+            type="changePass"
           />
         </FormIconInput>
         <OutlineBtn bg="black" className="mt-5 w-fit mx-auto" type="submit">

@@ -50,7 +50,11 @@ const CompanyRegisterForm: FC = () => {
       setValue={setValue}
       userType="company"
       sendMail={
-        <SendEmailCodeText getEmail={() => getValues('email')} setError={setError} />
+        <SendEmailCodeText
+          getEmail={() => getValues('email')}
+          setError={setError}
+          type="register"
+        />
       }
     />
   );

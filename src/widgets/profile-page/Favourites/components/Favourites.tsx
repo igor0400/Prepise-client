@@ -7,6 +7,7 @@ import { EmptyItems, useTypedSelector } from '../../../../shared';
 import UserItems from './UserItems';
 import { itemsNames } from '../configs/items';
 import UsersAndCompanies from './UsersAndCompanies';
+import Tags from './Tags';
 
 const Favourites: FC = () => {
   const [activeGroup, setActiveGroup] = useState<Groups>('questions');
@@ -28,6 +29,8 @@ const Favourites: FC = () => {
         <div className="mt-5">
           {activeGroup === 'users' || activeGroup === 'companies' ? (
             <UsersAndCompanies items={items} activeGroup={activeGroup} />
+          ) : activeGroup === 'tags' ? (
+            <Tags items={items} />
           ) : (
             <UserItems items={items} activeGroup={activeGroup} />
           )}
