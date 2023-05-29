@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { EmptyItems, useTypedSelector } from '../../../../shared';
 import CreateInterviewModal from '../../../../features/forms/CreateInterviewModal';
 import { useDisclosure } from '@chakra-ui/react';
+import { InterviewCard } from '../../../../entities/Interview';
 
 const Interviewes: FC = () => {
   const interviewes = useTypedSelector((state) => state.user.data?.interviewes);
@@ -19,11 +20,11 @@ const Interviewes: FC = () => {
     >
       <div className="min-h-[835px]">
         {interviewes?.length ? (
-          <div>
+          <div className="flex flex-col gap-4">
             {[...interviewes]
               .sort((a, b) => b.id - a.id)
               .map((item) => (
-                <p key={item.id}>{item.title}</p>
+                <InterviewCard {...item} key={item.id} />
               ))}
           </div>
         ) : (
