@@ -14,7 +14,7 @@ const EmptyItems: FC<Props> = ({ itemsName }) => {
   const imgSize = isLargerThan769 ? 100 : 75;
 
   return (
-    <div className="flex flex-col mt-20 w-full">
+    <div className="flex flex-col pt-20 w-full">
       <Image
         className="mx-auto"
         src={emptyBox}

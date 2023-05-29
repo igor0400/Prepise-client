@@ -71,3 +71,11 @@ main {
     min-height: calc(100vh - 65px);
   }
 }
+
+.ant-picker-dropdown {
+  z-index: 10000 !important;
+}
+
+.ant-btn-primary {
+  background-color: #1677ff;
+}

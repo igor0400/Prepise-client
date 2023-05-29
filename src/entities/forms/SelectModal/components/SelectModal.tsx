@@ -39,10 +39,13 @@ const SelectModal: FC<Props> = ({ updateTags, isModalOpen, closeModal }) => {
   const { clear, addItem } = useClearCustomForm();
 
   const onSubmit = async (values: ModalFormData) => {
-    await request(modalSubmitRequest, true, values);
-    clear();
-    closeModal();
-    updateTags.forEach((i) => i());
+    const data = await request(modalSubmitRequest, true, values);
+
+    if (data) {
+      clear();
+      closeModal();
+      updateTags.forEach((i) => i());
+    }
   };
 
   const isLoading = loading || isSubmitting;

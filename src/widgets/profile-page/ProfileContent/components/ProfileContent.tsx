@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActiveTab } from '../../../../entities/profile';
 import { useTypedSelector } from '../../../../shared';
@@ -26,7 +26,7 @@ const ProfileContent: FC = () => {
     }
   }, []);
 
-  return <div>{content}</div>;
+  return content;
 };
 
 export default ProfileContent;

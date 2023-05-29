@@ -61,11 +61,11 @@ export const tabs: Tab[][] = [
       icon: favourite,
       iconSize: 15,
     },
-    {
-      id: 'achievements',
-      name: 'Достижения',
-      icon: achievements,
-    },
+    // {
+    //   id: 'achievements',
+    //   name: 'Достижения',
+    //   icon: achievements,
+    // },
     {
       id: 'interviewes',
       name: 'Собеседования',
@@ -109,12 +109,12 @@ export const tabs: Tab[][] = [
       icon: changePass,
       iconSize: 18,
     },
-    {
-      id: 'sessions',
-      name: 'Активные сессии',
-      icon: sessions,
-      iconSize: 20,
-    },
+    // {
+    //   id: 'sessions',
+    //   name: 'Активные сессии',
+    //   icon: sessions,
+    //   iconSize: 20,
+    // },
   ],
   [
     {

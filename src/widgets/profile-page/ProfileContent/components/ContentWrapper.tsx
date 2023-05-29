@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Image from 'next/image';
 import React, { FC, ReactNode } from 'react';
 
@@ -6,11 +7,22 @@ interface Props {
   title: string | ReactNode;
   icon: any;
   iconSize?: number;
+  className?: string;
 }
 
-const ContentWrapper: FC<Props> = ({ children, title, icon, iconSize }) => {
+const ContentWrapper: FC<Props> = ({
+  children,
+  title,
+  icon,
+  iconSize,
+  className,
+}) => {
   return (
-    <div className="p-5">
+    <div
+      className={classNames('p-5', {
+        [className ?? '']: className,
+      })}
+    >
       <div className="flex flex-col gap-1 pb-5">
         <div
           style={{ width: 28, height: 28 }}
