@@ -61,7 +61,6 @@ const DefaultSelect: FC<Props> = ({
       <FormLabel htmlFor={id}>{label}</FormLabel>
 
       <Select
-        style={{ width: 120 }}
         size="large"
         onChange={onChange}
         onBlur={onBlur}

@@ -30,7 +30,7 @@ const InterviewCard: FC<InterviewType> = ({
   return (
     <div className="p-4 shadow rounded-md">
       <div className="flex justify-between">
-        <h4 className="text-xl font-semibold pb-2">{title}</h4>
+        <h4 className="text-lg font-semibold pb-2">{title}</h4>
 
         <div className="flex items-center justify-center w-[17px] h-[17px]">
           {loading ? (
@@ -48,14 +48,14 @@ const InterviewCard: FC<InterviewType> = ({
         </div>
       </div>
 
-      <p>
+      <p className="text-sm">
         <span className="text-gray-500">Дата:</span> {parseDate(date, true)}
       </p>
-      <p>
+      <p className="text-sm">
         <span className="text-gray-500">Напомнить:</span>{' '}
         {parseDate(remindDate, true)}
       </p>
-      <p>
+      <p className="text-sm">
         <span className="text-gray-500">Должность:</span> {position}
       </p>
     </div>

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Divider } from '@chakra-ui/react';
+import { Divider, useMediaQuery } from '@chakra-ui/react';
 import Image from 'next/image';
 import { Tab } from '../model/types/tab';
 import { useTypedSelector } from '../../../../shared';
@@ -24,6 +24,8 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
   const user = useTypedSelector((state) => state.user.data);
   const items = user?.notifications;
   const { yang } = getSortedNotify(items ?? []);
+  const [isLargerThan1024] = useMediaQuery('(min-width: 1024px)');
+  const [isLargerThan640] = useMediaQuery('(min-width: 640px)');
 
   const handleClick = () => {
     if (id === 'singOut') {
@@ -44,7 +46,7 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
   return (
     <>
       <div className="flex relative">
-        {isActive && (
+        {isActive && isLargerThan640 && (
           <div
             className="h-full w-1.5 absolute bg-green-200 -left-1.5"
             style={{
@@ -54,7 +56,7 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
         )}
         <div
           className={classNames(
-            'p-4 flex gap-3 cursor-pointer transition w-full',
+            'p-3 sm:p-4 flex gap-3 cursor-pointer transition w-full justify-center lg:justify-start',
             {
               'bg-gray-100': isActive,
             },
@@ -84,10 +86,10 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
               </p>
             )}
           </div>
-          <p className="font-medium">{name}</p>
+          {isLargerThan1024 && <p className="font-medium">{name}</p>}
         </div>
       </div>
-      {!isLast && <Divider className="w-[calc(100%-60px)] ml-auto" />}
+      {!isLast && <Divider className="lg:w-[calc(100%-60px)] lg:ml-auto" />}
     </>
   );
 };

@@ -22,7 +22,7 @@ const UserInCard: FC<Props> = ({ id, avatar, name, date, className, type }) => {
         e.preventDefault();
         router.push(`/${url}/${id}`);
       }}
-      className={classNames('flex', {
+      className={classNames('flex bg-white', {
         [className ?? '']: className,
       })}
     >

@@ -19,7 +19,7 @@ const ContentWrapper: FC<Props> = ({
 }) => {
   return (
     <div
-      className={classNames('p-5', {
+      className={classNames('sm:p-5', {
         [className ?? '']: className,
       })}
     >

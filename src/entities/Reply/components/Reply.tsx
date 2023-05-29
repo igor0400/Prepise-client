@@ -11,7 +11,7 @@ import { deleteReply } from '../lib/api/deleteReply';
 import { getAuthor } from '../lib/api/getAuthor';
 import { ReplyType } from '../model/types/reply';
 
-const Reply: FC<ReplyType> = ({ id, text, authorId, createdAt }) => {
+const Reply: FC<ReplyType> = ({ id, text, authorId, createdAt, accepted }) => {
   const { request } = useRequest(false);
   const { request: rejRequest, loading: rejLoading } = useRequest(true);
   const { request: accRequest, loading: accLoading } = useRequest(true);
@@ -72,7 +72,7 @@ const Reply: FC<ReplyType> = ({ id, text, authorId, createdAt }) => {
     <div>
       <div dangerouslySetInnerHTML={{ __html: text }}></div>
 
-      <div className="flex gap-4 justify-between items-end pt-7">
+      <div className="flex flex-wrap gap-4 justify-between items-end pt-7">
         {author ? (
           <UserInCard
             {...author}
@@ -82,22 +82,28 @@ const Reply: FC<ReplyType> = ({ id, text, authorId, createdAt }) => {
         ) : (
           <div></div>
         )}
-        <div className="flex gap-2">
-          <OutlineBtn className="h-fit text-sm" bg="red" onClick={handleReject}>
-            {rejLoading ? (
-              <Spinner size="sm" className="my-0.5 mx-8" />
-            ) : (
-              'Отклонить'
-            )}
-          </OutlineBtn>
-          <OutlineBtn className="h-fit text-sm" onClick={handleAccept}>
-            {accLoading ? (
-              <Spinner size="sm" className="my-0.5 mx-7" />
-            ) : (
-              'Одобрить'
-            )}
-          </OutlineBtn>
-        </div>
+        {!accepted && (
+          <div className="flex flex-wrap gap-2">
+            <OutlineBtn
+              className="h-fit text-sm"
+              bg="red"
+              onClick={handleReject}
+            >
+              {rejLoading ? (
+                <Spinner size="sm" className="my-0.5 mx-8" />
+              ) : (
+                'Отклонить'
+              )}
+            </OutlineBtn>
+            <OutlineBtn className="h-fit text-sm" onClick={handleAccept}>
+              {accLoading ? (
+                <Spinner size="sm" className="my-0.5 mx-7" />
+              ) : (
+                'Одобрить'
+              )}
+            </OutlineBtn>
+          </div>
+        )}
       </div>
     </div>
   );
