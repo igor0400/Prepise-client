@@ -9,7 +9,7 @@ interface Props {
 const ProfileWrapper: FC<Props> = ({ navbar, children }) => {
   return (
     <div className="flex gap-5 justify-between pt-10 pb-28 max-w-5xl mx-auto">
-      <div className="lg:min-w-[320px] max-sm:z-[10000] max-sm:fixed max-sm:bottom-0 max-sm:left-0 flex sm:flex-col sm:gap-2 max-sm:bg-white">
+      <div className="lg:min-w-[320px] max-sm:z-[10000] max-sm:fixed max-sm:bottom-0 max-sm:left-0 flex sm:flex-col sm:gap-2 max-sm:bg-white max-sm:overflow-x-scroll max-sm:w-full">
         <ProfileNavbarTitle />
         {navbar}
       </div>

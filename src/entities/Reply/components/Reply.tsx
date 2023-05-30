@@ -77,7 +77,7 @@ const Reply: FC<ReplyType> = ({ id, text, authorId, createdAt, accepted }) => {
           <UserInCard
             {...author}
             date={createdAt}
-            className="shadow w-fit py-3 pl-3 pr-7 rounded-md cursor-pointer"
+            className="shadow w-fit py-3 pl-3 pr-7 rounded-md cursor-pointer bg-white"
           />
         ) : (
           <div></div>

@@ -32,7 +32,7 @@ const ProfileNavbarTitle: FC = () => {
           }}
         />
       ) : (
-        <AccountCircleIcon className="mx-4 my-3" sx={{ fontSize: 25 }} />
+        <AccountCircleIcon className="mx-4 my-3" sx={{ fontSize: 26 }} />
       )}
 
       <h2 className="text-xl hidden lg:block">

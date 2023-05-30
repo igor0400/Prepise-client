@@ -1,6 +1,5 @@
 import { Avatar } from '@chakra-ui/react';
 import classNames from 'classnames';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { getFileUrl, parseDate } from '../../../shared';
@@ -22,7 +21,7 @@ const UserInCard: FC<Props> = ({ id, avatar, name, date, className, type }) => {
         e.preventDefault();
         router.push(`/${url}/${id}`);
       }}
-      className={classNames('flex bg-white', {
+      className={classNames('flex', {
         [className ?? '']: className,
       })}
     >

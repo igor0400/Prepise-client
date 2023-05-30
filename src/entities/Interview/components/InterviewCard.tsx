@@ -28,7 +28,7 @@ const InterviewCard: FC<InterviewType> = ({
   };
 
   return (
-    <div className="p-4 shadow rounded-md">
+    <div className="p-4 shadow rounded-md bg-white">
       <div className="flex justify-between">
         <h4 className="text-lg font-semibold pb-2">{title}</h4>
 

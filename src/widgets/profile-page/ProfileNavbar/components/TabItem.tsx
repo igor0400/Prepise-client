@@ -5,17 +5,25 @@ import { Tab } from '../model/types/tab';
 import { useTypedSelector } from '../../../../shared';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { resetProfileData, setActiveTab } from '../../../../entities/profile';
+import { setActiveTab } from '../../../../entities/profile';
 import { useRouter } from 'next/router';
 import { getSortedNotify } from '../../../../entities/Notification';
-import { resetUserData } from '../../../../entities/User';
 
 interface Props extends Tab {
   index: number;
   itemsLen: number;
+  openSignOutModel: Function;
 }
 
-const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
+const TabItem: FC<Props> = ({
+  id,
+  icon,
+  iconSize,
+  name,
+  index,
+  itemsLen,
+  openSignOutModel,
+}) => {
   const activeItem = useTypedSelector(
     (state) => state.profile.navbar.activeTab,
   );
@@ -29,9 +37,7 @@ const TabItem: FC<Props> = ({ id, icon, iconSize, name, index, itemsLen }) => {
 
   const handleClick = () => {
     if (id === 'singOut') {
-      dispatch(resetProfileData());
-      dispatch(resetUserData());
-      localStorage.removeItem('accessToken');
+      openSignOutModel();
     } else {
       dispatch(setActiveTab(id));
       router.push({ query: { tab: id } });

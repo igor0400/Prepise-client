@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import UserCard from '../../../../entities/UserCard';
 import FavouriteIconBtn from '../../../../features/FavouriteIconBtn';
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const UsersAndCompanies: FC<Props> = ({ items, activeGroup }) => {
+  const [isSmallerThan641] = useMediaQuery('(max-width: 641px)');
+
   return (
     <div className="flex gap-3 flex-wrap">
       {items.map(({ item }) => (
@@ -17,7 +20,7 @@ const UsersAndCompanies: FC<Props> = ({ items, activeGroup }) => {
           item={{ ...item, description: null }}
           favouriteBtn={
             <FavouriteIconBtn
-              // size={isSmallerThan641 ? 'small' : 'big'}
+              size={isSmallerThan641 ? 'small' : 'big'}
               item={item}
               storeName={itemsNames[activeGroup]}
               dataUrl={`favourites/${activeGroup}/:id`}
