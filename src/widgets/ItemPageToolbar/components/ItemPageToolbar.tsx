@@ -31,7 +31,7 @@ const ItemPageToolbar: FC<Props> = ({
   const router = useRouter();
 
   const isUserFollowed = useMemo(
-    () => followings?.map((i) => i.id).includes(authorId),
+    () => followings?.map((i) => i.userId).includes(authorId),
     [followings],
   );
 
