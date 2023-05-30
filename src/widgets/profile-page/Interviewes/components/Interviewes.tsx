@@ -32,7 +32,7 @@ const Interviewes: FC = () => {
         )}
       </div>
       <button
-        className="sticky bottom-10 text-4xl shadow-md p-3 rounded-full float-right mr-2 mb-6"
+        className="sticky bottom-20 sm:bottom-10 text-4xl shadow-md p-3 rounded-full float-right mr-2 mb-6 bg-white"
         onClick={onOpen}
       >
         <Image src={plus} alt="plus" width={20} height={20} />
