@@ -117,7 +117,7 @@ const MainEntityFrame: FC<Props> = ({
               })}
               style={
                 !isSmallerThan380
-                  ? { gridTemplateColumns: 'repeat(auto-fit, 270px)' }
+                  ? { gridTemplateColumns: 'repeat(auto-fit, 300px)' }
                   : undefined
               }
             >
