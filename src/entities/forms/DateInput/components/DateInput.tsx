@@ -58,6 +58,7 @@ const DateInput: FC<Props> = ({
         onBlur={onBlur}
         ref={ref}
         size="large"
+        placeholder='Выберите дату'
       />
 
       <FormErrorMessage>{error}</FormErrorMessage>
