@@ -48,7 +48,9 @@ const ImgsGalary: FC<Props> = ({
             style={
               i === activeIndex ? { ...imgStyle, ...imgActiveStyle } : imgStyle
             }
-            className={imgClassName}
+            className={classNames('rounded-md', {
+              [imgClassName ?? '']: imgClassName,
+            })}
             onError={(e) => {
               //@ts-ignore
               e.target.style.display = 'none';

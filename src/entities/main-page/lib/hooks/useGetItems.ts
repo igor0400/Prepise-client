@@ -28,12 +28,13 @@ export const useGetItems = (name: keyof MainPageState, url: string) => {
       true,
       `${url}?limit=${loadItemsLength}`,
     );
-    const filteredItems =
-      typeof filters === 'string'
-        ? getFilteredItems(data, filters).slice(0, loadItemsLength)
-        : filterItems(data, filters);
 
     if (data) {
+      const filteredItems =
+        typeof filters === 'string'
+          ? getFilteredItems(data, filters).slice(0, loadItemsLength)
+          : filterItems(data, filters);
+
       dispatch(
         setItemData({
           name,
