@@ -39,7 +39,7 @@ const PageWrapper: FC<Props> = ({
           content={description ?? 'Удобная подготовка к собеседованиям'}
         />
         <meta property="og:image" content="/logo512x512.png" />
-        <meta property="og:url" content="https://prepise.com" />
+        <meta property="og:url" content="https://prepise.ru" />
         <meta property="og:site_name" content="Prepise" />
         <link
           crossOrigin="use-credentials"

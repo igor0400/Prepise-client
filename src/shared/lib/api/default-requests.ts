@@ -1,7 +1,7 @@
 import ky from 'ky';
 
 export const api = ky.create({
-  prefixUrl: process.env.NEXT_PUBLIC_SERVER,
+  prefixUrl: process.env.NEXT_PUBLIC_SERVER ?? 'http://localhost:8080',
   credentials: 'include',
   timeout: 100000,
 });

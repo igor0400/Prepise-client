@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: false,
   images: {
-    domains: ['api.prepise.com', 'prepise.com', 'localhost'],
+    domains: ['ws.prepise.ru', 'api.prepise.ru', 'prepise.ru', 'localhost'],
     remotePatterns: [
       {
         protocol: 'http',
@@ -12,7 +12,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: '**.prepise.com',
+        hostname: '**.prepise.ru',
         port: '',
         pathname: '/**',
       },
