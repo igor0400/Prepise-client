@@ -25,6 +25,7 @@ const ProfileNavbarTitle: FC = () => {
           src={getFileUrl(avatar)}
           style={{
             background: '#fff',
+            color: '#000',
             padding: isDefaultAvatar ? 10 : 0,
             filter: isLargerThan640
               ? 'drop-shadow(0px 0px 1.5px rgba(0, 0, 0, 0.15))'

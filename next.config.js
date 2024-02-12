@@ -18,4 +18,8 @@ module.exports = {
       },
     ],
   },
+  serverRuntimeConfig: {
+    serverUrl: process.env.NEXT_PUBLIC_SERVER,
+    socketUrl: process.env.NEXT_PUBLIC_SOCKET,
+  },
 };

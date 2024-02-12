@@ -38,6 +38,7 @@ const UserPageInfo: FC<Props> = ({ user, favouriteBtn, followBtn }) => {
           width: avatarSize,
           height: avatarSize,
           background: '#fff',
+          color: '#000',
         }}
         name={name}
         src={getFileUrl(avatar)}

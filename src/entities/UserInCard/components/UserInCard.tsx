@@ -33,6 +33,7 @@ const UserInCard: FC<Props> = ({ id, avatar, name, date, className, type }) => {
         style={{
           boxShadow: '0px 0px 2px 1px rgba(0, 0, 0, 0.25)',
           background: '#fff',
+          color: '#000',
           width: 40,
           height: 40,
         }}

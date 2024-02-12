@@ -72,6 +72,7 @@ const Header: FC = () => {
                 style={{
                   padding: isDefaultAvatar ? '6px' : 0,
                   background: '#fff',
+                  color: '#000',
                 }}
                 name={data?.name ?? 'Загрузка...'}
                 src={getFileUrl(data?.avatar ?? '')}

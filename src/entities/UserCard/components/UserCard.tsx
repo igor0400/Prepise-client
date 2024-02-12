@@ -22,7 +22,7 @@ const UserCard: FC<Props> = ({ favouriteBtn, item }) => {
                 className="w-14 h-14"
                 name={name}
                 src={getFileUrl(avatar)}
-                style={{ background: '#fff' }}
+                style={{ background: '#fff', color: '#000' }}
               />
               <div className="pl-2">
                 <h3 className="font-semibold text-lg">{name}</h3>
