@@ -43,6 +43,7 @@ const ImgsGalary: FC<Props> = ({
           <Image
             alt="img"
             src={getFileUrl(url)}
+            loader={() => getFileUrl(url)}
             width={imgWidth}
             height={imgHeight}
             style={

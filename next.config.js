@@ -12,6 +12,12 @@ module.exports = {
       },
       {
         protocol: 'https',
+        hostname: 'api.prepise.ru',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: '**.prepise.ru',
         port: '',
         pathname: '/**',

@@ -44,6 +44,7 @@ const SlicedImages: FC<Props> = ({ maxCount, imgs, className }) => {
 
               <Image
                 src={getFileUrl(url)}
+                loader={() => getFileUrl(url)}
                 onError={(e) => {
                   //@ts-ignore
                   e.target.style.display = 'none';
