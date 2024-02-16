@@ -15,11 +15,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ChakraProvider>
         <AuthWrapper>
           <OnlineWrapper>
-            <div className="wrapper min-max-width">
-              <Header />
-              <main>
-                <Component {...pageProps} />
-              </main>
+            <div className="wrapper">
+              <div className="min-max-width">
+                <Header />
+                <main>
+                  <Component {...pageProps} />
+                </main>
+              </div>
               <Footer />
             </div>
           </OnlineWrapper>
