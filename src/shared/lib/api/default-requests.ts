@@ -1,9 +1,7 @@
 import ky from 'ky';
-import getConfig from 'next/config';
-const { serverRuntimeConfig } = getConfig();
 
 export const api = ky.create({
-  prefixUrl: serverRuntimeConfig?.serverUrl ?? 'https://api.prepise.ru',
+  prefixUrl: process.env.NEXT_PUBLIC_SERVER ?? 'https://api.prepise.ru',
   credentials: 'include',
   timeout: 100000,
 });

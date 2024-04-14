@@ -1,9 +1,7 @@
 import { io } from 'socket.io-client';
-import getConfig from 'next/config';
-const { serverRuntimeConfig } = getConfig();
 
 export const socket = (url: string) => {
-  const SERVER_URL = serverRuntimeConfig?.socketUrl ?? 'https://ws.prepise.ru';
+  const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET ?? 'https://ws.prepise.ru';
   const URL = url ? `${SERVER_URL}/${url}` : SERVER_URL;
 
   return io(URL, {
